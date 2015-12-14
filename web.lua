@@ -13,11 +13,14 @@ local pg = pgmoon.new({
 
 
 
+
+
 -- Do the app config things
 local app = lapis.Application()
 
 app:enable("etlua")
 app.layout = require "views.layout"		-- Sets the layout we are using.
+
 
 
 -- Override what happens when there is a default route.
@@ -210,7 +213,9 @@ end)
 
 -- The LUA CONSOLE FTW!!!
 app:match("/console", function(self)
-
+	-- Make a test app.
+	self.siteData = require("testData")
+	self.title = "My Pro Dashboard"
 	return {render = "console"}
 end)
 
