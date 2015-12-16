@@ -51,9 +51,7 @@ local users 	= Model:extend("users")
 
 km.getCalendarForUser = function (self, usr)
 
-	local theUser 	= users:find({username=usr})
-
-	return theUser.name
+	return usr.name
 	-- local assignent = calendarAssignments:find({user=theUser.id})
 	-- local calendar = assignent:get_calendar()
 	-- return calendar
@@ -61,12 +59,33 @@ end
 
 
 km.getCalendarJSON = function(self, username)
+	local requestUser = users:find({username=usr})
 
-	local jsonCalendar = {}
+	if (requestUser == nil) then
+		-- Unauthorized 
+		return { code=403 }
+	end
 
 	local userCalendar = self.getCalendarForUser(self, username)
 
-	jsonCalendar.name = userCalendar
+	-- Allocate contigious memory
+	local jsonCalendar = {
+		startdate = nil,
+		enddate = nil,
+		loopdays = nil,
+		events = {}
+	}
+
+	-- Build the user
+	jsonCalendar.user = {
+		username = requestUser.username,
+		name 	 = requestUser.name,
+		email 	 = requestUser.email
+	}
+
+
+
+
 
 	-- jsonCalendar = {
 	-- 	name = userCalendar.name,
