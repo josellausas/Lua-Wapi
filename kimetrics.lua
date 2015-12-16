@@ -1,7 +1,7 @@
+local km = {}
+
 local lapis 
-
 local Model = require("lapis.db.model").Model
-
 local users 	= Model:extend("users")
 local actions 	= Model:extend("actions")
 local targets 	= Model:extend("targets")
