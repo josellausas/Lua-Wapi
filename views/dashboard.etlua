@@ -10,11 +10,11 @@
 
 <div class="row">
     <!-- row-lg-8 -->
-    <div class="col-lg-8">
+    <div class="col-lg-6">
     	<% render("views.wapi.panel") %>
     </div>
 
-    <div class="col-lg-4">
+    <div class="col-lg-6">
     </div>
 </div>
 
