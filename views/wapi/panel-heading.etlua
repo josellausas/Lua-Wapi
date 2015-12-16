@@ -3,7 +3,7 @@
 
     panel = {}
     panel.title = "Lua Mobile example"
-    panel.icon = "fa fa-bar-chart-o fa-fw"
+    panel.icon = "fa fa-video fa-fw"
     panel.actionTitle = "Actions"
     panel.actionList = {}
     panel.actionList[1] = { title="Action 01", url="#" }
