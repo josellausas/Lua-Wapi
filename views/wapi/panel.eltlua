@@ -1,0 +1,140 @@
+<%
+
+    panel = {}
+    panel.title = "Char Sample"
+    panel.icon = "fa fa-bar-chart-o fa-fw"
+    panel.actionTitle = "Actions"
+    panel.actionList = {}
+    panel.actionList[1] = { title="Action 01", url="#" }
+    panel.actionList[2] = { title="Action 02", url="#" }
+    panel.actionList[3] = { title="Action 03", url="#" }
+    panel.actionList[4] = { title="Action 04", url="#" }
+
+
+
+%>
+
+<!-- panel -->
+<div class="panel panel-default">
+    
+    <!-- panel-heading -->
+    <div class="panel-heading">
+        
+        <i class="<%= panel.icon %>"></i> <%= panel.title %>
+        
+        <!-- pull-right -->
+        <div class="pull-right">
+
+            <!-- btn-group -->
+            <div class="btn-group">
+                <!-- button -->
+                <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown"><%= panel.actionTitle %><span class="caret"></span></button>
+                <!-- /.button -->
+                
+                <!-- Menu List -->
+                <ul class="dropdown-menu pull-right" role="menu">
+                    <% for action in ipairs(panel.actionList) do %>
+                        <li><a href="<%=action.url%>"><%= action.title %></a></li>
+                    <% end %>
+                    <li class="divider"></li>
+                    <li><a href="#">Separated link</a>
+                    </li>
+                </ul>
+                <!-- /. Menu List -->
+            </div>
+            <!-- /.btn-group -->
+        </div>
+        <!-- /.pull-right -->
+    </div>
+    <!-- /.panel-heading -->
+
+
+    <!-- panel-body -->
+    <div class="panel-body">
+        
+        <!-- row -->
+        <div class="row">
+            
+            <!-- col-lg-4 -->
+            <div class="col-lg-4">
+                <!-- table-responsive -->
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover table-striped">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Date</th>
+                                <th>Time</th>
+                                <th>Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>3326</td>
+                                <td>10/21/2013</td>
+                                <td>3:29 PM</td>
+                                <td>$321.33</td>
+                            </tr>
+                            <tr>
+                                <td>3325</td>
+                                <td>10/21/2013</td>
+                                <td>3:20 PM</td>
+                                <td>$234.34</td>
+                            </tr>
+                            <tr>
+                                <td>3324</td>
+                                <td>10/21/2013</td>
+                                <td>3:03 PM</td>
+                                <td>$724.17</td>
+                            </tr>
+                            <tr>
+                                <td>3323</td>
+                                <td>10/21/2013</td>
+                                <td>3:00 PM</td>
+                                <td>$23.71</td>
+                            </tr>
+                            <tr>
+                                <td>3322</td>
+                                <td>10/21/2013</td>
+                                <td>2:49 PM</td>
+                                <td>$8345.23</td>
+                            </tr>
+                            <tr>
+                                <td>3321</td>
+                                <td>10/21/2013</td>
+                                <td>2:23 PM</td>
+                                <td>$245.12</td>
+                            </tr>
+                            <tr>
+                                <td>3320</td>
+                                <td>10/21/2013</td>
+                                <td>2:15 PM</td>
+                                <td>$5663.54</td>
+                            </tr>
+                            <tr>
+                                <td>3319</td>
+                                <td>10/21/2013</td>
+                                <td>2:13 PM</td>
+                                <td>$943.45</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <!-- /.table-responsive -->
+            </div>
+            <!-- /.col-lg-4 (nested) -->
+            
+            <!-- col-lg-8 -->
+            <div class="col-lg-8">
+                <!-- morris-bar-chart -->
+                <div id="morris-bar-chart">
+                </div>
+                <!-- /.morris-bar-chart -->
+            </div>
+            <!-- /.col-lg-8 (nested) -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.panel-body -->
+</div>
+<!-- panel -->
