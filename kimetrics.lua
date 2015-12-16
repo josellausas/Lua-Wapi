@@ -74,7 +74,7 @@ km.getTasksJSON = function(self, usr)
 	Actions:include_in(myTasks,  "action",  {as="action"})
 
 
-	print ("User: " .. myUser.name .. " has: " ..  #myTasks .. " tasks."   )
+	print ("User: " .. theUser.name .. " has: " ..  #myTasks .. " tasks."   )
 
 
 	local taskListJSON = {}
