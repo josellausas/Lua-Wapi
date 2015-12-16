@@ -1,0 +1,43 @@
+<!-- panel-heading -->
+<%
+
+    panel = {}
+    panel.title = "Char Sample"
+    panel.icon = "fa fa-bar-chart-o fa-fw"
+    panel.actionTitle = "Actions"
+    panel.actionList = {}
+    panel.actionList[1] = { title="Action 01", url="#" }
+    panel.actionList[2] = { title="Action 02", url="#" }
+    panel.actionList[3] = { title="Action 03", url="#" }
+    panel.actionList[4] = { title="Action 04", url="#" }
+%>
+<!-- panel-heading -->
+<div class="panel-heading">
+    
+    <i class="<%= panel.icon %>"></i> <%= panel.title %>
+    
+    <!-- pull-right -->
+    <div class="pull-right">
+
+        <!-- btn-group -->
+        <div class="btn-group">
+            <!-- button -->
+            <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown"><%= panel.actionTitle %><span class="caret"></span></button>
+            <!-- /.button -->
+            
+            <!-- Menu List -->
+            <ul class="dropdown-menu pull-right" role="menu">
+                <% for i,action in ipairs(panel.actionList) do %>
+                    <li><a href="<%=action.url%>"><%= action.title %></a></li>
+                <% end %>
+                <li class="divider"></li>
+                <li><a href="#">Separated link</a>
+                </li>
+            </ul>
+            <!-- /. Menu List -->
+        </div>
+        <!-- /.btn-group -->
+    </div>
+    <!-- /.pull-right -->
+</div>
+<!-- /.panel-heading -->

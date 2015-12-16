@@ -6,4 +6,19 @@
     <!-- /.col-lg-12 -->
 </div>
 
-<% render("views.wapi.panel") %>
+<% render("views.dashboards.TopIndicators") %>
+
+<div class="row">
+    <!-- row-lg-8 -->
+    <div class="col-lg-8">
+    	<% render("views.wapi.panel") %>
+    </div>
+
+    <div class="col-lg-4">
+    </div>
+</div>
+
+
+
+
+
