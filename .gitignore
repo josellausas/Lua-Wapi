@@ -2,3 +2,5 @@
 DS_Store
 nginx.conf.compiled
 createMyUser.sh
+.floo
+.flooignore
