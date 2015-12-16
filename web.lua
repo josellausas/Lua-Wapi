@@ -221,5 +221,9 @@ app:get("/calendar", function(self)
 	return kimetrics:getCalendarJSON("josellausas")
 end)
 
+app:get("/tasks", function(self)
+	return kimetrics:getTasksJSON("josellausas")
+end)
+
 -- Serves a lapis web app.
 lapis.serve(app)

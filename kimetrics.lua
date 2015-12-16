@@ -58,6 +58,33 @@ km.getCalendarForUser = function (self, usr)
 	-- return calendar
 end
 
+km.getTasksJSON = function(self, usr)
+	local theUser = users:find({username = usr})
+	local Users 	= Model:extend("users")
+	local Targets 	= Model:extend("targets")
+	local Jornadas 	= Model:extend("jornadas")
+	local Actions 	= Model:extend("actions")
+	local Tasks 	= Model:extend("tasks")
+
+	local myTasks = Tasks:select('where "user" = ? ', theUser.id)
+
+	-- Prefetch the data to avoid hitting the DB too much.
+	Targets:include_in( myTasks, "target",  {as = "target"})
+	Jornadas:include_in(myTasks, "jornada", {as = "jornada"})
+	Actions:include_in(myTasks,  "action",  {as="action"})
+
+
+	print ("User: " .. myUser.name .. " has: " ..  #myTasks .. " tasks."   )
+
+
+	local taskListJSON = {}
+	for i,task in pairs(myTasks) do
+		taskListJSON:insert(task)
+	end
+
+	return {json=taskListJSON}
+end
+
 
 km.getCalendarJSON = function(self, usrname)
 
@@ -82,7 +109,7 @@ km.getCalendarJSON = function(self, usrname)
 	jsonCalendar.user = {
 		username = theUser.username,
 		name 	 = theUser.name,
-		email 	 = theUser.email
+		ema l 	 = theUser.email
 	}
 
 
