@@ -61,14 +61,14 @@ end
 
 km.getCalendarJSON = function(self, usrname)
 
-	local requestUser = users:find({username=usrname})
+	local theUser = users:find({username=usrname})
 
-	if (requestUser == nil) then
+	if (theUser == nil) then
 		-- Unauthorized 
 		return { code=403 }
 	end
 
-	local userCalendar = self.getCalendarForUser(self, username)
+	local userCalendar = self:getCalendarForUser(theUser)
 
 	-- Allocate contigious memory
 	local jsonCalendar = {
