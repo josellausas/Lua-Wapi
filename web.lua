@@ -219,5 +219,15 @@ app:match("/console", function(self)
 	return {render = "console"}
 end)
 
+local kimetrics = require("kimetrics")
+
+app:get("/calendar", function(self) 
+	
+	-- TODO: Get username parameters from self
+	local username = "josellausas"
+
+	return kimetrics.getCalendar(username)
+end)
+
 -- Serves a lapis web app.
 lapis.serve(app)
