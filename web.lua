@@ -13,8 +13,6 @@ local pg = pgmoon.new({
 
 
 
-
-
 -- Do the app config things
 local app = lapis.Application()
 
@@ -226,7 +224,7 @@ app:get("/calendar", function(self)
 	-- TODO: Get username parameters from self
 	local username = "josellausas"
 
-	return kimetrics.getCalendarJSON(username)
+	return kimetrics:getCalendarJSON(username)
 end)
 
 -- Serves a lapis web app.

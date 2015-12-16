@@ -50,7 +50,7 @@ local calendarAssignments = Model:extend("assignents", {
 
 
 
-km.getCalendarForUser = function (usr)
+km.getCalendarForUser = function (self, usr)
 
 	local theUser 	= users:find({username=usr})
 	local assignent = calendarAssignments:find({user=theUser.id})
@@ -61,11 +61,11 @@ km.getCalendarForUser = function (usr)
 end
 
 
-km.getCalendarJSON = function(username)
+km.getCalendarJSON = function(self, username)
 
 	local jsonCalendar = {}
 
-	local userCalendar = getCalendarForUser(username)
+	local userCalendar = self.getCalendarForUser(username)
 
 	jsonCalendar = {
 		name = userCalendar.name,
