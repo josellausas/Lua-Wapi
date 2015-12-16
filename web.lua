@@ -1,14 +1,15 @@
-local lapis    = require "lapis"
-local console  = require("lapis.console")
-local config   = require("lapis.config").get()
-local mqtt     = require("mqtt")
-local markdown = require("markdown")
-local pgmoon = require("pgmoon")
-local pg = pgmoon.new({
+local lapis    	= require "lapis"
+local config   	= require("lapis.config").get()
+local mqtt     	= require("mqtt")
+local markdown 	= require("markdown")
+local pgmoon 	= require("pgmoon")
+
+
+local pg 		= pgmoon.new({
 	host = "ec2-54-83-59-203.compute-1.amazonaws.com",
-    user = "wddcthddvouvtr",
-    password = "_EsJ9XVoYVSYXDWbUDOTQPdrph",
-    database = "d2k28tn5s3orl5"
+	user = "wddcthddvouvtr",
+	password = "_EsJ9XVoYVSYXDWbUDOTQPdrph",
+	database = "d2k28tn5s3orl5"
 })
 
 
@@ -216,7 +217,6 @@ app:match("/console", function(self)
 	self.title = "Console Lua"
 
 	-- Pass the console module along.
-	self.console = console
 	return {render = "console"}
 end)
 
