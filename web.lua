@@ -4,6 +4,7 @@ local mqtt     	= require("mqtt")
 local markdown 	= require("markdown")
 local pgmoon 	= require("pgmoon")
 local console 	= require("lapis.console")
+local kimetrics = require("kimetrics")
 
 local pg 		= pgmoon.new({
 	host = "ec2-54-83-59-203.compute-1.amazonaws.com",
@@ -12,19 +13,19 @@ local pg 		= pgmoon.new({
 	database = "d2k28tn5s3orl5"
 })
 
-
-
--- Do the app config things
+-- Get a Lapis web app
 local app = lapis.Application()
 
+-- Enable EtLua templates
 app:enable("etlua")
+
+-- Set the default layout
 app.layout = require "views.layout"		-- Sets the layout we are using.
 
+--]]]]]]]]]]]]]]]]]]]]]]]]]]] WEB APP ]]]]]]]]]]]]]]]]]]]]]]
 
-
--- Override what happens when there is a default route.
-app.default_route = function ( self )
-	
+-- DEFAULT ROUTE
+app.default_route = function ( self )	
 	-- There is no trailing slash removal at this step!!!
 	ngx.log(ngx.NOTICE, "User 404 path " .. self.req.parsed_url_path)
 
@@ -33,13 +34,17 @@ end
 
 
 
--- Handle 404s
+
+-- 404
 app.handle_404 = function( self )
 	-- Returns the code 404
 	return { status = 404, layout = false, "Not Found!" }
 end
 
--- Handle errors
+
+
+
+-- ERROR
 app.handle_error = function(self, err, trace)
 	-- Logs to the nginx console
 	ngx.log(ngx.NOTICE, "Lapis error: " .. err .. ": " .. trace)
@@ -51,85 +56,12 @@ app.handle_error = function(self, err, trace)
 end
 
 
--- Figures out the html for the index.
-local renderIndex = function()
-	
-	local theString = "<h2>version</h2> " .. require("lapis.version")
-
-	return theString
-end
 
 
-
--- Muestra una lista
-app:get("/lista", function(self)
-	
-	local listaLoad = {}
-	local countResults = 0
-
-	-- Connect to the database
-	pg:connect()
-	-- Do the Query
-	local res = pg:query("select * from posts")			
-	pg:keepalive()
-
-	-- Parse the Result
-	for objectIndex, objectTable in ipairs( res ) do
-		-- Make a count
-		countResults = countResults+1
-		-- Get the data from the object
-		for key, value in pairs(objectTable) do
-			
-			if(key == "content") then
-	   			table.insert(listaLoad, value)
-	   		end
-		end
-	end		
-	
-	self.unalista = listaLoad
-
-	return { render = "listaview" }
-end)
-
-
-local function generateJSON(self)
-	-- This is a lua object that gets converted to JSON
-	local demoLUAJSON = {
-		Harris = "programmer",
-		Chris = "CEO"
-	}
-
-	local response = {
-		json = demoLUAJSON, 
-		status = 200,
-		content_type = "application/json"
-	}
-
-	return response
-end
-
-local function appDesctiption(self)
-
-	local api = {
-		Harris = "programmer",
-		Chris = "CEO"
-	}
-
-	local response = {
-		json = api, 
-		status = 200,
-		content_type = "application/json"
-	}
-
-	return response
-end
-
-
+-- MENU LIST
 local function getMenuList()
 	pg:connect()
-
 	local res = pg:query("select * from menu")
-
 	pg:keepalive()
 
 	local list = {}
@@ -172,19 +104,32 @@ local function getMenuList()
 	return list
 end
 
+
+
+
+
+
+
 -- INDEX
 app:get("/", function(self)
 	-- Make a test app.
-	self.siteData = require("testData")
-	self.title = "My Pro Dashboard"
-
+	self.siteData 	= require("testData")
+	self.title 		= "Llau Systems"
 
 	self.siteData.menuButtons = getMenuList()
 
+	-- Render the dashboard by default
 	return { render = "dashboard" }
 end)
 
-app:get("/markdown", function(getReadme)
+
+
+
+
+
+
+-- MARKDOWN PARSER
+app:get("/readme", function(self)
 
 	readmeFile = io.open ("README.md", "r")
 	contents = readmeFile:read("*all")
@@ -193,15 +138,11 @@ app:get("/markdown", function(getReadme)
 end)
 
 
-app:get("/testjson", generateJSON)
-
--- Muestra la version
-app:get("/version", renderIndex)
-app:get("/api", appDesctiption)	
 
 
 
 
+-- DASHBOARD
 app:get("/dashboard", function(self)
 	-- Make a test app.
 	self.siteData = require("testData")
@@ -210,20 +151,31 @@ app:get("/dashboard", function(self)
 	return { render = "dashboard" }
 end)
 
+
+
+
 -- The LUA CONSOLE FTW!!!
 app:match("/console", console.make({env="heroku"}))
 
-local kimetrics = require("kimetrics")
 
+
+
+-- CALENDAR
 app:get("/calendar", function(self) 
 	
 	-- TODO: Get username parameters from self
 	return kimetrics:getCalendarJSON("josellausas")
 end)
 
+
+
+
+-- TASKS
 app:get("/tasks", function(self)
 	return kimetrics:getTasksJSON("josellausas")
 end)
+
+
 
 -- Serves a lapis web app.
 lapis.serve(app)
