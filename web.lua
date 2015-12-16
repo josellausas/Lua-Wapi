@@ -217,7 +217,7 @@ app:match("/console", function(self)
 	self.title = "Console Lua"
 
 	-- Pass the console module along.
-	return {render = "console"}
+	return console.make({env="heroku"}) 
 end)
 
 local kimetrics = require("kimetrics")
