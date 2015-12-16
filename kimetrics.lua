@@ -109,7 +109,7 @@ km.getCalendarJSON = function(self, usrname)
 	jsonCalendar.user = {
 		username = theUser.username,
 		name 	 = theUser.name,
-		ema l 	 = theUser.email
+		email 	 = theUser.email
 	}
 
 
