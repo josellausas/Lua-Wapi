@@ -3,7 +3,7 @@ local config   	= require("lapis.config").get()
 local mqtt     	= require("mqtt")
 local markdown 	= require("markdown")
 local pgmoon 	= require("pgmoon")
-
+local console 	= require("lapis.console")
 
 local pg 		= pgmoon.new({
 	host = "ec2-54-83-59-203.compute-1.amazonaws.com",
