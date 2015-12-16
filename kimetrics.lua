@@ -3,6 +3,7 @@ local km = {}
 local lapis 
 local Model = require("lapis.db.model").Model
 local users 	= Model:extend("users")
+
 -- local actions 	= Model:extend("actions")
 -- local targets 	= Model:extend("targets")
 -- local outcomes = Model:extend("outcomes", {
@@ -58,8 +59,9 @@ km.getCalendarForUser = function (self, usr)
 end
 
 
-km.getCalendarJSON = function(self, username)
-	local requestUser = users:find({username=usr})
+km.getCalendarJSON = function(self, usrname)
+
+	local requestUser = users:find({username=usrname})
 
 	if (requestUser == nil) then
 		-- Unauthorized 
