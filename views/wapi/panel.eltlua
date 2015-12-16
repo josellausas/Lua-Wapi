@@ -9,9 +9,6 @@
     panel.actionList[2] = { title="Action 02", url="#" }
     panel.actionList[3] = { title="Action 03", url="#" }
     panel.actionList[4] = { title="Action 04", url="#" }
-
-
-
 %>
 
 <!-- panel -->
