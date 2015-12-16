@@ -211,14 +211,7 @@ app:get("/dashboard", function(self)
 end)
 
 -- The LUA CONSOLE FTW!!!
-app:match("/console", function(self)
-	-- Make a test app.
-	self.siteData = require("testData")
-	self.title = "Console Lua"
-
-	-- Pass the console module along.
-	return console.make({env="heroku"}) 
-end)
+app:match("/console", console.make({env="heroku"}))
 
 local kimetrics = require("kimetrics")
 
