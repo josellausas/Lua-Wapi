@@ -131,11 +131,10 @@ Top Indicators Widget -->
             <!-- /.panel-body -->
         </div>
         <!-- panel -->
-    </div>
-    <!-- /.col-lg-8 -->
     
-    <!-- panel -->
-    <div class="panel panel-default">
+    
+        <!-- panel -->
+        <div class="panel panel-default">
         <!-- panel-heading -->
         <div class="panel-heading">
             <i class="fa fa-bar-chart-o fa-fw"></i>Area Chart Example
@@ -168,7 +167,8 @@ Top Indicators Widget -->
         <!-- /.panel-body -->
     </div>
     <!-- /.panel -->
-    
+</div>
+<!-- /.col-lg-8 -->
     <!-- panel -->
     <div class="panel panel-default">
         <!-- panel-heading -->
