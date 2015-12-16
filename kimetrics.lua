@@ -79,7 +79,7 @@ km.getTasksJSON = function(self, usr)
 
 	local taskListJSON = {}
 	for i,task in pairs(myTasks) do
-		taskListJSON:insert(task)
+		table.insert(taskListJSON, task)
 	end
 
 	return {json=taskListJSON}
