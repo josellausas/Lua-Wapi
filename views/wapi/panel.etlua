@@ -30,7 +30,7 @@
                 
                 <!-- Menu List -->
                 <ul class="dropdown-menu pull-right" role="menu">
-                    <% for action in ipairs(panel.actionList) do %>
+                    <% for i,action in ipairs(panel.actionList) do %>
                         <li><a href="<%=action.url%>"><%= action.title %></a></li>
                     <% end %>
                     <li class="divider"></li>
