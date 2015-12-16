@@ -214,6 +214,9 @@ app:match("/console", function(self)
 	-- Make a test app.
 	self.siteData = require("testData")
 	self.title = "My Pro Dashboard"
+
+	-- Pass the console module along.
+	self.console = console
 	return {render = "console"}
 end)
 
