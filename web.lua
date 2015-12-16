@@ -213,7 +213,7 @@ end)
 app:match("/console", function(self)
 	-- Make a test app.
 	self.siteData = require("testData")
-	self.title = "My Pro Dashboard"
+	self.title = "Console Lua"
 
 	-- Pass the console module along.
 	self.console = console
