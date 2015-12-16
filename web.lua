@@ -226,7 +226,7 @@ app:get("/calendar", function(self)
 	-- TODO: Get username parameters from self
 	local username = "josellausas"
 
-	return kimetrics.getCalendar(username)
+	return kimetrics.getCalendarJSON(username)
 end)
 
 -- Serves a lapis web app.
