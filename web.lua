@@ -35,7 +35,7 @@ app.layout = require "views.layout"		-- Sets the layout we are using.
 --]]]]]]]]]]]]]]]]]]]]]]]]]]] WEB APP ]]]]]]]]]]]]]]]]]]]]]]
 
 -- Start listening on mqtt:
-local handler = MQTTHandler.start()
+local handler = MQTTHandler:start()
 
 
 
