@@ -25,15 +25,19 @@ task.allForUser = function(userObj)
 	Actions:include_in(myTasks,  "action",  {as="action"})
 
 	local targets = {}
-	for i,t in pairs(myTasks) do
-		if (t.target.type == "CONTACT") then
-			t.target.contact = t.target.get_contact()
-		else
-			t.target.establishment = t.target.get_establishment()
-		end
+	for i,t in ipairs(myTasks) do
+		table.insert(targets, t.target)
 	end
-			
 
+	Contacts:include_in(targets, "contact", {as="contact", flip = true})
+	Establishments:include_in(targets, "establishment", {as="establishment", flip=true})
+
+	-- Reload them things.
+	local targets = {}
+	for i,t in ipairs(myTasks) do
+		t.target = targets[i]
+	end
+	
 
 
 	return myTasks
