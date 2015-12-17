@@ -67,7 +67,51 @@ end
 
 
 
+-- MENU LIST
+local function getMenuList()
+	pg:connect()
+	local res = pg:query("select * from menu")
+	pg:keepalive()
 
+	local list = {}
+
+	local count = 0;
+	-- Parse the Result
+	for objectIndex, objectTable in ipairs( res ) do
+		
+		count = count +1
+
+		local button = {}
+		-- Get the data from the object
+		for key, value in pairs(objectTable) do
+
+			if(key == "id") then
+	   			button.id = value
+	   		end
+
+	   		if(key == "label") then
+	   			button.label = value
+	   		end
+
+			if(key == "link") then
+	   			button.link = value
+	   		end
+
+	   		if(key == "icon") then
+	   			button.icon = value
+	   		end
+
+	   		if(key == "sortorder") then
+	   			button.sortorder = value
+	   		end
+
+		end
+
+		list[button.sortorder] = button
+	end		
+
+	return list
+end
 
 
 
