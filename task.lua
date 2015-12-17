@@ -1,5 +1,8 @@
 local Model = require("lapis.db.model").Model
 local Tasks = Model:extend("tasks")
+local Targets = Model:extend("targets")
+local Jornadas = Model:extend("jornadas")
+local Actions = Model:extend("actions")
 
 
 local task = {}
