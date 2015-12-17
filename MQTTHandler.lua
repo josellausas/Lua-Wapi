@@ -20,7 +20,6 @@ local config = {
 -- Función que reacciona a los mensajes
 local callback = function(topic, message)
 	print("Topic: " .. topic .. ", message: " .. message)
-	ngx.log(ngx.NOTICE, "Topic: " .. topic .. ", message: " .. message)
 end
 
 -- Inicia el cliente MQTT y escucha para reaccionar a los diferentes mensajes
@@ -50,8 +49,8 @@ function h:start()
 	  mqtt_client:destroy()
 	else
 	  print(error_message)
-	  -- Log to nginx
-	  ngx.log(ngx.NOTICE, "MQTTHandler [ERROR]:" .. error_message)
+	
+	 
 	end
 
 end

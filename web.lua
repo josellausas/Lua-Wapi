@@ -13,7 +13,7 @@ local markdown 	= require("markdown")
 local pgmoon 	= require("pgmoon")
 local console 	= require("lapis.console")
 local kimetrics = require("kimetrics")
-local MQTTHandler = require("MQTTHandler")
+
 
 -- Used for the database
 local pg 		= pgmoon.new({
@@ -34,8 +34,7 @@ app.layout = require "views.layout"		-- Sets the layout we are using.
 
 --]]]]]]]]]]]]]]]]]]]]]]]]]]] WEB APP ]]]]]]]]]]]]]]]]]]]]]]
 
--- Start listening on mqtt:
-local handler = MQTTHandler:start()
+
 
 
 
