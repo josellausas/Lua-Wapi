@@ -6,7 +6,7 @@ local user = {}
 
 
 
-function user.findWithUsername(name)
+function user.withUsername(name)
 
 	local theUser Users:find({username = name})
 

@@ -7,7 +7,7 @@ local Actions = Model:extend("actions")
 
 local task = {}
 
-task.getTasksForUser = function(userObj)
+task.allForUser = function(userObj)
 
 	local myTasks = Tasks:select('where "user" = ? ', userObj.id)
 
