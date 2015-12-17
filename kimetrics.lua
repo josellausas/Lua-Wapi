@@ -6,7 +6,7 @@ local KLUser = require("user")
 
 km.getTasksJSON = function(self, usr)
 	local theUser = KLUser.withUsername("josellausas")
-	local myTasks = KLTask.getTasksForUser(theUser)
+	local myTasks = KLTask.allForUser(theUser)
 
 	local taskListJSON = {}
 	for i,task in pairs(myTasks) do
