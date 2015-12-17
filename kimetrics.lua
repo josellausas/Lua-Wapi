@@ -1,20 +1,11 @@
 local km = {}
 
 local Model = require("lapis.db.model").Model
-local users 	= Model:extend("users")
 local KLTask = require("task")
-
-km.getCalendarForUser = function (self, usr)
-
-	return usr.name
-	-- local assignent = calendarAssignments:find({user=theUser.id})
-	-- local calendar = assignent:get_calendar()
-	-- return calendar
-end
+local KLUser = require("user")
 
 km.getTasksJSON = function(self, usr)
-	local theUser = users:find({username = usr})
-	
+	local theUser = KLUser.findWithUsername("josellausas")
 	local myTasks = KLTask.getTasksForUser(theUser)
 
 	local taskListJSON = {}
@@ -24,6 +15,20 @@ km.getTasksJSON = function(self, usr)
 
 	return {json=taskListJSON}
 end
+
+
+
+
+
+km.getCalendarForUser = function (self, usr)
+
+	return usr.name
+	-- local assignent = calendarAssignments:find({user=theUser.id})
+	-- local calendar = assignent:get_calendar()
+	-- return calendar
+end
+
+
 
 
 km.getCalendarJSON = function(self, usrname)
