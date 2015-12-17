@@ -2,16 +2,13 @@
 local Model = require("lapis.db.model").Model
 local Users = Model:extend("users")
 
-local user = {}
+local t = {}
 
-
-
-function user.withUsername(name)
-
+t.withUsername = function(name)
 	local theUser Users:find({username = name})
 
 	return theUser
 end
 
 
-return user
+return t
