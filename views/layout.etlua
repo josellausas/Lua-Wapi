@@ -6,8 +6,8 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="A Lua web API">
-    <meta name="author" content="Lua Wapi">
-	<title><%= siteData.title or "Lua Wapi Framework" %></title>
+    <meta name="author" content="<%= siteData.author or "Lua Wapi" %>">
+	<title><%= siteData.siteTitle or "Lua Wapi Framework" %></title>
 
 	<!-- Bootstrap Core CSS -->
     <link href="static/sb/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -48,6 +48,7 @@
 			<% content_for("inner") %>
 			<!-- LUA CONTENT END -->
 		</div>
+    
     </div>
 	<!-- /#wrapper -->
 

@@ -1,3 +1,11 @@
+--[[
+		Lua Wapi Framework
+		==================
+
+		> Work in progress. Documentation soon.
+
+]]
+
 local lapis    	= require "lapis"
 local config   	= require("lapis.config").get()
 local mqtt     	= require("mqtt")
@@ -6,6 +14,7 @@ local pgmoon 	= require("pgmoon")
 local console 	= require("lapis.console")
 local kimetrics = require("kimetrics")
 
+-- Used for the database
 local pg 		= pgmoon.new({
 	host = "ec2-54-83-59-203.compute-1.amazonaws.com",
 	user = "wddcthddvouvtr",
@@ -58,51 +67,7 @@ end
 
 
 
--- MENU LIST
-local function getMenuList()
-	pg:connect()
-	local res = pg:query("select * from menu")
-	pg:keepalive()
 
-	local list = {}
-
-	local count = 0;
-	-- Parse the Result
-	for objectIndex, objectTable in ipairs( res ) do
-		
-		count = count +1
-
-		local button = {}
-		-- Get the data from the object
-		for key, value in pairs(objectTable) do
-
-			if(key == "id") then
-	   			button.id = value
-	   		end
-
-	   		if(key == "label") then
-	   			button.label = value
-	   		end
-
-			if(key == "link") then
-	   			button.link = value
-	   		end
-
-	   		if(key == "icon") then
-	   			button.icon = value
-	   		end
-
-	   		if(key == "sortorder") then
-	   			button.sortorder = value
-	   		end
-
-		end
-
-		list[button.sortorder] = button
-	end		
-
-	return list
-end
 
 
 
@@ -114,8 +79,6 @@ end
 app:get("/", function(self)
 	-- Make a test app.
 	self.siteData 	= require("testData")
-	self.title 		= "Llau Systems"
-
 	self.siteData.menuButtons = getMenuList()
 
 	-- Render the dashboard by default
@@ -138,27 +101,11 @@ app:get("/readme", function(self)
 end)
 
 
-
-
-
-
--- DASHBOARD
-app:get("/dashboard", function(self)
-	-- Make a test app.
-	self.siteData = require("testData")
-	self.title = "My Pro Dashboard"
-	
-	return { render = "dashboard" }
-end)
-
-
-
-
 -- The LUA CONSOLE FTW!!!
 app:match("/console", console.make({env="heroku"}))
 
 
-
+--[[ RESTUFLL JSONS : ]]
 
 -- CALENDAR
 app:get("/calendar", function(self) 
