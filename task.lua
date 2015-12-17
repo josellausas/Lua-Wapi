@@ -2,8 +2,8 @@ local Model = require("lapis.db.model").Model
 local Tasks = Model:extend("tasks")
 local Targets = Model:extend("targets",{
 	relations = {
-    	{"contact", belongs_to = "contact"},
-    	{"establishment", belongs_to = "establishment"}
+    	{"contact", has_one = "contact"},
+    	{"establishment", has_one = "establishment"}
 
   	}
 })
