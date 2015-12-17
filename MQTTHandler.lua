@@ -33,7 +33,7 @@ function h:start()
 	-- Connect with last will, stick, qos = 2 and offline payload.
     mqtt_client:connect("Wapi", "status/handler", 2, 1, config.offlinePayload)
 
-    mqtt_client:publish("online", "status/handler")
+    mqtt_client:publish("status/handler", "online")
     -- Listen to all channels.
     mqtt_client:subscribe({"#"})
 
