@@ -25,7 +25,7 @@ task.allForUser = function(userObj)
 	Actions:include_in(myTasks,  "action",  {as="action"})
 
 	local targets = {}
-	for i,t in pairs(myTasks)
+	for i,t in pairs(myTasks) do
 		if (t.target.type == "CONTACT") then
 			t.target.contact = t.target.get_contact()
 		else
