@@ -29,8 +29,8 @@ task.allForUser = function(userObj)
 		table.insert(targets, t.target)
 	end
 
-	Contacts:include_in(targets, "contact", {as="contact", flip = true})
-	Establishments:include_in(targets, "establishment", {as="establishment", flip=true})
+	Contacts:include_in(targets, "contact", {as="contact"})
+	Establishments:include_in(targets, "establishment", {as="establishment"})
 
 	-- Reload them things.
 	local targets = {}
