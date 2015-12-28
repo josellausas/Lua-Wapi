@@ -23,7 +23,15 @@ m.new = function(sender, receiver, payload)
 	inst.payload 	= payload
 	inst.timeStamp 	= os.time()
 
+
+	function inst:getDate()
+		local t = os.date("*t", self.timeStamp) 
+		return t
+	end
+
 	return inst
 end
+
+
 
 return m
