@@ -6,8 +6,8 @@ local ll = {}
 ]]
 
 local Model  = require("lapis.db.model").Model
-local LLTask = require("LLTask")
-local LLUser = require("LLUser")
+local LLTask = require("Llau.LLTask")
+local LLUser = require("Llau.LLUser")
 
 ll.getTasksJSON = function(self, usr)
 	local theUser = LLTask.withUsername("josellausas")
