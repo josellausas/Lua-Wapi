@@ -12,7 +12,7 @@ local mqtt     	= require("mqtt")
 local markdown 	= require("markdown")
 local pgmoon 	= require("pgmoon")
 local console 	= require("lapis.console")
-local kimetrics = require("kimetrics")
+local Llau 		= require("Llau.Llau")
 
 
 -- Used for the database
@@ -160,7 +160,7 @@ app:match("/console", console.make({env="heroku"}))
 app:get("/calendar", function(self) 
 	
 	-- TODO: Get username parameters from self
-	return kimetrics:getCalendarJSON("josellausas")
+	return Llau:getCalendarJSON("josellausas")
 end)
 
 
@@ -168,7 +168,7 @@ end)
 
 -- TASKS
 app:get("/tasks", function(self)
-	return kimetrics:getTasksJSON("josellausas")
+	return Llau:getTasksJSON("josellausas")
 end)
 
 

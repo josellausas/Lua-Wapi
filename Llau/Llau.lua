@@ -1,12 +1,17 @@
-local km = {}
+local ll = {}
 
-local Model = require("lapis.db.model").Model
-local KLTask = require("task")
-local KLUser = require("user")
+--[[
+	Llau Task Manager
+	-----------------
+]]
 
-km.getTasksJSON = function(self, usr)
-	local theUser = KLUser.withUsername("josellausas")
-	local myTasks = KLTask.allForUser(theUser)
+local Model  = require("lapis.db.model").Model
+local LLTask = require("LLTask")
+local LLUser = require("LLUser")
+
+ll.getTasksJSON = function(self, usr)
+	local theUser = LLTask.withUsername("josellausas")
+	local myTasks = LLUser.allForUser(theUser)
 
 	local taskListJSON = {}
 	for i,task in pairs(myTasks) do
@@ -20,7 +25,7 @@ end
 
 
 
-km.getCalendarForUser = function (self, usr)
+ll.getCalendarForUser = function (self, usr)
 
 	return usr.name
 	-- local assignent = calendarAssignments:find({user=theUser.id})
@@ -31,7 +36,7 @@ end
 
 
 
-km.getCalendarJSON = function(self, usrname)
+ll.getCalendarJSON = function(self, usrname)
 
 	local theUser = users:find({username=usrname})
 
