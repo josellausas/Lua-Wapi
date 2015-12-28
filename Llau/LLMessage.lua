@@ -6,22 +6,24 @@
 
 local os = require("os")
 
-	--[[ Creates and returns a new message instance ]]
-	m.new = function(sender, receiver, payload)
+local m = {}
 
-		local inst = {
-			sender = nil,
-			receiver = nil,
-			timeStamp = nil,
-			payload = ""
-		}
+--[[ Creates and returns a new message instance ]]
+m.new = function(sender, receiver, payload)
 
-		inst.sender 	= sender
-		inst.receiver 	= receiver
-		inst.ayload 	= payload
-		inst.timeStamp 	= os.time()
+	local inst = {
+		sender = nil,
+		receiver = nil,
+		timeStamp = nil,
+		payload = ""
+	}
 
-		return inst
-	end
+	inst.sender 	= sender
+	inst.receiver 	= receiver
+	inst.payload 	= payload
+	inst.timeStamp 	= os.time()
+
+	return inst
+end
 
 return m
