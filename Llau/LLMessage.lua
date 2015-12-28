@@ -6,19 +6,22 @@
 
 local os = require("os")
 
--- The data structure of the message
-local m = {
-	sender = nil,
-	receiver = nil,
-	timeStamp = nil,
-	payload = ""
-}
+	--[[ Creates and returns a new message instance ]]
+	m.new = function(sender, receiver, payload)
 
-m.new = function(sender, receiver, payload)
-	m.sender = sender
-	m.receiver = receiver
-	m.payload = payload
-	m.timeStamp = os.time()
-end
+		local inst = {
+			sender = nil,
+			receiver = nil,
+			timeStamp = nil,
+			payload = ""
+		}
+
+		inst.sender 	= sender
+		inst.receiver 	= receiver
+		inst.ayload 	= payload
+		inst.timeStamp 	= os.time()
+
+		return inst
+	end
 
 return m
