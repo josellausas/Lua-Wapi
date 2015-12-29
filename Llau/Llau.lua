@@ -3,6 +3,10 @@ local ll = {}
 --[[
 	Llau Task Manager
 	-----------------
+	This is the main interface for all the task functionality.
+	Any questions/comments: jose@josellausas.com
+
+	All rights reserved.
 	
 ]]
 local Model  = require("lapis.db.model").Model

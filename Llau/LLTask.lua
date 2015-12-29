@@ -14,11 +14,9 @@ local Contacts 	= Model:extend("contacts")
 local Establishments = Model:extend("establishments")
 
 
-local taskModule = {}
+local taskModule = {} -- The Task Module!!!
 
---[[
-	Returns all the Tasks for the given user object
-]]
+--[[ Returns all the Tasks for the given user object ]]
 taskModule.allForUser = function(userObj)
 
 	-- Queries for all Tasks where userid is matched.	
@@ -44,6 +42,8 @@ taskModule.allForUser = function(userObj)
 
 	-- Reload them things.
 	local targets = {}
+
+	
 	for i,t in ipairs(myTasks) do
 		t.target = targets[i]
 	end
