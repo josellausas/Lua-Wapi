@@ -29,4 +29,10 @@ o.new = function(name)
 	return instance
 end
 
+
+-- [[Returns the Organization with name]]
+o.withName = function(name)
+	return OrganizationModel:find({name = name})
+end
+
 return o
