@@ -6,18 +6,27 @@
     </a>
     
     <ul class="dropdown-menu dropdown-messages">
+        <%
+            -- Get the messages for my user:
+            local Users      = require("Llau.LLUser")
+            local Messages  = require("Llau.LLMessage")
+            local josellausas = Users.withUsername("josellausas")
+            msgs = Messages.allForUser(josellausas) %>
+
         <!-- MESSAGE LOOP -->
-        <% for i=1, 4 do %> 
+        <% for i,msg in ipairs(msgs) do %>
+
+    
             <!-- UN MENSAJE -->
             <li>
                 <a href="#">
                     <div>
-                        <strong><%= siteData.mensaje.from %></strong>
+                        <strong><%= msg.sender.name %></strong>
                         <span class="pull-right text-muted">
-                            <em><%= siteData.mensaje.whenfrom %></em>
+                            <em><%= msg:getReadableDate() %></em>
                         </span>
                     </div>
-                    <div><%= siteData.mensaje.message %></div>
+                    <div><%= msg.payload %></div>
                 </a>
             </li>
             <li class="divider"></li>
