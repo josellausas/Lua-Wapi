@@ -18,6 +18,7 @@ local Messages  = require("Llau.LLMessage")
 local csrf = require "lapis.csrf"
 
 local capture_errors = require("lapis.application").capture_errors
+local respond_to = require("lapis.application").respond_to
 
 -- This user is hardcoded for now.
 local josellausas = Users.withUsername("josellausas")
@@ -131,19 +132,7 @@ end
 
 
 
--- INDEX
-app:get("/", function(self)
-	-- Make a test app.
-	self.siteData 	= require("testData")
-	self.siteData.menuButtons = getMenuList()
 
-	-- Fresh data from database:
-	self.msgs 	= Messages.allForUser(josellausas)
-	self.tasks 	= {}
-	self.alerts = {}
-	-- Render the dashboard by default
-	return { render = "dashboard" }
-end)
 
 
 
@@ -185,7 +174,35 @@ end)
 
 app:post("/messages", capture_errors(function(self)
 
-	ngx.log(ngx.NOTICE, "Received post")
+	
+end))
+
+app:get("/messages", function(self)
+	
+end)
+
+
+
+-- INDEX
+app:get("/", function(self)
+	-- Make a test app.
+	self.siteData 	= require("testData")
+	self.siteData.menuButtons = getMenuList()
+
+	-- Fresh data from database:
+	self.msgs 	= Messages.allForUser(josellausas)
+	self.tasks 	= {}
+	self.alerts = {}
+	-- Render the dashboard by default
+	return { render = "dashboard" }
+end)
+
+app:match("messages", "/messages", respond_to({
+  GET = function(self)
+    return { render = true }
+  end,
+  POST = function(self)
+    ngx.log(ngx.NOTICE, "Received post")
 	-- Loop the parameters
 	for i,v in pairs(self.params) do
 		ngx.log(ngx.NOTICE, "Params: " .. i .. " - " .. v)
@@ -195,16 +212,8 @@ app:post("/messages", capture_errors(function(self)
 
 	-- List the things
 	return { redirect_to = self:url_for("list_tasks") }
-end))
-
-app:get("/messages", function(self)
-	ngx.log(ngx.NOTICE, "Received Get messages")
-	return {layout = false, status=200, "OK"}
-end)
-
-
-
-
+  end
+}))
 
 
 
