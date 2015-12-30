@@ -38,7 +38,7 @@ end
 m.new = function(sender, receiver, payload)
 
 	-- The message data structure reflects the DB Model.
-	local msgInstance = {
+	local model = {
 		sender = nil,
 		receiver = nil,
 		timestamp = nil,
@@ -47,15 +47,21 @@ m.new = function(sender, receiver, payload)
 
 	-- Data assignment
 	-- TODO: Check for nils
-	msgInstance.sender 		= sender
-	msgInstance.receiver 	= receiver
-	msgInstance.payload 	= payload
-	msgInstance.timestamp 	= os.time()
+	model.sender 		= sender.id
+	model.receiver 		= receiver.id
+	model.payload 		= payload
+	model.timestamp 	= os.time()
+
+	local instance,e = MessageModel:create(model)
+	if(instance == nil) then
+		print("Error de base de datos: " .. e)
+		return nil
+	end
 
 
-	decorateClass(msgInstance)
+	decorateClass(instance)
 
-	return msgInstance
+	return instance
 end
 
 
@@ -68,7 +74,7 @@ m.allForUser = function(userObj)
 	for i,v in pairs(myMessages) do
 		decorateClass(v)
 	end
-	
+
 	return myMessages
 end
 
