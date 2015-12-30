@@ -1,19 +1,16 @@
 <!-- MAIN INDICATORS PANEL -->
 <%
     mydata = {
-        newcomments = 26,
-        newcomments_lbl = "New Comments!",
-        newtasks = 12,
-        newtasks_lbl = "New Tasks!",
-        neworders = 10,
-        neworders_lbl = "New Orders!",
-        newtickets= 100,
-        newtickets_lbl = "Trouble Tickets!",
+        newcomments_lbl = "New Messages!",
+        newtasks_lbl    = "New Tasks!",
+        neworders_lbl   = "New Orders!",
+        newtickets_lbl  = "Trouble Tickets!",
     }
 %>
 
 
 <div class="row">
+    
     <!-- NEW COMENTS PANEL -->
     <div class="col-lg-3 col-md-6">
         <div class="panel panel-primary">
@@ -25,7 +22,7 @@
                     </div>
                     
                     <div class="col-xs-9 text-right">
-                        <div class="huge"><%= mydata.newcomments %></div>
+                        <div class="huge"><%= #msgs %></div>
                         <div><%= mydata.newcomments_lbl %></div>
                     </div>
                 </div>
@@ -51,7 +48,7 @@
                         <i class="fa fa-tasks fa-5x"></i>
                     </div>
                     <div class="col-xs-9 text-right">
-                        <div class="huge"> <%= mydata.newtasks %> </div>
+                        <div class="huge"> <%= #tasks %> </div>
                         <div><%= mydata.newtasks_lbl %></div>
                     </div>
                 </div>
@@ -82,7 +79,7 @@
                         <i class="fa fa-shopping-cart fa-5x"></i>
                     </div>
                     <div class="col-xs-9 text-right">
-                        <div class="huge"><%= mydata.neworders %></div>
+                        <div class="huge"><%= #alerts %></div>
                         <div><%= mydata.neworders_lbl %></div>
                     </div>
                 </div>
@@ -117,7 +114,7 @@
                     
 
                     <div class="col-xs-9 text-right">
-                        <div class="huge"><%= mydata.newtickets %></div>
+                        <div class="huge"><%= #alerts %></div>
                         <div><%= mydata.newtickets_lbl %></div>
                     </div>
                 </div>
