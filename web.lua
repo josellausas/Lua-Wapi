@@ -193,7 +193,7 @@ app:post("/apiv1/messages",function(self)
 	}
 
 	-- Return some JSON
-	return Llau:getTasksJSON("josellausas")
+	return {json={status = "OK"}}
 end)
 
 
