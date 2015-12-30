@@ -53,6 +53,20 @@ end
 
 
 
+app:post("/messages", function(self)
+	-- Loop the parameters
+	for i,v in pairs(self.params) do
+		print("" .. i .. " - " .. v)
+	end
+
+	local x = {
+		status = "OK"
+	}
+
+	-- Return some JSON
+	return {json=x, layout = false}
+end)
+
 
 -- 404
 app.handle_404 = function( self )
@@ -182,19 +196,7 @@ end)
 
 
 
-app:post("/apiv1/messages",function(self)
-	-- Loop the parameters
-	for i,v in pairs(self.params) do
-		print("" .. i .. " - " .. v)
-	end
 
-	local x = {
-		status = "OK"
-	}
-
-	-- Return some JSON
-	return {json={status = "OK"}}
-end)
 
 
 
