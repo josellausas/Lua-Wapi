@@ -182,5 +182,27 @@ end)
 
 
 
+--[[ REST ]]
+app:match("apiv1/messages", "/apiv1/messages", respond_to({
+  GET = function(self)
+    return { render = true }
+  end,
+  POST = function(self)
+    -- Loop the parameters
+    for i,v in pairs(self.params) do
+    	print("" .. i .. " - " .. v)
+    end
+
+    local x = {
+    	status = "OK"
+	}
+    
+    -- Return some JSON
+    return {json=x}
+  end
+}))
+
+
+
 -- Serves a lapis web app.
 lapis.serve(app)
