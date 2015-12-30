@@ -6,6 +6,21 @@ local Users = Model:extend("users", {
 
 local t = {}
 
+--[[ Adds the class functionality to the object ]]
+local function decorateClass(obj)
+	function obj:getName()
+		return self.name
+	end
+
+	function obj:getEmail()
+		return self.email
+	end
+
+	function obj:save()
+		self:update("username","name","email","password")
+	end
+end
+
 --[[ Creates a new instance of a User ]]
 t.new = function(uname, name, email, pass)
 	
@@ -33,18 +48,8 @@ t.new = function(uname, name, email, pass)
 		return nil
 	end
 
-
-	function dbInstance:getName()
-		return self.name
-	end
-
-	function dbInstance:getEmail()
-		return self.email
-	end
-
-	function dbInstance:save()
-		self:update("username","name","email","password")
-	end
+	decorateClass(dbInstance)
+	
 	-- Return the newly-freshly-made instance
 	return dbInstance
 end
@@ -52,7 +57,9 @@ end
 
 --[[ Finds a user with Username ]]
 t.withUsername = function(name)
-	return Users:find({username = name})
+	local u = Users:find({username = name})
+	decorateClass(u)
+	return u
 end
 
 

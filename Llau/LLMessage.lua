@@ -16,6 +16,24 @@ local MessageModel = Model:extend("message", {
 
 local m = {} -- Declares the module.
 
+local function decorateClass( obj )
+	--[[ Returns the Lua date object ]]
+	function obj:getDate()
+		local t = os.date("*t", self.timeStamp) 
+		return t
+	end
+
+	--[[ Returns the date as a readable string ]]
+	function obj:getReadableDate()
+		local t = os.date("*t", self.timeStamp)
+		return ""..t.day.."/"..t.month.."/"..t.year
+	end
+
+	function obj:save()
+		self:update("sender","receiver","timestamp","payload")
+	end
+end
+
 --[[ Creates and returns a new message instance ]]
 m.new = function(sender, receiver, payload)
 
@@ -23,7 +41,7 @@ m.new = function(sender, receiver, payload)
 	local msgInstance = {
 		sender = nil,
 		receiver = nil,
-		timeStamp = nil,
+		timestamp = nil,
 		payload = ""
 	}
 
@@ -32,20 +50,10 @@ m.new = function(sender, receiver, payload)
 	msgInstance.sender 		= sender
 	msgInstance.receiver 	= receiver
 	msgInstance.payload 	= payload
-	msgInstance.timeStamp 	= os.time()
+	msgInstance.timestamp 	= os.time()
 
 
-	--[[ Returns the Lua date object ]]
-	function msgInstance:getDate()
-		local t = os.date("*t", self.timeStamp) 
-		return t
-	end
-
-	--[[ Returns the date as a readable string ]]
-	function msgInstance:getReadableDate()
-		local t = os.date("*t", self.timeStamp)
-		return ""..t.day.."/"..t.month.."/"..t.year
-	end
+	decorateClass(msgInstance)
 
 	return msgInstance
 end
@@ -55,6 +63,12 @@ end
 m.allForUser = function(userObj)
 	-- Queries for all messages where receiver.id is the user
 	local myMessages = MessageModel:select('where "receiver" = ? ', userObj.id)
+
+	-- Add the functionality
+	for i,v in pairs(myMessages) do
+		decorateClass(v)
+	end
+	
 	return myMessages
 end
 
