@@ -6,6 +6,12 @@ local OrganizationModel = Model:extend("organizations", {
 
 o = {}
 
+local function decorateClass(obj)
+	function obj:save()
+		self:update("name")
+	end
+end
+
 o.new = function(name)
 	-- This needs to match the database
 	local model = {
@@ -22,17 +28,20 @@ o.new = function(name)
 		return nil
 	end
 
-	function instance:save()
-		self:update("name")
-	end
-
+	decorateClass(instance)
 	return instance
 end
 
 
 -- [[Returns the Organization with name]]
 o.withName = function(name)
-	return OrganizationModel:find({name = name})
+	local org = OrganizationModel:find({name = name})
+	if(org == nil) then
+		return nil
+	end
+
+	decorateClass(org)
+	return org
 end
 
 return o
