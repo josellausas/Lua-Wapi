@@ -9,13 +9,14 @@
 
 local os 	= require("os")
 local Model = require("lapis.db.model").Model
-local MessageModel = Model:extend("message", {
+local MessageModel = Model:extend("messages", {
 	timestamp = true
 })
 
 
 local m = {} -- Declares the module.
 
+--[[ Adds the Message functionality to the object ]]
 local function decorateClass( obj )
 	--[[ Returns the Lua date object ]]
 	function obj:getDate()
