@@ -9,9 +9,13 @@
 
 local os 	= require("os")
 local Model = require("lapis.db.model").Model
+local UsersModel   = Model:extend("users", {
+	timestamp = true
+})
 local MessageModel = Model:extend("messages", {
 	timestamp = true
 })
+
 
 
 local m = {} -- Declares the module.
@@ -71,6 +75,8 @@ m.allForUser = function(userObj)
 	-- Queries for all messages where receiver.id is the user
 	local myMessages = MessageModel:select('where "receiver" = ? ', userObj.id)
 
+	UsersModel:include_in(myMessages, "sender", {as = "sender"} )
+	
 	-- Add the functionality
 	for i,v in pairs(myMessages) do
 		decorateClass(v)
