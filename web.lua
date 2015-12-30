@@ -197,19 +197,17 @@ app:get("/", function(self)
 	return { render = "dashboard" }
 end)
 
-app:match("messages", "/messages", respond_to({
-  GET = function(self)
-    return {status=200, layout = false, "OK"}
-  end,
-  POST = capture_errors(function(self)
-    ngx.log(ngx.NOTICE, "Received post")
-	-- Loop the parameters
 
 
-	-- List the things
+
+app:get("/messages", function(self) 
 	return {status=200, layout = false, "OK"}
-  end)
-}))
+end)
+
+app:post("/messages", capture_errors(function(self)
+	retrun {status=200, layout = false, "OK"}
+end))
+
 
 
 
