@@ -13,6 +13,11 @@ local markdown 	= require("markdown")
 local pgmoon 	= require("pgmoon")
 local console 	= require("lapis.console")
 local Llau 		= require("Llau.Llau")
+local Users     = require("Llau.LLUser")
+local Messages  = require("Llau.LLMessage")
+
+-- This user is hardcoded for now.
+local josellausas = Users.withUsername("josellausas")
 
 
 -- Used for the database
@@ -130,14 +135,10 @@ app:get("/", function(self)
 	self.siteData 	= require("testData")
 	self.siteData.menuButtons = getMenuList()
 
-	-- Get the messages for my user:
-    local Users      = require("Llau.LLUser")
-    local Messages  = require("Llau.LLMessage")
-
-            
-    local josellausas = Users.withUsername("josellausas")
-    self.msgs = Messages.allForUser(josellausas)
-
+	-- Fresh data from database:
+	self.msgs 	= Messages.allForUser(josellausas)
+	self.tasks 	= {}
+	self.alerts = {}
 	-- Render the dashboard by default
 	return { render = "dashboard" }
 end)
