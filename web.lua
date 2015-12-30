@@ -68,7 +68,7 @@ app:post("/messages", function(self)
 	}
 
 	-- Return some JSON
-	return {json=x, layout = false}
+	return {layout = false, status=200, "OK"}
 end)
 
 
