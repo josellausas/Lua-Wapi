@@ -6,12 +6,7 @@
     </a>
     
     <ul class="dropdown-menu dropdown-messages">
-        <%
-            -- Get the messages for my user:
-            local Users      = require("Llau.LLUser")
-            local Messages  = require("Llau.LLMessage")
-            local josellausas = Users.withUsername("josellausas")
-            msgs = Messages.allForUser(josellausas) %>
+        
 
         <!-- MESSAGE LOOP -->
         <% for i,msg in ipairs(msgs) do %>
@@ -32,7 +27,7 @@
             <li class="divider"></li>
         <% end %>
         
-        <!-- REAL ALL MESSAGES button -->
+        <!-- READ ALL MESSAGES button -->
         <li>
             <a class="text-center" href="#">
                 <strong>Read All Messages</strong>

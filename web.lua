@@ -130,6 +130,14 @@ app:get("/", function(self)
 	self.siteData 	= require("testData")
 	self.siteData.menuButtons = getMenuList()
 
+	-- Get the messages for my user:
+    local Users      = require("Llau.LLUser")
+    local Messages  = require("Llau.LLMessage")
+
+            
+    local josellausas = Users.withUsername("josellausas")
+    self.msgs = Messages.allForUser(josellausas)
+
 	-- Render the dashboard by default
 	return { render = "dashboard" }
 end)
