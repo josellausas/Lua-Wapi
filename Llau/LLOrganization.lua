@@ -1,6 +1,8 @@
 --[[ LLOrganization ]]
 local Model = require("lapis.db.model").Model
-local OrganizationModel = Model:extend("organizations")
+local OrganizationModel = Model:extend("organizations", {
+	timestamp = true
+})
 
 o = {}
 

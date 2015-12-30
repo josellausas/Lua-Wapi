@@ -1,17 +1,28 @@
 local Model = require("lapis.db.model").Model
 
 -- Armar los modelos segun las relaciones de la base de datos.
-local Tasks   = Model:extend("tasks")
+local Tasks   = Model:extend("tasks", {
+	timestamp = true
+})
 local Targets = Model:extend("targets",{
+	timestamp = true,
 	relations = {
     	{"contact", has_one = "contact"},
     	{"establishment", has_one = "establishment"}
   	}
 })
-local Jornadas 	= Model:extend("jornadas")
-local Actions 	= Model:extend("actions")
-local Contacts 	= Model:extend("contacts")
-local Establishments = Model:extend("establishments")
+local Jornadas 	= Model:extend("jornadas", {
+	timestamp = true
+})
+local Actions 	= Model:extend("actions", {
+	timestamp = true
+})
+local Contacts 	= Model:extend("contacts", {
+	timestamp = true
+})
+local Establishments = Model:extend("establishments", {
+	timestamp = true
+})
 
 
 local taskModule = {} -- The Task Module!!!
@@ -43,7 +54,7 @@ taskModule.allForUser = function(userObj)
 	-- Reload them things.
 	local targets = {}
 
-	
+
 	for i,t in ipairs(myTasks) do
 		t.target = targets[i]
 	end

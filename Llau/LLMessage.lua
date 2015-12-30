@@ -9,7 +9,9 @@
 
 local os 	= require("os")
 local Model = require("lapis.db.model").Model
-local MessageModel = Model:extend("message")
+local MessageModel = Model:extend("message", {
+	timestamp = true
+})
 
 
 local m = {} -- Declares the module.
