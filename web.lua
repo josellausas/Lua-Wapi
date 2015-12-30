@@ -199,7 +199,7 @@ end)
 
 app:match("messages", "/messages", respond_to({
   GET = function(self)
-    return { "OK" , layout = false}
+    return {status=200, layout = false, "OK"}
   end,
   POST = capture_errors(function(self)
     ngx.log(ngx.NOTICE, "Received post")
@@ -207,7 +207,7 @@ app:match("messages", "/messages", respond_to({
 
 
 	-- List the things
-	return { "OK" , layout = false}
+	return {status=200, layout = false, "OK"}
   end)
 }))
 
