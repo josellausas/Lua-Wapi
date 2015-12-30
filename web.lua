@@ -54,10 +54,14 @@ end
 
 
 app:post("/messages", function(self)
+
+	ngx.log(ngx.NOTICE, "Received post")
 	-- Loop the parameters
 	for i,v in pairs(self.params) do
-		print("" .. i .. " - " .. v)
+		ngx.log(ngx.NOTICE, "Params: " .. i .. " - " .. v)
 	end
+
+
 
 	local x = {
 		status = "OK"
