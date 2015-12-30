@@ -13,22 +13,28 @@ local Model  = require("lapis.db.model").Model
 local LLTask = require("Llau.LLTask")
 local LLUser = require("Llau.LLUser")
 
+--[[ Returns a JSON object with all the tasks for the given user]]
 ll.getTasksJSON = function(self, usr)
+	
+	-- TODO: Un-hardcode this
 	local theUser = LLTask.withUsername("josellausas")
+	
+	-- Gets all the tasks for this user
 	local myTasks = LLUser.allForUser(theUser)
 
+	-- Converts to a JSON Object.
 	local taskListJSON = {}
 	for i,task in pairs(myTasks) do
-		table.insert(taskListJSON, task)
+		table.insert(taskListJSON, task)	-- Adds to the list
 	end
 
+	-- This is how Lapis returns JSON
 	return {json=taskListJSON}
 end
 
 
 
-
-
+--[[ Returns the Calendar object for the given user ]]
 ll.getCalendarForUser = function (self, usr)
 
 	return usr.name
@@ -36,7 +42,6 @@ ll.getCalendarForUser = function (self, usr)
 	-- local calendar = assignent:get_calendar()
 	-- return calendar
 end
-
 
 
 
@@ -48,26 +53,6 @@ ll.getCalendarJSON = function(self, usrname)
 		-- Unauthorized 
 		return { code=403 }
 	end
-
-	local userCalendar = self:getCalendarForUser(theUser)
-
-	-- Allocate contigious memory
-	local jsonCalendar = {
-		startdate = nil,
-		enddate = nil,
-		loopdays = nil,
-		events = {}
-	}
-
-	-- Build the user
-	jsonCalendar.user = {
-		username = theUser.username,
-		name 	 = theUser.name,
-		email 	 = theUser.email
-	}
-
-
-
 
 	return {json=jsonCalendar}
 end
