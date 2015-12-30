@@ -195,7 +195,8 @@ end)
 
 -- TASKS
 app:get("/tasks", function(self)
-	return Llau:getTasksJSON("josellausas")
+	local x = Llau:getTasksJSON("josellausas")
+	return x
 end)
 
 

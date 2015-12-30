@@ -17,10 +17,10 @@ local LLUser = require("Llau.LLUser")
 ll.getTasksJSON = function(self, usr)
 	
 	-- TODO: Un-hardcode this
-	local theUser = LLTask.withUsername("josellausas")
+	local theUser = LLUser.withUsername(usr)
 	
 	-- Gets all the tasks for this user
-	local myTasks = LLUser.allForUser(theUser)
+	local myTasks = LLTask.allForUser(theUser)
 
 	-- Converts to a JSON Object.
 	local taskListJSON = {}
