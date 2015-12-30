@@ -53,25 +53,6 @@ end
 
 
 
-app:post("/messages", function(self)
-
-	ngx.log(ngx.NOTICE, "Received post")
-	-- Loop the parameters
-	for i,v in pairs(self.params) do
-		ngx.log(ngx.NOTICE, "Params: " .. i .. " - " .. v)
-	end
-
-
-
-	local x = {
-		status = "OK"
-	}
-
-	-- Return some JSON
-	return {layout = false, status=200, "OK"}
-end)
-
-
 -- 404
 app.handle_404 = function( self )
 	-- Returns the code 404
@@ -199,7 +180,28 @@ app:get("/tasks", function(self)
 	return x
 end)
 
+app:post("/messages", function(self)
 
+	ngx.log(ngx.NOTICE, "Received post")
+	-- Loop the parameters
+	for i,v in pairs(self.params) do
+		ngx.log(ngx.NOTICE, "Params: " .. i .. " - " .. v)
+	end
+
+
+
+	local x = {
+		status = "OK"
+	}
+
+	-- Return some JSON
+	return {layout = false, status=200, "OK"}
+end)
+
+app:get("/messages", function(self)
+	ngx.log(ngx.NOTICE, "Received Get messages")
+	return {layout = false, status=200, "OK"}
+end)
 
 
 
