@@ -47,7 +47,7 @@ e.withName = function(name)
 end
 
 e.withOrganization = function(organization)
-	local u = EstablishmentModel:select('where "organiztion" = ?', organiztion.id)
+	local u = EstablishmentModel:select('where "organization" = ?', organization.id)
 
 	for i,v in pairs(u) do
 		decorateClass(v)
