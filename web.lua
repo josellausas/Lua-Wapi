@@ -15,6 +15,9 @@ local console 	= require("lapis.console")
 local Llau 		= require("Llau.Llau")
 local Users     = require("Llau.LLUser")
 local Messages  = require("Llau.LLMessage")
+local csrf = require "lapis.csrf"
+
+local capture_errors = require("lapis.application").capture_errors
 
 -- This user is hardcoded for now.
 local josellausas = Users.withUsername("josellausas")
@@ -175,12 +178,12 @@ end)
 
 
 -- TASKS
-app:get("/tasks", function(self)
+app:get("list_tasks","/tasks", function(self)
 	local x = Llau:getTasksJSON("josellausas")
 	return x
 end)
 
-app:post("/messages", function(self)
+app:post("/messages", capture_errors(function(self)
 
 	ngx.log(ngx.NOTICE, "Received post")
 	-- Loop the parameters
@@ -190,13 +193,9 @@ app:post("/messages", function(self)
 
 
 
-	local x = {
-		status = "OK"
-	}
-
-	-- Return some JSON
-	return {layout = false, status=200, "OK"}
-end)
+	-- List the things
+	return { redirect_to = self:url_for("list_tasks") }
+end))
 
 app:get("/messages", function(self)
 	ngx.log(ngx.NOTICE, "Received Get messages")
