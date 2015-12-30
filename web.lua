@@ -199,9 +199,9 @@ end)
 
 app:match("messages", "/messages", respond_to({
   GET = function(self)
-    return { render = true }
+    return { "OK" }
   end,
-  POST = function(self)
+  POST = capture_errors(function(self)
     ngx.log(ngx.NOTICE, "Received post")
 	-- Loop the parameters
 	for i,v in pairs(self.params) do
@@ -212,7 +212,7 @@ app:match("messages", "/messages", respond_to({
 
 	-- List the things
 	return { redirect_to = self:url_for("list_tasks") }
-  end
+  end)
 }))
 
 
