@@ -1,4 +1,5 @@
 --[[ LLEstablishment ]]
+local Model = require("lapis.db.model").Model
 local EstablishmentModel = Model:extend("establishments", {
 	timestamp = true
 })
