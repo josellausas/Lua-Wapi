@@ -21,7 +21,7 @@ local capture_errors = require("lapis.application").capture_errors
 local respond_to = require("lapis.application").respond_to
 
 -- This user is hardcoded for now.
-local josellausas = Users.withUsername("jose")
+-- local josellausas = Users.withUsername("jose")
 
 
 -- Used for the database
@@ -158,7 +158,7 @@ app:match("/console", console.make({env="heroku"}))
 
 -- CALENDAR
 app:get("/calendar", function(self) 
-	
+	local josellausas = Users.withUsername("jose")
 	-- TODO: Get username parameters from self
 	return Llau:getCalendarJSON("josellausas")
 end)
@@ -168,6 +168,7 @@ end)
 
 -- TASKS
 app:get("list_tasks","/tasks", function(self)
+	local josellausas = Users.withUsername("jose")
 	local x = Llau:getTasksJSON("josellausas")
 	return x
 end)
@@ -176,6 +177,7 @@ end)
 -- INDEX
 app:get("index","/", function(self)
 	-- Make a test app.
+	local josellausas = Users.withUsername("jose")
 	
 	self.siteData 	= require("testData")
 	self.siteData.menuButtons = getMenuList()
