@@ -21,7 +21,7 @@ local capture_errors = require("lapis.application").capture_errors
 local respond_to = require("lapis.application").respond_to
 
 -- This user is hardcoded for now.
-local josellausas = Users.withUsername("josellausas")
+local josellausas = Users.withUsername("jose")
 
 
 -- Used for the database
