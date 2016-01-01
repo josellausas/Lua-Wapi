@@ -204,7 +204,7 @@ end)
 
 app:post("messages", "/messages", capture_errors(function(self)
 	csrf.assert_token(self)
-	retrun {status=200, layout = false, "OK"}
+	retrun {layout = false, "OK"}
 end))
 
 
