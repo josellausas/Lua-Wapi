@@ -211,18 +211,16 @@ app:post("messages", "/messages-get/:hey", capture_errors(function(self)
 	return {status = 200, layout=false, "OK"}
 end))
 
+responders = {}
+responders.GET = function(self)
+	return {status=200, layout=false, "OK"}
+end
 
+responders.POST = function(self)
+	return {redirect_to=self:url_for("message")}
+end
 
-app:match("create_message", "/create-message", respond_to({
-	GET = function( self )
-		return {status=200, layout=false, "OK"}
-	end,
-	POST = function(self)
-		self.params
-
-		return{redirect_to = self:url_for("messages")}
-	end
-}))
+app:match("create_message", "/create-message", respond_to(responders) )
 
 
 
