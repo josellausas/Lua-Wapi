@@ -15,7 +15,8 @@ local console 	= require("lapis.console")
 local Llau 		= require("Llau.Llau")
 local Users     = require("Llau.LLUser")
 local Messages  = require("Llau.LLMessage")
-local csrf = require "lapis.csrf"
+local csrf = require ("lapis.csrf")
+
 
 local capture_errors = require("lapis.application").capture_errors
 local respond_to = require("lapis.application").respond_to
@@ -48,12 +49,12 @@ app.layout = require "views.layout"		-- Sets the layout we are using.
 
 
 -- DEFAULT ROUTE
-app.default_route = function ( self )	
+--[[app.default_route = function ( self )	
 	-- There is no trailing slash removal at this step!!!
 	ngx.log(ngx.NOTICE, "User 404 path " .. self.req.parsed_url_path)
 
 	return lapis.Application.default_route(self)
-end
+end]]
 
 
 
@@ -129,7 +130,21 @@ end
 
 
 
+-- INDEX
+app:get("index","/", function(self)
+	-- Make a test app.
+	local josellausas = Users.withUsername("jose")
+	
+	self.siteData 	= require("testData")
+	self.siteData.menuButtons = getMenuList()
 
+	-- Fresh data from database:
+	self.msgs 	= Messages.allForUser(josellausas)
+	self.tasks 	= {}
+	self.alerts = {}
+	-- Render the dashboard by default
+	return { render = "dashboard" }
+end)
 
 
 
@@ -174,21 +189,7 @@ app:get("list_tasks","/tasks", function(self)
 end)
 
 
--- INDEX
-app:get("index","/", function(self)
-	-- Make a test app.
-	local josellausas = Users.withUsername("jose")
-	
-	self.siteData 	= require("testData")
-	self.siteData.menuButtons = getMenuList()
 
-	-- Fresh data from database:
-	self.msgs 	= Messages.allForUser(josellausas)
-	self.tasks 	= {}
-	self.alerts = {}
-	-- Render the dashboard by default
-	return { render = "dashboard" }
-end)
 
 
 
@@ -196,7 +197,6 @@ end)
 
 app:get("/users", function(self)
 	return Llau:getUsersJSON()
-
 end)
 
 
@@ -205,12 +205,18 @@ app:get("/messages", function(self)
 end)
 
 app:post("messages", "/messages-get/:hey", capture_errors(function(self)
-	retrun {status = 200, layout=false, "OK"}
+	local josellausas = Users.withUsername("jose")
+	local x = Messages.new(josellausas, josellausas, "Hello mundo")
+	x:save()
+	return {status = 200, layout=false, "OK"}
 end))
 
 
 app:match("edit_user", "/edit-user/:id", respond_to({
 	POST = function(self)
+
+
+
 		return { status=200, layout=false, "OK Maguey"}
 	end
 }))
