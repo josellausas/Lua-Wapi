@@ -50,10 +50,20 @@ app.layout = require "views.layout"		-- Sets the layout we are using.
 
 -- DEFAULT ROUTE
 --[[app.default_route = function ( self )	
-	-- There is no trailing slash removal at this step!!!
-	ngx.log(ngx.NOTICE, "User 404 path " .. self.req.parsed_url_path)
 
-	return lapis.Application.default_route(self)
+	ngx.log(ngx.NOTICE, "Uknown path: " .. self.req.parsed_url.path)
+	
+	if(self.req.parsed_url.path:match("./$")) then
+		local stripped = self.req.parsed_url:match("^(.+)/+$")
+		return {
+			redirect_to = self:build_url(stripped, {
+				status=301,
+				query=self.req.parsed_url.query,
+			})
+		}
+	else
+		self.app.handle_404(self)
+	end
 end]]
 
 
@@ -68,7 +78,7 @@ end
 
 
 -- ERROR
-app.handle_error = function(self, err, trace)
+--[[app.handle_error = function(self, err, trace)
 	-- Logs to the nginx console
 	ngx.log(ngx.NOTICE, "Lapis error: " .. err .. ": " .. trace)
 
@@ -76,7 +86,7 @@ app.handle_error = function(self, err, trace)
 	lapis.Application.handle_error(self, err, trace)
 
 	-- TODO: Crashlytics?
-end
+end]]
 
 
 
