@@ -200,16 +200,6 @@ app:get("/users", function(self)
 end)
 
 
-app:get("messages","/messages", function(self) 
-	return {status=200, layout = false, "OK"}
-end)
-
-app:post("messages", "/messages-get/", capture_errors(function(self)
-	local josellausas = Users.withUsername("jose")
-	local x = Messages.new(josellausas, josellausas, "Hello mundo")
-	x:save()
-	return {status = 200, layout=false, "OK"}
-end))
 
 responders = {}
 responders.GET = function(self)
