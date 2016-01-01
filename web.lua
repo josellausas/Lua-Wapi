@@ -132,21 +132,7 @@ end
 
 
 
--- INDEX
-app:get("index","/", function(self)
-	-- Make a test app.
-	local josellausas = Users.withUsername("jose")
-	
-	self.siteData 	= require("testData")
-	self.siteData.menuButtons = getMenuList()
 
-	-- Fresh data from database:
-	self.msgs 	= Messages.allForUser(josellausas)
-	self.tasks 	= {}
-	self.alerts = {}
-	-- Render the dashboard by default
-	return { render = "dashboard" }
-end)
 
 
 
@@ -223,6 +209,22 @@ app:post("/api/new", capture_errors(function(self)
 	print("handling post <<<<<")
 	return {redirect_to = self:url_for("list_tasks")}
 end))
+
+-- INDEX
+app:get("index","/", function(self)
+	-- Make a test app.
+	local josellausas = Users.withUsername("jose")
+	
+	self.siteData 	= require("testData")
+	self.siteData.menuButtons = getMenuList()
+
+	-- Fresh data from database:
+	self.msgs 	= Messages.allForUser(josellausas)
+	self.tasks 	= {}
+	self.alerts = {}
+	-- Render the dashboard by default
+	return { render = "dashboard" }
+end)
 
 
 -- Serves a lapis web app.
