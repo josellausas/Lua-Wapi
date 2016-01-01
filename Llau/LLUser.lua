@@ -65,7 +65,7 @@ end
 
 t.listAll = function()
 	local allUsers = Users:select()
-	for i,v in pairs(allUsers)
+	for i,v in pairs(allUsers) do
 		decorateClass(v)
 	end
 
