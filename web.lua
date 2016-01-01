@@ -50,6 +50,7 @@ app.layout = require "views.layout"		-- Sets the layout we are using.
 
 -- DEFAULT ROUTE
 app.default_route = function ( self )	
+	print("Entered default function")
 
 	ngx.log(ngx.NOTICE, "Unknown path: " .. self.req.parsed_url.path)
 	
@@ -70,6 +71,7 @@ end
 
 -- 404
 app.handle_404 = function( self )
+	print("Found a 404")
 	ngx.log(ngx.NOTICE, "Uknown path: " .. self.req.parsed_url.path)
 	-- Returns the code 404
 	return { status = 404, layout = false, "Not Found!" }
@@ -214,13 +216,16 @@ end)
 
 responders = {}
 responders.GET = function(self)
+	print("Handling GET")
 	return {status=200, layout=false, "OK"}
 end
 
 responders.POST = function(self)
+	print("Handling POST")
 	local josellausas = Users.withUsername("jose")
 	local newMsg      = Messages.new(josellausas,josellausas, "Hola hola")
-	return {redirect_to=self:url_for("create-message")}
+	
+	return {redirect_to=self:url_for("index")}
 end
 
 app:match("/create-message", respond_to(responders) )
