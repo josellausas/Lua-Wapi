@@ -63,4 +63,14 @@ t.withUsername = function(name)
 end
 
 
+t.listAll = function()
+	local allUsers = Users:select()
+	for i,v in pairs(allUsers)
+		decorateClass(v)
+	end
+
+	return allUsers
+end
+
+
 return t

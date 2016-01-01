@@ -197,7 +197,10 @@ app:get("/", function(self)
 	return { render = "dashboard" }
 end)
 
+app:get("/users", function(self)
+	return Llau:getUsersJSON()
 
+end)
 
 
 app:get("/messages", function(self) 

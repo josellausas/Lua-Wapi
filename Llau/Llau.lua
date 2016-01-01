@@ -34,6 +34,23 @@ end
 
 
 
+
+
+--[[ Returns a list of Users ]]
+ll.getUsersJSON = function(self)
+	local allUsers = LLUser.listAll()
+
+	local usersJSON = {}
+
+	for i,user in pairs(allUsers) do
+		table.insert(usersJSON, user)
+	end
+
+	return allUsers
+end
+
+
+
 --[[ Returns the Calendar object for the given user ]]
 ll.getCalendarForUser = function (self, usr)
 
