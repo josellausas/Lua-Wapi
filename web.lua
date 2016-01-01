@@ -200,7 +200,7 @@ app:get("/users", function(self)
 end)
 
 
-app:get("/messages", function(self) 
+app:get("messages","/messages", function(self) 
 	return {status=200, layout = false, "OK"}
 end)
 
@@ -212,12 +212,15 @@ app:post("messages", "/messages-get/:hey", capture_errors(function(self)
 end))
 
 
-app:match("edit_user", "/edit-user/:id", respond_to({
+
+app:match("create_message", "/create-message", respond_to({
+	GET = function( self )
+		return {status=200, layout=false, "OK"}
+	end,
 	POST = function(self)
+		self.params
 
-
-
-		return { status=200, layout=false, "OK Maguey"}
+		return{redirect_to = self:url_for("messages")}
 	end
 }))
 
