@@ -46,7 +46,7 @@ ll.getUsersJSON = function(self)
 		table.insert(usersJSON, user)
 	end
 
-	return allUsers
+	return {json=allUsers}
 end
 
 
