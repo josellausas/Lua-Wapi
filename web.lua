@@ -207,7 +207,7 @@ responders.GET = function(self)
 end
 
 responders.POST = function(self)
-	return {redirect_to=self:url_for("create_message")}
+	return {redirect_to=self:url_for("list_tasks")}
 end
 
 app:match("create_message", "/create-message", respond_to(responders) )
