@@ -204,7 +204,7 @@ app:get("messages","/messages", function(self)
 	return {status=200, layout = false, "OK"}
 end)
 
-app:post("messages", "/messages-get/:hey", capture_errors(function(self)
+app:post("messages", "/messages-get/", capture_errors(function(self)
 	local josellausas = Users.withUsername("jose")
 	local x = Messages.new(josellausas, josellausas, "Hello mundo")
 	x:save()
@@ -217,7 +217,7 @@ responders.GET = function(self)
 end
 
 responders.POST = function(self)
-	return {redirect_to=self:url_for("message")}
+	return {redirect_to=self:url_for("create_message")}
 end
 
 app:match("create_message", "/create-message", respond_to(responders) )
