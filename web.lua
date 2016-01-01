@@ -222,7 +222,7 @@ responders.POST = function(self)
 	return {redirect_to=self:url_for("create-message")}
 end
 
-app:match("create-message", "/create-message/:hola", respond_to(responders) )
+app:match("/create-message", respond_to(responders) )
 
 
 
