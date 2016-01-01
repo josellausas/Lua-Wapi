@@ -217,7 +217,7 @@ responders.POST = function(self)
 	return {redirect_to=self:url_for("index")}
 end
 
-app:match("/create-message", respond_to(responders) )
+app:match("/api/create-message", respond_to(responders) )
 
 
 
