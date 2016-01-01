@@ -19,7 +19,7 @@ local csrf = require ("lapis.csrf")
 
 
 local capture_errors = require("lapis.application").capture_errors
-local respond_to = require("lapis.application").respond_to
+local respond_to     = require("lapis.application").respond_to
 
 -- This user is hardcoded for now.
 -- local josellausas = Users.withUsername("jose")
@@ -49,9 +49,9 @@ app.layout = require "views.layout"		-- Sets the layout we are using.
 
 
 -- DEFAULT ROUTE
---[[app.default_route = function ( self )	
+app.default_route = function ( self )	
 
-	ngx.log(ngx.NOTICE, "Uknown path: " .. self.req.parsed_url.path)
+	ngx.log(ngx.NOTICE, "Unknown path: " .. self.req.parsed_url.path)
 	
 	if(self.req.parsed_url.path:match("./$")) then
 		local stripped = self.req.parsed_url:match("^(.+)/+$")
@@ -64,12 +64,13 @@ app.layout = require "views.layout"		-- Sets the layout we are using.
 	else
 		self.app.handle_404(self)
 	end
-end]]
+end
 
 
 
 -- 404
 app.handle_404 = function( self )
+	ngx.log(ngx.NOTICE, "Uknown path: " .. self.req.parsed_url.path)
 	-- Returns the code 404
 	return { status = 404, layout = false, "Not Found!" }
 end
