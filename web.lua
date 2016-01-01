@@ -207,6 +207,8 @@ responders.GET = function(self)
 end
 
 responders.POST = function(self)
+	local josellausas = Users.withUsername("jose")
+	local newMsg      = Messages.new(josellausas,josellausas, "Hola hola")
 	return {redirect_to=self:url_for("list_tasks")}
 end
 
