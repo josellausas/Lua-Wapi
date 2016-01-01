@@ -173,12 +173,8 @@ app:get("list_tasks","/tasks", function(self)
 end)
 
 
-
-
-
-
 -- INDEX
-app:get("/", function(self)
+app:get("index","/", function(self)
 	-- Make a test app.
 	
 	self.siteData 	= require("testData")
@@ -192,6 +188,10 @@ app:get("/", function(self)
 	return { render = "dashboard" }
 end)
 
+
+
+
+
 app:get("/users", function(self)
 	return Llau:getUsersJSON()
 
@@ -202,9 +202,8 @@ app:get("/messages", function(self)
 	return {status=200, layout = false, "OK"}
 end)
 
-app:post("messages", "/messages", capture_errors(function(self)
-	csrf.assert_token(self)
-	retrun {layout = false, "OK"}
+app:post("messages", "/messages-get/:hey", capture_errors(function(self)
+	retrun {status = 200, layout=false, "OK"}
 end))
 
 
