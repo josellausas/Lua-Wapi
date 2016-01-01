@@ -51,20 +51,9 @@ app.layout = require "views.layout"		-- Sets the layout we are using.
 -- DEFAULT ROUTE
 app.default_route = function ( self )	
 	print("Entered default function")
-
 	ngx.log(ngx.NOTICE, "Unknown path: " .. self.req.parsed_url.path)
-	
-	if(self.req.parsed_url.path:match("./$")) then
-		local stripped = self.req.parsed_url:match("^(.+)/+$")
-		return {
-			redirect_to = self:build_url(stripped, {
-				status=301,
-				query=self.req.parsed_url.query,
-			})
-		}
-	else
-		self.app.handle_404(self)
-	end
+	return lapis.Application.default_route(self)
+
 end
 
 
@@ -224,7 +213,7 @@ responders.POST = function(self)
 	print("Handling POST")
 	local josellausas = Users.withUsername("jose")
 	local newMsg      = Messages.new(josellausas,josellausas, "Hola hola")
-	
+
 	return {redirect_to=self:url_for("index")}
 end
 
