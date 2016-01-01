@@ -181,14 +181,15 @@ app:get("/messages", function(self)
 	
 end)
 
-self.siteData 	= require("testData")
-self.siteData.menuButtons = getMenuList()
+
 
 
 -- INDEX
 app:get("/", function(self)
 	-- Make a test app.
 	
+	self.siteData 	= require("testData")
+	self.siteData.menuButtons = getMenuList()
 
 	-- Fresh data from database:
 	self.msgs 	= Messages.allForUser(josellausas)
