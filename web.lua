@@ -219,10 +219,10 @@ end
 responders.POST = function(self)
 	local josellausas = Users.withUsername("jose")
 	local newMsg      = Messages.new(josellausas,josellausas, "Hola hola")
-	return {redirect_to=self:url_for("create_message")}
+	return {redirect_to=self:url_for("create-message")}
 end
 
-app:match("create_message", "/create-message/*", respond_to(responders) )
+app:match("create-message", "/create-message/:hola", respond_to(responders) )
 
 
 
