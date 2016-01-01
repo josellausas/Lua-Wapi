@@ -172,14 +172,7 @@ app:get("list_tasks","/tasks", function(self)
 	return x
 end)
 
-app:post("/messages", capture_errors(function(self)
 
-	
-end))
-
-app:get("/messages", function(self)
-	
-end)
 
 
 
@@ -209,9 +202,17 @@ app:get("/messages", function(self)
 	return {status=200, layout = false, "OK"}
 end)
 
-app:post("/messages", capture_errors(function(self)
+app:post("messages", "/messages", capture_errors(function(self)
+	csrf.assert_token(self)
 	retrun {status=200, layout = false, "OK"}
 end))
+
+
+app:match("edit_user", "/edit-user/:id", respond_to({
+	POST = function(self)
+		return { status=200, layout=false, "OK Maguey"}
+	end
+}))
 
 
 
