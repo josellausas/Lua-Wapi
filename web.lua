@@ -207,7 +207,7 @@ app:match("/api/create-message", respond_to(responders) )
 
 app:post("/api/new", capture_errors(function(self)
 	print("handling post <<<<<")
-	return {redirect_to = self:url_for("list_tasks")}
+	return {layout=false, json={hello="world"}}
 end))
 
 -- INDEX
