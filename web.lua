@@ -144,7 +144,7 @@ end
 
 
 -- MARKDOWN PARSER
-app:get("/readme", function(self)
+app:get("readme","/readme", function(self)
 
 	readmeFile = io.open ("README.md", "r")
 	contents = readmeFile:read("*all")
@@ -207,7 +207,7 @@ app:match("/api/create-message", respond_to(responders) )
 
 app:post("/api/new", capture_errors(function(self)
 	print("handling post <<<<<")
-	return {layout=false, json={hello="world"}}
+	return {redirect_to = self:url_for("index")}
 end))
 
 -- INDEX
