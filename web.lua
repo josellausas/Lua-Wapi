@@ -208,6 +208,9 @@ app:match("/api/create-message", respond_to(responders) )
 app:post("/api/new", capture_errors(function(self)
 	print("handling post <<<<<")
 	ngx.log(ngx.NOTICE, "handling post <<<<<" .. self.req.parsed_url.path)
+
+
+	
 	return {redirect_to = self:url_for("index")}
 end))
 
