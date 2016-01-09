@@ -12,8 +12,8 @@ local h = {}
 local config = {
 	host = "m10.cloudmqtt.com",
 	port = "11915",
-	user = "serverclient",
-	password = "HYD*3bfh3",
+	user = "jose",
+	password = "polo&xzaz",
 	offlinePayload = "offline",
 }
 
