@@ -15,6 +15,7 @@ local config = {
 	user = "jose",
 	password = "polo&xzaz",
 	offlinePayload = "offline",
+	keepalive = 40,
 }
 
 local running = true
