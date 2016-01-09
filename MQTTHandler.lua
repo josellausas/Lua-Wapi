@@ -55,8 +55,8 @@ function h:start()
 	end
 
 	if (error_message == nil) then
-		print("El ERROR")
-	  mqtt_client:unsubscribe({args.topic})
+		print("Cerrando MQTT")
+	  mqtt_client:unsubscribe({"#"})
 	  mqtt_client:destroy()
 	else
 	  print("El ERROR: " .. error_message)
