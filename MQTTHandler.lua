@@ -17,9 +17,14 @@ local config = {
 	offlinePayload = "offline",
 }
 
+local running = true
+
 -- Función que reacciona a los mensajes
 local callback = function(topic, message)
 	print("Topic: " .. topic .. ", message: " .. message)
+	if (message == "quit") then 
+		running = false 
+	end
 end
 
 -- Inicia el cliente MQTT y escucha para reaccionar a los diferentes mensajes
@@ -40,10 +45,13 @@ function h:start()
     -- Exit the loop if we error:
     local error_message = nil
 
-	while (error_message == nil) do
+    
+
+	while (error_message == nil and running) do
 	  -- This is the loop mr.
 	  error_message = mqtt_client:handler()
 	  socket.sleep(1.0)  -- seconds
+	  print("MQTT alive")
 	end
 
 	if (error_message == nil) then
