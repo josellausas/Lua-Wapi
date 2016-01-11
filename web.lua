@@ -217,8 +217,7 @@ app:post("/api/new", capture_errors(function(self)
 end))
 
 app:get("admin", "/admin", function(self)
-
-	return {render=true,layout="views.adminlayout"}
+	return {render="dashboards.default",layout="views.adminlayout"}
 end)
 
 -- INDEX
