@@ -20,6 +20,8 @@ local config = {
 	keepalive = 40,
 }
 
+local mqtt_client = nil
+
 local running = true
 
 -- Función que reacciona a los mensajes
@@ -35,25 +37,32 @@ local callback = function(topic, message)
 
 	end
 
-	if (message == "quit") then 
+	if (message == "llau-says-quit") then 
 		running = false 
 	end
 end
 
 -- Inicia el cliente MQTT y escucha para reaccionar a los diferentes mensajes
 function h:start()
+
+
 	print("Starting MQTT Handler by Llau...")
 
-	local mqtt_client = MQTT.client.create(config.host, config.port, callback)
+	if(mqtt_client == nil) then
+		mqtt_client = MQTT.client.create(config.host, config.port, callback)
+	end
 
-	-- Set the auth 
-	mqtt_client:auth(config.user, config.password)
-	-- Connect with last will, stick, qos = 2 and offline payload.
-    mqtt_client:connect("handler", "status/handler", 2, 1, config.offlinePayload)
+	if(mqtt_client.connected == false) then
+		-- Set the auth 
+		mqtt_client:auth(config.user, config.password)
+		-- Connect with last will, stick, qos = 2 and offline payload.
+	    mqtt_client:connect("handler", "v1/status/handler", 2, 1, config.offlinePayload)	
+	    -- Post a connection message
+	    mqtt_client:publish("v1/status/handler", "Handler: " .. config.user .. " online")
+	end
 
-    mqtt_client:publish("status/handler", "Handler: online")
     -- Listen to all channels.
-    mqtt_client:subscribe({"#"})
+    mqtt_client:subscribe({"v1/#"})
 
     -- Exit the loop if we error:
     local error_message = nil
@@ -69,7 +78,7 @@ function h:start()
 
 	if (error_message == nil) then
 		print("Cerrando MQTT")
-	  mqtt_client:unsubscribe({"#"})
+	  mqtt_client:unsubscribe({"v1/#"})
 	  mqtt_client:destroy()
 	else
 	  print("El ERROR: " .. error_message)

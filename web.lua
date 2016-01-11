@@ -44,11 +44,11 @@ local function notifyMQTT(severe, msg)
 
 	if(mqtt_client.connected == false) then
 	-- Connect with last will, stick, qos = 2 and offline payload.
-	    mqtt_client:connect("webserver", "status/webserver", 2, 1, mqttconf.offlinePayload)
-	    mqtt_client:publish("status/webserver", "Webserver: online")
+	    mqtt_client:connect("webserver", "v1/status/webserver", 2, 1, mqttconf.offlinePayload)
+	    mqtt_client:publish("v1/status/webserver", "Webserver: " .. mqttconf.user .. " online")
    end
     
-    mqtt_client:publish("notify/admin", "[WEB] " .. msg)
+    mqtt_client:publish("v1/notify/admin", "[WEB] " .. msg)
 
 end
 
