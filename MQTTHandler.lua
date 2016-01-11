@@ -43,8 +43,9 @@ local callback = function(topic, message)
 	if string.find(topic, "v1/notify") then
 
 		local reobj = loadstring("return " .. message)
+		local obj = reobj()
 		-- Log this message to the database
-		local note = Notification.new(reobj.severe, reobj.msg, reobj.ip)
+		local note = Notification.new(obj.severe, obj.msg, obj.ip)
 		note:save()
 	end
 		
