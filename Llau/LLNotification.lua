@@ -65,7 +65,7 @@ end
 --[[ Returns a list of all the messages destined for the given user ]]
 m.allForSeverity = function(severity)
 	-- Queries for all messages where receiver.id is the user
-	local myMessages = MessageModel:select('where "severity" = ? ', severity)
+	local myMessages = NotificationModel:select('where "severity" = ? ', severity)
 	
 	-- Add the functionality
 	for i,v in pairs(myMessages) do

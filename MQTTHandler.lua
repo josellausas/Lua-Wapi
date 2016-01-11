@@ -42,7 +42,7 @@ local callback = function(topic, message)
 
 	if string.find(topic, "v1/notify") then
 		-- Log this message to the database
-		local note = LLNotification.new(0, message)
+		local note = Notification.new(0, message)
 		note:save()
 	end
 		
