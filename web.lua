@@ -277,6 +277,7 @@ app:post("/api/new", capture_errors(function(self)
 	return {redirect_to = self:url_for("index")}
 end))
 
+
 app:get("admin", "/admin", function(self)
 
 	local forwardip = self.req.headers["x-forwarded-for"] or "no-forward"
@@ -293,6 +294,15 @@ app:get("admin", "/admin", function(self)
 	self.tasks 	= {}
 	self.alerts = {}
 	return {render="dashboards.default",layout="adminlayout"}
+end)
+
+
+app:get("downloadapp", "/downloadapp", function(self)
+	local forwardip = self.req.headers["x-forwarded-for"] or "no-forward"
+
+	notifyMQTT("App downloaded!", forwardip)
+
+	return { redirect_to=self:url_for("static/app-debug.apk"), layout=false }
 end)
 
 -- INDEX
