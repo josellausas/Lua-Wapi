@@ -33,10 +33,40 @@ local mqttconf = {
 local capture_errors = require("lapis.application").capture_errors
 local respond_to     = require("lapis.application").respond_to
 
+local function serialize(theTable)
+	local val = theTable
+    skipnewlines = skipnewlines or false
+    depth = depth or 0
+
+    local tmp = string.rep(" ", depth)
+
+    if name then tmp = tmp .. name .. " = " end
+
+    if type(val) == "table" then
+        tmp = tmp .. "{" .. " "
+
+        for k, v in pairs(val) do
+            tmp =  tmp .. serializeTable(v, k, skipnewlines, depth + 1) .. "," .. " "
+        end
+
+        tmp = tmp .. string.rep(" ", depth) .. "}"
+    elseif type(val) == "number" then
+        tmp = tmp .. tostring(val)
+    elseif type(val) == "string" then
+        tmp = tmp .. string.format("%q", val)
+    elseif type(val) == "boolean" then
+        tmp = tmp .. (val and "true" or "false")
+    else
+        tmp = tmp .. "\"[inserializeable datatype:" .. type(val) .. "]\""
+    end
+
+    return tmp
+end
+
 -- This user is hardcoded for now.
 -- local josellausas = Users.withUsername("jose")
 
-local function notifyMQTT(severe, msg)
+local function notifyMQTT(severe, msg, ipAddress)
 	if mqtt_client == nil then
 		mqtt_client = mqtt.client.create(mqttconf.host, mqttconf.port, nil)
 		mqtt_client:auth(mqttconf.user, mqttconf.password)
@@ -50,7 +80,7 @@ local function notifyMQTT(severe, msg)
    end
     
     print("Publishing to mqtt")
-    mqtt_client:publish("v1/notify/admin", "[WEB]" .. msg)
+    mqtt_client:publish("v1/notify/admin", serialize({severe = severe, msg = msg, ip = ipAddress}) )
 
 end
 
