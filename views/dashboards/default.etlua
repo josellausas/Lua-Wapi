@@ -1,6 +1,4 @@
-<-- Top Indicators Widget -->
 <% render("views.dashboards.TopIndicators") %>
-
 <div class="row">
     <!-- row-lg-8 -->
     <div class="col-lg-8">
