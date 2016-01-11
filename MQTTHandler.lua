@@ -7,6 +7,15 @@
 
 local lapis    		= require "lapis"
 local config   		= require("lapis.config").get()
+
+config.postgres = {
+    host = "ec2-54-83-59-203.compute-1.amazonaws.com",
+    user = "wddcthddvouvtr",
+    password = "_EsJ9XVoYVSYXDWbUDOTQPdrph",
+    database = "d2k28tn5s3orl5"
+}
+
+
 local MQTT 			= require("mqtt")
 local Model  		= require("lapis.db.model").Model
 local Notification 	= require("Llau.LLNotification")
@@ -23,7 +32,7 @@ local config = {
 	keepalive = 40,
 }
 
-local mqtt_client = nil
+
 
 local running = true
 
@@ -45,7 +54,7 @@ end
 
 -- Inicia el cliente MQTT y escucha para reaccionar a los diferentes mensajes
 function h:start()
-
+	local mqtt_client = nil
 
 	print("Starting MQTT Handler by Llau...")
 
