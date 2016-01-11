@@ -247,11 +247,13 @@ end))
 
 app:get("admin", "/admin", function(self)
 
-	for k,v in pairs(self.req) do
+	for k,v in pairs(self.req.headers) do
 		print("---> Key: " .. k .. " Value: " .. v)
 	end
 
-	notifyMQTT(0, "Accessed admin!")
+	local forwardip = self.req["x-forwarded-for"] or "no-forward"
+
+	notifyMQTT(0," [" .. forwardip .. "] " .. " Accessed admin!")
 
 	local josellausas = Users.withUsername("jose")
 	
