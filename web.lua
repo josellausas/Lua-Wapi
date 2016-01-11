@@ -251,7 +251,7 @@ app:get("admin", "/admin", function(self)
 		print("---> Key: " .. k .. " Value: " .. v)
 	end
 
-	local forwardip = self.req["x-forwarded-for"] or "no-forward"
+	local forwardip = self.req.headers["x-forwarded-for"] or "no-forward"
 
 	notifyMQTT(0," [" .. forwardip .. "] " .. " Accessed admin!")
 
