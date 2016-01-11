@@ -65,7 +65,7 @@ app.handle_404 = function( self )
 	print("Found a 404")
 	ngx.log(ngx.NOTICE, "Uknown path: " .. self.req.parsed_url.path)
 	-- Returns the code 404
-	return { status = 404, layout = false, "Not Found!" }
+	return { status = 404, render="error404" }
 end
 
 
@@ -231,9 +231,6 @@ end)
 
 -- INDEX
 app:get("index","/", function(self)
-	
-
-	
 	return { render = "index" }
 end)
 

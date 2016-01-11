@@ -1,0 +1,16 @@
+<!-- 404 Content -->
+<main class="page-404 container padding-bottom-3x">
+  <div class="row">
+    <div class="col-md-8 col-sm-10 col-md-offset-2 col-sm-offset-1">
+      <h1 class="page-404-title">404</h1>
+      <h2>Oops, the page you're looking for does not exist.</h2>
+      <p class="page-404-content">You may want to head back to the homepage. If you think something is broken, please do not hesitate to report a problem.</p>
+      <div class="row space-top-2x">
+        <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+          <a href="index.html" class="btn btn-default btn-block">Back to Homepage</a>
+        </div>
+      </div>
+    </div>
+  </div><!-- .row -->
+</main><!-- .page-404.container -->
+
