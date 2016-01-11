@@ -80,7 +80,9 @@ local function notifyMQTT(severe, msg, ipAddress)
    end
     
     print("Publishing to mqtt")
-    mqtt_client:publish("v1/notify/admin", serialize({severe = severe, msg = msg, ip=ipAddress}) )
+
+    local x = { severe = severe, msg = msg, ip=ipAddress }
+    mqtt_client:publish("v1/notify/admin", serialize( x ) )
 
 end
 
