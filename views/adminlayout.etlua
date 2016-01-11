@@ -44,6 +44,8 @@
         <!-- The content -->
 		<div id="page-wrapper">
 
+            </br>
+
 			<!-- LUA CONTENT START -->
 			<% content_for("inner") %>
 			<!-- LUA CONTENT END -->
