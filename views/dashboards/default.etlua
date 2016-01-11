@@ -1,3 +1,4 @@
+<!-- TOP INDICATORS -->
 <% render("views.dashboards.TopIndicators") %>
 <div class="row">
     <!-- row-lg-8 -->

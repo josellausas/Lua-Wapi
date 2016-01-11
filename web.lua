@@ -43,11 +43,13 @@ local function notifyMQTT(severe, msg)
 	end
 
 	if(mqtt_client.connected == false) then
+		print("Connecting mqtt")
 	-- Connect with last will, stick, qos = 2 and offline payload.
-	    mqtt_client:connect("webserver", "v1/status/webserver", 2, 1, mqttconf.offlinePayload)
+	    mqtt_client:connect("test01", "v1/status/webserver", 2, 1, mqttconf.offlinePayload)
 	    mqtt_client:publish("v1/status/webserver", "Webserver: " .. mqttconf.user .. " online")
    end
     
+    print("Publishing to mqtt")
     mqtt_client:publish("v1/notify/admin", "[WEB] " .. msg)
 
 end

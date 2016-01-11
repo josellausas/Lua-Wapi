@@ -28,14 +28,12 @@ local running = true
 local callback = function(topic, message)
 	print("Topic: " .. topic .. ", message: " .. message)
 
-	if not (string.find(t, "notify/") == nil) then
-		
+	if string.find(topic, "v1/notify") then
 		-- Log this message to the database
 		local note = LLNotification.new(0, message)
 		note:save()
-
-
 	end
+		
 
 	if (message == "llau-says-quit") then 
 		running = false 
