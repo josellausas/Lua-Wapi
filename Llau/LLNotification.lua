@@ -29,18 +29,19 @@ local function decorateClass( obj )
 	end
 
 	function obj:save()
-		self:update("severity","payload","timestamp")
+		self:update("severity","payload","timestamp", "ip")
 	end
 end
 
 --[[ Creates and returns a new message instance ]]
-m.new = function(severe, payload)
+m.new = function(severe, payload, address)
 
 	-- The message data structure reflects the DB Model.
 	local model = {
 		payload = "",
 		severity = 0,
-		timestamp = nil
+		timestamp = nil,
+		ip = "No ip"
 	}
 
 	-- Data assignment
@@ -48,6 +49,7 @@ m.new = function(severe, payload)
 	model.payload 		= payload
 	model.timestamp 	= os.time()
 	model.severity 		= severe
+	model.ip = address or "No ip"
 
 	local instance,e = NotificationModel:create(model)
 	if(instance == nil) then
