@@ -40,7 +40,9 @@ local app = lapis.Application()
 app:enable("etlua")
 
 -- Set the default layout
-app.layout = require "views.admin_layout"		-- Sets the layout we are using.
+app.layout = require "views.layout"		-- Sets the layout we are using.
+
+
 
 --]]]]]]]]]]]]]]]]]]]]]]]]]]] WEB APP ]]]]]]]]]]]]]]]]]]]]]]
 
@@ -214,19 +216,16 @@ app:post("/api/new", capture_errors(function(self)
 	return {redirect_to = self:url_for("index")}
 end))
 
+app:get("admin", "/admin", function(self)
+
+	return {render=true,layout="views.admin_layout"}
+end)
+
 -- INDEX
 app:get("index","/", function(self)
-	-- Make a test app.
-	local josellausas = Users.withUsername("jose")
 	
-	self.siteData 	= require("testData")
-	self.siteData.menuButtons = getMenuList()
 
-	-- Fresh data from database:
-	self.msgs 	= Messages.allForUser(josellausas)
-	self.tasks 	= {}
-	self.alerts = {}
-	-- Render the dashboard by default
+	
 	return { render = "index" }
 end)
 
