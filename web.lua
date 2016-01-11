@@ -226,7 +226,7 @@ app:get("admin", "/admin", function(self)
 	self.msgs 	= Messages.allForUser(josellausas)
 	self.tasks 	= {}
 	self.alerts = {}
-	return {render="dashboards.default",layout="views.adminlayout"}
+	return {render="dashboards.default",layout="adminlayout"}
 end)
 
 -- INDEX
