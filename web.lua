@@ -36,7 +36,7 @@ local respond_to     = require("lapis.application").respond_to
 function serialize (o)
 	local s = ""
 	if type(o) == "number" then
-		s = o + ""
+		s = "" .. o
 	elseif type(o) == "string" then
 		s = string.format("%q", o)
 	elseif type(o) == "table" then
@@ -50,7 +50,7 @@ function serialize (o)
 	else
 		error("cannot serialize a " .. type(o))
 	end
-	
+
 	return s
 end
 
