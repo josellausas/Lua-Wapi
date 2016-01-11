@@ -217,7 +217,16 @@ end)
 
 
 -- The LUA CONSOLE FTW!!!
-app:match("/console", console.make({env="heroku"}))
+app:match("/console", function(self)
+
+	-- Log acces to the consoel
+	local forwardip = self.req.headers["x-forwarded-for"] or "no-forward"
+	notifyMQTT(1, "Console accessed!", forwardip)
+
+	-- Console
+	console.make({env="heroku"})
+
+end)
 
 
 --[[ RESTUFLL JSONS : ]]
@@ -230,20 +239,12 @@ app:get("/calendar", function(self)
 end)
 
 
-
-
 -- TASKS
 app:get("list_tasks","/tasks", function(self)
 	local josellausas = Users.withUsername("jose")
 	local x = Llau:getTasksJSON("josellausas")
 	return x
 end)
-
-
-
-
-
-
 
 
 app:get("/users", function(self)
@@ -257,7 +258,6 @@ responders.GET = function(self)
 	print("Handling GET")
 	return {status=200, layout=false, "OK"}
 end
-
 responders.POST = function(self)
 	print("Handling POST")
 	local josellausas = Users.withUsername("jose")
@@ -265,14 +265,15 @@ responders.POST = function(self)
 
 	return {redirect_to=self:url_for("index")}
 end
-
 app:match("/api/create-message", respond_to(responders) )
 
+
+
+
 app:post("/api/new", capture_errors(function(self)
+
 	print("handling post <<<<<")
 	ngx.log(ngx.NOTICE, "handling post <<<<<" .. self.req.parsed_url.path)
-
-
 	
 	return {redirect_to = self:url_for("index")}
 end))
@@ -281,12 +282,10 @@ end))
 app:get("admin", "/admin", function(self)
 
 	local forwardip = self.req.headers["x-forwarded-for"] or "no-forward"
-
 	notifyMQTT(0,"Accessed admin!", forwardip)
 
-	local josellausas = Users.withUsername("jose")
-	
-	self.siteData 	= require("testData")
+	local josellausas 	= Users.withUsername("jose")
+	self.siteData 		= require("testData")
 	self.siteData.menuButtons = getMenuList()
 
 	-- Fresh data from database:
@@ -299,8 +298,7 @@ end)
 
 app:get("downloadapp", "/downloadapp", function(self)
 	local forwardip = self.req.headers["x-forwarded-for"] or "no-forward"
-
-	notifyMQTT("App downloaded!", forwardip)
+	notifyMQTT(0, "App downloaded!", forwardip)
 
 	return { redirect_to=self:url_for("static/app-debug.apk"), layout=false }
 end)
