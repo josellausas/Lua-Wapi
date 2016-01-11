@@ -36,7 +36,7 @@ local respond_to     = require("lapis.application").respond_to
 -- This user is hardcoded for now.
 -- local josellausas = Users.withUsername("jose")
 
-local function sendMQTT(msg)
+local function notifyMQTT(severe, msg)
 	if mqtt_client == nil then
 		mqtt_client = mqtt.client.create(mqttconf.host, mqttconf.port, nil)
 		mqtt_client:auth(mqttconf.user, mqttconf.password)
@@ -48,7 +48,7 @@ local function sendMQTT(msg)
 	    mqtt_client:publish("status/webserver", "Webserver: online")
    end
     
-    mqtt_client:publish("server/logs", "[WEB] " .. msg)
+    mqtt_client:publish("notify/admin", "[WEB] " .. msg)
 
 end
 
@@ -244,7 +244,8 @@ app:post("/api/new", capture_errors(function(self)
 end))
 
 app:get("admin", "/admin", function(self)
-	sendMQTT("Accessed admin!")
+	notifyMQTT(0, "Accessed admin!")
+
 	local josellausas = Users.withUsername("jose")
 	
 	self.siteData 	= require("testData")

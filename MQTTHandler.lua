@@ -4,7 +4,9 @@
 	Esto escucha mqtt y hace cosas. Usa PahoMQTT en lua
 ]]
 
-local MQTT = require("mqtt")
+local MQTT 			= require("mqtt")
+local Model  		= require("lapis.db.model").Model
+local Notification 	= require("Llau.LLNotification")
 
 local h = {}
 
@@ -23,6 +25,16 @@ local running = true
 -- Función que reacciona a los mensajes
 local callback = function(topic, message)
 	print("Topic: " .. topic .. ", message: " .. message)
+
+	if not (string.find(t, "notify/") == nil) then
+		
+		-- Log this message to the database
+		local note = LLNotification.new(0, message)
+		note:save()
+
+
+	end
+
 	if (message == "quit") then 
 		running = false 
 	end
@@ -52,7 +64,7 @@ function h:start()
 	  -- This is the loop mr.
 	  error_message = mqtt_client:handler()
 	  socket.sleep(1.0)  -- seconds
-	  print("MQTT alive")
+	  -- print("MQTT alive")
 	end
 
 	if (error_message == nil) then

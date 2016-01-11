@@ -1,0 +1,2 @@
+#!/bin/bash
+mosquitto_sub -h m10.cloudmqtt.com -p 11915 -u client03 -P client03 -t "#"
