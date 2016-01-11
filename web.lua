@@ -247,14 +247,11 @@ end))
 
 app:get("admin", "/admin", function(self)
 
-	local reqHeaders = self.req.headers
-
-	local stringu = ""
-	for k,v in pairs(reqHeaders) do
-		stringu = stringu .. "(" .. k .. ":" .. v .. "), " 
+	for k,v in pairs(self.req) do
+		print("---> Key: " .. k .. " Value: " .. v)
 	end
 
-	notifyMQTT(0, "Accessed admin! -> " .. stringu)
+	notifyMQTT(0, "Accessed admin!")
 
 	local josellausas = Users.withUsername("jose")
 	
