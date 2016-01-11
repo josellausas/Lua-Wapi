@@ -22,11 +22,19 @@ local mqtt_client = nil
 local mqttconf = {
 	host = "m10.cloudmqtt.com",
 	port = "11915",
-	user = "user01",
-	password = "user01",
+	user = "test01",
+	password = "test01",
 	offlinePayload = "offline",
 	keepalive = 40,
 }
+
+-- Función que reacciona a los mensajes
+local lastwill = function(topic, message)
+	print("Topic: " .. topic .. ", message: " .. message)
+	if (message == "quit") then 
+		running = false 
+	end
+end
 
 
 local capture_errors = require("lapis.application").capture_errors
@@ -37,12 +45,16 @@ local respond_to     = require("lapis.application").respond_to
 
 local function sendMQTT(msg)
 	if mqtt_client == nil then
-		mqtt_client = mqtt.client.create(config.host, config.port, callback)
+		mqtt_client = mqtt.client.create(mqttconf.host, mqttconf.port, nil)
 		mqtt_client:auth(mqttconf.user, mqttconf.password)
 	end
 
+	if(mqtt_client.connected == false) then
 	-- Connect with last will, stick, qos = 2 and offline payload.
-    mqtt_client:connect("serverdude", nil, 2, 1, nil)
+	    mqtt_client:connect("webserver", "status/webserver", 2, 1, mqttconf.offlinePayload)
+	    mqtt_client:publish("status/webserver", "online")
+   end
+    
     mqtt_client:publish("server/logs", msg)
 
 end

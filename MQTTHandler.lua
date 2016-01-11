@@ -37,7 +37,7 @@ function h:start()
 	-- Set the auth 
 	mqtt_client:auth(config.user, config.password)
 	-- Connect with last will, stick, qos = 2 and offline payload.
-    mqtt_client:connect("Wapi", "status/handler", 2, 1, config.offlinePayload)
+    mqtt_client:connect("handler", "status/handler", 2, 1, config.offlinePayload)
 
     mqtt_client:publish("status/handler", "online")
     -- Listen to all channels.
