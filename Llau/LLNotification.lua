@@ -49,7 +49,7 @@ m.new = function(severe, payload, address)
 	model.payload 		= payload
 	model.timestamp 	= os.time()
 	model.severity 		= severe
-	model.ip 			= address 
+	model.ip 			= address or "No ip 2"
 
 	local instance,e = NotificationModel:create(model)
 	if(instance == nil) then
