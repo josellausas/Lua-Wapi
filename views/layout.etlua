@@ -110,7 +110,9 @@
                   </div><!-- .clearfix -->
         </div><!-- .container -->
       </header><!-- .navbar -->
-
+      
+      <!-- START CONTENT -->
+      <div>
         <!-- LUA CONTENT START -->
         <% content_for("inner") %>
         <!-- LUA CONTENT END -->
@@ -119,6 +121,9 @@
         <a href="#" class="scroll-to-top-btn">
         <i class="fa fa-angle-up"></i>
         </a><!-- .scroll-to-top-btn -->
+
+      </div>
+      <!-- END CONTENT -->
 
       <!-- Footer -->
       <footer class="footer">
