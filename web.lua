@@ -217,6 +217,15 @@ app:post("/api/new", capture_errors(function(self)
 end))
 
 app:get("admin", "/admin", function(self)
+		local josellausas = Users.withUsername("jose")
+	
+	self.siteData 	= require("testData")
+	self.siteData.menuButtons = getMenuList()
+
+	-- Fresh data from database:
+	self.msgs 	= Messages.allForUser(josellausas)
+	self.tasks 	= {}
+	self.alerts = {}
 	return {render="dashboards.default",layout="views.adminlayout"}
 end)
 
