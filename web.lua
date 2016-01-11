@@ -22,8 +22,8 @@ local mqtt_client = nil
 local mqttconf = {
 	host = "m10.cloudmqtt.com",
 	port = "11915",
-	user = "test01",
-	password = "test01",
+	user = "webserver",
+	password = "webserverquesito",
 	offlinePayload = "Webserver: offline",
 	keepalive = 40,
 }
@@ -45,8 +45,8 @@ local function notifyMQTT(severe, msg)
 	if(mqtt_client.connected == false) then
 		print("Connecting mqtt")
 	-- Connect with last will, stick, qos = 2 and offline payload.
-	    mqtt_client:connect("test01", "v1/status/webserver", 2, 1, mqttconf.offlinePayload)
-	    mqtt_client:publish("v1/status/webserver", "Webserver: " .. mqttconf.user .. " online")
+	    mqtt_client:connect("webserver", "v1/status/webserver", 2, 1, mqttconf.offlinePayload)
+	    mqtt_client:publish("v1/status", "Webserver: " .. mqttconf.user .. " online")
    end
     
     print("Publishing to mqtt")
