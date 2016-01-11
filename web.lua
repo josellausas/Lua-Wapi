@@ -50,7 +50,7 @@ local function notifyMQTT(severe, msg)
    end
     
     print("Publishing to mqtt")
-    mqtt_client:publish("v1/notify/admin", "[WEB] " .. msg)
+    mqtt_client:publish("v1/notify/admin", "[WEB]" .. msg)
 
 end
 
@@ -246,7 +246,15 @@ app:post("/api/new", capture_errors(function(self)
 end))
 
 app:get("admin", "/admin", function(self)
-	notifyMQTT(0, "Accessed admin!")
+
+	local reqHeaders = self.req.headers
+
+	local stringu = ""
+	for k,v in pairs(reqHeaders) do
+		stringu = stringu .. "(" .. k .. ":" .. v"), " 
+	end
+
+	notifyMQTT(0, "Accessed admin! -> " .. stringu)
 
 	local josellausas = Users.withUsername("jose")
 	
