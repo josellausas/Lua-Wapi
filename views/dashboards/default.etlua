@@ -1,4 +1,4 @@
-Top Indicators Widget -->
+<-- Top Indicators Widget -->
 <% render("views.dashboards.TopIndicators") %>
 
 <div class="row">

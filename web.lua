@@ -28,13 +28,6 @@ local mqttconf = {
 	keepalive = 40,
 }
 
--- Función que reacciona a los mensajes
-local lastwill = function(topic, message)
-	print("Topic: " .. topic .. ", message: " .. message)
-	if (message == "quit") then 
-		running = false 
-	end
-end
 
 
 local capture_errors = require("lapis.application").capture_errors
@@ -55,7 +48,7 @@ local function sendMQTT(msg)
 	    mqtt_client:publish("status/webserver", "Webserver: online")
    end
     
-    mqtt_client:publish("server/logs", msg)
+    mqtt_client:publish("server/logs", "[WEB] " .. msg)
 
 end
 
