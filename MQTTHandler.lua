@@ -14,7 +14,7 @@ local config = {
 	port = "11915",
 	user = "jose",
 	password = "polo&xzaz",
-	offlinePayload = "offline",
+	offlinePayload = "Handler: offline",
 	keepalive = 40,
 }
 
@@ -39,7 +39,7 @@ function h:start()
 	-- Connect with last will, stick, qos = 2 and offline payload.
     mqtt_client:connect("handler", "status/handler", 2, 1, config.offlinePayload)
 
-    mqtt_client:publish("status/handler", "online")
+    mqtt_client:publish("status/handler", "Handler: online")
     -- Listen to all channels.
     mqtt_client:subscribe({"#"})
 

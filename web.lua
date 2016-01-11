@@ -24,7 +24,7 @@ local mqttconf = {
 	port = "11915",
 	user = "test01",
 	password = "test01",
-	offlinePayload = "offline",
+	offlinePayload = "Webserver: offline",
 	keepalive = 40,
 }
 
@@ -52,7 +52,7 @@ local function sendMQTT(msg)
 	if(mqtt_client.connected == false) then
 	-- Connect with last will, stick, qos = 2 and offline payload.
 	    mqtt_client:connect("webserver", "status/webserver", 2, 1, mqttconf.offlinePayload)
-	    mqtt_client:publish("status/webserver", "online")
+	    mqtt_client:publish("status/webserver", "Webserver: online")
    end
     
     mqtt_client:publish("server/logs", msg)
