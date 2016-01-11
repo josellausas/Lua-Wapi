@@ -5,6 +5,8 @@
 ]]
 
 local MQTT 			= require("mqtt")
+local lapis    		= require "lapis"
+local config   		= require("lapis.config").get()
 local Model  		= require("lapis.db.model").Model
 local Notification 	= require("Llau.LLNotification")
 
