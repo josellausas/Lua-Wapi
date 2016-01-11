@@ -49,7 +49,7 @@ m.new = function(severe, payload)
 	model.timestamp 	= os.time()
 	model.severity 		= severe
 
-	local instance,e = MessageModel:create(model)
+	local instance,e = NotificationModel:create(model)
 	if(instance == nil) then
 		print("Error de base de datos: " .. e)
 		return nil
