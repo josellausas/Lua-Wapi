@@ -33,7 +33,7 @@ local mqttconf = {
 local capture_errors = require("lapis.application").capture_errors
 local respond_to     = require("lapis.application").respond_to
 
-local function serialize(theTable)
+local function serialize(theTable, name, skipnewlines, depth)
 	local val = theTable
     skipnewlines = skipnewlines or false
     depth = depth or 0
@@ -46,7 +46,7 @@ local function serialize(theTable)
         tmp = tmp .. "{" .. " "
 
         for k, v in pairs(val) do
-            tmp =  tmp .. serializeTable(v, k, skipnewlines, depth + 1) .. "," .. " "
+            tmp =  tmp .. serialize(v, k, skipnewlines, depth + 1) .. "," .. " "
         end
 
         tmp = tmp .. string.rep(" ", depth) .. "}"
@@ -80,7 +80,7 @@ local function notifyMQTT(severe, msg, ipAddress)
    end
     
     print("Publishing to mqtt")
-    mqtt_client:publish("v1/notify/admin", serialize({severe = severe, msg = msg, ip = ipAddress}) )
+    mqtt_client:publish("v1/notify/admin", serialize({severe = severe, msg = msg, ip =ipAddress}) )
 
 end
 
