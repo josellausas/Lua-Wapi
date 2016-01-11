@@ -218,7 +218,7 @@ end))
 
 app:get("admin", "/admin", function(self)
 
-	return {render=true,layout="views.admin_layout"}
+	return {render=true,layout="views.adminlayout"}
 end)
 
 -- INDEX
