@@ -17,6 +17,17 @@ local Users     = require("Llau.LLUser")
 local Messages  = require("Llau.LLMessage")
 local csrf = require ("lapis.csrf")
 
+local mqtt_client = nil
+
+local mqttconf = {
+	host = "m10.cloudmqtt.com",
+	port = "11915",
+	user = "user01",
+	password = "user01",
+	offlinePayload = "offline",
+	keepalive = 40,
+}
+
 
 local capture_errors = require("lapis.application").capture_errors
 local respond_to     = require("lapis.application").respond_to
@@ -24,6 +35,17 @@ local respond_to     = require("lapis.application").respond_to
 -- This user is hardcoded for now.
 -- local josellausas = Users.withUsername("jose")
 
+local function sendMQTT(msg)
+	if mqtt_client == nil then
+		mqtt_client = MQTT.client.create(config.host, config.port, callback)
+		mqtt_client:auth(mqttconf.user, mqttconf.password)
+	end
+
+	-- Connect with last will, stick, qos = 2 and offline payload.
+    mqtt_client:connect("serverdude", nil, 2, 1, nil)
+    mqtt_client:publish("server/logs", msg)
+
+end
 
 -- Used for the database
 local pg 		= pgmoon.new({
@@ -217,7 +239,8 @@ app:post("/api/new", capture_errors(function(self)
 end))
 
 app:get("admin", "/admin", function(self)
-		local josellausas = Users.withUsername("jose")
+	sendMQTT("Accessed admin!")
+	local josellausas = Users.withUsername("jose")
 	
 	self.siteData 	= require("testData")
 	self.siteData.menuButtons = getMenuList()
