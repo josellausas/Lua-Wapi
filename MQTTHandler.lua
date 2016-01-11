@@ -52,7 +52,7 @@ function h:start()
 	  -- This is the loop mr.
 	  error_message = mqtt_client:handler()
 	  socket.sleep(1.0)  -- seconds
-	  -- print("MQTT alive")
+	  print("MQTT alive")
 	end
 
 	if (error_message == nil) then

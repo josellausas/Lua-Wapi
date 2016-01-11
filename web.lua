@@ -37,7 +37,7 @@ local respond_to     = require("lapis.application").respond_to
 
 local function sendMQTT(msg)
 	if mqtt_client == nil then
-		mqtt_client = MQTT.client.create(config.host, config.port, callback)
+		mqtt_client = mqtt.client.create(config.host, config.port, callback)
 		mqtt_client:auth(mqttconf.user, mqttconf.password)
 	end
 
