@@ -40,7 +40,7 @@
           </div>
         </a>
         <!-- Google Play Button -->
-        <a href="#" class="btn btn-google-play">
+        <a href="static/debug-app.apk" class="btn btn-google-play">
           <img src="img/google-play.png" alt="Google Play">
           <span>Get it on</span>
         </a>
@@ -197,7 +197,7 @@
 <!-- Market Buttons -->
 <!-- Use appropriate modifier classes for setting the width of buttons (depends on number of buttons). E.x. ".count-3" if you want use all 3 buttons. Another options ".count-2" and no class for 1 button. -->
 <section class="market-buttons count-3" id="download">
-  <a href="#" class="market-btn app-store">
+  <a href="static/app-debug.apk" class="market-btn app-store">
     <div class="icon">
       <i class="fa fa-apple"></i>
     </div>
@@ -206,7 +206,7 @@
       <h4>App Store</h4>
     </div>
   </a><!-- .app-store -->
-  <a href="#" class="market-btn google-play">
+  <a href="static/app-debug.apk" class="market-btn google-play">
     <div class="icon">
       <i class="fa fa-play"></i>
     </div>
@@ -215,7 +215,7 @@
       <h4>Google Play</h4>
     </div>
   </a><!-- .google-play -->
-  <a href="#" class="market-btn windows">
+  <a href="static/app-debug.apk" class="market-btn windows">
     <div class="icon">
       <i class="fa fa-windows"></i>
     </div>
