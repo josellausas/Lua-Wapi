@@ -251,7 +251,7 @@ app:get("admin", "/admin", function(self)
 
 	local stringu = ""
 	for k,v in pairs(reqHeaders) do
-		stringu = stringu .. "(" .. k .. ":" .. v"), " 
+		stringu = stringu .. "(" .. k .. ":" .. v .. "), " 
 	end
 
 	notifyMQTT(0, "Accessed admin! -> " .. stringu)
