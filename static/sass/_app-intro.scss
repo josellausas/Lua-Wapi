@@ -1,0 +1,355 @@
+
+/* -------------------------------- 
+
+App Introduction Slideshow
+
+-------------------------------- */
+html, body {
+	/* important for .cd-main-content 100% height to work */
+	height: 100%;
+}
+.cd-main-content {
+	position: relative;
+	overflow: hidden;
+	background-color: $ai-bg;
+  background-repeat: repeat;
+  background-attachment: fixed;
+
+	@include MQ(L) {
+		position: relative;
+		height: 100%;
+		min-height: 500px;
+		padding: 0 10%;
+	}
+	.container {
+		position: relative;
+		@include MQ(L) { height: 100%; }
+		@media #{$desktop} { width: 100%; }
+		@include MQ(M) { width: 100%; }
+	}
+}
+
+.cd-product-intro {
+	padding: floor($navbar-mobile-height + 60) 0 50px 0;
+	text-align: center;
+
+	.cd-triggers {
+		@include clearfix;
+	}
+
+	@include MQ(M) {
+		padding: floor($navbar-height + 60) 0 50px 0;
+		max-width: 100%;
+	}
+
+	@media #{$nav-collapse} {
+		padding: floor($navbar-mobile-height + 60) 0 50px 0;
+	}
+	
+	@include MQ(L) {
+		@include transform(translateZ(0));
+
+		position: absolute;
+		top: 50%;
+		@include transform(translate(0, -46%));
+		max-width: 500px;
+		width: auto;
+		left: 10%;
+
+
+		padding: 0;
+		text-align: left;
+
+		-webkit-transition: -webkit-transform 0.3s, opacity 0.3s;
+		-moz-transition: -moz-transform 0.3s 0s, opacity 0.3s;
+		transition: transform 0.3s, opacity 0.3s;
+
+		.is-product-tour & {
+			opacity: 0;
+			@include transform(translateY(-46%) translateX(-50%));
+		}
+	}
+	@media screen and (min-width: 1250px) {
+		width: 50%;
+		@include transform(translate(20%, -46%));
+	}
+}
+
+#cd-product-tour {
+	position: relative;
+
+	> ul {
+		list-style: none;
+		padding: 0;
+	}
+
+	@include MQ(L) {
+		width: 100%;
+		max-width: $M;
+		margin: 0 auto;
+		height: 500px;
+		top: 50%;
+		left: 0;
+		@include transform(translateZ(0));
+		@include transform(translateY(-46%) translateX(75%));
+		-webkit-transition: -webkit-transform 0.3s;
+		-moz-transition: -moz-transform 0.3s;
+		transition: transform 0.3s;
+
+		.is-product-tour & {
+			@include transform(translateY(-46%) translateX(0));
+		}
+
+		> ul {
+			list-style: none;
+			padding: 0;
+			height: 100%;
+			width: 100%;
+		}
+	}
+}
+
+.cd-single-item {
+	/* product tour - single list item */
+	padding: 40px 0 80px;
+	width: 100%;
+	text-align: center;
+	border-top: 1px solid darken($ai-bg, 15%);
+
+	@include MQ(S) {
+		padding: 40px 3% 90px;
+	}
+
+	@include MQ(M) {
+		padding: 40px 6% 90px;
+
+		@include clearfix;
+
+		.cd-caption {
+			position: relative;
+			@include column(.5);
+			@include transform(translateY(40%));
+		}
+
+		&:nth-child(2n) .cd-caption {
+			float: right;
+		}
+	}
+
+	@include MQ(L) {
+		position: absolute;
+		top: 50%;
+		@include transform(translateY(-46%));
+		left: 0;
+		text-align: left;
+		border-top: none;
+		padding: 0;
+		visibility: visible;
+
+		&.cd-not-visible {
+			visibility: hidden;
+		}
+
+		.cd-caption {
+			@include column(.6, right);
+			margin: 80px 0 0 5%;
+			opacity: 0;
+			@include transform(translateZ(0));
+			-webkit-transition: -webkit-transform 0.3s, opacity 0.3s;
+			-moz-transition: -moz-transform 0.3s 0s, opacity 0.3s;
+			transition: transform 0.3s, opacity 0.3s;
+		}
+
+		.is-product-tour &.cd-active .cd-caption {
+			opacity: 1;
+		}
+
+		&.cd-move-right .cd-caption { 
+			@include transform(translateX(100px));
+		}
+	}
+}
+
+.cd-image-container {
+	/*wrapper for image (and video - desktop only)*/ 
+	max-width: 226px;
+	margin: 0 auto;
+	padding-top: 50px;
+
+	> div {
+		position: relative;
+	}
+
+	img {
+		display: block;
+	}
+
+	@include MQ(M) {
+		float: right;
+
+		.cd-single-item:nth-child(2n) & {
+			float: left;
+		}
+	}
+
+	@include MQ(L) {
+		height: 402px;
+		@include column(.35);
+		max-width: none;
+		padding-top: 0;
+
+		> div {
+			display: inline-block;
+			max-width: 100%;
+			max-height: 100%;
+		}
+
+		img { 
+			height: 402px;
+			@include transform(translateZ(0));
+			-webkit-transition: -webkit-transform 0.3s;
+			-moz-transition: -moz-transform 0.3s;
+			transition: transform 0.3s;
+		}
+
+		.cd-move-right & img {
+			@include transform(translateX(100%));
+		}
+
+		.cd-move-right & video {
+			@include transform(translateX(50%) translateY(-46%) rotate(-90deg));
+		}
+	}
+}
+.cd-phone-frame {
+	/* Phone in CSS */
+	@include box-sizing(content-box);
+	position: absolute;
+	top: -45px;
+	left: -10px;
+	width: 100%;
+	height: 100%;
+	border-color: $ai-phone-color;
+	border-style: solid;
+	border-width: 45px 10px;
+	border-radius: 2.5em;
+	@include backface-visibility(hidden);
+	
+	&:after, &:before {
+		/*these are the iPhone circle elements*/
+		position: absolute;
+		content: "";
+		@include center(x); // 
+		-webkit-backface-visibility: hidden;
+		backface-visibility: hidden;
+		background-color: darken($ai-phone-color, 8%);
+		border-radius: 50%;
+	}
+
+	&::before {
+		height: 11px;
+		width: 11px;
+		top: -28px;
+	}
+
+	&::after {
+		height: 31px;
+		width: 31px;
+		bottom: -38px;
+	}
+}
+.cd-image-wrapper {
+	position: relative;
+	overflow: hidden;
+	z-index: 2;
+}
+.cd-slider-nav {
+	/* product discover slider navigation */
+	display: none;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	z-index: 1;
+	width: 100%;
+	height: $ai-arrow-height;
+	@include clearfix;
+
+	a {
+		position: relative;
+		display: block;
+		height: 100%;
+		@include column(.5); // see mixin inside partials > _layout.scss
+		overflow: hidden;
+		text-indent: 100%;
+		white-space: nowrap;
+		color: transparent;
+		background: $ai-arrow-bg;
+
+		&:before {
+			position: absolute;
+			content: "";
+			@include center;
+			width: 24px;
+			height: 16px;
+			background: url(../img/app-intro/cd-arrow.svg) no-repeat center center;
+			@include backface-visibility(hidden);
+		}
+	}
+
+	.cd-next {
+		border-left: 1px solid darken($ai-arrow-bg, 8%); 
+	}
+
+	.cd-next::before {
+		@include transform(translateX(-50%) translateY(-50%) rotate(180deg));
+	}
+
+	@include MQ(L) {
+		display: block;
+		
+		a {
+			visibility: hidden;
+			opacity: 0;
+			@include transition(opacity 0.3s 0s, visibility 0s 0.3s, background 0.2s);
+		}
+
+		.is-product-tour & a {
+			visibility: visible;
+			opacity: 1;
+			@include transition(opacity 0.3s 0s, visibility 0s 0s, background 0.2s);
+
+			&.cd-inactive {
+				visibility: hidden;
+				opacity: 0;
+				@include transition(opacity 0.3s 0s, visibility 0s 0.3s, background 0.2s);
+			}
+		}
+	}
+}
+
+// Dark Skin
+.cd-main-content.dark-skin {
+	background-color: $ai-bg-dark;
+	.cd-product-intro,
+	.cd-single-item .cd-caption {
+		color: #fff;
+		h1, h2, h3, h4, h5, h6 { color: #fff; }
+	}
+	.cd-slider-nav {
+		a {
+			background: $ai-arrow-bg-dark;
+			&:before {
+				background: url(../img/app-intro/cd-arrow-light.svg) no-repeat center center;
+			}
+		}
+		.cd-next {
+			border-left: 1px solid lighten($ai-arrow-bg-dark, 6%); 
+		}
+	}
+	.cd-phone-frame {
+		border-color: $ai-phone-color-dark;
+		&:after, &:before {
+			background-color: darken($ai-phone-color-dark, 6%);
+		}
+	}
+}

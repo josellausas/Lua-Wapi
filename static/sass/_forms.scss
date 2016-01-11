@@ -1,0 +1,127 @@
+//
+// Forms
+// --------------------------------------------------
+
+.form-control,
+textarea,
+input[type=text],
+input[type=email],
+input[type=password],
+input[type=number],
+input[type=url],
+input[type=time],
+input[type=tel],
+input[type=search] {
+  display: block;
+  width: 100%;
+  line-height: $line-height-base;
+  height: $input-height;
+  font-size: $input-font-size;
+  color: $input-color;
+  text-transform: none;
+  border: 2px solid $input-border-color;
+  background-color: $input-bg;
+  border-radius: floor($input-height / 2);
+  padding: 0 20px;
+  margin-bottom: $line-height-computed;
+  -webkit-appearance: none;
+  @include transition(border-color .25s);
+  &:focus { outline: none; }
+
+	// Placeholder
+	@include placeholder();
+	&.placeholder {
+		color: $input-color-placeholder;
+	}
+
+  // Small Inputs
+  &.input-sm {
+    height: $input-sm-height;
+    font-size: $input-sm-font-size;
+  }
+
+  // Alternative inputs
+  &.input-alt { border-radius: $border-radius-base; }
+}
+
+textarea {
+  height: auto !important;
+  padding: 15px 20px !important;
+}
+.form-group {
+	margin-bottom: $line-height-computed;
+  .form-control,
+  textarea,
+  input[type=text],
+  input[type=email],
+  input[type=password],
+  input[type=number],
+  input[type=url],
+  input[type=time],
+  input[type=tel],
+  input[type=search] { margin-bottom: 0; }
+}
+label {
+  display: block;
+  color: $gray-dark;
+  font-size: $font-size-small;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  font-weight: bold; 
+}
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -o-appearance: none;
+  appearance: none; 
+}
+select::-ms-expand{
+  display: none;
+}
+select option.placeholder {
+	color: $input-color-placeholder;
+}
+select option {
+	color: $input-color;
+}
+
+// Forms Validation
+.form-control.error {
+  border-color: $brand-danger;
+}
+.form-control.error::-moz-placeholder {
+  color: $brand-danger;
+}
+.form-control.error:-ms-input-placeholder {
+  color: $brand-danger;
+}
+.form-control.error::-webkit-input-placeholder {
+  color: $brand-danger;
+}
+.form-control.valid {
+  border-color: $brand-success;
+}
+.form-control.valid::-moz-placeholder {
+  color: $brand-success;
+}
+.form-control.valid:-ms-input-placeholder {
+  color: $brand-success;
+}
+.form-control.valid::-webkit-input-placeholder {
+  color: $brand-success;
+}
+.response-holder {
+  text-align: center;
+  visibility: hidden;
+  opacity: 0;
+  padding: 12px 0;
+  font-size: $font-size-small;
+  line-height: 1.8;
+  @include transition(all .4s);
+  &.error, &.success {
+    visibility: visible;
+    opacity: 1;
+  }
+  &.error { color: $brand-danger; }
+  &.success { color: $brand-success; }
+}

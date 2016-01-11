@@ -1,74 +1,250 @@
-<!-- views/layout.etlua -->
-<!DOCTYPE HTML>
-<html lang="en">
-<head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="A Lua web API">
-    <meta name="author" content="<%= siteData.author or "Lua Wapi" %>">
-	<title><%= siteData.siteTitle or "Lua Wapi Framework" %></title>
+<!DOCTYPE html>
+<html>
+  <!-- HEAD -->
+  <head>
+    <meta charset="utf-8">
+    <title>Zunware Apps| Mobile and Tech Integration</title>
 
-	<!-- Bootstrap Core CSS -->
-    <link href="static/sb/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!--SEO Meta Tags-->
+    <meta name="description"  content="Zunware Apps| Mobile and Tech Integration" />
+    <meta name="keywords"   content="apps, mobile, best app, mobile developer, blog, portfolio, specialty apps, creative" />
+    <meta name="author"     content="Zunware" />
 
-    <!-- MetisMenu CSS -->
-    <link href="static/sb/bower_components/metisMenu/dist/metisMenu.min.css" rel="stylesheet">
+    <!--Mobile Specific Meta Tag-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 
-    <!-- Timeline CSS -->
-    <link href="static/sb/dist/css/timeline.css" rel="stylesheet">
+    <!--Favicon-->
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
 
-    <!-- Custom CSS -->
-    <link href="static/sb/dist/css/sb-admin-2.css" rel="stylesheet">
+    <!-- Pixeden Stroke Icons -->
+    <link href="css/vendor/pixeden.css" rel="stylesheet" media="screen">
 
-    <!-- Morris Charts CSS -->
-    <link href="static/sb/bower_components/morrisjs/morris.css" rel="stylesheet">
+    <!-- All Theme Styles including Bootstrap, FontAwesome, etc. compiled from styles.scss-->
+    <link href="css/styles.min.css" rel="stylesheet" media="screen">
 
-    <!-- Custom Fonts -->
-    <link href="static/sb/bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <!--Modernizr / Detectizr-->
+    <script src="js/vendor/modernizr.custom.js"></script>
+    <script src="js/vendor/detectizr.min.js"></script>
+  </head>
 
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-</head>
-
-<body>
-	<div id="wrapper">
-
-        <!-- Navigation -->
-        <% render("views.navBar.navigationBar") %>
-
-        <!-- The content -->
-		<div id="page-wrapper">
-
-			<!-- LUA CONTENT START -->
-			<% content_for("inner") %>
-			<!-- LUA CONTENT END -->
-		</div>
     
-    </div>
-	<!-- /#wrapper -->
 
-	<!-- jQuery -->
-    <script src="../bower_components/jquery/dist/jquery.min.js"></script>
+  <!-- Body -->
+  <!-- "is-preloader preloading" is a helper classes if preloader is enabled. -->
+  <body class="is-preloader preloading">
 
-    <!-- Bootstrap Core JavaScript -->
-    <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- Preloader -->
+    <!-- 
+        Data API:
+        data-spinner - Options: 'spinner1', 'spinner2', 'spinner3', 'spinner4', 'spinner5', 'spinner6', 'spinner7'
+        data-screenbg - Screen background color. Hex, RGB or RGBA colors
+     -->
+    <div id="preloader" data-spinner="spinner7" data-screenbg="#fff"></div>
 
-    <!-- Metis Menu Plugin JavaScript -->
-    <script src="../bower_components/metisMenu/dist/metisMenu.min.js"></script>
+    <!-- Page Wrapper -->
+    <div class="page-wrapper">
+      <!-- Navbar -->
+      <!-- Add class ".navbar-sticky" to make navbar stuck when it hits the top of the page. You can also use modifier class like: "navbar-light" to change navbar apperance. The screen width at which navbar collapses can be controlled through the variable "$nav-collapse" in sass/variables.scss -->
+      <header class="navbar navbar-light navbar-sticky">
+        <div class="container">
+          <a href="index.html" class="site-logo">
+            <img src="img/logo-default.png" class="logo-default" alt="ZurApp">
+            <img src="img/logo-alt.png" class="logo-alt" alt="ZurApp">
+          </a><!-- .site-logo -->
+          
+          <!-- Mobile Menu Toggle -->
+          <div class="nav-toggle"><span></span></div>
 
-    <!-- Morris Charts JavaScript -->
-    <script src="../bower_components/raphael/raphael-min.js"></script>
-    <script src="../bower_components/morrisjs/morris.min.js"></script>
-    <script src="../js/morris-data.js"></script>
+          <div class="clearfix">
 
-    <!-- Custom Theme JavaScript -->
-    <script src="../dist/js/sb-admin-2.js"></script>
-</body>
+            <div class="toolbar text-right">
+              <a href="#intro" class="btn btn-sm btn-ghost btn-default scroll-to" data-offset-top="-40">Learn More</a>
+              <a href="#download" class="btn btn-sm btn-warning scroll-to" data-offset-top="70">Get App</a>
+            </div><!-- .toolbar -->
+
+            <!-- Use modifier class to apply different submenu (dropdown) animations. Possible options: .submenu-slideUp, .submenu-slideDown, .submenu-flipIn. Please note if no class added to .main-navigation default fadeIn animation will be applied. Note: this is applicable only for Desktop. -->
+            <nav class="main-navigation submenu-flipIn">
+              <ul class="menu">
+                <li class="has-submenu current"><a href="#">Home</a>
+                  <ul class="submenu">
+                    <li class="current"><a href="index.html">Device Slider</a></li>
+                    <li><a href="home-app-intro-light.html">App Intro Light</a></li>
+                    <li><a href="home-app-intro-dark.html">App Intro Dark</a></li>
+                    <li><a href="home-scroll-slideshow-scale.html">Scroll Slideshow Scale Effect</a></li>
+                    <li><a href="home-scroll-slideshow-rotate.html">Scroll Slideshow Rotate Effect</a></li>
+                    <li><a href="home-scroll-slideshow-gallery.html">Scroll Slideshow Gallery Effect</a></li>
+                    <li><a href="home-scroll-slideshow-opacity.html">Scroll Slideshow Opacity Effect</a></li>
+                    <li><a href="home-scroll-slideshow-parallax.html">Scroll Slideshow Parallax Effect</a></li>
+                  </ul>
+                </li>
+                <li class="has-submenu"><a href="#">Blog</a>
+                  <ul class="submenu">
+                    <li><a href="blog-right-sidebar.html">Blog Right Sidebar</a></li>
+                    <li><a href="blog-left-sidebar.html">Blog Left Sidebar</a></li>
+                    <li><a href="blog-no-sidebar.html">Blog No Sidebar</a></li>
+                    <li><a href="single-right-sidebar.html">Single Post Right Sidebar</a></li>
+                    <li><a href="single-left-sidebar.html">Single Post Left Sidebar</a></li>
+                    <li><a href="single-no-sidebar.html">Single Post No Sidebar</a></li>
+                  </ul>
+                </li>
+                <li class="has-submenu"><a href="#">Portfolio</a>
+                  <ul class="submenu">
+                    <li><a href="portfolio-grid-boxed.html">Portfolio Grid Boxed</a></li>
+                    <li><a href="portfolio-grid-fullwidth.html">Portfolio Grid Full Width</a></li>
+                    <li><a href="portfolio-single.html">Single Project</a></li>
+                  </ul>
+                </li>
+                <li class="has-submenu"><a href="#">Pages</a>
+                  <ul class="submenu">
+                    <li><a href="pricing.html">Pricing</a></li>
+                    <li><a href="contacts.html">Contacts</a></li>
+                    <li><a href="404.html">404</a></li>
+                    <li><a href="coming-soon-dark.html">Coming Soon Dark</a></li>
+                    <li><a href="coming-soon-light.html">Coming Soon Light</a></li>
+                  </ul>
+                </li>
+                <li><a href="elements.html">Elements</a></li>
+              </ul>
+            </nav><!-- .main-navigation -->
+                  </div><!-- .clearfix -->
+        </div><!-- .container -->
+      </header><!-- .navbar -->
+
+        <!-- LUA CONTENT START -->
+        <% content_for("inner") %>
+        <!-- LUA CONTENT END -->
+
+        <!-- Scroll To Top Button -->
+        <a href="#" class="scroll-to-top-btn">
+        <i class="fa fa-angle-up"></i>
+        </a><!-- .scroll-to-top-btn -->
+
+      <!-- Footer -->
+      <footer class="footer">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-7">
+
+              <form action="//8guild.us3.list-manage.com/subscribe/post?u=168a366a98d3248fbc35c0b67&amp;id=011a3332a0" method="post" target="_blank" class="space-top-2x" novalidate autocomplete="off">
+                <div class="row">
+                  <div class="col-sm-8">
+                    <label for="subscr_email" class="sr-only">Subscribe to latest news</label>
+                    <input type="email" class="form-control" id="subscr_email" name="EMAIL" placeholder="Subscribe for news. Enter email">
+                    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+                    <div style="position: absolute; left: -5000px;">
+                      <input type="text" name="b_168a366a98d3248fbc35c0b67_011a3332a0" tabindex="-1" value="">
+                    </div>
+                  </div><!-- .col-sm-8 -->
+                  <div class="col-sm-4">
+                    <button type="submit" class="btn btn-block btn-inline">Subscribe</button>
+                  </div><!-- .col-sm-4 -->
+                </div><!-- .row -->
+              </form><!-- <form> -->
+              <div class="space-bottom-2x visible-xs"></div>
+              <a href="index.html" class="footer-logo">
+                <img src="img/logo-default.png" alt="ZurApp">
+              </a><!-- .footer-logo -->
+
+              <div class="social-bar">
+                <a href="#" class="sb-twitter" data-toggle="tooltip" data-placement="top" title="Twitter">
+                  <i class="fa fa-twitter"></i>
+                  <span>13</span>
+                </a>
+                <a href="#" class="sb-tumblr" data-toggle="tooltip" data-placement="top" title="Tumblr">
+                  <i class="fa fa-tumblr"></i>
+                  <span>124</span>
+                </a>
+                <a href="#" class="sb-facebook" data-toggle="tooltip" data-placement="top" title="Facebook">
+                  <i class="fa fa-facebook"></i>
+                  <span>0</span>
+                </a>
+              </div><!-- .social-bar -->
+              
+              <div class="row">
+                <div class="col-sm-4">
+                  <div class="widget widget_pages">
+                    <h3 class="widget-title">Home</h3>
+                    <ul>
+                      <li><a href="index.html">Device Slider</a></li>
+                      <li><a href="home-app-intro-light.html">App Introduction</a></li>
+                      <li><a href="home-scroll-slideshow-scale.html">Scroll Slideshow</a></li>
+                    </ul>              </div><!-- .widget_pages -->
+                </div><!-- .col-sm-4 -->
+                <div class="col-sm-4">
+                  <div class="widget widget_pages">
+                    <h3 class="widget-title">Blog</h3>
+                    <ul>
+                      <li><a href="blog-right-sidebar.html">Blog Posts</a></li>
+                      <li><a href="single-right-sidebar.html">Single Post</a></li>
+                    </ul>
+                  </div><!-- .widget_pages -->
+                </div><!-- .col-sm-4 -->
+                <div class="col-sm-4">
+                  <div class="widget widget_pages">
+                    <h3 class="widget-title">Portfolio</h3>
+                    <ul>
+                      <li><a href="portfolio-grid-boxed.html">Portfolio Grid</a></li>
+                      <li><a href="portfolio-single.html">Single Project</a></li>
+                    </ul>
+                  </div><!-- .widget_pages -->
+                </div><!-- .col-sm-4 -->
+              </div><!-- .row -->
+
+              <div class="copyright">
+                <p>2015 &copy; <a href="http://8guild.com/" target="_blank">8Guild</a>. Premium themes</p>
+              </div><!-- .copyright -->
+
+            </div><!-- .col-md-7 -->
+
+            <div class="col-lg-4 col-lg-offset-1 col-md-5">
+              <a href="#" class="market-btn app-store">
+                <div class="icon">
+                  <i class="fa fa-apple"></i>
+                </div>
+                <div class="label">
+                  <small>Download on the</small>
+                  <h4>App Store</h4>
+                </div>
+              </a><!-- .app-store -->
+              <a href="#" class="market-btn google-play">
+                <div class="icon">
+                  <i class="fa fa-play"></i>
+                </div>
+                <div class="label">
+                  <small>Get it on</small>
+                  <h4>Google Play</h4>
+                </div>
+              </a><!-- .google-play -->
+              <a href="#" class="market-btn windows">
+                <div class="icon">
+                  <i class="fa fa-windows"></i>
+                </div>
+                <div class="label">
+                  <small>Get it on</small>
+                  <h4>Windows Store</h4>
+                </div>
+              </a><!-- .windows -->
+            </div><!-- .col-md-5 -->
+          </div><!-- .row -->
+        </div><!-- .container -->
+      </footer><!-- .footer -->
+    </div><!-- .page-wrapper -->
+
+
+    <!-- JavaScript (jQuery) libraries, plugins and custom scripts -->
+    <script src="js/vendor/jquery-2.1.4.min.js"></script>
+    <script src="js/vendor/preloader.min.js"></script>
+    <script src="js/vendor/placeholder.js"></script>
+    <script src="js/vendor/bootstrap.min.js"></script>
+    <script src="js/vendor/smoothscroll.js"></script>
+    <script src="js/vendor/velocity.min.js"></script>
+    <script src="js/vendor/magnific-popup.min.js"></script>
+    <script src="js/vendor/owl.carousel.min.js"></script>
+    <script src="js/scripts.js"></script>
+
+  </body><!-- <body> -->
 
 </html>
+
 

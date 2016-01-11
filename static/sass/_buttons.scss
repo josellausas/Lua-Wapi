@@ -1,0 +1,400 @@
+//
+// Buttons
+// --------------------------------------------------
+
+// Base styles
+// --------------------------------------------------
+.btn {
+  display: inline-block;
+  height: $btn-height;
+  line-height: $btn-height - 3;
+  font-size: $btn-font-size;
+  font-weight: $btn-font-weight;
+  color: $btn-font-color;
+  text-align: center;
+  vertical-align: middle;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: 2px solid transparent;
+  border-radius: ($btn-height / 2);
+  letter-spacing: 0.2em;
+  padding: 0 30px;
+  margin: 10px 0;
+  margin-right: 10px;
+  touch-action: manipulation;
+  cursor: pointer;
+  background-image: none;
+  white-space: nowrap;
+  @include user-select(none);
+  @include transition(color 0.3s ease-out, background-color 0.3s ease-out);
+  @include button-variant($btn-default-bg);
+  
+  &:hover {
+    color: $btn-font-color;
+    text-decoration: none;
+    outline: none;
+  }
+  &:focus { outline: none; }
+
+  &:active,
+  &.active {
+    outline: 0;
+    background-image: none;
+  }
+
+  &.disabled,
+  &[disabled] {
+    cursor: $cursor-disabled;
+    background-color: $gray-light !important;
+    &:hover { background-color: $gray-light !important; }
+  }
+
+  i, i:before {
+    display: inline-block;
+    vertical-align: middle;
+    line-height: 1;
+    margin-top: -2px;
+    font-size: floor($btn-font-size * 1.2);
+  }
+}
+
+a.btn {
+  &.disabled,
+  fieldset[disabled] & {
+    opacity: .5;
+    pointer-events: none;
+    pointer: not-allowed;
+  }
+}
+
+// Alternate buttons
+// --------------------------------------------------
+.btn-default, .btn-default:hover,
+.btn-primary, .btn-primary:hover,
+.btn-primary:active, .btn-primary:focus,
+.btn-success, .btn-success:hover,
+.btn-success:active, .btn-success:focus,
+.btn-info, .btn-info:hover,
+.btn-info:active, .btn-info:focus,
+.btn-warning, .btn-warning:hover,
+.btn-warning:active, .btn-warning:focus,
+.btn-danger, .btn-danger:hover,
+.btn-danger:active, .btn-danger:focus {
+  color: $btn-font-color;
+}
+.btn-default {
+  @include button-variant($btn-default-bg);
+}
+.btn-default-2 {
+  background-color: $btn-default-bg;
+  &:hover { background-color: $btn-success-bg; }
+}
+.btn-primary {
+  @include button-variant($btn-primary-bg);
+}
+.btn-success {
+  @include button-variant($btn-success-bg);
+}
+.btn-info {
+  @include button-variant($btn-info-bg);
+}
+.btn-warning {
+  @include button-variant($btn-warning-bg);
+}
+.btn-danger {
+  @include button-variant($btn-danger-bg);
+}
+.btn-light {
+  @include button-variant(#fff);
+  color: $gray-darker;
+  &:hover { color: $gray-darker; }
+}
+
+// Ghost Buttons
+// --------------------------------------------------
+.btn-ghost {
+  @include ghost-button-variant($btn-default-bg, $btn-default-bg);
+  &.btn-default {
+    @include ghost-button-variant($btn-default-bg, $btn-default-bg);
+  }
+  &.btn-primary {
+    @include ghost-button-variant($btn-primary-bg, $btn-primary-bg);
+  }
+  &.btn-success {
+    @include ghost-button-variant($btn-success-bg, $btn-success-bg);
+  }
+  &.btn-info {
+    @include ghost-button-variant($btn-info-bg, $btn-info-bg);
+  }
+  &.btn-warning {
+    @include ghost-button-variant($btn-warning-bg, $btn-warning-bg);
+  }
+  &.btn-danger {
+    @include ghost-button-variant($btn-danger-bg, $btn-danger-bg);
+  }
+  &.btn-light {
+    @include ghost-button-variant(#fff, #fff);
+    &:hover { color: $gray-darker; }
+  }
+}
+
+// Small Button
+// --------------------------------------------------
+.btn-sm {
+  height: $btn-sm-height;
+  font-size: $btn-sm-font-size;
+  line-height: $btn-sm-height - 3;
+  padding: 0 20px;
+  border-radius: ($btn-sm-height / 2);
+  i, i:before {
+    font-size: floor($btn-sm-font-size * 1.2);
+  }
+}
+
+// Alternative Buttons
+// --------------------------------------------------
+.btn-alt { border-radius: $border-radius-base; }
+
+// Inline Buttons
+// --------------------------------------------------
+.btn-inline {
+  margin-top: 0;
+  margin-bottom: 0; 
+}
+
+// Button icons alignment
+// --------------------------------------------------
+.icon-left {
+  padding-left: 22px;
+  i { margin-right: 7px; }
+  &.btn-sm { padding-left: 15px; }
+}
+.icon-right {
+  padding-right: 22px;
+  i { margin-left: 7px; }
+  &.btn-sm { padding-right: 15px; }
+}
+
+// Block button
+// --------------------------------------------------
+.btn-block {
+  display: block;
+  width: 100%;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-right: 0;
+}
+
+// Vertically space out multiple block buttons
+.btn-block + .btn-block {
+  margin-top: 20px;
+}
+
+// Specificity overrides
+input[type="submit"],
+input[type="reset"],
+input[type="button"] {
+  &.btn-block {
+    width: 100%;
+  }
+}
+
+// Buttons alignment
+.text-center .btn {
+  margin-left: 5px;
+  margin-right: 5px;
+  &.btn-block {
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+.text-right .btn {
+  margin-left: 10px;
+  margin-right: 0;
+  &.btn-block { margin-left: 0; }
+}
+
+// Scroll to Top Button 
+.scroll-to-top-btn {
+  display: block;
+  position: fixed;
+  width: $scroll-top-btn-size;
+  height: $scroll-top-btn-size;
+  line-height: $scroll-top-btn-size - 2;
+  text-align: center;
+  text-decoration: none;
+  z-index: $navbar-zindex;
+  right: 20px;
+  bottom: -($scroll-top-btn-size * 2);
+  font-size: $font-size-lead;
+  color: #fff;
+  background-color: $scroll-top-btn-bg;
+  border-radius: 50%;
+  padding-left: 1px;
+  opacity: 0;
+  -webkit-transition: bottom 400ms $ease-in-out-back, opacity .3s, background-color .3s; /* older webkit */
+  -webkit-transition: bottom 400ms $ease-in-out-back, opacity .3s, background-color .3s; 
+  -moz-transition: bottom 400ms $ease-in-out-back, opacity .3s, background-color .3s; 
+  transition: bottom 400ms $ease-in-out-back, opacity .3s, background-color .3s; /* easeInOutBack */
+
+  &:hover {
+    color: #fff;
+    background-color: lighten($scroll-top-btn-bg, 10%);
+  }
+  &:focus { color: #fff; }
+
+  &.visible {
+    bottom: 14px;
+    opacity: 1;
+  }
+}
+
+// Markets Buttons
+.market-btn {
+  display: block;
+  width: 100%;
+  color: #fff;
+  text-decoration: none;
+  text-align: center;
+  padding: floor($line-height-computed * 1.8) 20px;
+  @include transition(background-color .35s);
+  &:hover, &:focus { color: #fff; }
+  .icon,
+  .label {
+    display: block;
+    width: 100%;
+    h4 {
+      color: #fff;
+      margin-bottom: 0;
+    }
+  }
+  .icon {
+    font-size: 52px;
+    margin: 0 auto 8px auto;
+    line-height: 1;
+  }
+  .label {
+    small {
+      font-size: floor($font-size-base * 0.8125); // 13px;
+    }
+  }
+
+  // App Store
+  &.app-store {
+    background-color: $market-btn-appstore-bg;
+    &:hover {
+      background-color: lighten($market-btn-appstore-bg, 10%);
+    }
+  }
+
+  // Google Play
+  &.google-play {
+    background-color: $market-btn-google-bg;
+    &:hover {
+      background-color: lighten($market-btn-google-bg, 10%);
+    }
+  }
+
+  // Windows Market
+  &.windows {
+    background-color: $market-btn-windows-bg;
+    &:hover {
+      background-color: lighten($market-btn-windows-bg, 10%);
+    }
+  }
+}
+
+// App Store Button
+.btn-app-store,
+.btn-app-store:active {
+  display: inline-block;
+  font-family: $font-family-alt;
+  padding: 13px 25px 15px 25px;
+  border-radius: 12px;
+  height: auto;
+  white-space: nowrap;
+  text-transform: none;
+  letter-spacing: 0.01em;
+  background: #242424;
+  background: -moz-linear-gradient(top, #383838 0%, #242424 100%);
+  background: -webkit-gradient(left top, left bottom, color-stop(0%, #383838), color-stop(100%, #242424));
+  background: -webkit-linear-gradient(top, #383838 0%, #242424 100%);
+  background: -o-linear-gradient(top, #383838 0%, #242424 100%);
+  background: -ms-linear-gradient(top, #383838 0%, #242424 100%);
+  background: linear-gradient(to bottom, #383838 0%, #242424 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#383838', endColorstr='#242424', GradientType=0 );
+  border: none;
+  margin-right: 17px;
+
+  i {
+    vertical-align: middle;
+    margin-right: 8px;
+    &:before {
+      font-size: 36px;
+      margin: 0;
+    }
+  }
+  div {
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 23px;
+    font-weight: normal;
+    line-height: 1;
+    span {
+      display: block;
+      font-size: 13px;
+      font-weight: 300;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+  }
+}
+
+// Google Play Button
+.btn-google-play {
+  position: relative;
+  padding: 17px 24px;
+  border-radius: 0;
+  height: auto;
+  background-color: #fff;
+  -webkit-mask-image: none;
+  margin-right: 17px;
+  box-shadow: 0px 2px 4px 2px rgba(0, 0, 0, 0.22);
+  @include transition(box-shadow .3s);
+
+  &:hover {
+    background-color: #fff;
+    box-shadow: 0px 8px 20px 1px rgba(0, 0, 0, 0.3);
+  }
+}
+.btn-google-play img {
+  display: block;
+  max-width: 168px;
+}
+.btn-google-play span {
+  font-family: $font-family-alt;
+  display: block;
+  position: absolute;
+  color: #999;
+  font-size: 9px;
+  line-height: 1;
+  text-transform: none;
+  top: 11px;
+  left: 71px;
+  letter-spacing: 0.01em;
+}
+
+.tex-center {
+  .btn-google-play,
+  .btn-app-store {
+    margin-right: 8px;
+    margin-left: 8px;
+  }
+}
+.tex-right {
+  .btn-google-play,
+  .btn-app-store {
+    margin-right: 0;
+    margin-left: 17px;
+  }
+}

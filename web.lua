@@ -40,7 +40,7 @@ local app = lapis.Application()
 app:enable("etlua")
 
 -- Set the default layout
-app.layout = require "views.layout"		-- Sets the layout we are using.
+app.layout = require "views.admin_layout"		-- Sets the layout we are using.
 
 --]]]]]]]]]]]]]]]]]]]]]]]]]]] WEB APP ]]]]]]]]]]]]]]]]]]]]]]
 
@@ -227,7 +227,7 @@ app:get("index","/", function(self)
 	self.tasks 	= {}
 	self.alerts = {}
 	-- Render the dashboard by default
-	return { render = "dashboard" }
+	return { render = "index" }
 end)
 
 

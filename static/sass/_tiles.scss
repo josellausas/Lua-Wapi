@@ -1,0 +1,93 @@
+//
+// Tiles (Portfolio / Gallery)
+// -----------------------------------------------
+
+.tile {
+	position: absolute;
+	display: block;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	text-decoration: none;
+	word-wrap: break-word;
+	overflow-wrap: break-word;
+	cursor: pointer;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+
+	&:focus { outline: none; }
+
+	// Overlay
+	&:before {
+		position: absolute;
+		z-index: 1;
+		content: "";
+		width: 100%;
+		height: 100%;
+		top: 0;
+		left: 0;
+		background-color: $tile-overlay-color;
+		opacity: 0;
+		@include transition(opacity .3s ease-in-out);
+	}
+	.tile-content {
+		position: absolute;
+		z-index: 2;
+		width: 100%;
+		left: 0;
+		bottom: 0;
+		text-align: center;
+		padding: 0 15px 35px 15px;
+		background-color: $tile-content-bg;
+		opacity: 0;
+		@include transform(translateY(200%));
+		@include transition(all .35s);
+		h3 {
+			position: relative;
+			z-index: 2;
+			color: #fff;
+			font-weight: bold;
+			margin-bottom: 0;
+			font-size: floor($font-size-h3 * .9);
+			opacity: 0;
+			@include transform(translateY(15px));
+			@include transition(all .3s .17s);
+		}
+		&:before {
+			position: absolute;
+			z-index: 1;
+			content: "";
+			top: -50px;
+			left: 50%;
+			margin-left: -430px;
+			border-left: 430px solid transparent;
+			border-right: 430px solid transparent;
+			border-bottom: 55px solid $tile-content-bg;
+		}
+	}
+
+	&:hover {
+		&:before { opacity: $tile-overlay-opacity; }
+		.tile-content {
+			opacity: 1;
+			@include transform(translateY(0));
+			h3 {
+				opacity: 1;
+				@include transform(translateY(0));
+			}
+		}
+	}
+	&.gallery-item {
+		.tile-content h3 i { font-size: $font-size-h3; }
+	}
+}
+.container-fluid {
+	.grid-item.w2 .tile {
+		.tile-content:before {
+			margin-left: -700px;
+			border-left: 700px solid transparent;
+			border-right: 700px solid transparent;
+		}
+	}
+}

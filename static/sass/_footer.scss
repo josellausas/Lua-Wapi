@@ -1,0 +1,69 @@
+//
+// Footer
+// --------------------------------------------------
+
+.footer {
+  width: 100%;
+  background-color: $footer-bg;
+
+  // Footer Logo
+  .footer-logo {
+    display: inline-block;
+    vertical-align: middle;
+    width: $logo-width;
+    text-decoration: none;
+    margin: floor($line-height-computed / 1.8) 20px floor($line-height-computed * 1.5) 0;
+  }
+
+  // Social Bar
+  .social-bar {
+    display: inline-block;
+    vertical-align: middle;
+    margin: floor($line-height-computed / 1.8) 0 floor($line-height-computed * 1.5) 0;
+  }
+
+  // Market Buttons
+  .market-btn {
+    text-align: left;
+    padding: floor($line-height-computed * 2) 15px floor($line-height-computed * 2) 50px;
+    .icon, .label {
+      display: inline-block;
+      vertical-align: middle;
+      width: auto;
+    }
+    .icon {
+      margin-right: 10px;
+      margin-bottom: 0;
+    }
+    @media #{$mobile-land} {
+      text-align: center;
+      padding-left: 15px;
+      .icon, .label { display: block; }
+      .icon {
+        margin-right: 0;
+        margin-bottom: 8px;
+      }
+    }
+  }
+
+  // Widgets
+  .widget {
+    margin-bottom: floor($line-height-computed * 1.3);
+    .widget-title {
+      margin-bottom: floor($line-height-computed / 1.5);
+    }
+  }
+
+  // Copyright
+  .copyright {
+    font-size: $font-size-small;
+    color: $gray;
+    margin-bottom: floor($line-height-computed * 1.5);
+    a {
+      color: $gray;
+      text-decoration: none;
+      &:hover { color: $link-hover-color; }
+    }
+    p { margin-bottom: 0; }
+  }
+}

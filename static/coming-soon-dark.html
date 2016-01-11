@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>ZurApp | Coming Soon Dark</title>
+
+  <!--SEO Meta Tags-->
+  <meta name="description" content="ZurApp - Multiconcept App Showcase Theme" />
+  <meta name="keywords" content="multipurpose, multiconcept, app showcase, mobile, blog, portfolio, specialty pages, landing, elements, shortcodes, html5, css3, jquery, js, modernizr, gallery, slider, touch, creative" />
+  <meta name="author" content="8Guild" />
+
+  <!--Mobile Specific Meta Tag-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+  <!--Favicon-->
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+  <!-- All Theme Styles including Bootstrap, FontAwesome, etc. compiled from styles.scss-->
+  <link href="css/styles.min.css" rel="stylesheet" media="screen">
+
+  <!--Modernizr / Detectizr-->
+  <script src="js/vendor/modernizr.custom.js"></script>
+  <script src="js/vendor/detectizr.min.js"></script>
+</head>
+
+<!-- Body -->
+<!-- Remove ".light-skin" extra class to make content default dark color. -->
+<!-- "is-preloader preloading" is a helper classes if preloader is enabled. -->
+<body class="coming-soon light-skin is-preloader preloading" style="background: url(img/dark-pattern.jpg);">
+  
+  <!-- Preloader -->
+  <!-- 
+      Data API:
+      data-spinner - Options: 'spinner1', 'spinner2', 'spinner3', 'spinner4', 'spinner5', 'spinner6', 'spinner7'
+      data-screenbg - Screen background color. Hex, RGB or RGBA colors
+   -->
+  <div id="preloader" data-spinner="spinner7" data-screenbg="#fff"></div>
+
+  <!-- Page Wrapper -->
+  <div class="page-wrapper">
+
+    <!-- Coming Soon Content -->
+    <main class="cs-page container padding-top-3x padding-bottom-3x">
+      <a href="index.html" class="site-logo space-top">
+        <img src="img/logo-alt.png" alt="ZurApp">
+      </a><!-- .site-logo -->
+      <h2>Hi! Thanks for visiting us.</h2>
+      <p class="lead">We are working hard to deliver a great experience in:</p>
+      <!-- Countdown -->
+      <!-- Data API:
+
+      data-date="2015-04-09 00:00:00" in shown format. This is date and time to count to. The start time is your current time.
+
+      data-animation="smooth/ticks" The way the circles animate can be either a constant gradual rotating, slowly moving from one second to the other. Or it can be set to jump from one unit to the next, only changing the circle when the number within it also changes. The first type is called "smooth", the second type is called "ticks".
+
+      data-direction="Clockwise/Counter-clockwise/Both" This option can be set to change the direction in which the circles fill up.
+
+      data-fg-widt="number" This option sets the width of the foreground circle. The width is set relative to the size of the circle as a whole. A value of 0.1 means 10%, so if your TimeCircles are 100 pixels high, the foreground circle will be 10 percent of that (10 pixels).
+
+      data-bg-widt="number" This option sets the width of the backgroundground circle. The width of the background is set relative to the width of the foreground. A value of 1 means 100%, so a value of 1 would mean having a width equal to your foreground ring. Higher and you get wider, lower you get thinner.
+
+      data-bg-color="#hex" This option determines the color of the background circle.
+
+      data-fg-color-days="#hex" 
+      data-fg-color-hours="#hexn"
+      data-fg-color-minutes="#hex"
+      data-fg-color-seconds="#hex" Determines the color of the foreground circle of the time unit.
+
+      data-days-label="Days"
+      data-hours-label="Hours"
+      data-minutes-label="Minutes"
+      data-seconds-label="Seconds" Determines the text shown below the time. Useful for use on non-English websites.
+
+      data-days-show="true"
+      data-hours-show="true"
+      data-minutes-show="true"
+      data-seconds-show="true" Determines whether the time unit should be shown. 
+
+      -->
+      <div class="countdown space-top-2x space-bottom-2x"
+           data-date="2016-05-01 12:00:00"
+           data-animation="smooth"
+           data-direction="Clockwise"
+           data-fg-width="0.01"
+           data-bg-width="1"
+           data-bg-color="rgba(255,255,255,0.18)"
+           data-fg-color-days="#fff"
+           data-fg-color-hours="#fff"
+           data-fg-color-minutes="#fff"
+           data-fg-color-seconds="#fff"
+           data-days-label="Days"
+           data-hours-label="Hours"
+           data-minutes-label="Minutes"
+           data-seconds-label="Seconds"
+           data-days-show="true"
+           data-hours-show="true"
+           data-minutes-show="true"
+           data-seconds-show="true"
+      ></div>
+      <h4>Follow us on:</h4>
+      <div class="social-bar space-top">
+        <a href="#" class="sb-facebook" data-toggle="tooltip" data-placement="top" title="Facebook">
+          <i class="fa fa-facebook"></i>
+          <span>162</span>
+        </a>
+        <a href="#" class="sb-dribbble" data-toggle="tooltip" data-placement="top" title="Dribbble">
+          <i class="fa fa-dribbble"></i>
+          <span>148</span>
+        </a>
+        <a href="#" class="sb-twitter" data-toggle="tooltip" data-placement="top" title="Twitter">
+          <i class="fa fa-twitter"></i>
+          <span>133</span>
+        </a>
+        <a href="#" class="sb-google-plus" data-toggle="tooltip" data-placement="top" title="Google+">
+          <i class="fa fa-google-plus"></i>
+          <span>17</span>
+        </a>
+        <a href="#" class="sb-instagram" data-toggle="tooltip" data-placement="top" title="Instagram">
+          <i class="fa fa-instagram"></i>
+          <span>79</span>
+        </a>
+      </div>
+    </main><!-- .cs-page.container -->
+  </div><!-- .page-wrapper -->
+
+  <!-- JavaScript (jQuery) libraries, plugins and custom scripts -->
+  <script src="js/vendor/jquery-2.1.4.min.js"></script>
+  <script src="js/vendor/preloader.min.js"></script>
+  <script src="js/vendor/bootstrap.min.js"></script>
+  <script src="js/vendor/smoothscroll.js"></script>
+  <script src="js/vendor/time-circles.js"></script>
+  <script src="js/scripts.js"></script>
+
+</body><!-- <body> -->
+
+</html>

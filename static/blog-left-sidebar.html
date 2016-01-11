@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>ZurApp | Blog Left Sidebar</title>
+
+  <!--SEO Meta Tags-->
+  <meta name="description" content="ZurApp - Multiconcept App Showcase Theme" />
+  <meta name="keywords" content="multipurpose, multiconcept, app showcase, mobile, blog, portfolio, specialty pages, landing, elements, shortcodes, html5, css3, jquery, js, modernizr, gallery, slider, touch, creative" />
+  <meta name="author" content="8Guild" />
+
+  <!--Mobile Specific Meta Tag-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+  <!--Favicon-->
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+  <!-- All Theme Styles including Bootstrap, FontAwesome, etc. compiled from styles.scss-->
+  <link href="css/styles.min.css" rel="stylesheet" media="screen">
+
+  <!--Modernizr / Detectizr-->
+  <script src="js/vendor/modernizr.custom.js"></script>
+  <script src="js/vendor/detectizr.min.js"></script>
+</head>
+
+<!-- Body -->
+<!-- "is-preloader preloading" is a helper classes if preloader is enabled. -->
+<body class="is-preloader preloading">
+  
+  <!-- Preloader -->
+  <!-- 
+      Data API:
+      data-spinner - Options: 'spinner1', 'spinner2', 'spinner3', 'spinner4', 'spinner5', 'spinner6', 'spinner7'
+      data-screenbg - Screen background color. Hex, RGB or RGBA colors
+   -->
+  <div id="preloader" data-spinner="spinner7" data-screenbg="#fff"></div>
+
+  <!-- Page Wrapper -->
+  <div class="page-wrapper">
+
+    <!-- Navbar -->
+    <!-- Add class ".navbar-sticky" to make navbar stuck when it hits the top of the page. You can also use modifier class like: "navbar-light" to change navbar apperance. The screen width at which navbar collapses can be controlled through the variable "$nav-collapse" in sass/variables.scss -->
+    <header class="navbar navbar-sticky navbar-light">
+      <div class="container">
+        <a href="index.html" class="site-logo">
+          <img src="img/logo-default.png" class="logo-default" alt="ZurApp">
+          <img src="img/logo-alt.png" class="logo-alt" alt="ZurApp">
+        </a><!-- .site-logo -->
+        
+        <!-- Mobile Menu Toggle -->
+        <div class="nav-toggle"><span></span></div>
+
+        <div class="clearfix">
+
+          <div class="toolbar text-right">
+            <a href="#" class="btn btn-sm btn-ghost btn-default">Learn More</a>
+            <a href="#" class="btn btn-sm btn-warning">Get App</a>
+          </div><!-- .toolbar -->
+
+          <!-- Use modifier class to apply different submenu (dropdown) animations. Possible options: .submenu-slideUp, .submenu-slideDown, .submenu-flipIn. Please note if no class added to .main-navigation default fadeIn animation will be applied. Note: this is applicable only for Desktop. -->
+          <nav class="main-navigation submenu-flipIn">
+            <ul class="menu">
+              <li class="has-submenu"><a href="#">Home</a>
+                <ul class="submenu">
+                  <li><a href="index.html">Device Slider</a></li>
+                  <li><a href="home-app-intro-light.html">App Intro Light</a></li>
+                  <li><a href="home-app-intro-dark.html">App Intro Dark</a></li>
+                  <li><a href="home-scroll-slideshow-scale.html">Scroll Slideshow Scale Effect</a></li>
+                  <li><a href="home-scroll-slideshow-rotate.html">Scroll Slideshow Rotate Effect</a></li>
+                  <li><a href="home-scroll-slideshow-gallery.html">Scroll Slideshow Gallery Effect</a></li>
+                  <li><a href="home-scroll-slideshow-opacity.html">Scroll Slideshow Opacity Effect</a></li>
+                  <li><a href="home-scroll-slideshow-parallax.html">Scroll Slideshow Parallax Effect</a></li>
+                </ul>
+              </li>
+              <li class="has-submenu current"><a href="#">Blog</a>
+                <ul class="submenu">
+                  <li><a href="blog-right-sidebar.html">Blog Right Sidebar</a></li>
+                  <li class="current"><a href="blog-left-sidebar.html">Blog Left Sidebar</a></li>
+                  <li><a href="blog-no-sidebar.html">Blog No Sidebar</a></li>
+                  <li><a href="single-right-sidebar.html">Single Post Right Sidebar</a></li>
+                  <li><a href="single-left-sidebar.html">Single Post Left Sidebar</a></li>
+                  <li><a href="single-no-sidebar.html">Single Post No Sidebar</a></li>
+                </ul>
+              </li>
+              <li class="has-submenu"><a href="#">Portfolio</a>
+                <ul class="submenu">
+                  <li><a href="portfolio-grid-boxed.html">Portfolio Grid Boxed</a></li>
+                  <li><a href="portfolio-grid-fullwidth.html">Portfolio Grid Full Width</a></li>
+                  <li><a href="portfolio-single.html">Single Project</a></li>
+                </ul>
+              </li>
+              <li class="has-submenu"><a href="#">Pages</a>
+                <ul class="submenu">
+                  <li><a href="pricing.html">Pricing</a></li>
+                  <li><a href="contacts.html">Contacts</a></li>
+                  <li><a href="404.html">404</a></li>
+                  <li><a href="coming-soon-dark.html">Coming Soon Dark</a></li>
+                  <li><a href="coming-soon-light.html">Coming Soon Light</a></li>
+                </ul>
+              </li>
+              <li><a href="elements.html">Elements</a></li>
+            </ul>
+          </nav><!-- .main-navigation -->
+        </div><!-- .clearfix -->
+      </div><!-- .container -->
+    </header><!-- .navbar -->
+
+    <!-- Page Title -->
+    <!-- Remove ".light-skin" class to make page title dark. In this case it is recomended to remove <span class="overlay"> and background-image as well to make page title with clean gray background. -->
+    <div class="page-title text-center light-skin" style="background-image: url(img/page-title/bg01.jpg);">
+      <span class="overlay"></span>
+      <div class="container">
+        <h1>Blog Left Sidebar</h1>
+        <div class="breadcrumbs">
+          <a href="index.html">Home</a>
+          <span>Blog Left Sidebar</span>
+        </div>
+      </div>
+    </div><!-- .page-title -->
+    
+    <!-- Container -->
+    <div class="container padding-bottom">
+      <div class="row">
+        
+        <!-- Content -->
+        <div class="col-md-8 col-md-push-4">
+
+          <div class="post-item">
+            <a href="single-left-sidebar.html" class="post-thumb">
+              <img src="img/blog/post01.jpg" alt="Post">
+            </a><!-- .post-thumb -->
+            <div class="post-meta">
+              <span class="post-date">
+                <a href="#">May 10, 2015</a>
+              </span>
+              <span class="post-taxonomy">
+                in
+                <a href="#">Design</a>,
+                <a href="#">Freelance</a>
+              </span>
+              <span class="post-author">
+                <a href="#">By Admin</a>
+              </span>
+            </div><!-- .post-meta -->
+            <h2 class="post-title">
+              <a href="single-left-sidebar.html">Freelancer Workspace</a>
+            </h2><!-- .post-title -->
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam dolore deserunt laboriosam, perferendis quia earum quam accusamus consequuntur explicabo modi debitis placeat eveniet blanditiis esse incidunt commodi assumenda. Enim, repellendus. Cumque tenetur ex aperiam, dolorem...</p>
+            <div class="post-tools">
+              <a href="single-left-sidebar.html" class="btn btn-sm btn-default">Read More</a>
+              <div class="social-bar">
+                <a href="#" class="sb-twitter" data-toggle="tooltip" data-placement="top" title="Twitter">
+                  <i class="fa fa-twitter"></i>
+                  <span>13</span>
+                </a>
+                <a href="#" class="sb-tumblr" data-toggle="tooltip" data-placement="top" title="Tumblr">
+                  <i class="fa fa-tumblr"></i>
+                  <span>124</span>
+                </a>
+                <a href="#" class="sb-facebook" data-toggle="tooltip" data-placement="top" title="Facebook">
+                  <i class="fa fa-facebook"></i>
+                  <span>0</span>
+                </a>
+              </div><!-- .social-bar -->
+            </div><!-- .post-tools -->
+          </div><!-- .post-item -->
+
+          <div class="post-item">
+            <a href="single-left-sidebar.html" class="post-thumb">
+              <img src="img/blog/post02.jpg" alt="Post">
+            </a><!-- .post-thumb -->
+            <div class="post-meta">
+              <span class="post-date">
+                <a href="#">April 6, 2015</a>
+              </span>
+              <span class="post-taxonomy">
+                in
+                <a href="#">Design</a>,
+                <a href="#">Research</a>
+              </span>
+              <span class="post-author">
+                <a href="#">By 8Guild</a>
+              </span>
+            </div><!-- .post-meta -->
+            <h2 class="post-title">
+              <a href="single-left-sidebar.html">UX / UI Researches</a>
+            </h2><!-- .post-title -->
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam dolore deserunt laboriosam, perferendis quia earum quam accusamus consequuntur explicabo modi debitis placeat eveniet blanditiis esse incidunt commodi assumenda. Enim, repellendus. Cumque tenetur ex aperiam, dolorem...</p>
+            <div class="post-tools">
+              <a href="single-left-sidebar.html" class="btn btn-sm btn-default">Read More</a>
+              <div class="social-bar">
+                <a href="#" class="sb-twitter" data-toggle="tooltip" data-placement="top" title="Twitter">
+                  <i class="fa fa-twitter"></i>
+                  <span>10</span>
+                </a>
+                <a href="#" class="sb-google-plus" data-toggle="tooltip" data-placement="top" title="Google +">
+                  <i class="fa fa-google-plus"></i>
+                  <span>18</span>
+                </a>
+                <a href="#" class="sb-facebook" data-toggle="tooltip" data-placement="top" title="Facebook">
+                  <i class="fa fa-facebook"></i>
+                  <span>7</span>
+                </a>
+              </div><!-- .social-bar -->
+            </div><!-- .post-tools -->
+          </div><!-- .post-item -->
+          
+          <!-- Pagination -->
+          <nav class="pagination space-bottom-3x">
+            <div class="nav-links">
+              <a class="prev page-numbers" href="#">Prev</a>
+              <a class="page-numbers" href="#">1</a>
+              <span class="page-numbers current">2</span>
+              <a class="page-numbers" href="#">3</a>
+              <span class="page-numbers dots">...</span>
+              <a class="next page-numbers" href="#">Next</a>
+            </div>
+          </nav>
+        </div><!-- .col-md-8 -->
+        
+        <!-- Sidebar -->
+        <div class="col-md-4 col-md-pull-8">
+          <aside class="sidebar">
+
+            <section class="widget widget_search">
+              <form method="get" class="search-box">
+                <input type="text" class="form-control" placeholder="Search">
+                <button type="submit" class="search-btn">
+                  <i class="fa fa-search"></i>
+                </button>
+              </form>
+            </section><!-- .widget_search -->
+
+            <section class="widget widget_categories">
+              <h3 class="widget-title">Blog Categories</h3>
+              <ul>
+                <li class="cat-item"><a href="#">Web Design</a> (8)</li>
+                <li class="cat-item"><a href="#">Design</a> (5)</li>
+                <li class="cat-item"><a href="#">Illustratiom</a> (12)</li>
+                <li class="cat-item"><a href="#">Photography</a> (23)</li>
+                <li class="cat-item"><a href="#">Travel</a> (17)</li>
+              </ul>
+            </section><!-- .widget_categories -->
+
+            <section class="widget widget_recent_posts">
+              <div class="post-item">
+                <div class="thumb">
+                  <a href="#"><img src="img/widgets/post-thumb01.jpg" alt="Post"></a>
+                </div>
+                <div class="info">
+                  <h4><a href="#">Testing New App</a></h4>
+                  <div class="post-meta">
+                    <a href="#">March 6, 2015</a>
+                    in
+                    <a href="#">Technology</a>
+                    <div class="author">
+                      <a href="#">by 8Guild</a>
+                    </div>
+                  </div>
+                </div>
+              </div><!-- .post-item -->
+              <div class="post-item">
+                <div class="thumb">
+                  <a href="#"><img src="img/widgets/post-thumb02.jpg" alt="Post"></a>
+                </div>
+                <div class="info">
+                  <h4><a href="#">UX / UI Researches</a></h4>
+                  <div class="post-meta">
+                    <a href="#">April 10, 2015</a>
+                    in
+                    <a href="#">Web Design</a>
+                    <div class="author">
+                      <a href="#">by Admin</a>
+                    </div>
+                  </div>
+                </div>
+              </div><!-- .post-item -->
+              <div class="post-item">
+                <div class="thumb">
+                  <a href="#"><img src="img/widgets/post-thumb03.jpg" alt="Post"></a>
+                </div>
+                <div class="info">
+                  <h4><a href="#">City that never sleeps</a></h4>
+                  <div class="post-meta">
+                    <a href="#">May 4, 2015</a>
+                    in
+                    <a href="#">Travel</a>
+                    <div class="author">
+                      <a href="#">by 8Guild</a>
+                    </div>
+                  </div>
+                </div>
+              </div><!-- .post-item -->
+              <div class="post-item">
+                <div class="thumb">
+                  <a href="#"><img src="img/widgets/post-thumb04.jpg" alt="Post"></a>
+                </div>
+                <div class="info">
+                  <h4><a href="#">Sketch Up Prototype</a></h4>
+                  <div class="post-meta">
+                    <a href="#">August 22, 2015</a>
+                    in
+                    <a href="#">UX Design</a>
+                    <div class="author">
+                      <a href="#">by Admin</a>
+                    </div>
+                  </div>
+                </div>
+              </div><!-- .post-item -->
+            </section><!-- .widget_recent_posts -->
+
+            <section class="widget widget_recent_comments">
+              <h3 class="widget-title">Recent Comments</h3>
+              <ul>
+                <li><a href="#">A Michigan Winter</a><span>March 12, 2015</span></li>
+                <li><a href="#">Tea &amp; Toast</a><span>May 6, 2015</span></li>
+                <li><a href="#">Valentines Day</a><span>April 23, 2015</span></li>
+                <li><a href="#">Summer at the Lake</a><span>May 12, 2015</span></li>
+                <li><a href="#">Slow Down</a><span>March 6, 2015</span></li>
+              </ul>
+            </section><!-- .widget_recent_comments -->
+
+            <section class="widget widget_archive">
+              <h3 class="widget-title">Posts Archives</h3>
+              <ul>
+                <li><a href="#">September 2015</a></li>
+                <li><a href="#">August 2015</a></li>
+                <li><a href="#">January 2014</a></li>
+              </ul>
+            </section><!-- .widget_archive -->
+
+            <section class="widget widget_tags">
+              <h3 class="widget-title">Popular Tags</h3>
+              <a href="#" class="tag"><span>Envato</span><span>12</span></a>
+              <a href="#" class="tag"><span>Designs</span><span>40</span></a>
+              <a href="#" class="tag"><span>PSD</span><span>8</span></a>
+              <a href="#" class="tag"><span>WordPress</span><span>17</span></a>
+            </section><!-- .widget_tags -->
+
+          </aside><!-- .sidebar -->
+        </div><!-- .col-md-4 -->
+
+      </div><!-- .row -->
+    </div><!-- .container -->
+
+    <!-- Scroll To Top Button -->
+    <a href="#" class="scroll-to-top-btn">
+      <i class="fa fa-angle-up"></i>
+    </a><!-- .scroll-to-top-btn -->
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-7">
+
+            <form action="//8guild.us3.list-manage.com/subscribe/post?u=168a366a98d3248fbc35c0b67&amp;id=011a3332a0" method="post" target="_blank" class="space-top-2x" novalidate autocomplete="off">
+              <div class="row">
+                <div class="col-sm-8">
+                  <label for="subscr_email" class="sr-only">Subscribe to latest news</label>
+                  <input type="email" class="form-control" id="subscr_email" name="EMAIL" placeholder="Subscribe for news. Enter email">
+                  <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+                  <div style="position: absolute; left: -5000px;">
+                    <input type="text" name="b_168a366a98d3248fbc35c0b67_011a3332a0" tabindex="-1" value="">
+                  </div>
+                </div><!-- .col-sm-8 -->
+                <div class="col-sm-4">
+                  <button type="submit" class="btn btn-block btn-inline">Subscribe</button>
+                </div><!-- .col-sm-4 -->
+              </div><!-- .row -->
+            </form><!-- <form> -->
+            <div class="space-bottom-2x visible-xs"></div>
+            <a href="index.html" class="footer-logo">
+              <img src="img/logo-default.png" alt="ZurApp">
+            </a><!-- .footer-logo -->
+
+            <div class="social-bar">
+              <a href="#" class="sb-twitter" data-toggle="tooltip" data-placement="top" title="Twitter">
+                <i class="fa fa-twitter"></i>
+                <span>13</span>
+              </a>
+              <a href="#" class="sb-tumblr" data-toggle="tooltip" data-placement="top" title="Tumblr">
+                <i class="fa fa-tumblr"></i>
+                <span>124</span>
+              </a>
+              <a href="#" class="sb-facebook" data-toggle="tooltip" data-placement="top" title="Facebook">
+                <i class="fa fa-facebook"></i>
+                <span>0</span>
+              </a>
+            </div><!-- .social-bar -->
+            
+            <div class="row">
+              <div class="col-sm-4">
+                <div class="widget widget_pages">
+                  <h3 class="widget-title">Home</h3>
+                  <ul>
+                    <li><a href="index.html">Device Slider</a></li>
+                    <li><a href="home-app-intro-light.html">App Introduction</a></li>
+                    <li><a href="home-scroll-slideshow-scale.html">Scroll Slideshow</a></li>
+                  </ul>              </div><!-- .widget_pages -->
+              </div><!-- .col-sm-4 -->
+              <div class="col-sm-4">
+                <div class="widget widget_pages">
+                  <h3 class="widget-title">Blog</h3>
+                  <ul>
+                    <li><a href="blog-right-sidebar.html">Blog Posts</a></li>
+                    <li><a href="single-right-sidebar.html">Single Post</a></li>
+                  </ul>
+                </div><!-- .widget_pages -->
+              </div><!-- .col-sm-4 -->
+              <div class="col-sm-4">
+                <div class="widget widget_pages">
+                  <h3 class="widget-title">Portfolio</h3>
+                  <ul>
+                    <li><a href="portfolio-grid-boxed.html">Portfolio Grid</a></li>
+                    <li><a href="portfolio-single.html">Single Project</a></li>
+                  </ul>
+                </div><!-- .widget_pages -->
+              </div><!-- .col-sm-4 -->
+            </div><!-- .row -->
+
+            <div class="copyright">
+              <p>2015 &copy; <a href="http://8guild.com/" target="_blank">8Guild</a>. Premium themes</p>
+            </div><!-- .copyright -->
+
+          </div><!-- .col-md-7 -->
+
+          <div class="col-lg-4 col-lg-offset-1 col-md-5">
+            <a href="#" class="market-btn app-store">
+              <div class="icon">
+                <i class="fa fa-apple"></i>
+              </div>
+              <div class="label">
+                <small>Download on the</small>
+                <h4>App Store</h4>
+              </div>
+            </a><!-- .app-store -->
+            <a href="#" class="market-btn google-play">
+              <div class="icon">
+                <i class="fa fa-play"></i>
+              </div>
+              <div class="label">
+                <small>Get it on</small>
+                <h4>Google Play</h4>
+              </div>
+            </a><!-- .google-play -->
+            <a href="#" class="market-btn windows">
+              <div class="icon">
+                <i class="fa fa-windows"></i>
+              </div>
+              <div class="label">
+                <small>Get it on</small>
+                <h4>Windows Store</h4>
+              </div>
+            </a><!-- .windows -->
+          </div><!-- .col-md-5 -->
+        </div><!-- .row -->
+      </div><!-- .container -->
+    </footer><!-- .footer -->
+  </div><!-- .page-wrapper -->
+
+  <!-- JavaScript (jQuery) libraries, plugins and custom scripts -->
+  <script src="js/vendor/jquery-2.1.4.min.js"></script>
+  <script src="js/vendor/preloader.min.js"></script>
+  <script src="js/vendor/placeholder.js"></script>
+  <script src="js/vendor/bootstrap.min.js"></script>
+  <script src="js/vendor/smoothscroll.js"></script>
+  <script src="js/vendor/velocity.min.js"></script>
+  <script src="js/scripts.js"></script>
+
+</body><!-- <body> -->
+
+</html>

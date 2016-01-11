@@ -1,0 +1,1003 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>ZurApp | Elements</title>
+
+  <!--SEO Meta Tags-->
+  <meta name="description" content="ZurApp - Multiconcept App Showcase Theme" />
+  <meta name="keywords" content="multipurpose, multiconcept, app showcase, mobile, blog, portfolio, specialty pages, landing, elements, shortcodes, html5, css3, jquery, js, modernizr, gallery, slider, touch, creative" />
+  <meta name="author" content="8Guild" />
+
+  <!--Mobile Specific Meta Tag-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+  <!--Favicon-->
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+  <!-- All Theme Styles including Bootstrap, FontAwesome, etc. compiled from styles.scss-->
+  <link href="css/styles.min.css" rel="stylesheet" media="screen">
+
+  <!--Modernizr / Detectizr-->
+  <script src="js/vendor/modernizr.custom.js"></script>
+  <script src="js/vendor/detectizr.min.js"></script>
+</head>
+
+<!-- Body -->
+<!-- "is-preloader preloading" is a helper classes if preloader is enabled. -->
+<body class="is-preloader preloading">
+  
+  <!-- Preloader -->
+  <!-- 
+      Data API:
+      data-spinner - Options: 'spinner1', 'spinner2', 'spinner3', 'spinner4', 'spinner5', 'spinner6', 'spinner7'
+      data-screenbg - Screen background color. Hex, RGB or RGBA colors
+   -->
+  <div id="preloader" data-spinner="spinner7" data-screenbg="#fff"></div>
+
+  <!-- Page Wrapper -->
+  <div class="page-wrapper">
+
+    <!-- Navbar -->
+    <!-- Add class ".navbar-sticky" to make navbar stuck when it hits the top of the page. You can also use modifier class like: "navbar-light" to change navbar apperance. The screen width at which navbar collapses can be controlled through the variable "$nav-collapse" in sass/variables.scss -->
+    <header class="navbar navbar-sticky">
+      <div class="container">
+        <a href="index.html" class="site-logo">
+          <img src="img/logo-default.png" class="logo-default" alt="ZurApp">
+          <img src="img/logo-alt.png" class="logo-alt" alt="ZurApp">
+        </a><!-- .site-logo -->
+        
+        <!-- Mobile Menu Toggle -->
+        <div class="nav-toggle"><span></span></div>
+
+        <div class="clearfix">
+
+          <div class="toolbar text-right">
+            <a href="#" class="btn btn-sm btn-ghost btn-default">Learn More</a>
+            <a href="#" class="btn btn-sm btn-warning">Get App</a>
+          </div><!-- .toolbar -->
+
+          <!-- Use modifier class to apply different submenu (dropdown) animations. Possible options: .submenu-slideUp, .submenu-slideDown, .submenu-flipIn. Please note if no class added to .main-navigation default fadeIn animation will be applied. Note: this is applicable only for Desktop. -->
+          <nav class="main-navigation submenu-flipIn">
+            <ul class="menu">
+              <li class="has-submenu"><a href="#">Home</a>
+                <ul class="submenu">
+                  <li><a href="index.html">Device Slider</a></li>
+                  <li><a href="home-app-intro-light.html">App Intro Light</a></li>
+                  <li><a href="home-app-intro-dark.html">App Intro Dark</a></li>
+                  <li><a href="home-scroll-slideshow-scale.html">Scroll Slideshow Scale Effect</a></li>
+                  <li><a href="home-scroll-slideshow-rotate.html">Scroll Slideshow Rotate Effect</a></li>
+                  <li><a href="home-scroll-slideshow-gallery.html">Scroll Slideshow Gallery Effect</a></li>
+                  <li><a href="home-scroll-slideshow-opacity.html">Scroll Slideshow Opacity Effect</a></li>
+                  <li><a href="home-scroll-slideshow-parallax.html">Scroll Slideshow Parallax Effect</a></li>
+                </ul>
+              </li>
+              <li class="has-submenu"><a href="#">Blog</a>
+                <ul class="submenu">
+                  <li><a href="blog-right-sidebar.html">Blog Right Sidebar</a></li>
+                  <li><a href="blog-left-sidebar.html">Blog Left Sidebar</a></li>
+                  <li><a href="blog-no-sidebar.html">Blog No Sidebar</a></li>
+                  <li><a href="single-right-sidebar.html">Single Post Right Sidebar</a></li>
+                  <li><a href="single-left-sidebar.html">Single Post Left Sidebar</a></li>
+                  <li><a href="single-no-sidebar.html">Single Post No Sidebar</a></li>
+                </ul>
+              </li>
+              <li class="has-submenu"><a href="#">Portfolio</a>
+                <ul class="submenu">
+                  <li><a href="portfolio-grid-boxed.html">Portfolio Grid Boxed</a></li>
+                  <li><a href="portfolio-grid-fullwidth.html">Portfolio Grid Full Width</a></li>
+                  <li><a href="portfolio-single.html">Single Project</a></li>
+                </ul>
+              </li>
+              <li class="has-submenu"><a href="#">Pages</a>
+                <ul class="submenu">
+                  <li><a href="pricing.html">Pricing</a></li>
+                  <li><a href="contacts.html">Contacts</a></li>
+                  <li><a href="404.html">404</a></li>
+                  <li><a href="coming-soon-dark.html">Coming Soon Dark</a></li>
+                  <li><a href="coming-soon-light.html">Coming Soon Light</a></li>
+                </ul>
+              </li>
+              <li class="current"><a href="elements.html">Elements</a></li>
+            </ul>
+          </nav><!-- .main-navigation -->
+        </div><!-- .clearfix -->
+      </div><!-- .container -->
+    </header><!-- .navbar -->
+
+    <!-- Page Title -->
+    <!-- Remove ".light-skin" class to make page title dark. In this case it is recomended to remove <span class="overlay"> and background-image as well to make page title with clean gray background. -->
+    <div class="page-title text-center">
+      <div class="container">
+        <h1>Elements</h1>
+        <div class="breadcrumbs">
+          <a href="index.html">Home</a>
+          <span>Elements</span>
+        </div>
+      </div>
+    </div><!-- .page-title -->
+    
+    <!-- Container -->
+    <div class="container padding-bottom-3x">
+
+      <!-- Typography -->
+      <h2>Typography</h2>
+      <hr class="space-bottom-2x">
+      <div class="row">
+        <div class="col-sm-6 space-bottom">
+
+          <!-- Headings -->
+          <h3 class="text-muted">Headings</h3>
+          <h1>H1. Heading</h1>
+          <h2>H2. Heading</h2>
+          <h3>H3. Heading</h3>
+          <h4>H4. Heading</h4>
+          <h5>H5. Heading</h5>
+          <h6>H6. Heading</h6>
+
+          <!-- Body Copy -->
+          <div class="space-top-2x">
+            <h3 class="text-muted">Body Copy</h3>
+            <p class="lead"><strong>Lead.</strong> Lorem ipsum dolor sit amet, <a href="#">link here</a> adipisicing elit. Ipsam aliquam id velit, commodi? <i>Autem accusamus</i> quis.</p>
+            <p><strong>Normal.</strong> Lorem ipsum dolor sit amet, <a href="#">link here</a> adipisicing elit. Ipsam aliquam id velit, commodi? <i>Autem accusamus</i> quis.</p>
+            <p class="text-sm"><strong>Small.</strong> Lorem ipsum dolor sit amet, <a href="#">link here</a> adipisicing elit. Ipsam aliquam id velit, commodi? <i>Autem accusamus</i> quis modi voluptate.</p>
+            <p class="text-xs"><strong>Extra small.</strong> Lorem ipsum dolor sit amet, <a href="#">link here</a> adipisicing elit. Ipsam aliquam id velit, commodi? <i>Autem accusamus</i> quis modi voluptate rem distinctio est voluptatum reiciendis ut numquam.</p>
+          </div>
+        </div>
+        <div class="col-sm-6 space-bottom">
+
+          <!-- Lists -->
+          <h3 class="text-muted">Lists</h3>
+          <ul>
+            <li><a href="#">Link here. Lorem ipsum dolor sit amet</a></li>
+            <li>Sed ut perspiciatis unde omnis iste natus</li>
+            <li>Et harum quidem rerum facilis est expedita</li>
+          </ul>
+          <ol>
+            <li><a href="#">Link here. Lorem ipsum dolor sit amet</a></li>
+            <li>Sed ut perspiciatis unde omnis iste natus</li>
+            <li>Neque porro quisquam est, qui dolorem</li>
+          </ol>
+          <ul class="featured-list">
+            <li><a href="#">Link here. Lorem ipsum dolor sit amet</a></li>
+            <li>Sed ut perspiciatis unde omnis iste natus</li>
+            <li>Et harum quidem rerum facilis est expedita</li>
+          </ul>
+          <ul class="list-unstyled space-bottom-2x">
+            <li><a href="#">Link here. Lorem ipsum dolor sit amet</a></li>
+            <li>Sed ut perspiciatis unde omnis iste natus</li>
+            <li>Et harum quidem rerum facilis est expedita</li>
+          </ul>
+
+          <!-- Contextual Colors -->
+          <h3 class="text-muted">Contextual Colors</h3>
+          <ul class="list-unstyled space-bottom-2x">
+            <li class="text-muted"><strong>Muted text.</strong> Sed ut perspiciatis unde omnis iste natus voluptatem.</li>
+            <li class="text-primary"><strong>Primary text.</strong> Maecenas sed diam eget risus varius blandit amet.</li>
+            <li class="text-success"><strong>Success text.</strong> Et harum quidem rerum facilis est expedita natus.</li>
+            <li class="text-info"><strong>Info text.</strong> Sed ut perspiciatis unde omnis iste natus voluptatem.</li>
+            <li class="text-warning"><strong>Warning text.</strong> Maecenas sed diam eget risus varius blandit amet.</li>
+            <li class="text-danger"><strong>Danger text.</strong> Et harum quidem rerum facilis est expedita natus.</li>
+          </ul>
+        </div>
+      </div><!-- .row -->
+
+      <!-- Contextual Backgrounds -->
+      <h3 class="text-muted">Contextual Backgrounds</h3>
+      <p>Lorem ipsum dolor sit amet, <span class="bg-primary">primary background consectetur</span> adipisicing elit. <span class="bg-success">Success background non,</span> sequi amet obcaecati quos soluta quisquam harum dolor ab veniam molestias info background excepturi ut vitae warning background rerum repellendus aut quaerat <span class="bg-default">deleniti recusandae.</span> Quas nam quod dolorem, ipsam impedit danger background, saepe, <span class="bg-info">expedita necessitatibus reprehenderit,</span> ratione modi a quis magnam. Sint vero fuga totam <span class="bg-warning">repellendus quae! Lorem ipsum</span> dolor sit amet, consectetur adipisicing elit. Vel ipsum blanditiis itaque soluta laboriosam cum, sint sapiente eos est reprehenderit omnis enim nemo atque, nihil officiis, voluptatem ad libero illo. Nihil ullam ab, rem, id <span class="bg-danger">officia recusandae veritatis!</span> Enim cumque provident, non, at explicabo assumenda aliquid!</p>
+
+      <!-- Blochquotes -->
+      <h3 class="text-muted space-top-2x">Blockquotes</h3>
+      <div class="row">
+        <div class="col-sm-6">
+          <blockquote>
+            <p>Lorem ipsum dolor sit amet consectetur qui dolorem.</p>
+            <cite>Someone famous</cite>
+          </blockquote>
+        </div>
+        <div class="col-sm-6">
+          <blockquote class="text-right">
+            <p>Lorem ipsum dolor sit amet consectetur qui dolorem.</p>
+            <cite>Someone famous</cite>
+          </blockquote>
+        </div>
+        <div class="col-sm-4">
+        </div>
+      </div><!-- .row -->
+      <div class="row space-top-2x space-bottom">
+        <div class="col-md-6 space-bottom-2x">
+          <blockquote class="text-center">
+            <p>Lorem ipsum dolor sit amet consectetur qui dolorem.</p>
+            <cite>Someone famous</cite>
+          </blockquote>
+        </div>
+        <div class="col-md-6 space-bottom-2x">
+          <!-- Horizontal Description -->
+          <h3 class="text-muted">Horizontal Description</h3>
+          <dl class="dl-horizontal">
+            <dt>Description lists</dt>
+            <dd>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.</dd>
+            <dt>Euismod</dt>
+            <dd>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.</dd>
+            <dt>Malesuada porta</dt>
+            <dd>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.</dd>
+            <dt>Felis euismod semper eget lacinia</dt>
+            <dd>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.</dd>
+          </dl>
+        </div>
+      </div><!-- .row -->
+
+      <!-- Buttons -->
+      <h2>Buttons</h2>
+      <hr class="space-bottom-2x">
+
+      <!-- Standard Buttons -->
+      <h3 class="text-muted">Standard Buttons</h3>
+      <div class="space-bottom">
+        <a href="#" class="btn btn-default">Default</a>
+        <a href="#" class="btn btn-default-2">Default 2</a>
+        <a href="#" class="btn btn-primary">Primary</a>
+        <a href="#" class="btn btn-success">Success</a>
+        <a href="#" class="btn btn-info">Info</a>
+        <a href="#" class="btn btn-warning">Warning</a>
+        <a href="#" class="btn btn-danger">Danger</a>
+      </div>
+      <div class="space-bottom">
+        <a href="#" class="btn btn-primary">Normal Button</a>
+        <a href="#" class="btn btn-primary btn-sm">Small Button</a>
+        <a href="#" class="btn btn-default icon-left"><i class="fa fa-flag"></i>Left Icon</a>
+        <a href="#" class="btn btn-default icon-right">Right Icon<i class="fa fa-lock"></i></a>
+      </div>
+      <div class="row space-bottom-2x">
+        <div class="col-sm-3">
+          <a href="#" class="btn btn-default btn-block">Block Button</a>
+        </div>
+        <div class="col-sm-3">
+          <a href="#" class="btn btn-default btn-block">Block Button</a>
+        </div>
+        <div class="col-sm-3">
+          <a href="#" class="btn btn-default btn-block">Block Button</a>
+        </div>
+        <div class="col-sm-3">
+          <a href="#" class="btn btn-default btn-block">Block Button</a>
+        </div>
+      </div><!-- .row -->
+
+      <!-- Alternative Buttons -->
+      <h3 class="text-muted">Alternative Buttons</h3>
+      <div class="space-bottom">
+        <a href="#" class="btn btn-alt btn-default">Default</a>
+        <a href="#" class="btn btn-alt btn-default-2">Default 2</a>
+        <a href="#" class="btn btn-alt btn-primary">Primary</a>
+        <a href="#" class="btn btn-alt btn-success">Success</a>
+        <a href="#" class="btn btn-alt btn-info">Info</a>
+        <a href="#" class="btn btn-alt btn-warning">Warning</a>
+        <a href="#" class="btn btn-alt btn-danger">Danger</a>
+      </div>
+      <div class="space-bottom">
+        <a href="#" class="btn btn-alt btn-primary">Normal Button</a>
+        <a href="#" class="btn btn-alt btn-primary btn-sm">Small Button</a>
+        <a href="#" class="btn btn-alt btn-default icon-left"><i class="fa fa-thumb-tack"></i>Left Icon</a>
+        <a href="#" class="btn btn-alt btn-default icon-right">Right Icon<i class="fa fa-star"></i></a>
+      </div>
+      <div class="row space-bottom-2x">
+        <div class="col-sm-3">
+          <a href="#" class="btn btn-alt btn-info btn-block">Block Button</a>
+        </div>
+        <div class="col-sm-3">
+          <a href="#" class="btn btn-alt btn-info btn-block">Block Button</a>
+        </div>
+        <div class="col-sm-3">
+          <a href="#" class="btn btn-alt btn-info btn-block">Block Button</a>
+        </div>
+        <div class="col-sm-3">
+          <a href="#" class="btn btn-alt btn-info btn-block">Block Button</a>
+        </div>
+      </div><!-- .row -->
+
+      <!-- Standard Ghost Buttons -->
+      <h3 class="text-muted">Standard Ghost Buttons</h3>
+      <div class="space-bottom">
+        <a href="#" class="btn btn-ghost btn-default">Default</a>
+        <a href="#" class="btn btn-ghost btn-primary">Primary</a>
+        <a href="#" class="btn btn-ghost btn-success">Success</a>
+        <a href="#" class="btn btn-ghost btn-info">Info</a>
+        <a href="#" class="btn btn-ghost btn-warning">Warning</a>
+        <a href="#" class="btn btn-ghost btn-danger">Danger</a>
+      </div>
+      <div class="space-bottom">
+        <a href="#" class="btn btn-ghost btn-primary">Normal Button</a>
+        <a href="#" class="btn btn-ghost btn-primary btn-sm">Small Button</a>
+        <a href="#" class="btn btn-ghost btn-default icon-left"><i class="fa fa-flag"></i>Left Icon</a>
+        <a href="#" class="btn btn-ghost btn-default icon-right">Right Icon<i class="fa fa-lock"></i></a>
+      </div>
+      <div class="row space-bottom-2x">
+        <div class="col-sm-3">
+          <a href="#" class="btn btn-ghost btn-default btn-block">Block Button</a>
+        </div>
+        <div class="col-sm-3">
+          <a href="#" class="btn btn-ghost btn-default btn-block">Block Button</a>
+        </div>
+        <div class="col-sm-3">
+          <a href="#" class="btn btn-ghost btn-default btn-block">Block Button</a>
+        </div>
+        <div class="col-sm-3">
+          <a href="#" class="btn btn-ghost btn-default btn-block">Block Button</a>
+        </div>
+      </div><!-- .row -->
+
+      <!-- Alternative Ghost Buttons -->
+      <h3 class="text-muted">Alternative Ghost Buttons</h3>
+      <div class="space-bottom">
+        <a href="#" class="btn btn-ghost btn-alt btn-default">Default</a>
+        <a href="#" class="btn btn-ghost btn-alt btn-primary">Primary</a>
+        <a href="#" class="btn btn-ghost btn-alt btn-success">Success</a>
+        <a href="#" class="btn btn-ghost btn-alt btn-info">Info</a>
+        <a href="#" class="btn btn-ghost btn-alt btn-warning">Warning</a>
+        <a href="#" class="btn btn-ghost btn-alt btn-danger">Danger</a>
+      </div>
+      <div class="space-bottom">
+        <a href="#" class="btn btn-ghost btn-alt btn-primary">Normal Button</a>
+        <a href="#" class="btn btn-ghost btn-alt btn-primary btn-sm">Small Button</a>
+        <a href="#" class="btn btn-ghost btn-alt btn-default icon-left"><i class="fa fa-thumb-tack"></i>Left Icon</a>
+        <a href="#" class="btn btn-ghost btn-alt btn-default icon-right">Right Icon<i class="fa fa-star"></i></a>
+      </div>
+      <div class="row space-bottom-3x">
+        <div class="col-sm-3">
+          <a href="#" class="btn btn-ghost btn-alt btn-default btn-block">Block Button</a>
+        </div>
+        <div class="col-sm-3">
+          <a href="#" class="btn btn-ghost btn-alt btn-default btn-block">Block Button</a>
+        </div>
+        <div class="col-sm-3">
+          <a href="#" class="btn btn-ghost btn-alt btn-default btn-block">Block Button</a>
+        </div>
+        <div class="col-sm-3">
+          <a href="#" class="btn btn-ghost btn-alt btn-default btn-block">Block Button</a>
+        </div>
+      </div><!-- .row -->
+
+      <!-- Social Buttons -->
+      <h2>Social Buttons</h2>
+      <hr class="space-bottom-2x">
+
+      <!-- With Counters -->
+      <h3 class="text-muted space-bottom">With Counters</h3>
+      <div class="social-bar space-bottom-2x">
+        <a href="#" class="sb-email" data-toggle="tooltip" data-placement="top" title="Email">
+          <i class="fa fa-envelope"></i>
+          <span>25</span>
+        </a>
+        <a href="#" class="sb-behance" data-toggle="tooltip" data-placement="top" title="Behance">
+          <i class="fa fa-behance"></i>
+          <span>13</span>
+        </a>
+        <a href="#" class="sb-bitbucket" data-toggle="tooltip" data-placement="top" title="BitBucket">
+          <i class="fa fa-bitbucket"></i>
+          <span>88</span>
+        </a>
+        <a href="#" class="sb-codepen" data-toggle="tooltip" data-placement="top" title="Codepent">
+          <i class="fa fa-codepen"></i>
+          <span>10</span>
+        </a>
+        <a href="#" class="sb-deviantart" data-toggle="tooltip" data-placement="top" title="DeviantArt">
+          <i class="fa fa-deviantart"></i>
+          <span>32</span>
+        </a>
+        <a href="#" class="sb-digg" data-toggle="tooltip" data-placement="top" title="Digg">
+          <i class="fa fa-digg"></i>
+          <span>17</span>
+        </a>
+        <a href="#" class="sb-dribbble" data-toggle="tooltip" data-placement="top" title="Dribbble">
+          <i class="fa fa-dribbble"></i>
+          <span>223</span>
+        </a>
+        <a href="#" class="sb-dropbox" data-toggle="tooltip" data-placement="top" title="Dropbox">
+          <i class="fa fa-dropbox"></i>
+          <span>15</span>
+        </a>
+        <a href="#" class="sb-facebook" data-toggle="tooltip" data-placement="top" title="Facebook">
+          <i class="fa fa-facebook"></i>
+          <span>162</span>
+        </a>
+        <a href="#" class="sb-flickr" data-toggle="tooltip" data-placement="top" title="Flickr">
+          <i class="fa fa-flickr"></i>
+          <span>12</span>
+        </a>
+        <a href="#" class="sb-foursquare" data-toggle="tooltip" data-placement="top" title="Foursquare">
+          <i class="fa fa-foursquare"></i>
+          <span>66</span>
+        </a>
+        <a href="#" class="sb-github" data-toggle="tooltip" data-placement="top" title="Github">
+          <i class="fa fa-github"></i>
+          <span>48</span>
+        </a>
+        <a href="#" class="sb-google-plus" data-toggle="tooltip" data-placement="top" title="Google+">
+          <i class="fa fa-google-plus"></i>
+          <span>173</span>
+        </a>
+        <a href="#" class="sb-instagram" data-toggle="tooltip" data-placement="top" title="Instagram">
+          <i class="fa fa-instagram"></i>
+          <span>79</span>
+        </a>
+        <a href="#" class="sb-jsfiddle" data-toggle="tooltip" data-placement="top" title="jsFiddle">
+          <i class="fa fa-jsfiddle"></i>
+          <span>22</span>
+        </a>
+        <a href="#" class="sb-lastfm" data-toggle="tooltip" data-placement="top" title="last.fm">
+          <i class="fa fa-lastfm"></i>
+          <span>16</span>
+        </a>
+        <a href="#" class="sb-linkedin" data-toggle="tooltip" data-placement="top" title="LinkedIn">
+          <i class="fa fa-linkedin"></i>
+          <span>99</span>
+        </a>
+        <a href="#" class="sb-paypal" data-toggle="tooltip" data-placement="top" title="PayPal">
+          <i class="fa fa-paypal"></i>
+          <span>35</span>
+        </a>
+        <a href="#" class="sb-pinterest" data-toggle="tooltip" data-placement="top" title="Pinterest">
+          <i class="fa fa-pinterest"></i>
+          <span>190</span>
+        </a>
+        <a href="#" class="sb-reddit" data-toggle="tooltip" data-placement="top" title="Reddit">
+          <i class="fa fa-reddit"></i>
+          <span>14</span>
+        </a>
+        <a href="#" class="sb-skype" data-toggle="tooltip" data-placement="top" title="Skype">
+          <i class="fa fa-skype"></i>
+          <span>112</span>
+        </a>
+        <a href="#" class="sb-soundcloud" data-toggle="tooltip" data-placement="top" title="SoundCloud">
+          <i class="fa fa-soundcloud"></i>
+          <span>85</span>
+        </a>
+        <a href="#" class="sb-stackoverflow" data-toggle="tooltip" data-placement="top" title="Stack Overflow">
+          <i class="fa fa-stack-overflow"></i>
+          <span>303</span>
+        </a>
+        <a href="#" class="sb-steam" data-toggle="tooltip" data-placement="top" title="Steam">
+          <i class="fa fa-steam"></i>
+          <span>77</span>
+        </a>
+        <a href="#" class="sb-stumbleupon" data-toggle="tooltip" data-placement="top" title="StumbleUpon">
+          <i class="fa fa-stumbleupon"></i>
+          <span>56</span>
+        </a>
+        <a href="#" class="sb-trello" data-toggle="tooltip" data-placement="top" title="Trello">
+          <i class="fa fa-trello"></i>
+          <span>49</span>
+        </a>
+        <a href="#" class="sb-tumblr" data-toggle="tooltip" data-placement="top" title="Tumblr">
+          <i class="fa fa-tumblr"></i>
+          <span>115</span>
+        </a>
+        <a href="#" class="sb-twitch" data-toggle="tooltip" data-placement="top" title="Twitch">
+          <i class="fa fa-twitch"></i>
+          <span>33</span>
+        </a>
+        <a href="#" class="sb-twitter" data-toggle="tooltip" data-placement="top" title="Twitter">
+          <i class="fa fa-twitter"></i>
+          <span>152</span>
+        </a>
+        <a href="#" class="sb-vine" data-toggle="tooltip" data-placement="top" title="Vine">
+          <i class="fa fa-vine"></i>
+          <span>93</span>
+        </a>
+        <a href="#" class="sb-vk" data-toggle="tooltip" data-placement="top" title="Vkontakte">
+          <i class="fa fa-vk"></i>
+          <span>87</span>
+        </a>
+        <a href="#" class="sb-wechat" data-toggle="tooltip" data-placement="top" title="WeChat">
+          <i class="fa fa-wechat"></i>
+          <span>18</span>
+        </a>
+        <a href="#" class="sb-wordpress" data-toggle="tooltip" data-placement="top" title="WordPress">
+          <i class="fa fa-wordpress"></i>
+          <span>179</span>
+        </a>
+        <a href="#" class="sb-xing" data-toggle="tooltip" data-placement="top" title="Xing">
+          <i class="fa fa-xing"></i>
+          <span>200</span>
+        </a>
+        <a href="#" class="sb-yahoo" data-toggle="tooltip" data-placement="top" title="Yahoo!">
+          <i class="fa fa-yahoo"></i>
+          <span>310</span>
+        </a>
+        <a href="#" class="sb-yelp" data-toggle="tooltip" data-placement="top" title="Yelp">
+          <i class="fa fa-yelp"></i>
+          <span>11</span>
+        </a>
+        <a href="#" class="sb-youtube" data-toggle="tooltip" data-placement="top" title="YouTube">
+          <i class="fa fa-youtube"></i>
+          <span>440</span>
+        </a>
+      </div><!-- .social-bar -->
+
+      <!-- Without Counters -->
+      <h3 class="text-muted space-bottom">Without Counters</h3>
+      <div class="social-bar space-bottom-3x">
+        <a href="#" class="sb-email" data-toggle="tooltip" data-placement="top" title="Email">
+          <i class="fa fa-envelope"></i>
+        </a>
+        <a href="#" class="sb-behance" data-toggle="tooltip" data-placement="top" title="Behance">
+          <i class="fa fa-behance"></i>
+        </a>
+        <a href="#" class="sb-bitbucket" data-toggle="tooltip" data-placement="top" title="BitBucket">
+          <i class="fa fa-bitbucket"></i>
+        </a>
+        <a href="#" class="sb-codepen" data-toggle="tooltip" data-placement="top" title="Codepent">
+          <i class="fa fa-codepen"></i>
+        </a>
+        <a href="#" class="sb-deviantart" data-toggle="tooltip" data-placement="top" title="DeviantArt">
+          <i class="fa fa-deviantart"></i>
+        </a>
+        <a href="#" class="sb-digg" data-toggle="tooltip" data-placement="top" title="Digg">
+          <i class="fa fa-digg"></i>
+        </a>
+        <a href="#" class="sb-dribbble" data-toggle="tooltip" data-placement="top" title="Dribbble">
+          <i class="fa fa-dribbble"></i>
+        </a>
+        <a href="#" class="sb-dropbox" data-toggle="tooltip" data-placement="top" title="Dropbox">
+          <i class="fa fa-dropbox"></i>
+        </a>
+        <a href="#" class="sb-facebook" data-toggle="tooltip" data-placement="top" title="Facebook">
+          <i class="fa fa-facebook"></i>
+        </a>
+        <a href="#" class="sb-flickr" data-toggle="tooltip" data-placement="top" title="Flickr">
+          <i class="fa fa-flickr"></i>
+        </a>
+        <a href="#" class="sb-foursquare" data-toggle="tooltip" data-placement="top" title="Foursquare">
+          <i class="fa fa-foursquare"></i>
+        </a>
+        <a href="#" class="sb-github" data-toggle="tooltip" data-placement="top" title="Github">
+          <i class="fa fa-github"></i>
+        </a>
+        <a href="#" class="sb-google-plus" data-toggle="tooltip" data-placement="top" title="Google+">
+          <i class="fa fa-google-plus"></i>
+        </a>
+        <a href="#" class="sb-instagram" data-toggle="tooltip" data-placement="top" title="Instagram">
+          <i class="fa fa-instagram"></i>
+        </a>
+        <a href="#" class="sb-jsfiddle" data-toggle="tooltip" data-placement="top" title="jsFiddle">
+          <i class="fa fa-jsfiddle"></i>
+        </a>
+        <a href="#" class="sb-lastfm" data-toggle="tooltip" data-placement="top" title="last.fm">
+          <i class="fa fa-lastfm"></i>
+        </a>
+        <a href="#" class="sb-linkedin" data-toggle="tooltip" data-placement="top" title="LinkedIn">
+          <i class="fa fa-linkedin"></i>
+        </a>
+        <a href="#" class="sb-paypal" data-toggle="tooltip" data-placement="top" title="PayPal">
+          <i class="fa fa-paypal"></i>
+        </a>
+        <a href="#" class="sb-pinterest" data-toggle="tooltip" data-placement="top" title="Pinterest">
+          <i class="fa fa-pinterest"></i>
+        </a>
+        <a href="#" class="sb-reddit" data-toggle="tooltip" data-placement="top" title="Reddit">
+          <i class="fa fa-reddit"></i>
+        </a>
+        <a href="#" class="sb-skype" data-toggle="tooltip" data-placement="top" title="Skype">
+          <i class="fa fa-skype"></i>
+        </a>
+        <a href="#" class="sb-soundcloud" data-toggle="tooltip" data-placement="top" title="SoundCloud">
+          <i class="fa fa-soundcloud"></i>
+        </a>
+        <a href="#" class="sb-stackoverflow" data-toggle="tooltip" data-placement="top" title="Stack Overflow">
+          <i class="fa fa-stack-overflow"></i>
+        </a>
+        <a href="#" class="sb-steam" data-toggle="tooltip" data-placement="top" title="Steam">
+          <i class="fa fa-steam"></i>
+        </a>
+        <a href="#" class="sb-stumbleupon" data-toggle="tooltip" data-placement="top" title="StumbleUpon">
+          <i class="fa fa-stumbleupon"></i>
+        </a>
+        <a href="#" class="sb-trello" data-toggle="tooltip" data-placement="top" title="Trello">
+          <i class="fa fa-trello"></i>
+        </a>
+        <a href="#" class="sb-tumblr" data-toggle="tooltip" data-placement="top" title="Tumblr">
+          <i class="fa fa-tumblr"></i>
+        </a>
+        <a href="#" class="sb-twitch" data-toggle="tooltip" data-placement="top" title="Twitch">
+          <i class="fa fa-twitch"></i>
+        </a>
+        <a href="#" class="sb-twitter" data-toggle="tooltip" data-placement="top" title="Twitter">
+          <i class="fa fa-twitter"></i>
+        </a>
+        <a href="#" class="sb-vine" data-toggle="tooltip" data-placement="top" title="Vine">
+          <i class="fa fa-vine"></i>
+        </a>
+        <a href="#" class="sb-vk" data-toggle="tooltip" data-placement="top" title="Vkontakte">
+          <i class="fa fa-vk"></i>
+        </a>
+        <a href="#" class="sb-wechat" data-toggle="tooltip" data-placement="top" title="WeChat">
+          <i class="fa fa-wechat"></i>
+        </a>
+        <a href="#" class="sb-wordpress" data-toggle="tooltip" data-placement="top" title="WordPress">
+          <i class="fa fa-wordpress"></i>
+        </a>
+        <a href="#" class="sb-xing" data-toggle="tooltip" data-placement="top" title="Xing">
+          <i class="fa fa-xing"></i>
+        </a>
+        <a href="#" class="sb-yahoo" data-toggle="tooltip" data-placement="top" title="Yahoo!">
+          <i class="fa fa-yahoo"></i>
+        </a>
+        <a href="#" class="sb-yelp" data-toggle="tooltip" data-placement="top" title="Yelp">
+          <i class="fa fa-yelp"></i>
+        </a>
+        <a href="#" class="sb-youtube" data-toggle="tooltip" data-placement="top" title="YouTube">
+          <i class="fa fa-youtube"></i>
+        </a>
+      </div><!-- .social-bar -->
+
+      <!-- Forms -->
+      <h2>Forms</h2>
+      <hr class="space-bottom-2x">
+      <div class="row space-bottom-2x">
+
+        <!-- Standard Inputs -->
+        <div class="col-sm-6 space-bottom-2">
+          <h3 class="text-muted">Standard Inputs</h3>
+          <input type="text" class="form-control" placeholder="Normal input">
+          <input type="text" class="form-control input-sm" placeholder="Small input">
+          <input type="text" class="form-control error" placeholder="Error input">
+          <input type="text" class="form-control valid" placeholder="Valid input">
+          <textarea rows="6" class="form-control" placeholder="Textarea"></textarea>
+        </div><!-- .col-sm-6 -->
+
+        <!-- Alternative Inputs -->
+        <div class="col-sm-6 space-bottom-2">
+          <h3 class="text-muted">Alternative Inputs</h3>
+          <input type="text" class="form-control input-alt" placeholder="Normal input">
+          <input type="text" class="form-control input-alt input-sm" placeholder="Small input">
+          <input type="text" class="form-control input-alt error" placeholder="Error input">
+          <input type="text" class="form-control input-alt valid" placeholder="Valid input">
+          <textarea rows="6" class="form-control input-alt" placeholder="Textarea"></textarea>
+        </div><!-- .col-sm-6 -->
+      </div><!-- .row -->
+
+      <!-- Tables -->
+      <h2>Tables</h2>
+      <hr class="space-bottom">
+      <div class="row space-bottom-2x">
+        <div class="col-md-6">
+          <div class="table-responsive">
+            <table>
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>First Name</th>
+                  <th>Last Name</th>
+                  <th>Username</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">1</th>
+                  <td>James</td>
+                  <td>Taylor</td>
+                  <td>@james</td>
+                </tr>
+                <tr>
+                  <th scope="row">2</th>
+                  <td>Susanna</td>
+                  <td>Davis</td>
+                  <td>@susy</td>
+                </tr>
+                <tr>
+                  <th scope="row">3</th>
+                  <td>Johnathan</td>
+                  <td>Doe</td>
+                  <td>@johny</td>
+                </tr>
+              </tbody>
+            </table><!-- table -->
+          </div><!-- .table-responsive -->
+        </div><!-- .col-sm-6 -->
+        <div class="col-md-6">
+          <div class="table-responsive">
+            <table class="table-striped">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>First Name</th>
+                  <th>Last Name</th>
+                  <th>Username</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">1</th>
+                  <td>James</td>
+                  <td>Taylor</td>
+                  <td>@james</td>
+                </tr>
+                <tr>
+                  <th scope="row">2</th>
+                  <td>Susanna</td>
+                  <td>Davis</td>
+                  <td>@susy</td>
+                </tr>
+                <tr>
+                  <th scope="row">3</th>
+                  <td>Johnathan</td>
+                  <td>Doe</td>
+                  <td>@johny</td>
+                </tr>
+              </tbody>
+            </table><!-- table -->
+          </div><!-- .table-responsive -->
+        </div><!-- .col-sm-6 -->
+      </div><!-- .row -->
+
+      <!-- Tabs -->
+      <h2>Tabs</h2>
+      <hr class="space-bottom-2x">
+      <div class="row">
+        <div class="col-sm-6 space-bottom-2x">
+          <!-- Nav Tabs -->
+          <ul class="nav-tabs" role="tablist">
+            <li class="active"><a href="#tab1" role="tab" data-toggle="tab">Tab 1</a></li>
+            <li><a href="#tab2" role="tab" data-toggle="tab">Tab 2</a></li>
+            <li><a href="#tab3" role="tab" data-toggle="tab">Tab 3</a></li>
+          </ul><!-- .nav-tabs -->
+          <!-- Tab panes -->
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane transition fade in active" id="tab1">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut dignissimos ipsam obcaecati corrupti modi, deserunt facere asperiores. Voluptatum laudantium ut, minus nam. Libero facilis aspernatur cumque, quisquam quod sint odit.</div>
+            <div role="tabpanel" class="tab-pane transition fade" id="tab2">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui hic laboriosam odio doloribus suscipit error nostrum totam dignissimos esse numquam voluptatum, aspernatur est, at voluptatem minus temporibus reprehenderit culpa voluptates.</div>
+            <div role="tabpanel" class="tab-pane transition fade" id="tab3">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur ratione nulla asperiores repellat natus dolor delectus dolorum harum sequi fugiat vero, voluptatem reiciendis autem, vel. Repellendus ea laudantium pariatur eum!</div>
+          </div><!-- .tab-content -->
+        </div><!-- .col-sm-6 -->
+        <div class="col-sm-6 space-bottom-2x">
+          <!-- Nav Tabs -->
+          <ul class="nav-tabs text-right" role="tablist">
+            <li class="active"><a href="#tab4" role="tab" data-toggle="tab">Tab 1</a></li>
+            <li><a href="#tab5" role="tab" data-toggle="tab">Tab 2</a></li>
+            <li><a href="#tab6" role="tab" data-toggle="tab">Tab 3</a></li>
+          </ul><!-- .nav-tabs -->
+          <!-- Tab panes -->
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane transition fade in active" id="tab4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut dignissimos ipsam obcaecati corrupti modi, deserunt facere asperiores. Voluptatum laudantium ut, minus nam. Libero facilis aspernatur cumque, quisquam quod sint odit.</div>
+            <div role="tabpanel" class="tab-pane transition fade" id="tab5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui hic laboriosam odio doloribus suscipit error nostrum totam dignissimos esse numquam voluptatum, aspernatur est, at voluptatem minus temporibus reprehenderit culpa voluptates.</div>
+            <div role="tabpanel" class="tab-pane transition fade" id="tab6">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur ratione nulla asperiores repellat natus dolor delectus dolorum harum sequi fugiat vero, voluptatem reiciendis autem, vel. Repellendus ea laudantium pariatur eum!</div>
+          </div><!-- .tab-content -->
+        </div><!-- .col-sm-6 -->
+      </div><!-- .row -->
+
+      <div class="row space-bottom-2x">
+        <div class="col-sm-6 space-bottom-2x">
+          <!-- Nav Tabs -->
+          <ul class="nav-tabs text-center" role="tablist">
+            <li class="active"><a href="#tab7" role="tab" data-toggle="tab">Fade</a></li>
+            <li><a href="#tab8" role="tab" data-toggle="tab">Scale</a></li>
+            <li><a href="#tab9" role="tab" data-toggle="tab">Scale 2</a></li>
+            <li><a href="#tab10" role="tab" data-toggle="tab">Left</a></li>
+          </ul><!-- .nav-tabs -->
+          <!-- Tab panes -->
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane transition fade in active" id="tab7">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut dignissimos ipsam obcaecati corrupti modi, deserunt facere asperiores. Voluptatum laudantium ut, minus nam. Libero facilis aspernatur cumque, quisquam quod sint odit.</div>
+            <div role="tabpanel" class="tab-pane transition fade scale" id="tab8">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui hic laboriosam odio doloribus suscipit error nostrum totam dignissimos esse numquam voluptatum, aspernatur est, at voluptatem minus temporibus reprehenderit culpa voluptates.</div>
+            <div role="tabpanel" class="tab-pane transition fade scaledown" id="tab9">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur ratione nulla asperiores repellat natus dolor delectus dolorum harum sequi fugiat vero, voluptatem reiciendis autem, vel. Repellendus ea laudantium pariatur eum!</div>
+            <div role="tabpanel" class="tab-pane transition fade left" id="tab10">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut dignissimos ipsam obcaecati corrupti modi, deserunt facere asperiores. Voluptatum laudantium ut, minus nam. Libero facilis aspernatur cumque, quisquam quod sint odit.</div>
+          </div><!-- .tab-content -->
+        </div><!-- .col-sm-6 -->
+        <div class="col-sm-6 space-bottom-2x">
+          <!-- Nav Tabs -->
+          <ul class="nav-tabs text-center" role="tablist">
+            <li class="active"><a href="#tab11" role="tab" data-toggle="tab">Right</a></li>
+            <li><a href="#tab12" role="tab" data-toggle="tab">Top</a></li>
+            <li><a href="#tab13" role="tab" data-toggle="tab">Bottom</a></li>
+            <li><a href="#tab14" role="tab" data-toggle="tab">Flip</a></li>
+          </ul><!-- .nav-tabs -->
+          <!-- Tab panes -->
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane transition fade right in active" id="tab11">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut dignissimos ipsam obcaecati corrupti modi, deserunt facere asperiores. Voluptatum laudantium ut, minus nam. Libero facilis aspernatur cumque, quisquam quod sint odit.</div>
+            <div role="tabpanel" class="tab-pane transition fade top" id="tab12">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui hic laboriosam odio doloribus suscipit error nostrum totam dignissimos esse numquam voluptatum, aspernatur est, at voluptatem minus temporibus reprehenderit culpa voluptates.</div>
+            <div role="tabpanel" class="tab-pane transition fade bottom" id="tab13">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur ratione nulla asperiores repellat natus dolor delectus dolorum harum sequi fugiat vero, voluptatem reiciendis autem, vel. Repellendus ea laudantium pariatur eum!</div>
+            <div role="tabpanel" class="tab-pane transition fade flip" id="tab14">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut dignissimos ipsam obcaecati corrupti modi, deserunt facere asperiores. Voluptatum laudantium ut, minus nam. Libero facilis aspernatur cumque, quisquam quod sint odit.</div>
+          </div><!-- .tab-content -->
+        </div><!-- .col-sm-6 -->
+      </div><!-- .row.space-bottom-2x -->
+
+      <!-- Panels and Accordions -->
+      <h2>Panels &amp; Accordions</h2>
+      <hr class="space-bottom-2x">
+      <div class="row">
+        <div class="col-sm-6 space-bottom-2x">
+          <div class="panel">
+            <div class="panel-heading">
+              <h3 class="panel-title">Static Panel Example</h3>
+            </div>
+            <div class="panel-body">
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officiis nostrum hic quae ab nihil fuga? Maiores expedita quod eligendi accusamus, animi doloribus totam soluta, dolores sed laborum repudiandae repellendus praesentium?
+            </div>
+          </div><!-- .panel -->
+          <div class="panel-group">
+            <div class="panel">
+              <div class="panel-heading">
+                <a class="panel-title" data-toggle="collapse" href="#panel">
+                  Collapsible Panel Example
+                </a>
+              </div>
+              <div id="panel" class="panel-collapse collapse in">
+                <div class="panel-body">
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea eum itaque consequuntur voluptate, vero officiis assumenda atque odit recusandae explicabo harum, adipisci aliquid illum quibusdam saepe repudiandae distinctio, tempora voluptates!
+                </div>
+              </div>
+            </div><!-- .panel -->
+          </div><!-- .panel-group -->
+        </div><!-- .col-sm-6 -->
+
+        <div class="col-sm-6">
+          <div class="panel-group" id="accordion">
+            <div class="panel">
+              <div class="panel-heading">
+                <a class="panel-title" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                  Collapsible Group Item #1
+                </a>
+              </div>
+              <div id="collapseOne" class="panel-collapse collapse in">
+                <div class="panel-body">
+                  Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo.
+                </div>
+              </div>
+            </div><!-- .panel -->
+            <div class="panel">
+              <div class="panel-heading">
+                <a class="panel-title collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+                  Collapsible Group Item #2
+                </a>
+              </div>
+              <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel">
+                <div class="panel-body">
+                  Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo.
+                </div>
+              </div>
+            </div><!-- .panel -->
+            <div class="panel">
+              <div class="panel-heading">
+                <a class="panel-title collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+                  Collapsible Group Item #3
+                </a>
+              </div>
+              <div id="collapseThree" class="panel-collapse collapse">
+                <div class="panel-body">
+                  Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo.
+                </div>
+              </div>
+            </div><!-- .panel -->
+          </div><!-- .panel-group -->
+        </div><!-- .col-sm-6 -->
+      </div><!-- .row -->
+    </div><!-- .container -->
+
+    <!-- Scroll To Top Button -->
+    <a href="#" class="scroll-to-top-btn">
+      <i class="fa fa-angle-up"></i>
+    </a><!-- .scroll-to-top-btn -->
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-7">
+
+            <form action="//8guild.us3.list-manage.com/subscribe/post?u=168a366a98d3248fbc35c0b67&amp;id=011a3332a0" method="post" target="_blank" class="space-top-2x" novalidate autocomplete="off">
+              <div class="row">
+                <div class="col-sm-8">
+                  <label for="subscr_email" class="sr-only">Subscribe to latest news</label>
+                  <input type="email" class="form-control" id="subscr_email" name="EMAIL" placeholder="Subscribe for news. Enter email">
+                  <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+                  <div style="position: absolute; left: -5000px;">
+                    <input type="text" name="b_168a366a98d3248fbc35c0b67_011a3332a0" tabindex="-1" value="">
+                  </div>
+                </div><!-- .col-sm-8 -->
+                <div class="col-sm-4">
+                  <button type="submit" class="btn btn-primary btn-block btn-inline">Subscribe</button>
+                </div><!-- .col-sm-4 -->
+              </div><!-- .row -->
+            </form><!-- <form> -->
+            <div class="space-bottom-2x visible-xs"></div>
+            <a href="index.html" class="footer-logo">
+              <img src="img/logo-default.png" alt="ZurApp">
+            </a><!-- .footer-logo -->
+
+            <div class="social-bar">
+              <a href="#" class="sb-twitter" data-toggle="tooltip" data-placement="top" title="Twitter">
+                <i class="fa fa-twitter"></i>
+                <span>13</span>
+              </a>
+              <a href="#" class="sb-tumblr" data-toggle="tooltip" data-placement="top" title="Tumblr">
+                <i class="fa fa-tumblr"></i>
+                <span>124</span>
+              </a>
+              <a href="#" class="sb-facebook" data-toggle="tooltip" data-placement="top" title="Facebook">
+                <i class="fa fa-facebook"></i>
+                <span>0</span>
+              </a>
+            </div><!-- .social-bar -->
+            
+            <div class="row">
+              <div class="col-sm-4">
+                <div class="widget widget_pages">
+                  <h3 class="widget-title">Home</h3>
+                  <ul>
+                    <li><a href="index.html">Device Slider</a></li>
+                    <li><a href="home-app-intro-light.html">App Introduction</a></li>
+                    <li><a href="home-scroll-slideshow-scale.html">Scroll Slideshow</a></li>
+                  </ul>              </div><!-- .widget_pages -->
+              </div><!-- .col-sm-4 -->
+              <div class="col-sm-4">
+                <div class="widget widget_pages">
+                  <h3 class="widget-title">Blog</h3>
+                  <ul>
+                    <li><a href="blog-right-sidebar.html">Blog Posts</a></li>
+                    <li><a href="single-right-sidebar.html">Single Post</a></li>
+                  </ul>
+                </div><!-- .widget_pages -->
+              </div><!-- .col-sm-4 -->
+              <div class="col-sm-4">
+                <div class="widget widget_pages">
+                  <h3 class="widget-title">Portfolio</h3>
+                  <ul>
+                    <li><a href="portfolio-grid-boxed.html">Portfolio Grid</a></li>
+                    <li><a href="portfolio-single.html">Single Project</a></li>
+                  </ul>
+                </div><!-- .widget_pages -->
+              </div><!-- .col-sm-4 -->
+            </div><!-- .row -->
+
+            <div class="copyright">
+              <p>2015 &copy; <a href="http://8guild.com/" target="_blank">8Guild</a>. Premium themes</p>
+            </div><!-- .copyright -->
+
+          </div><!-- .col-md-7 -->
+
+          <div class="col-lg-4 col-lg-offset-1 col-md-5">
+            <a href="#" class="market-btn app-store">
+              <div class="icon">
+                <i class="fa fa-apple"></i>
+              </div>
+              <div class="label">
+                <small>Download on the</small>
+                <h4>App Store</h4>
+              </div>
+            </a><!-- .app-store -->
+            <a href="#" class="market-btn google-play">
+              <div class="icon">
+                <i class="fa fa-play"></i>
+              </div>
+              <div class="label">
+                <small>Get it on</small>
+                <h4>Google Play</h4>
+              </div>
+            </a><!-- .google-play -->
+            <a href="#" class="market-btn windows">
+              <div class="icon">
+                <i class="fa fa-windows"></i>
+              </div>
+              <div class="label">
+                <small>Get it on</small>
+                <h4>Windows Store</h4>
+              </div>
+            </a><!-- .windows -->
+          </div><!-- .col-md-5 -->
+        </div><!-- .row -->
+      </div><!-- .container -->
+    </footer><!-- .footer -->
+  </div><!-- .page-wrapper -->
+
+  <!-- JavaScript (jQuery) libraries, plugins and custom scripts -->
+  <script src="js/vendor/jquery-2.1.4.min.js"></script>
+  <script src="js/vendor/preloader.min.js"></script>
+  <script src="js/vendor/placeholder.js"></script>
+  <script src="js/vendor/bootstrap.min.js"></script>
+  <script src="js/vendor/smoothscroll.js"></script>
+  <script src="js/vendor/velocity.min.js"></script>
+  <script src="js/scripts.js"></script>
+
+</body><!-- <body> -->
+
+</html>

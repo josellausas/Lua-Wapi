@@ -1,0 +1,85 @@
+//
+// Panels & Accordions
+// --------------------------------------------------
+
+
+// Base class
+.panel {
+  margin-bottom: $line-height-computed;
+  background-color: $panel-bg;
+  border: 2px solid transparent;
+  border-radius: $panel-border-radius;
+  @include panel-variant($panel-default-border, $panel-default-text, $panel-default-heading-bg, $panel-default-border);
+}
+
+// Panel contents
+.panel-body {
+  padding: $panel-body-padding;
+  @include clearfix;
+}
+
+// Optional heading
+.panel-heading {
+  border-bottom: 2px solid transparent;
+  @include border-top-radius(($panel-border-radius - 1));
+  .panel-title {
+    display: block;
+    font-size: $panel-heading-font-size;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin: 0;
+    border-radius: $panel-border-radius;
+  }
+  .panel-title:not(a) { padding: $panel-heading-padding-h; }
+  > a {
+    padding: $panel-heading-padding-a;
+    text-decoration: none;
+    @include transition(background-color .3s);
+    &:hover {
+      color: $panel-heading-font-color;
+      background-color: $panel-heading-hover-bg;
+    }
+  }
+}
+
+// Collapsable panels (aka, accordion)
+.panel-group {
+
+  // Tighten up margin so it's only between panels
+  .panel {
+    margin-bottom: 0;
+    border-radius: $panel-border-radius;
+
+    + .panel {
+      margin-top: 10px;
+    }
+  }
+
+  .panel-heading {
+    border-bottom: 0;
+
+    + .panel-collapse > .panel-body,
+    + .panel-collapse > .list-group {
+      border-top: 2px solid $panel-default-border;
+    }
+  }
+
+  .panel-footer {
+    border-top: 0;
+    + .panel-collapse .panel-body {
+      border-bottom: 1px solid $panel-default-border;
+    }
+  }
+}
+
+// Component Animation
+.collapse {
+  display: none;
+  &.in { display: block; }
+}
+.collapsing {
+  position: relative;
+  height: 0;
+  overflow: hidden;
+  @include transition(height .35s ease, visibility .35s ease);
+}

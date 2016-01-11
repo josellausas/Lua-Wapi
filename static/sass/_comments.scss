@@ -1,0 +1,101 @@
+//
+// Comments
+// --------------------------------------------------
+
+.comments-area h3 {
+	margin-bottom: floor($line-height-computed * 1.5) !important;
+}
+.comments-count span {
+	color: $text-color;
+	font-weight: normal;
+}
+.comment {
+	margin-bottom: floor($line-height-computed * 2);
+	&.depth-2 {
+		margin-top: floor(($line-height-computed * 1.65));
+		padding-left: $comment-author-ava-size + 20;
+	}
+	.inner {
+		display: table;
+		width: 100%;
+	}
+	.author-avatar,
+	.comment-body {
+		display: table-cell;
+		vertical-align: top;
+	}
+	.author-avatar {
+		width: $comment-author-ava-size + 20;
+		padding: 5px 20px 0 0;
+		img { width: 100%; }
+	}
+	.comment-meta {
+		display: table;
+		width: 100%;
+		font-size: $font-size-small;
+		color: $post-meta-color;
+		font-weight: 900;
+		letter-spacing: 0;
+		.column {
+			display: table-cell;
+			vertical-align: top;
+		}
+		.comment-autor,
+		.comment-date { display: inline-block; }
+		.comment-autor:after {
+      display: inline-block;
+      vertical-align: middle;
+      content: $post-meta-delimiter;
+      margin: -5px 7px 0 9px;
+		}
+		.comment-reply {
+			text-align: right;
+			a {
+				text-decoration: none;
+				text-transform: uppercase;
+			}
+		}
+	}
+
+	@media screen and (max-width: 530px) {
+		.inner,
+		.author-avatar,
+		.comment-body { display: block; }
+		.author-avatar { margin-bottom: 18px; }
+		&.depth-2 {
+			padding-left: 25px;
+		}
+	}
+}
+.comment-respond {
+	margin-top: floor($line-height-computed * 2);
+	.logged-in-as {
+		font-size: $font-size-xs;
+		padding-bottom: 10px;
+		a {
+			text-decoration: none;
+			font-weight: bold;
+		}
+	}
+	form { margin-top: $line-height-computed * 1.2; }
+	.form-submit { text-align: center; }
+}
+.comment-reply-title small {
+  font-size: $font-size-xs;
+  font-style: normal;
+	a {
+		text-decoration: none;
+		font-weight: bold;
+	}
+}
+.comment-navigation a,
+.comment-navigation span {
+  font-size: $font-size-xs;
+  text-transform: uppercase;
+  text-decoration: none;
+  margin-right: 8px;
+}
+.comment-navigation span {
+  color: $link-hover-color;
+  font-weight: bold;
+}

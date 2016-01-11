@@ -1,0 +1,64 @@
+//
+// Specialty Pages
+// --------------------------------------------------
+
+// 404
+//------------------------
+.error404 {
+  background: url(../img/noise.gif);
+  background-repeat: repeat;
+  background-attachment: fixed;
+  .footer { background-color: #fff; }
+}
+.page-404 {
+  text-align: center;
+  padding-top: 12%;
+}
+.page-404-title {
+  font-size: floor(($font-size-base * 10));
+}
+@media #{$tablet-land} {
+  .page-404 {
+    padding-top: floor($navbar-height + $line-height-computed);
+  }
+}
+@media #{$mobile-land} {
+  .page-404 {
+    padding-top: floor($navbar-mobile-height + $line-height-computed / 1.5);
+  }
+  .page-404-title {
+    font-size: floor(($font-size-base * 8));
+    margin-bottom: 10px;
+  }
+}
+.error404.light-skin {
+  .page-404-title, h2,
+  .page-404-content { color: #fff; }
+}
+
+// Coming Soon
+//------------------------
+.coming-soon {
+  background-color: $gray-lighter; 
+  background-repeat: repeat;
+  background-attachment: fixed;
+
+  // Light skin
+  &.light-skin {
+    h1, h2, h3, h4, h5, h6, 
+    p, .social-bar a,
+    .time_circles > div > h4,
+    .time_circles > div > span {
+      color: #fff;
+    }
+  }
+}
+.cs-page {
+  text-align: center;
+  .site-logo {
+    position: relative;
+    display: inline-block;
+    margin-bottom: floor($line-height-computed * 2);
+    @include transform(translateY(0));
+  }
+}

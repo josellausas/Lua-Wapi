@@ -1,0 +1,141 @@
+//
+// Device Slider
+// --------------------------------------------------
+
+.device-slider {
+  position: relative;
+  width: 100%;
+  background-color: $ds-bg;
+  padding-top: floor(($line-height-computed * 5) + $navbar-height);
+  padding-bottom: floor($line-height-computed * 3);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  .container {
+    position: relative;
+    z-index: 5;
+  }
+  
+  h1 { letter-spacing: .06em; }
+  .block-title  { padding-bottom: 25px; }
+  
+  // Angle
+  .angle {
+    position: absolute;
+    z-index: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    &:before, &:after {
+      position: absolute;
+      z-index: 4;
+      content: "";
+      width: 0;
+      height: 0;
+      bottom: 0;
+    }
+    &:before {
+      border-bottom: 72px solid $body-bg;
+      border-right: 960px solid transparent;
+      left: 0;
+    }
+    &:after {
+      border-bottom: 72px solid $body-bg;
+      border-left: 960px solid transparent;
+      right: 0;
+    }
+  }
+
+  // Phone Carousel
+  .phone-carousel {
+    position: relative;
+    z-index: 5;
+    width: $phone-width;
+    margin: 0 auto -135px auto;
+    @include user-select(none);
+
+    .phone-mask {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+    }
+
+    .cover {
+      display: block;
+      position: absolute;
+      z-index: 2;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      padding: 81px 34px 0 33px;
+    }
+
+    .carousel {
+      position: absolute;
+      z-index: 3;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      padding: 81px 34px 0 33px;
+      @include user-select(none);
+
+      .owl-carousel .owl-controls {
+        .owl-dots {
+          position: absolute;
+          width: 100%;
+          text-align: center;
+          top: -115px;
+          z-index: 10;
+          .owl-dot {
+            opacity: 1;
+            border: 1px solid $ds-bullet-color;
+            background-color: transparent;
+            @include transition(all .25s);
+            &.active { background-color: $ds-bullet-color; }
+          }
+        }
+      }
+    }
+  }
+
+  @media #{$tablet-land} {
+    .container { width: 100%; }
+    .phone-carousel { margin-bottom: 0; }
+    .angle {
+      &:before {
+        border-bottom: 50px solid $body-bg;
+        border-right: 600px solid transparent;
+      }
+      &:after {
+        border-bottom: 50px solid $body-bg;
+        border-left: 600px solid transparent;
+      }
+    }
+  }
+  @media #{$nav-collapse} {
+    padding-top: floor(($line-height-computed * 3.5) + $navbar-mobile-height);
+  }
+  @media #{$tablet-port} {
+    padding-bottom: floor($line-height-computed * 5);
+    .phone-carousel { margin-bottom: $line-height-computed; }
+    .angle {
+      &:before {
+        border-bottom: 40px solid $body-bg;
+        border-right: 400px solid transparent;
+      }
+      &:after {
+        border-bottom: 40px solid $body-bg;
+        border-left: 400px solid transparent;
+      }
+    }
+  }
+  @media #{$mobile-land} {
+    padding-bottom: floor($line-height-computed * 3);
+  }
+}

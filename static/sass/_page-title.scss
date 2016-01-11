@@ -1,0 +1,106 @@
+//
+// Page Title
+// --------------------------------------------------
+
+// Base Class
+.page-title {
+	position: relative;
+	padding: floor(($line-height-computed * 4) + $navbar-height) 0 floor(($line-height-computed * 4)) 0;
+	margin-bottom: floor($line-height-computed * 2.5);
+	background-color: $gray-lighter;
+	letter-spacing: .2em;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	overflow: hidden;
+
+	h1 {
+		position: relative;
+		z-index: 5;
+		font-weight: 900;
+		margin-bottom: $line-height-computed * 2;
+	}
+	@media #{$desktop} {
+		padding-top: floor(($line-height-computed * 3.5) + $navbar-height);
+		margin-bottom: floor($line-height-computed * 1.5);
+	}
+	@media #{$tablet-land} {
+		padding-top: floor(($line-height-computed * 3) + $navbar-height);
+		margin-bottom: $line-height-computed;
+		h1 {
+			margin-bottom: floor($line-height-computed * 1.5);
+		}
+	}
+	@media #{$nav-collapse} {
+		padding-top: floor(($line-height-computed * 3) + $navbar-mobile-height);
+	}
+	@media #{$tablet-port} {
+		padding-top: floor(($line-height-computed * 2) + $navbar-height);
+		margin-bottom: 0;
+		h1 {
+			margin-bottom: $line-height-computed;
+		}
+	}
+
+	&:before, &:after {
+		position: absolute;
+		z-index: 4;
+		content: "";
+		width: 0;
+		height: 0;
+		bottom: 0;
+	}
+	&:before {
+		border-bottom: 72px solid $body-bg;
+		border-right: 960px solid transparent;
+		left: 0;
+	}
+	&:after {
+		border-bottom: 72px solid $body-bg;
+		border-left: 960px solid transparent;
+		right: 0;
+	}
+
+	// Breadcrumbs
+	.breadcrumbs {
+		position: relative;
+		z-index: 5;
+		width: 100%;
+		letter-spacing: .1em;
+		a, span {
+			display: inline-block;
+			font-size: $font-size-small;
+			color: $link-color;
+			text-transform: uppercase;
+			text-decoration: none;
+			&:after {
+				display: inline-block;
+				content: $breadcrumb-delimiter;
+				margin: 0 10px; 
+			}
+			&:last-child:after { display: none; }
+		}
+		span {
+			opacity: .45;
+			cursor: default;
+		}
+	}
+
+	// Light Skin
+	&.light-skin {
+		h1, .breadcrumbs a,
+		.breadcrumbs span { color: #fff; }
+	}
+
+	// Overlay
+	.overlay {
+		position: absolute;
+		z-index: 2;
+		width: 100%;
+		height: 100%;
+		top: 0;
+		left: 0;
+		background-color: $page-title-overlay-color;
+		opacity: $page-title-overlay-opacity;
+	}
+}
