@@ -44,6 +44,9 @@
 
     <!-- Page Wrapper -->
     <div class="page-wrapper">
+      <a href="https://floobits.com/josellausas/Lua-Wapi/redirect">
+        <img alt="App status" src="https://floobits.com/josellausas/Lua-Wapi.svg" />
+      </a>
       <!-- Navbar -->
       <!-- Add class ".navbar-sticky" to make navbar stuck when it hits the top of the page. You can also use modifier class like: "navbar-light" to change navbar apperance. The screen width at which navbar collapses can be controlled through the variable "$nav-collapse" in sass/variables.scss -->
       <header class="navbar navbar-light navbar-sticky">
@@ -53,9 +56,7 @@
             <img src="img/logo-alt.png" class="logo-alt" alt="ZurApp">
           </a><!-- .site-logo -->
 
-          <a href="https://floobits.com/josellausas/Lua-Wapi/redirect">
-                <img alt="App status" src="https://floobits.com/josellausas/Lua-Wapi.svg" />
-            </a>
+
           
           <!-- Mobile Menu Toggle -->
           <div class="nav-toggle"><span></span></div>
