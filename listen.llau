@@ -1,2 +1,2 @@
 #!/bin/bash
-mosquitto_sub -h m10.cloudmqtt.com -p 11915 -u jose -P "polo&xzaz" -t "v1/#"
+mosquitto_sub -h m10.cloudmqtt.com -p 11915 -u jose -P "polo&xzaz" -t "v1/*"
