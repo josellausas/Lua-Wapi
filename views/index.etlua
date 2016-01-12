@@ -16,7 +16,7 @@
           <div class="cover">
             <img src="img/device-slider/screen01.png" alt="Screen 1">
           </div>
-          <div class="carousel">
+          <div class="carousel">`
             <div class="inner">
               <img src="img/device-slider/screen01.png" alt="Screen 1">
               <img src="img/device-slider/screen02.png" alt="Screen 2">
@@ -30,7 +30,7 @@
         <div class="block-title light-skin">
           <h1>Intelligence in your pocket...</h1>
         </div>
-        <p class="text-light">Data moves at light speed! If you can't measure and visualize in real time, your're too slow. Smart decisions are made in real time with real data. "The power to run your business with the touch of a finger!"</p>
+        <p class="text-light">Data moves at light speed! If you can't visualize and use IT in real time, your're too slow. Smart decisions are made in real time with real data. "The power to run your business with the touch of a finger!"</p>
         <!-- App Store Button -->
         <a href="#" onclick="alert('Coming soon...');" class="btn btn-app-store">
           <i class="fa fa-apple"></i>
@@ -75,8 +75,8 @@
           <!-- Block Title -->
           <!-- Use modifier classes: ".featured-title" - to enable fancy animation on hover; ".text-center" and "text-right" - for title alignment. Apply ".light-skin" class for changing appearance. -->
           <div class="block-title featured-title">
-            <h2>Take a look at our screen, we've worked hard on it.</h2>
-            <span>For You!</span>
+            <h2>Make all your technologies talk to each other.</h2>
+            <span>CONNECTED!</span>
           </div><!-- .block-title.featured-title -->
         </div>
       </div>
@@ -106,8 +106,8 @@
       <!-- Block Title -->
       <!-- Use modifier classes: ".featured-title" - to enable fancy animation on hover; ".text-center" and "text-right" - for title alignment. Apply ".light-skin" class for changing appearance. -->
       <div class="block-title featured-title">
-        <h2>Take a look at our screens</h2>
-        <span>Look!</span>
+        <h2>Take your business with you</h2>
+        <span>ANYWHERE!</span>
       </div><!-- .block-title.featured-title -->
       <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
     </div><!-- .col-md-5.col-md-push-7 -->
@@ -129,8 +129,8 @@
         <!-- Block Title -->
         <!-- Use modifier classes: ".featured-title" - to enable fancy animation on hover; ".text-center" and "text-right" - for title alignment. Apply ".light-skin" class for changing appearance. -->
         <div class="block-title featured-title">
-          <h2>Everything you need to know about marketing in one App.</h2>
-          <span>Features</span>
+          <h2>Everything you need to know about your business</h2>
+          <span>REAL TIME</span>
         </div><!-- .block-title.featured-title -->
       </div><!-- .col-lg-9.col-md-10 -->
     </div><!-- .row -->
@@ -142,7 +142,7 @@
         <!-- Apply modifier classes to ".icon-block": ".text-center" and "text-right" - for alignment. -->
         <section class="icon-block">
           <i class="pe-7s-display1"></i>
-          <h3 class="ib-title">In App Analytics</h3>
+          <h3 class="ib-title">Internet of Things</h3>
           <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Provident perferendis modi quidem deserunt vero.</p>
         </section><!-- .icon-block -->
       </div><!-- .col-lg-3.col-md-4.col-sm-4 -->
@@ -150,7 +150,7 @@
       <div class="col-lg-3 col-lg-offset-1 col-md-4 col-sm-4">
         <section class="icon-block">
           <i class="pe-7s-phone"></i>
-          <h3 class="ib-title">Fully Responsive</h3>
+          <h3 class="ib-title">Always available</h3>
           <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Provident perferendis modi quidem deserunt vero.</p>
         </section><!-- .icon-block -->
       </div><!-- .col-lg-3.col-lg-offset-1.col-md-4.col-sm-4 -->
@@ -170,7 +170,7 @@
         <!-- Apply modifier classes to ".icon-block": ".text-center" and "text-right" - for alignment. Apply ".light-skin" class for changing appearance. -->
         <section class="icon-block">
           <i class="pe-7s-signal"></i>
-          <h3 class="ib-title">WiFi Detection</h3>
+          <h3 class="ib-title">Optimzied WiFi</h3>
           <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Provident perferendis modi quidem deserunt vero.</p>
         </section><!-- .icon-block -->
       </div><!-- .col-lg-3.col-md-4.col-sm-4 -->
@@ -178,7 +178,7 @@
       <div class="col-lg-3 col-lg-offset-1 col-md-4 col-sm-4">
         <section class="icon-block">
           <i class="pe-7s-monitor"></i>
-          <h3 class="ib-title">Retina Ready</h3>
+          <h3 class="ib-title">Web Access</h3>
           <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Provident perferendis modi quidem deserunt vero.</p>
         </section><!-- .icon-block -->
       </div><!-- .col-lg-3.col-lg-offset-1.col-md-4.col-sm-4 -->
@@ -186,7 +186,7 @@
       <div class="col-lg-3 col-lg-offset-1 col-md-4 col-sm-4">
         <section class="icon-block">
           <i class="pe-7s-map"></i>
-          <h3 class="ib-title">Integrated Maps</h3>
+          <h3 class="ib-title">Real-time</h3>
           <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Provident perferendis modi quidem deserunt vero.</p>
         </section><!-- .icon-block -->
       </div><!-- .col-lg-3.col-lg-offset-1.col-md-4.col-sm-4 -->
@@ -197,13 +197,13 @@
 <!-- Market Buttons -->
 <!-- Use appropriate modifier classes for setting the width of buttons (depends on number of buttons). E.x. ".count-3" if you want use all 3 buttons. Another options ".count-2" and no class for 1 button. -->
 <section class="market-buttons count-3" id="download">
-  <a href="static/app-debug.apk" class="market-btn app-store">
+  <a href="#" onclick="alert('Coming soon...');" class="market-btn app-store">
     <div class="icon">
       <i class="fa fa-apple"></i>
     </div>
     <div class="label">
-      <small>Download on the</small>
-      <h4>App Store</h4>
+      <small>Get it for</small>
+      <h4>iPhone</h4>
     </div>
   </a><!-- .app-store -->
   <a href="static/app-debug.apk" class="market-btn google-play">
@@ -211,17 +211,17 @@
       <i class="fa fa-play"></i>
     </div>
     <div class="label">
-      <small>Get it on</small>
-      <h4>Google Play</h4>
+      <small>Get it for</small>
+      <h4>Android</h4>
     </div>
   </a><!-- .google-play -->
-  <a href="static/app-debug.apk" class="market-btn windows">
+  <a href="#" onclick="alert('Coming soon...');" class="market-btn windows">
     <div class="icon">
       <i class="fa fa-windows"></i>
     </div>
     <div class="label">
-      <small>Get it on</small>
-      <h4>Windows Store</h4>
+      <small>Get it for</small>
+      <h4>Windows Phone</h4>
     </div>
   </a><!-- .windows -->
 </section><!-- .market-buttons -->
@@ -234,8 +234,8 @@
     <!-- Block Title -->
     <!-- Use modifier classes: ".featured-title" - to enable fancy animation on hover; ".text-center" and "text-right" - for title alignment. Apply ".light-skin" class for changing appearance. -->
     <div class="block-title featured-title light-skin">
-      <h2>On desktop. On your mobile. On your Mac.<br>Online. Well, not lovely?</h2>
-      <span>On Desktop?</span>
+      <h2>On desktop, On your mobile, On your Mac.<br>Online. Everywhere. Real Time</h2>
+      <span>INTEGRATED</span>
     </div><!-- .block-title.featured-title -->
     <div class="row text-light">
       <div class="col-lg-4 col-md-5 space-bottom-2x">
@@ -259,8 +259,8 @@
       <!-- Block Title -->
       <!-- Use modifier classes: ".featured-title" - to enable fancy animation on hover; ".text-center" and "text-right" - for title alignment. Apply ".light-skin" class for changing appearance. -->
       <div class="block-title featured-title">
-        <h2>Learn how to work with the app in minutes</h2>
-        <span>Minutes</span>
+        <h2>Integrate in 3 easy steps</h2>
+        <span>EASY</span>
       </div><!-- .block-title.featured-title -->
     </div>
   </div><!-- .row-->
@@ -274,28 +274,28 @@
           <li class="active">
             <span class="number"><i>1</i></span>
             <a href="#tab01" role="tab" data-toggle="tab">Registration</a>
-            <p>Atque aliquam, quo minus, sunt animi suscipit, quibusdam accusantium aliquid, repellat officiis iure dolorem.</p>
-            <div class="social-btns">
-              <a href="#" class="sb-facebook" data-toggle="tooltip" data-placement="top" title="Facebook">
-                <i class="fa fa-facebook"></i>
-              </a>
-              <a href="#" class="sb-instagram" data-toggle="tooltip" data-placement="top" title="Instagram">
-                <i class="fa fa-instagram"></i>
-              </a>
-              <a href="#" class="sb-dropbox" data-toggle="tooltip" data-placement="top" title="Dropbox">
-                <i class="fa fa-dropbox"></i>
-              </a>
-            </div>
+            <p>All we need is your email to GET STARTED. We will send you more information about how to get your FREE CONSULTATION</p>
+            <!-- <div class="social-btns"> -->
+              <!-- <a href="#" class="sb-facebook" data-toggle="tooltip" data-placement="top" title="Facebook"> -->
+                <!-- <i class="fa fa-facebook"></i> -->
+              <!-- </a> -->
+              <!-- <a href="#" class="sb-instagram" data-toggle="tooltip" data-placement="top" title="Instagram"> -->
+                <!-- <i class="fa fa-instagram"></i> -->
+              <!-- </a> -->
+              <!-- <a href="#" class="sb-dropbox" data-toggle="tooltip" data-placement="top" title="Dropbox"> -->
+                <!-- <i class="fa fa-dropbox"></i> -->
+              <!-- </a> -->
+            <!-- </div> -->
           </li>
           <li>
             <span class="number"><i>2</i></span>
-            <a href="#tab02" role="tab" data-toggle="tab">Short Introduction</a>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque aliquam, quo minus, sunt animi suscipit, quibusdam accusantium aliquid, repellat officiis iure. Dolorem quis dolores.</p>
+            <a href="#tab02" role="tab" data-toggle="tab">Free Consultation</a>
+            <p>Each business is unique. During this meeting we will explore ideas together. We will find out what is the best solution to make optimal use of your current investments and measuring ROI. This meeting will help us come up with the buttons that will enpower you to make important decisions from your mobile phone.</p>
           </li>
           <li>
             <span class="number"><i>3</i></span>
-            <a href="#tab03" role="tab" data-toggle="tab">Receive Feedback</a>
-            <p>Molestias, non nulla placeat odio, qui dicta alias, numquam quo rerum asperiores eos, fuga maiores odit quae laborum.</p>
+            <a href="#tab03" role="tab" data-toggle="tab">Project Prototype</a>
+            <p>In a matter of days you will receive a prototype for your app. It is important we get the look and feel right from the start. This prototype will help us understand what feels best for you and your business. Once we get all the tweaking right and you approve: we can then start building your Ultimate Business Intelligence Tool!</p>
           </li>
         </ul><!-- .nav-tabs -->
       </div><!-- .col-md-7.col-md-push-5 -->
