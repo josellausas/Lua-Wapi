@@ -14,7 +14,7 @@ end
 function Subscriber.new(p_email, p_ip, p_source)
 	local model = {
 		email 	= p_email,
-		ip 		= p_ip,
+		ip 		= p_ip or "no ip",
 		source 	= p_source
 	}
 
