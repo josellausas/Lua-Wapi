@@ -304,7 +304,7 @@ app:get("downloadapp", "/downloadapp", function(self)
 end)
 
 -- INDEX
-app:get("index","/", function(self)
+app:get("index",{"/", "/index"}, function(self)
 	return { render = "index" }
 end)
 
