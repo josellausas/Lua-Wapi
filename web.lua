@@ -266,7 +266,7 @@ app:match("/subscribe/*", respond_to({
 	if not (email == nil) then		
 		if (email:match("[A-Za-z0-9%.%%%+%-]+@[A-Za-z0-9%.%%%+%-]+%.%w%w%w?%w?")) then
 			-- Good email
-		    registerEmail(email, forwardip, url_for("index"))
+		    registerEmail(email, forwardip, self:url_for("index"))
 		else
 			-- Bad email
 		    notifyMQTT(3, "Bad email subscribe: " .. self.params.EMAIL , forwardip)            
