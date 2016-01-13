@@ -228,13 +228,17 @@ app:match("/console", function(self)
 
 end)
 
+
+
 app:match("/subscribe/*", respond_to({
   GET = function(self)
     return { render = true }
   end,
   POST = function(self)
+  	-- Register email
 	local forwardip = self.req.headers["x-forwarded-for"] or "no-forward"
-	notifyMQTT(0, "Subscribed!", self.params)
+	
+	notifyMQTT(0, "Try to subscibe: " .. self.params.EMAIL , forwardip)
   
     return { redirect_to = self:url_for("index") }
   end
