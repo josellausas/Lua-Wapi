@@ -41,19 +41,13 @@
             <img src="img/logo-default.png" class="logo-default" alt="ZurApp">
             <img src="img/logo-alt.png" class="logo-alt" alt="ZurApp">
           </a><!-- .site-logo -->
-
-
-          
           <!-- Mobile Menu Toggle -->
           <div class="nav-toggle"><span></span></div>
-
           <div class="clearfix">
-
             <div class="toolbar text-right">
               <a href="#intro" class="btn btn-sm btn-ghost btn-default scroll-to" data-offset-top="-40">Learn More</a>
               <a href="static/app-debug.apk" class="btn btn-sm btn-warning scroll-to" data-offset-top="70">Get App</a>
             </div><!-- .toolbar -->
-
             <!-- Use modifier class to apply different submenu (dropdown) animations. Possible options: .submenu-slideUp, .submenu-slideDown, .submenu-flipIn. Please note if no class added to .main-navigation default fadeIn animation will be applied. Note: this is applicable only for Desktop. -->
             <nav class="main-navigation submenu-flipIn">
               <ul class="menu">
@@ -101,22 +95,17 @@
                   </div><!-- .clearfix -->
         </div><!-- .container -->
       </header><!-- .navbar -->
-      
-    
       <!-- LUA CONTENT START -->
       <% content_for("inner") %>
       <!-- LUA CONTENT END -->
-
       <!-- Scroll To Top Button -->
       <a href="#" class="scroll-to-top-btn">
         <i class="fa fa-angle-up"></i>
       </a><!-- .scroll-to-top-btn -->
-      
       <footer class="footer">
         <div class="container">
           <div class="row">
             <div class="col-md-7">
-
               <form action="//8guild.us3.list-manage.com/subscribe/post?u=168a366a98d3248fbc35c0b67&amp;id=011a3332a0" method="post" target="_blank" class="space-top-2x" novalidate autocomplete="off">
                 <div class="row">
                   <div class="col-sm-8">
