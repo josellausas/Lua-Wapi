@@ -41,7 +41,7 @@ m.new = function(severe, payload, address)
 		payload = "",
 		severity = 0,
 		timestamp = nil,
-		ip = "No ip"
+		ip = "no ip"
 	}
 
 	-- Data assignment
@@ -49,7 +49,7 @@ m.new = function(severe, payload, address)
 	model.payload 		= payload
 	model.timestamp 	= os.time()
 	model.severity 		= severe
-	model.ip 			= address or "No ip 2"
+	model.ip 			= address or "no ip"
 
 	local instance,e = NotificationModel:create(model)
 	if(instance == nil) then

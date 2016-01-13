@@ -61,7 +61,7 @@ local callback = function(topic, message)
 		subscriber:save()
 
 		-- Cretes a notification
-		local note = Notification.new("0", "Subcribed: " .. subscriber.email .. " via " .. subscriber.source)
+		local note = Notification.new("0", "Subscribed: " .. subscriber.email .. " via " .. subscriber.source, payload.ip)
 		note:save()
 
 

@@ -15,7 +15,7 @@ function Subscriber.new(p_email, p_ip, p_source)
 	local model = {
 		email 	= p_email,
 		ip 		= p_ip or "no ip",
-		source 	= p_source
+		source 	= p_source or "no source"
 	}
 
 	-- Creates an intance of the object
