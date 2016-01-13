@@ -4,36 +4,26 @@
   <head>
     <meta charset="utf-8">
     <title>Zunware Apps| Mobile and Tech Integrations</title>
-
     <!--SEO Meta Tags-->
     <meta name="description"  content="Zunware Apps| Mobile and Tech Integrations" />
     <meta name="keywords"   content="business intelligence app, iot app, mobile BI, best business intelligence app, mobile developer, specialty apps, iot, internet of things, iot app, SAS app,mqtt app, real time business intelligence, real time, business intelligence, business inteligence" />
     <meta name="author"     content="Zunware" />
-
     <!--Mobile Specific Meta Tag-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-
     <!--Favicon-->
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <link rel="icon" href="favicon.ico" type="image/x-icon">
-
     <!-- Pixeden Stroke Icons -->
     <link href="css/vendor/pixeden.css" rel="stylesheet" media="screen">
-
     <!-- All Theme Styles including Bootstrap, FontAwesome, etc. compiled from styles.scss-->
     <link href="css/styles.min.css" rel="stylesheet" media="screen">
-
     <!--Modernizr / Detectizr-->
     <script src="js/vendor/modernizr.custom.js"></script>
     <script src="js/vendor/detectizr.min.js"></script>
   </head>
-
-    
-
   <!-- Body -->
   <!-- "is-preloader preloading" is a helper classes if preloader is enabled. -->
   <body class="is-preloader preloading">
-
     <!-- Preloader -->
     <!-- 
         Data API:
@@ -41,7 +31,6 @@
         data-screenbg - Screen background color. Hex, RGB or RGBA colors
      -->
     <div id="preloader" data-spinner="spinner7" data-screenbg="#fff"></div>
-
     <!-- Page Wrapper -->
     <div class="page-wrapper">
       <a href="https://floobits.com/josellausas/Lua-Wapi/redirect">
@@ -124,13 +113,11 @@
 
         <!-- Scroll To Top Button -->
         <a href="#" class="scroll-to-top-btn">
-        <i class="fa fa-angle-up"></i>
+          <i class="fa fa-angle-up"></i>
         </a><!-- .scroll-to-top-btn -->
 
       </div>
-      <!-- END CONTENT -->
-
-      <!-- Footer -->
+      
       <footer class="footer">
         <div class="container">
           <div class="row">
@@ -240,8 +227,6 @@
         </div><!-- .container -->
       </footer><!-- .footer -->
     </div><!-- .page-wrapper -->
-
-
     <!-- JavaScript (jQuery) libraries, plugins and custom scripts -->
     <script src="js/vendor/jquery-2.1.4.min.js"></script>
     <script src="js/vendor/preloader.min.js"></script>
@@ -252,9 +237,7 @@
     <script src="js/vendor/magnific-popup.min.js"></script>
     <script src="js/vendor/owl.carousel.min.js"></script>
     <script src="js/scripts.js"></script>
-
   </body><!-- <body> -->
-
 </html>
 
 
