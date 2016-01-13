@@ -107,7 +107,7 @@
           <div class="row">
             <div class="col-md-7">
               <!-- RENDER THE FORM -->
-              <% render("views.forms.sample") %>
+              <% render("views.forms.custom") %>
 
               <div class="space-bottom-2x visible-xs"></div>
               <a href="index.html" class="footer-logo">
