@@ -83,8 +83,29 @@ local function notifyMQTT(severe, msg, ipAddress)
 
     local x = { severe = severe, msg = msg, ip=ipAddress }
     mqtt_client:publish("v1/notify/admin", serialize( x ) )
-
 end
+
+
+local function registerEmail(email)
+	if mqtt_client == nil then
+		mqtt_client = mqtt.client.create(mqttconf.host, mqttconf.port, nil)
+		mqtt_client:auth(mqttconf.user, mqttconf.password)
+	end
+
+	if(mqtt_client.connected == false) then
+		print("Connecting mqtt")
+	-- Connect with last will, stick, qos = 2 and offline payload.
+	    mqtt_client:connect("webserver", "v1/status/webserver", 2, 1, mqttconf.offlinePayload)
+	    mqtt_client:publish("v1/status", "Webserver: " .. mqttconf.user .. " online")
+   end
+    
+    print("Publishing to mqtt")
+
+    local x = { severe = severe, msg = msg, ip=ipAddress }
+    mqtt_client:publish("v1/register", email )
+end
+
+
 
 -- Used for the database
 local pg 		= pgmoon.new({
@@ -230,16 +251,29 @@ end)
 
 
 
+
 app:match("/subscribe/*", respond_to({
   GET = function(self)
     return { render = true }
   end,
   POST = function(self)
-  	-- Register email
+  	-- Grabs the ip
 	local forwardip = self.req.headers["x-forwarded-for"] or "no-forward"
-	
-	notifyMQTT(0, "Try to subscibe: " .. self.params.EMAIL , forwardip)
-  
+	-- Grabs the email
+	local email 	= self.params.EMAIL
+
+	-- Checks for valid email
+	if not (email == nil) then		
+		if (email:match("[A-Za-z0-9%.%%%+%-]+@[A-Za-z0-9%.%%%+%-]+%.%w%w%w?%w?")) then
+			-- Good email
+		    registerEmail(email)
+		else
+			-- Bad email
+		    notifyMQTT(3, "Bad email subscribe: " .. self.params.EMAIL , forwardip)            
+		end
+	end
+  	
+  	-- Redirects user
     return { redirect_to = self:url_for("index") }
   end
 }))
