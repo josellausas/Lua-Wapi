@@ -33,9 +33,6 @@
     <div id="preloader" data-spinner="spinner7" data-screenbg="#fff"></div>
     <!-- Page Wrapper -->
     <div class="page-wrapper">
-      <a href="https://floobits.com/josellausas/Lua-Wapi/redirect">
-        <img alt="App status" src="https://floobits.com/josellausas/Lua-Wapi.svg" />
-      </a>
       <!-- Navbar -->
       <!-- Add class ".navbar-sticky" to make navbar stuck when it hits the top of the page. You can also use modifier class like: "navbar-light" to change navbar apperance. The screen width at which navbar collapses can be controlled through the variable "$nav-collapse" in sass/variables.scss -->
       <header class="navbar navbar-light navbar-sticky">
@@ -105,18 +102,15 @@
         </div><!-- .container -->
       </header><!-- .navbar -->
       
-      <!-- START CONTENT -->
-      <div>
-        <!-- LUA CONTENT START -->
-        <% content_for("inner") %>
-        <!-- LUA CONTENT END -->
+    
+      <!-- LUA CONTENT START -->
+      <% content_for("inner") %>
+      <!-- LUA CONTENT END -->
 
-        <!-- Scroll To Top Button -->
-        <a href="#" class="scroll-to-top-btn">
-          <i class="fa fa-angle-up"></i>
-        </a><!-- .scroll-to-top-btn -->
-
-      </div>
+      <!-- Scroll To Top Button -->
+      <a href="#" class="scroll-to-top-btn">
+        <i class="fa fa-angle-up"></i>
+      </a><!-- .scroll-to-top-btn -->
       
       <footer class="footer">
         <div class="container">
