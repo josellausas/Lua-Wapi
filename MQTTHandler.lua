@@ -1,10 +1,7 @@
 -- MQTTHandler by Llau.
-
 --[[
 	Esto escucha mqtt y hace cosas. Usa PahoMQTT en lua
 ]]
-
-
 local lapis    		= require "lapis"
 local config   		= require("lapis.config").get()
 
@@ -36,17 +33,37 @@ local config = {
 
 local running = true
 
+
+local function unwrapLuaPayload(msg)
+	local unpackobj = loadstring("return " .. msg)
+	local obj = unpackobj()
+	return obj
+end
+
 -- Función que reacciona a los mensajes
 local callback = function(topic, message)
 	print("Topic: " .. topic .. ", message: " .. message)
 
 	if string.find(topic, "v1/notify") then
-
-		local reobj = loadstring("return " .. message)
-		local obj = reobj()
+		local obj = unwrapLuaPayload(message)
+		
 		-- Log this message to the database
 		local note = Notification.new(obj.severe, obj.msg, obj.ip)
 		note:save()
+	end
+
+	if topic == "v1/subscribe" then
+		local payload = unwrapLuaPayload(message)
+
+		-- Creates a subsciber
+		local subscriber = Subcriber.new(payload.email, payload.ip, payload.source)
+		subscriber:save()
+
+		-- Cretes a notification
+		local note = Notification.new("0", "Subcribed: " .. subscriber.email .. " via " .. subscriber.source)
+		note:save()
+
+
 	end
 		
 

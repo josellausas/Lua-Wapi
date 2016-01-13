@@ -86,7 +86,7 @@ local function notifyMQTT(severe, msg, ipAddress)
 end
 
 
-local function registerEmail(email)
+local function registerEmail(theemail, clientip, sourceURL)
 	if mqtt_client == nil then
 		mqtt_client = mqtt.client.create(mqttconf.host, mqttconf.port, nil)
 		mqtt_client:auth(mqttconf.user, mqttconf.password)
@@ -101,8 +101,8 @@ local function registerEmail(email)
     
     print("Publishing to mqtt")
 
-    local x = { severe = severe, msg = msg, ip=ipAddress }
-    mqtt_client:publish("v1/register", email )
+    local sendWrap = { email=theemail, ip=ipAddress, source=sourceURL }
+    mqtt_client:publish("v1/register", sendWrap )
 end
 
 
@@ -266,7 +266,7 @@ app:match("/subscribe/*", respond_to({
 	if not (email == nil) then		
 		if (email:match("[A-Za-z0-9%.%%%+%-]+@[A-Za-z0-9%.%%%+%-]+%.%w%w%w?%w?")) then
 			-- Good email
-		    registerEmail(email)
+		    registerEmail(email, forwardip, url_for("index"))
 		else
 			-- Bad email
 		    notifyMQTT(3, "Bad email subscribe: " .. self.params.EMAIL , forwardip)            
