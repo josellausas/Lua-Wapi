@@ -102,7 +102,7 @@ local function registerEmail(theemail, clientip, sourceURL)
     print("Publishing to mqtt")
 
     local sendWrap = { email=theemail, ip=ipAddress, source=sourceURL }
-    mqtt_client:publish("v1/register", sendWrap )
+    mqtt_client:publish("v1/register", serialize(sendWrap) )
 end
 
 
