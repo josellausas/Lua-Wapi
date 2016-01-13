@@ -16,6 +16,7 @@ config.postgres = {
 local MQTT 			= require("mqtt")
 local Model  		= require("lapis.db.model").Model
 local Notification 	= require("Llau.LLNotification")
+local Subscriber    = require("Llau.LLSubscriber")
 
 local h = {}
 
@@ -56,7 +57,7 @@ local callback = function(topic, message)
 		local payload = unwrapLuaPayload(message)
 
 		-- Creates a subsciber
-		local subscriber = Subcriber.new(payload.email, payload.ip, payload.source)
+		local subscriber = Subdcriber.new(payload.email, payload.ip, payload.source)
 		subscriber:save()
 
 		-- Cretes a notification
