@@ -73,7 +73,7 @@
           <!-- Use modifier classes: ".featured-title" - to enable fancy animation on hover; ".text-center" and "text-right" - for title alignment. Apply ".light-skin" class for changing appearance. -->
           <div class="block-title featured-title">
             <h2>Make all your technologies talk to each other.</h2>
-            <span>Connect everything</span>
+            <span>Connected</span>
           </div><!-- .block-title.featured-title -->
         </div>
       </div>
@@ -123,7 +123,7 @@
         <!-- Use modifier classes: ".featured-title" - to enable fancy animation on hover; ".text-center" and "text-right" - for title alignment. Apply ".light-skin" class for changing appearance. -->
         <div class="block-title featured-title">
           <h2>Everything you need to know about your business</h2>
-          <span>realtime</span>
+          <span>Realtime</span>
         </div><!-- .block-title.featured-title -->
       </div><!-- .col-lg-9.col-md-10 -->
     </div><!-- .row -->
@@ -219,7 +219,7 @@
     <!-- Use modifier classes: ".featured-title" - to enable fancy animation on hover; ".text-center" and "text-right" - for title alignment. Apply ".light-skin" class for changing appearance. -->
     <div class="block-title featured-title light-skin">
       <h2>On desktop, On your mobile, On your Mac.<br>Online. Everywhere. Real Time</h2>
-      <span>integrate</span>
+      <span>Integrated</span>
     </div><!-- .block-title.featured-title -->
     <div class="row text-light">
       <div class="col-lg-4 col-md-5 space-bottom-2x">
@@ -242,7 +242,7 @@
       <!-- Use modifier classes: ".featured-title" - to enable fancy animation on hover; ".text-center" and "text-right" - for title alignment. Apply ".light-skin" class for changing appearance. -->
       <div class="block-title featured-title">
         <h2>Integrate in 3 easy steps</h2>
-        <span>easy</span>
+        <span>Easy</span>
       </div><!-- .block-title.featured-title -->
     </div>
   </div><!-- .row-->
