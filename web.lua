@@ -303,7 +303,7 @@ app:get("downloadapp", "/downloadapp", function(self)
 	return { redirect_to=self:url_for("static/app-debug.apk"), layout=false }
 end)
 
-app:get("/index", function(self)
+app:get("/index", "/index.html", function(self)
 	return {render = "index" }
 end)
 
