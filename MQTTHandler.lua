@@ -52,7 +52,7 @@ local callback = function(topic, message)
 		note:save()
 	end
 
-	if topic == "v1/subscribe" then
+	if topic == "v1/subscribe/email" then
 		local payload = unwrapLuaPayload(message)
 
 		-- Creates a subsciber
