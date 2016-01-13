@@ -57,7 +57,7 @@ local callback = function(topic, message)
 		local payload = unwrapLuaPayload(message)
 
 		-- Creates a subsciber
-		local subscriber = Subdcriber.new(payload.email, payload.ip, payload.source)
+		local subscriber = Subscriber.new(payload.email, payload.ip, payload.source)
 		subscriber:save()
 
 		-- Cretes a notification
