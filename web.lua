@@ -304,7 +304,7 @@ app:get("downloadapp", "/downloadapp", function(self)
 end)
 
 app:get("/index", function(self)
-	return {redirect_to="index"}
+	return {render = "index" }
 end)
 
 -- INDEX
