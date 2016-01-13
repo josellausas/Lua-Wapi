@@ -303,10 +303,15 @@ app:get("downloadapp", "/downloadapp", function(self)
 	return { redirect_to=self:url_for("static/app-debug.apk"), layout=false }
 end)
 
+app:get("/index", function(self)
+	return {redirect_to="index"}
+end)
+
 -- INDEX
-app:get("index",{"/", "/index"}, function(self)
+app:get("index","/", function(self)
 	return { render = "index" }
 end)
+
 
 
 -- Serves a lapis web app.
