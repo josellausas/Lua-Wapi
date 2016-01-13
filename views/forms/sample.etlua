@@ -1,0 +1,15 @@
+<form action="//8guild.us3.list-manage.com/subscribe/post?u=168a366a98d3248fbc35c0b67&amp;id=011a3332a0" method="post" target="_blank" class="space-top-2x" novalidate autocomplete="off">
+  <div class="row">
+    <div class="col-sm-8">
+      <label for="subscr_email" class="sr-only">Subscribe to latest news</label>
+      <input type="email" class="form-control" id="subscr_email" name="EMAIL" placeholder="Subscribe for news. Enter email">
+      <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+      <div style="position: absolute; left: -5000px;">
+        <input type="text" name="b_168a366a98d3248fbc35c0b67_011a3332a0" tabindex="-1" value="">
+      </div>
+    </div><!-- .col-sm-8 -->
+    <div class="col-sm-4">
+      <button type="submit" class="btn btn-block btn-inline">Subscribe</button>
+    </div><!-- .col-sm-4 -->
+  </div><!-- .row -->
+</form><!-- <form> -->
