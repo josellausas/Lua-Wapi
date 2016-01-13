@@ -305,7 +305,7 @@ end)
 
 -- INDEX
 app:get("index","/", function(self)
-	return { render = "index" }
+	return { render = "plain", layout=false }
 end)
 
 
