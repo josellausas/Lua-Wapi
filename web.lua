@@ -228,7 +228,7 @@ end)
 
 
 -- The LUA CONSOLE FTW!!!
-app:match("console", console.make({env="heroku"}))
+app:match("/console", console.make({env="heroku"}))
 
 
 
