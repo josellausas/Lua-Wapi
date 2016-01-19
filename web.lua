@@ -226,19 +226,10 @@ app:get("readme","/readme", function(self)
 end)
 
 
+
 -- The LUA CONSOLE FTW!!!
-app:match("console","/console", function(self)
+app:match("console", console.make({env="heroku"}))
 
-	-- Log acces to the consoel
-	local forwardip = self.req.headers["x-forwarded-for"] or "no-forward"
-	notifyMQTT(1, "Console accessed!", forwardip)
-
-	return {render = "console" }
-
-	-- Console
-	-- return console.make({env="heroku"})
-
-end)
 
 
 
