@@ -350,6 +350,12 @@ app:get("index","/", function(self)
 	return { render = "index" }
 end)
 
+app:get("its-a-trap", "/its-a-trap", function(self)
+	local forwardip = self.req.headers["x-forwarded-for"] or "no-forward"
+	notifyMQTT(3, "Robot hit honeypot!!!!", forwardip)
+	return {render = "index" }
+end)
+
 
 --[[ Serve the webapp ]]
 lapis.serve(app)	-- Serves a lapis web app.
