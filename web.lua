@@ -273,9 +273,10 @@ end)
 
 -- TASKS
 app:get("list_tasks","/tasks", function(self)
-	local josellausas = Users.withUsername("jose")
-	local x = Llau:getTasksJSON("josellausas")
-	return x
+	local josellausas 	= Users.withUsername("jose")
+	local jsonData 		= Llau:getTasksJSON("josellausas")
+	if not jsonData then return "" end
+	return jsonData
 end)
 
 

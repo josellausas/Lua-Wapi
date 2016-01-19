@@ -15,6 +15,7 @@ local LLUser = require("Llau.LLUser")
 
 --[[ Returns a JSON object with all the tasks for the given user]]
 ll.getTasksJSON = function(self, usr)
+	if usr == nil then return nil end
 	
 	-- TODO: Un-hardcode this
 	local theUser = LLUser.withUsername(usr)

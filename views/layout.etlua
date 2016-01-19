@@ -38,8 +38,8 @@
       <header class="navbar navbar-light navbar-sticky">
         <div class="container">
           <a href="index.html" class="site-logo">
-            <img src="img/logo-default.png" class="logo-default" alt="ZurApp">
-            <img src="img/logo-alt.png" class="logo-alt" alt="ZurApp">
+            <img src="img/logo-default.png" class="logo-default" alt="Zunware apps">
+            <img src="img/logo-alt.png" class="logo-alt" alt="Zunware apps">
           </a><!-- .site-logo -->
           <!-- Mobile Menu Toggle -->
           <div class="nav-toggle"><span></span></div>
