@@ -142,7 +142,7 @@ end
 
 
 
--- 404
+--[[404]]
 app.handle_404 = function( self )
 	print("Found a 404")
 	ngx.log(ngx.NOTICE, "Uknown path: " .. self.req.parsed_url.path)
@@ -216,17 +216,6 @@ end
 
 
 
-
-
-
-
-
-
-
-
-
-
-
 -- MARKDOWN PARSER
 app:get("readme","/readme", function(self)
 
@@ -244,8 +233,10 @@ app:match("console","/console", function(self)
 	local forwardip = self.req.headers["x-forwarded-for"] or "no-forward"
 	notifyMQTT(1, "Console accessed!", forwardip)
 
+	return {render = "console" }
+
 	-- Console
-	return console.make({env="heroku"})
+	-- return console.make({env="heroku"})
 
 end)
 
