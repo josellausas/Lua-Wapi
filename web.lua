@@ -238,14 +238,14 @@ end)
 
 
 -- The LUA CONSOLE FTW!!!
-app:match("/console", function(self)
+app:match("console","/console", function(self)
 
 	-- Log acces to the consoel
 	local forwardip = self.req.headers["x-forwarded-for"] or "no-forward"
 	notifyMQTT(1, "Console accessed!", forwardip)
 
 	-- Console
-	console.make({env="heroku"})
+	return console.make({env="heroku"})
 
 end)
 
@@ -319,7 +319,6 @@ app:match("/api/create-message", respond_to(responders) )
 
 
 
-
 app:post("/api/new", capture_errors(function(self)
 
 	print("handling post <<<<<")
@@ -329,6 +328,8 @@ app:post("/api/new", capture_errors(function(self)
 end))
 
 
+
+--[[ Web administration ]]
 app:get("admin", "/admin", function(self)
 
 	local forwardip = self.req.headers["x-forwarded-for"] or "no-forward"
@@ -346,23 +347,26 @@ app:get("admin", "/admin", function(self)
 end)
 
 
+
+--[[ Download the app ]]
 app:get("getapp", "/getapp", function(self)
 	local forwardip = self.req.headers["x-forwarded-for"] or "no-forward"
 	notifyMQTT(0, "App downloaded!", forwardip)
-
 	return { redirect_to="static/app-debug.apk", layout=false }
 end)
 
+
+--[[ Web INDEX re-route]]
 app:get("/index", "/index.html", function(self)
 	return {render = "index" }
 end)
 
--- INDEX
+
+--[[ Web INDEX ]]
 app:get("index","/", function(self)
 	return { render = "index" }
 end)
 
 
-
--- Serves a lapis web app.
-lapis.serve(app)
+--[[ Serve the webapp ]]
+lapis.serve(app)	-- Serves a lapis web app.

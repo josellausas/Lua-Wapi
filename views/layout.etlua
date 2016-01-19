@@ -175,7 +175,7 @@
                   <h4>App Store</h4>
                 </div>
               </a><!-- .app-store -->
-              <a href="#" class="market-btn google-play">
+              <a href="getapp" class="market-btn google-play">
                 <div class="icon">
                   <i class="fa fa-play"></i>
                 </div>
