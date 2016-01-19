@@ -1,4 +1,7 @@
+<h1>Developer Console</h1>
+<div>
 <%  
 	local console 	= require("lapis.console") 
 	console.make({env="heroku"}) 
 %>
+</div>
