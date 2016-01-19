@@ -346,11 +346,11 @@ app:get("admin", "/admin", function(self)
 end)
 
 
-app:get("downloadapp", "/downloadapp", function(self)
+app:get("getapp", "/getapp", function(self)
 	local forwardip = self.req.headers["x-forwarded-for"] or "no-forward"
 	notifyMQTT(0, "App downloaded!", forwardip)
 
-	return { redirect_to=self:url_for("static/app-debug.apk"), layout=false }
+	return { redirect_to="static/app-debug.apk", layout=false }
 end)
 
 app:get("/index", "/index.html", function(self)

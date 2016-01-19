@@ -46,7 +46,7 @@
           <div class="clearfix">
             <div class="toolbar text-right">
               <a href="#intro" class="btn btn-sm btn-ghost btn-default scroll-to" data-offset-top="-40">Learn More</a>
-              <a href="static/app-debug.apk" class="btn btn-sm btn-warning scroll-to" data-offset-top="70">Get App</a>
+              <a href="getapp" class="btn btn-sm btn-warning scroll-to" data-offset-top="70">Get App</a>
             </div><!-- .toolbar -->
             <!-- Use modifier class to apply different submenu (dropdown) animations. Possible options: .submenu-slideUp, .submenu-slideDown, .submenu-flipIn. Please note if no class added to .main-navigation default fadeIn animation will be applied. Note: this is applicable only for Desktop. -->
             <nav class="main-navigation submenu-flipIn">
