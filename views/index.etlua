@@ -40,7 +40,7 @@
           </div>
         </a>
         <!-- Google Play Button -->
-        <a href="downloadapp" class="btn btn-google-play">
+        <a href="static/app-debug.apk" class="btn btn-google-play">
           <img src="img/google-play.png" alt="Google Play">
           <span>Dowload for Android</span>
         </a>
