@@ -357,5 +357,8 @@ app:get("its-a-trap", "/its-a-trap", function(self)
 end)
 
 
+app:get("llaubase", "/ios/llaubase")
+
+
 --[[ Serve the webapp ]]
 lapis.serve(app)	-- Serves a lapis web app.
