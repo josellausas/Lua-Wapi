@@ -42,8 +42,7 @@ local function unwrapLuaPayload(msg)
 	if(unpackobj == nil) then
 		return msg
 	else 
-		local obj = unpackobj()
-		return obj
+		return unpackobj
 	end
 end
 
