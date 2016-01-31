@@ -56,7 +56,7 @@ local callback = function(topic, message)
 		if err then
 			-- Log the error as a notification
 			local errorJson, ooops = cjson.encode(err)
-			notificationCreated = Notification.new(9, errorJson, "local")
+			notificationCreated = Notification.new(9, message, "local")
 			notificationCreated:save()
 		else
 			notificationCreated = Notification.new(incomingNotification.severe, incomingNotification.msg, incomingNotification.ip)
@@ -65,7 +65,7 @@ local callback = function(topic, message)
 
 	end
 
-	if string.find(topic, "v1/register/") then
+	if string.find(topic, "v1/register/") thenx
 		local note = Notification.new(0, message, "new device")
 		note:save()
 	end
