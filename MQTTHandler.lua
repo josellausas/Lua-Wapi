@@ -63,6 +63,11 @@ local callback = function(topic, message)
 		end
 	end
 
+	if string.find(topic, "v1/register/") then
+		local note = Notification.new(0, message, "new device")
+		note:save()
+	end
+
 	if topic == "v1/subscribe/email" then
 		local payload = unwrapLuaPayload(message)
 
