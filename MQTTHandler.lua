@@ -5,7 +5,6 @@
 local lapis    		= require "lapis"
 local config   		= require("lapis.config").get()
 
--- [[ La configuración de la base de datos ]]
 config.postgres = {
     host = "ec2-54-83-59-203.compute-1.amazonaws.com",
     user = "wddcthddvouvtr",
@@ -16,8 +15,6 @@ config.postgres = {
 
 local MQTT 			= require("mqtt")
 local Model  		= require("lapis.db.model").Model
-
--- [[ LlauLib Things]]
 local Notification 	= require("Llau.LLNotification")
 local Subscriber    = require("Llau.LLSubscriber")
 
@@ -40,28 +37,22 @@ local running = true
 
 local function unwrapLuaPayload(msg)
 	local unpackobj = loadstring("return " .. msg)
-	if (not unpackobj == nil) then
-		local obj = unpackobj()
-		return obj
-	end
-
-	return nil
+	local obj = unpackobj()
+	return obj
 end
 
 -- Función que reacciona a los mensajes
 local callback = function(topic, message)
-	
-	-- Notifications channel
+	print("Topic: " .. topic .. ", message: " .. message)
+
 	if string.find(topic, "v1/notify") then
 		local obj = unwrapLuaPayload(message)
 		
 		-- Log this message to the database
 		local note = Notification.new(obj.severe, obj.msg, obj.ip)
-		-- Save it to the database
 		note:save()
 	end
 
-	-- Email subcription channel
 	if topic == "v1/subscribe/email" then
 		local payload = unwrapLuaPayload(message)
 
@@ -72,25 +63,11 @@ local callback = function(topic, message)
 		-- Cretes a notification
 		local note = Notification.new("0", "Subscribed: " .. subscriber.email .. " via " .. subscriber.source, payload.ip)
 		note:save()
-	end
 
-	if string.find(topic, "v1/status/") then
-		-- Register the status
-	end
 
-	if string.find(topic, "v1/register/device") then
-		-- TODO: Register a device
-		local obj = unwrapLuaPayload(message)
+	end
 		
-		-- Log this message to the database
-		local note = Notification.new(obj.severe, "Registering: " .. obj.msg, obj.ip)
-		-- Save it to the database
-		note:save()
-	end
 
-
-		
-	--[[ Failsafe cheat ]]
 	if (message == "llau-says-quit") then 
 		running = false 
 	end
