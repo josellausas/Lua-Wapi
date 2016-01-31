@@ -16,7 +16,7 @@ local Llau 		= require("Llau.Llau")
 local Users     = require("Llau.LLUser")
 local Messages  = require("Llau.LLMessage")
 local csrf 		= require ("lapis.csrf")
-local cjson     = require "cjson"
+local cjson     = require "cjson.safe"
 
 local mqtt_client = nil
 local mqttconf 	= {

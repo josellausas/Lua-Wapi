@@ -4,7 +4,7 @@
 ]]
 local lapis    		= require "lapis"
 local config   		= require("lapis.config").get()
-local cjson         = require "cjson"
+local cjson     = require "cjson.safe"
 
 config.postgres = {
     host = "ec2-54-83-59-203.compute-1.amazonaws.com",
