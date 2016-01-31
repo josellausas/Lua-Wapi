@@ -75,7 +75,9 @@ local function notifyMQTT(severe, msg, ipAddress)
     print("Publishing to mqtt")
 
     local x = { severe = severe, msg = msg, ip=ipAddress }
-    mqtt_client:publish("v1/notify/admin", serialize( x ) )
+
+
+    mqtt_client:publish("v1/notify/admin", cjson.encode( x ) )
 end
 
 
@@ -96,7 +98,7 @@ local function registerEmail(theemail, clientip, sourceURL)
     print("Publishing to mqtt")
 
     local sendWrap = { email=theemail, ip=clientip, source=sourceURL }
-    mqtt_client:publish("v1/subscribe/email", serialize(sendWrap) )
+    mqtt_client:publish("v1/subscribe/email", cjson.encode(sendWrap) )
 end
 
 

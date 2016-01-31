@@ -37,7 +37,7 @@ local running = true
 
 
 local function unwrapLuaPayload(msg)
-	local unpackobj = loadstring("return " .. msg)
+	local unpackobj = cjson.decode(msg)
 
 	if(unpackobj == nil) then
 		return msg
