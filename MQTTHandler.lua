@@ -54,10 +54,11 @@ local callback = function(topic, message)
 
 		if err then
 			print(err)
-			local n = Notification(9, "Error: " .. message, "local")
+			local n = Notification.new(9, "Error: " .. message, "local")
 			n:save()
 		else
-			local n = Notification(0, message, "local")
+			local n = Notification.new(0, message, "local")
+			n:save()
 		end
 
 	end
