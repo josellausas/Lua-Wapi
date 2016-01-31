@@ -49,18 +49,20 @@ end
 -- Función que reacciona a los mensajes
 local callback = function(topic, message)
 	print("Topic: " .. topic .. ", message: " .. message)
-
 	if string.find(topic, "v1/notify") then
-		local ese = unwrapLuaPayload(message)
-		
-		if not ese == nil then
-			-- Log this message to the database
-			local note = Notification.new(ese.severe, ese.msg, ese.ip)
-			note:save()
+		local incomingNotification,err = cjson.decode(message)
+
+		local notificationCreated = nil
+		if err then
+			-- Log the error as a notification
+			local errorJson, ooops = cjson.encode(err)
+			notificationCreated = Notification.new(9, errorJson, "local")
+			notificationCreated:save()
 		else
-			local note = Notification.new(2, message, "unknown")
-			note:save()
+			notificationCreated = Notification.new(incomingNotification.severe, incomingNotification.msg, incomingNotification.ip)
+			notificationCreated:save()
 		end
+
 	end
 
 	if string.find(topic, "v1/register/") then
@@ -69,7 +71,7 @@ local callback = function(topic, message)
 	end
 
 	if topic == "v1/subscribe/email" then
-		local payload = unwrapLuaPayload(message)
+		local payload,err = cjson.decode(message)
 
 		-- Creates a subsciber
 		local subscriber = Subscriber.new(payload.email, payload.ip, payload.source)
@@ -78,8 +80,6 @@ local callback = function(topic, message)
 		-- Cretes a notification
 		local note = Notification.new("0", "Subscribed: " .. subscriber.email .. " via " .. subscriber.source, payload.ip)
 		note:save()
-
-
 	end
 		
 
