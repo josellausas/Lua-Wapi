@@ -37,8 +37,13 @@ local running = true
 
 local function unwrapLuaPayload(msg)
 	local unpackobj = loadstring("return " .. msg)
-	local obj = unpackobj() or nil
-	return obj
+
+	if(unpackobj == nil) then
+		return msg
+	else 
+		local obj = unpackobj() or nil
+		return obj
+	end
 end
 
 -- Función que reacciona a los mensajes
