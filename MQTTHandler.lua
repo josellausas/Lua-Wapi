@@ -37,9 +37,9 @@ local running = true
 
 
 local function unwrapLuaPayload(msg)
-	local unpackobj = cjson.decode(msg)
+	local unpackobj,err = cjson.decode(msg)
 
-	if(unpackobj == nil) then
+	if(err) then
 		return msg
 	else 
 		return unpackobj
