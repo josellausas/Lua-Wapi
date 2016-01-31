@@ -37,7 +37,6 @@ local config = {
 
 local running = true
 
-
 local function unwrapLuaPayload(msg)
 	local unpackobj = loadstring("return " .. msg)
 	local obj = unpackobj()
