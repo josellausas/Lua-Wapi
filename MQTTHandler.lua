@@ -50,17 +50,14 @@ end
 local callback = function(topic, message)
 	print("Topic: " .. topic .. ", message: " .. message)
 	if string.find(topic, "v1/notify") then
-		local incomingNotification,err = cjson.decode(message)
+		local json,err = cjson.decode(message)
 
-		local notificationCreated = nil
 		if err then
-			-- Log the error as a notification
-			local errorJson, ooops = cjson.encode(err)
-			notificationCreated = Notification.new(9, message, "local")
-			notificationCreated:save()
+			print(err)
+			local n = Notification(9, "Error: " .. message, "local")
+			n:save()
 		else
-			notificationCreated = Notification.new(incomingNotification.severe, incomingNotification.msg, incomingNotification.ip)
-			notificationCreated:save()
+			local n = Notification(0, message, "local")
 		end
 
 	end
