@@ -18,8 +18,7 @@ local Messages  = require("Llau.LLMessage")
 local csrf 		= require ("lapis.csrf")
 
 local mqtt_client = nil
-
-local mqttconf = {
+local mqttconf 	= {
 	host = "m10.cloudmqtt.com",
 	port = "11915",
 	user = "webserver",
@@ -29,26 +28,21 @@ local mqttconf = {
 }
 
 
-
 local capture_errors = require("lapis.application").capture_errors
 local respond_to     = require("lapis.application").respond_to
 
+--[[ Serializa a lua table into a string ]]
 local function serialize(theTable, name, skipnewlines, depth)
 	local val = theTable
     skipnewlines = skipnewlines or false
     depth = depth or 0
-
     local tmp = string.rep(" ", depth)
-
     if name then tmp = tmp .. name .. " = " end
-
     if type(val) == "table" then
         tmp = tmp .. "{"
-
         for k, v in pairs(val) do
             tmp =  tmp .. serialize(v, k, skipnewlines, depth + 1) .. "," .. " "
         end
-
         tmp = tmp .. string.rep(" ", depth) .. "}"
     elseif type(val) == "number" then
         tmp = tmp .. tostring(val)
@@ -59,13 +53,11 @@ local function serialize(theTable, name, skipnewlines, depth)
     else
         tmp = tmp .. "\"[inserializeable datatype:" .. type(val) .. "]\""
     end
-
     return tmp
 end
 
--- This user is hardcoded for now.
--- local josellausas = Users.withUsername("jose")
 
+--[[ MQTT API ]]
 local function notifyMQTT(severe, msg, ipAddress)
 	if mqtt_client == nil then
 		mqtt_client = mqtt.client.create(mqttconf.host, mqttconf.port, nil)
@@ -86,6 +78,7 @@ local function notifyMQTT(severe, msg, ipAddress)
 end
 
 
+--[[ Email API ]]
 local function registerEmail(theemail, clientip, sourceURL)
 	if mqtt_client == nil then
 		mqtt_client = mqtt.client.create(mqttconf.host, mqttconf.port, nil)
@@ -127,8 +120,6 @@ app.layout = require "views.layout"		-- Sets the layout we are using.
 
 
 --]]]]]]]]]]]]]]]]]]]]]]]]]]] WEB APP ]]]]]]]]]]]]]]]]]]]]]]
-
-
 
 
 
@@ -263,7 +254,7 @@ app:match("/subscribe/*", respond_to({
 
 --[[ RESTUFLL JSONS : ]]
 
--- CALENDAR
+--[[ Calendar API ]]
 app:get("/calendar", function(self) 
 	local josellausas = Users.withUsername("jose")
 	-- TODO: Get username parameters from self
@@ -271,7 +262,7 @@ app:get("/calendar", function(self)
 end)
 
 
--- TASKS
+--[[ Tasks API ]]
 app:get("list_tasks","/tasks", function(self)
 	local josellausas 	= Users.withUsername("jose")
 	local jsonData 		= Llau:getTasksJSON("josellausas")
@@ -280,12 +271,13 @@ app:get("list_tasks","/tasks", function(self)
 end)
 
 
+--[[ Users API ]]
 app:get("/users", function(self)
 	return Llau:getUsersJSON()
 end)
 
 
-
+--[[ Messages API]]
 responders = {}
 responders.GET = function(self)
 	print("Handling GET")
@@ -299,17 +291,6 @@ responders.POST = function(self)
 	return {redirect_to=self:url_for("index")}
 end
 app:match("/api/create-message", respond_to(responders) )
-
-
-
-app:post("/api/new", capture_errors(function(self)
-
-	print("handling post <<<<<")
-	ngx.log(ngx.NOTICE, "handling post <<<<<" .. self.req.parsed_url.path)
-	
-	return {redirect_to = self:url_for("index")}
-end))
-
 
 
 --[[ Web administration ]]
@@ -329,8 +310,6 @@ app:get("admin", "/admin", function(self)
 	return {render="dashboards.default",layout="adminlayout"}
 end)
 
-
-
 --[[ Download the app ]]
 app:get("getapp", "/getapp", function(self)
 	local forwardip = self.req.headers["x-forwarded-for"] or "no-forward"
@@ -338,25 +317,24 @@ app:get("getapp", "/getapp", function(self)
 	return { redirect_to="static/app-debug.apk", layout=false }
 end)
 
-
 --[[ Web INDEX re-route]]
 app:get("/index", "/index.html", function(self)
 	return {render = "index" }
 end)
-
 
 --[[ Web INDEX ]]
 app:get("index","/", function(self)
 	return { render = "index" }
 end)
 
+--[[ A nice honeypot ]]
 app:get("its-a-trap", "/its-a-trap", function(self)
 	local forwardip = self.req.headers["x-forwarded-for"] or "no-forward"
 	notifyMQTT(3, "Robot hit honeypot!!!!", forwardip)
 	return {render = "index" }
 end)
 
-
+-- [[ Serves the app ]]
 app:get("llaubase", "/ios/llaubase")
 
 
