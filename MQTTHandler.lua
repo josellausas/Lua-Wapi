@@ -46,11 +46,16 @@ local callback = function(topic, message)
 	print("Topic: " .. topic .. ", message: " .. message)
 
 	if string.find(topic, "v1/notify") then
-		local obj = unwrapLuaPayload(message)
+		local ese = unwrapLuaPayload(message)
 		
-		-- Log this message to the database
-		local note = Notification.new(obj.severe, obj.msg, obj.ip)
-		note:save()
+		if not ese == nil then
+			-- Log this message to the database
+			local note = Notification.new(ese.severe, ese.msg, ese.ip)
+			note:save()
+		else
+			local note = Notification.new(2, message, "unknown")
+			note:save()
+		end
 	end
 
 	if topic == "v1/subscribe/email" then
