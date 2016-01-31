@@ -65,7 +65,7 @@ local callback = function(topic, message)
 
 	end
 
-	if string.find(topic, "v1/register/") thenx
+	if string.find(topic, "v1/register/") then
 		local note = Notification.new(0, message, "new device")
 		note:save()
 	end
