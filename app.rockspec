@@ -2,6 +2,7 @@
 -- These are my rocks.
 dependencies = {
 	"luasocket",
+	"lua-cjson",
   	"https://raw.github.com/leafo/heroku-openresty/master/heroku-openresty-dev-2.rockspec",
   	"https://raw.githubusercontent.com/leafo/moonscript/master/moonscript-dev-1.rockspec",
 	-- "https://raw.github.com/leafo/lua-date/master/date-dev-1.rockspec",
