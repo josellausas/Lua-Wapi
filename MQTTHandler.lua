@@ -57,7 +57,7 @@ local callback = function(topic, message)
 			local n = Notification.new(9, "Error: " .. message, "local")
 			n:save()
 		else
-			local n = Notification.new(0, message, "local")
+			local n = Notification.new(json.severe, json.msg, json.ip)
 			n:save()
 		end
 
