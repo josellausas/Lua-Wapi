@@ -4,6 +4,7 @@
 
 local unpack = table.unpack or unpack
 
+-- Un markdownazo
 -- Returns the result of mapping the values in table t through the function f
 local function map(t, f)
    local out = {}
