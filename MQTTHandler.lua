@@ -2,8 +2,6 @@
 --[[
 	Esto escucha mqtt y hace cosas. Usa PahoMQTT en lua
 ]]
-local lapis    		= require "lapis"
-local config   		= require("lapis.config").get()
 local cjson     = require "cjson.safe"
 local Crypto = require 'crypto'
 local Llau 		= require("Llau.Llau")
@@ -18,7 +16,6 @@ config.postgres = {
 
 
 local MQTT 			= require("mqtt")
-local Model  		= require("lapis.db.model").Model
 local Notification 	= require("Llau.LLNotification")
 local Subscriber    = require("Llau.LLSubscriber")
 -- Hola
