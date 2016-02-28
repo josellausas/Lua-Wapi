@@ -5,6 +5,9 @@
 local lapis    		= require "lapis"
 local config   		= require("lapis.config").get()
 local cjson     = require "cjson.safe"
+local encoding = require("lapis.util.encoding")
+local Crypto = require 'crypto'
+local Llau 		= require("Llau.Llau")
 
 config.postgres = {
     host = "ec2-54-83-59-203.compute-1.amazonaws.com",
@@ -52,12 +55,16 @@ local callback = function(topic, message)
 	if string.find(topic, "v1/notify") then
 		local json,err = cjson.decode(message)
 
+		
+
+
 		if err then
 			print(err)
 			local n = Notification.new(9, "Error: " .. message, "local")
 			n:save()
 		else
-			local n = Notification.new(json.severe, json.msg, json.ip)
+			local decoded = Llau:decode(encoding.decode_base64(json.msg))
+			local n = Notification.new(json.severe, decoded, json.ip)
 			n:save()
 		end
 
