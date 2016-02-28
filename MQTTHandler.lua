@@ -5,7 +5,6 @@
 local lapis    		= require "lapis"
 local config   		= require("lapis.config").get()
 local cjson     = require "cjson.safe"
-local encoding = require("lapis.util.encoding")
 local Crypto = require 'crypto'
 local Llau 		= require("Llau.Llau")
 local base64 = require 'base64'
@@ -64,7 +63,7 @@ local callback = function(topic, message)
 			local n = Notification.new(9, "Error: " .. message, "local")
 			n:save()
 		else
-			local decoded = Llau:decode(encoding.decode_base64(json.msg))
+			local decoded = Llau:decode(base64.decode(json.msg))
 			local n = Notification.new(json.severe, decoded, json.ip)
 			n:save()
 		end
