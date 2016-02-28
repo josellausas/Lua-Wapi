@@ -8,6 +8,7 @@ local cjson     = require "cjson.safe"
 local encoding = require("lapis.util.encoding")
 local Crypto = require 'crypto'
 local Llau 		= require("Llau.Llau")
+local base64 = require 'base64'
 
 config.postgres = {
     host = "ec2-54-83-59-203.compute-1.amazonaws.com",
