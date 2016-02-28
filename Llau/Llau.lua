@@ -15,7 +15,7 @@ local LLUser = require("Llau.LLUser")
 local Crypto = require 'crypto'
 local cjson     = require "cjson.safe"
 local mqtt     	= require("mqtt")
-local encoding = require("lapis.util.encoding")
+local base64 = require 'base64'
 
 ll.config = {
 	cipher = 'aes128',
@@ -48,7 +48,7 @@ ll.notify = function(self, severe, msg, ipAddress)
     end
    
     -- Build a JSON-style structure with an encrypted message
-    local encodedEncrypted = encoding.encode_base64(self:encrypt(msg))
+    local encodedEncrypted = base64.encode(self:encrypt(msg))
     local x = { severe = severe, msg = encodedEncrypted, ip=ipAddress }
 
    	-- Encode json
