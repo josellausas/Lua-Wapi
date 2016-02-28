@@ -12,6 +12,14 @@ local ll = {}
 local Model  = require("lapis.db.model").Model
 local LLTask = require("Llau.LLTask")
 local LLUser = require("Llau.LLUser")
+local Crypto = require 'crypto'
+
+ll.config = {
+	cipher = 'aes128',
+	key = 'HhfewR*n#FFH)Dffatr3FD_DF-AD',
+	iv = 157663
+}
+
 
 --[[ Returns a JSON object with all the tasks for the given user]]
 ll.getTasksJSON = function(self, usr)
@@ -73,6 +81,16 @@ ll.getCalendarJSON = function(self, usrname)
 	end
 
 	return {json=jsonCalendar}
+end
+
+ll.encrypt = function(self,msg)
+	local res = Crypto.encrypt(self.config.cipher, msg, self.config.key, self.config.iv)
+	return res
+end
+
+ll.decrypt = function(self, msg)
+	local res = Crypto.decrypt(self.config.cipher, msg, self.config.key, self.config.iv)
+	return res
 end
 
 
