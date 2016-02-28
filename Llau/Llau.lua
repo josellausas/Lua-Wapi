@@ -13,12 +13,45 @@ local Model  = require("lapis.db.model").Model
 local LLTask = require("Llau.LLTask")
 local LLUser = require("Llau.LLUser")
 local Crypto = require 'crypto'
+local cjson     = require "cjson.safe"
 
 ll.config = {
 	cipher = 'aes128',
 	key = 'HhfewR*n#FFH)Dffatr3FD_DF-AD',
 	iv = 157663
 }
+
+local mqtt_client = nil
+local mqttconf 	= {
+	host = "m10.cloudmqtt.com",
+	port = "11915",
+	user = "webserver",
+	password = "webserverquesito",
+	offlinePayload = "Webserver: offline",
+	keepalive = 40,
+}
+
+--[[ MQTT API ]]
+ll.notify = function(self, severe, msg, ipAddress)
+	if mqtt_client == nil then
+		mqtt_client = mqtt.client.create(mqttconf.host, mqttconf.port, nil)
+		mqtt_client:auth(mqttconf.user, mqttconf.password)
+	end
+
+	if(mqtt_client.connected == false) then
+		print("Connecting mqtt")
+	-- Connect with last will, stick, qos = 2 and offline payload.
+	    mqtt_client:connect("webserver", "v1/status/webserver", 2, 1, mqttconf.offlinePayload)
+	    mqtt_client:publish("v1/status", "Webserver: " .. mqttconf.user .. " online")
+    end
+   
+    -- Build a JSON-style structure
+    local x = { severe = severe, msg = msg, ip=ipAddress }
+
+   	-- Encode json
+	local json,err = cjson.encode(x)
+    mqtt_client:publish("v1/notify/admin", json )
+end
 
 
 --[[ Returns a JSON object with all the tasks for the given user]]

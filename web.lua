@@ -34,25 +34,7 @@ local respond_to     = require("lapis.application").respond_to
 
 --[[ MQTT API ]]
 local function notifyMQTT(severe, msg, ipAddress)
-	if mqtt_client == nil then
-		mqtt_client = mqtt.client.create(mqttconf.host, mqttconf.port, nil)
-		mqtt_client:auth(mqttconf.user, mqttconf.password)
-	end
-
-	if(mqtt_client.connected == false) then
-		print("Connecting mqtt")
-	-- Connect with last will, stick, qos = 2 and offline payload.
-	    mqtt_client:connect("webserver", "v1/status/webserver", 2, 1, mqttconf.offlinePayload)
-	    mqtt_client:publish("v1/status", "Webserver: " .. mqttconf.user .. " online")
-   end
-    
-    print("Publishing to mqtt")
-
-    local x = { severe = severe, msg = msg, ip=ipAddress }
-
-
-    local json,err = cjson.encode(x)
-    mqtt_client:publish("v1/notify/admin", json )
+	Llau:notify(severe,msg,ipAddress)
 end
 
 
