@@ -21,7 +21,7 @@ local MQTT 			= require("mqtt")
 local Model  		= require("lapis.db.model").Model
 local Notification 	= require("Llau.LLNotification")
 local Subscriber    = require("Llau.LLSubscriber")
-
+-- Hola
 local h = {}
 
 -- La configuración de nuestro cliente MQTT.
@@ -35,9 +35,7 @@ local config = {
 }
 
 
-
 local running = true
-
 
 local function unwrapLuaPayload(msg)
 	local unpackobj,err = cjson.decode(msg)
