@@ -14,6 +14,7 @@ local LLTask = require("Llau.LLTask")
 local LLUser = require("Llau.LLUser")
 local Crypto = require 'crypto'
 local cjson     = require "cjson.safe"
+local mqtt     	= require("mqtt")
 
 ll.config = {
 	cipher = 'aes128',
