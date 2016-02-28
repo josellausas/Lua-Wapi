@@ -9,12 +9,13 @@ local ll = {}
 	All rights reserved.
 	
 ]]
-local LLTask 	= require("Llau.LLTask")
-local LLUser 	= require("Llau.LLUser")
-local Crypto 	= require 'crypto'
+local Model  = require("lapis.db.model").Model
+local LLTask = require("Llau.LLTask")
+local LLUser = require("Llau.LLUser")
+local Crypto = require 'crypto'
 local cjson     = require "cjson.safe"
 local mqtt     	= require("mqtt")
-local base64 	= require 'base64'
+local base64 = require 'base64'
 
 ll.config = {
 	cipher = 'aes128',
