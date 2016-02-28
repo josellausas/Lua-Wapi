@@ -17,6 +17,7 @@ local Crypto = require 'crypto'
 local cjson     = require "cjson.safe"
 local mqtt     	= require("mqtt")
 local base64 = require 'base64'
+local pgmoon 	= require("pgmoon")
 
 ll.config = {
 	cipher = 'aes128',
