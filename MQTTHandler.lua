@@ -57,7 +57,7 @@ local callback = function(topic, message)
 			local n = Notification.new(9, "Error: " .. message, "local")
 			n:save()
 		else
-			local decoded = Llau:decode(base64.decode(json.msg))
+			local decoded = Llau:decrypt(base64.decode(json.msg))
 			local n = Notification.new(json.severe, decoded, json.ip)
 			n:save()
 		end
