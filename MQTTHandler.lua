@@ -4,7 +4,7 @@
 ]]
 local cjson     = require "cjson.safe"
 local Crypto 	= require 'crypto'
-local base64 	= require 'base64'
+local base64 	= require 'Llau.base64'
 
 config.postgres = {
     host = "ec2-54-83-59-203.compute-1.amazonaws.com",
