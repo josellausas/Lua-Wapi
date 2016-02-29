@@ -3,9 +3,8 @@
 	Esto escucha mqtt y hace cosas. Usa PahoMQTT en lua
 ]]
 local cjson     = require "cjson.safe"
-local Crypto = require 'crypto'
-local Llau 		= require("Llau.Llau")
-local base64 = require 'base64'
+local Crypto 	= require 'crypto'
+local base64 	= require 'base64'
 
 config.postgres = {
     host = "ec2-54-83-59-203.compute-1.amazonaws.com",
@@ -14,7 +13,7 @@ config.postgres = {
     database = "d2k28tn5s3orl5"
 }
 
-
+local Llau 		= require("Llau.Llau")
 local MQTT 			= require("mqtt")
 local Notification 	= require("Llau.LLNotification")
 local Subscriber    = require("Llau.LLSubscriber")
