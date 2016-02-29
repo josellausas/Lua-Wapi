@@ -6,20 +6,6 @@ local cjson     = require "cjson.safe"
 local Crypto 	= require 'crypto'
 local base64 	= require 'Llau.base64'
 
-config.postgres = {
-    host = "ec2-54-83-59-203.compute-1.amazonaws.com",
-    user = "wddcthddvouvtr",
-    password = "_EsJ9XVoYVSYXDWbUDOTQPdrph",
-    database = "d2k28tn5s3orl5"
-}
-
-local Llau 		= require("Llau.Llau")
-local MQTT 			= require("mqtt")
-local Notification 	= require("Llau.LLNotification")
-local Subscriber    = require("Llau.LLSubscriber")
--- Hola
-local h = {}
-
 -- La configuración de nuestro cliente MQTT.
 local config = {
 	host = "m10.cloudmqtt.com",
@@ -29,6 +15,18 @@ local config = {
 	offlinePayload = "Handler: offline",
 	keepalive = 40,
 }
+
+config.postgres = {
+    host = "ec2-54-83-59-203.compute-1.amazonaws.com",
+    user = "wddcthddvouvtr",
+    password = "_EsJ9XVoYVSYXDWbUDOTQPdrph",
+    database = "d2k28tn5s3orl5"
+}
+
+local Llau 			= require("Llau.Llau")
+local MQTT 			= require("mqtt")
+local Notification 	= require("Llau.LLNotification")
+local Subscriber    = require("Llau.LLSubscriber")
 
 
 local running = true
