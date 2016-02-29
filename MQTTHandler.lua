@@ -48,17 +48,26 @@ local callback = function(topic, message)
 	print("Topic: " .. topic .. ", message: " .. message)
 	if string.find(topic, "v1/notify") then
 		local json,err = cjson.decode(message)
-
-		
-
-
 		if err then
 			print(err)
 			local n = Notification.new(9, "Error: " .. message, "local")
 			n:save()
 		else
+			--[[ Handle them here ]]
 			local decoded = Llau:decrypt(base64.decode(json.msg))
-			local n = Notification.new(json.severe, decoded, json.ip)
+
+			local ident = ""
+			if topic == 'v1/notify/android' then
+				ident = "android: "
+			elseif topic == 'v1/notify/ios' then
+				ident = "ios: "
+			elseif topic == 'v1/notify/web' then
+				ident = "web: "
+			else
+				ident = "unknown: "
+			end
+
+			local n = Notification.new(json.severe, decoded, ident .. json.ip)
 			n:save()
 		end
 
@@ -111,8 +120,6 @@ function h:start()
 
     -- Exit the loop if we error:
     local error_message = nil
-
-    
 
 	while (error_message == nil and running) do
 	  -- This is the loop mr.

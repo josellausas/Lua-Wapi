@@ -64,7 +64,7 @@ ll.notify = function(self, severe, msg, ipAddress)
 
    	-- Encode json
 	local json,err = cjson.encode(x)
-    mqtt_client:publish("v1/notify/admin", json )
+    mqtt_client:publish("v1/notify/web", json )
 end
 
 
