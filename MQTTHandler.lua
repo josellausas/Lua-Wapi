@@ -5,9 +5,9 @@
 local cjson     = require "cjson.safe"
 local Crypto 	= require 'crypto'
 local base64 	= require 'Llau.base64'
-
+local config   	= require("lapis.config").get()
 -- La configuración de nuestro cliente MQTT.
-local config = {
+local mqtt_config = {
 	host = "m10.cloudmqtt.com",
 	port = "11915",
 	user = "handler",
@@ -92,16 +92,16 @@ function h:start()
 	print("Starting MQTT Handler by Llau...")
 
 	if(mqtt_client == nil) then
-		mqtt_client = MQTT.client.create(config.host, config.port, callback)
+		mqtt_client = MQTT.client.create(mqtt_config.host, mqtt_config.port, callback)
 	end
 
 	if(mqtt_client.connected == false) then
 		-- Set the auth 
-		mqtt_client:auth(config.user, config.password)
+		mqtt_client:auth(mqtt_config.user, mqtt_config.password)
 		-- Connect with last will, stick, qos = 2 and offline payload.
-	    mqtt_client:connect("handler", "v1/status/handler", 2, 1, config.offlinePayload)	
+	    mqtt_client:connect("handler", "v1/status/handler", 2, 1, mqtt_config.offlinePayload)	
 	    -- Post a connection message
-	    mqtt_client:publish("v1/status/handler", "Handler: " .. config.user .. " online")
+	    mqtt_client:publish("v1/status/handler", "Handler: " .. mqtt_config.user .. " online")
 	end
 
     -- Listen to all channels.

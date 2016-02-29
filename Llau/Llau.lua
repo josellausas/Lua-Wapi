@@ -10,7 +10,7 @@ local ll = {}
 	
 ]]
 local config   	= require("lapis.config").get()
-local Model  = require("lapis.db.model").Model
+
 local LLTask = require("Llau.LLTask")
 local LLUser = require("Llau.LLUser")
 local Crypto = require 'crypto'
@@ -18,6 +18,15 @@ local cjson     = require "cjson.safe"
 local mqtt     	= require("mqtt")
 local base64 = require 'base64'
 local pgmoon 	= require("pgmoon")
+
+config.postgres = {
+    host = "ec2-54-83-59-203.compute-1.amazonaws.com",
+    user = "wddcthddvouvtr",
+    password = "_EsJ9XVoYVSYXDWbUDOTQPdrph",
+    database = "d2k28tn5s3orl5"
+}
+
+local Model  = require("lapis.db.model").Model
 
 ll.config = {
 	cipher = 'aes128',
