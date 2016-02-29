@@ -30,12 +30,10 @@ local MQTT 			= require("mqtt")
 local Notification 	= require("Llau.LLNotification")
 local Subscriber    = require("Llau.LLSubscriber")
 
--- Running flag
+
 local running = true
 
-
-
---[[local function unwrapLuaPayload(msg)
+local function unwrapLuaPayload(msg)
 	local unpackobj,err = cjson.decode(msg)
 
 	if(err) then
@@ -43,40 +41,34 @@ local running = true
 	else 
 		return unpackobj
 	end
-end]]
+end
 
---[[ 
-	Callback for Mqtt messages 
-]]
+-- Función que reacciona a los mensajes
 local callback = function(topic, message)
-	-- Log notifications here
+	print("Topic: " .. topic .. ", message: " .. message)
 	if string.find(topic, "v1/notify") then
-		-- Decode the json
 		local json,err = cjson.decode(message)
 
-		-- Log as error if this is not coded correcty
+		
+
+
 		if err then
-			-- Create a Llau notification with the error as message
+			print(err)
 			local n = Notification.new(9, "Error: " .. message, "local")
-			-- Save the message to the database
 			n:save()
 		else
-			-- Decrypt the message
 			local decoded = Llau:decrypt(base64.decode(json.msg))
-			-- Create a notification and save
 			local n = Notification.new(json.severe, decoded, json.ip)
 			n:save()
 		end
+
 	end
 
-	-- Device registrations
 	if string.find(topic, "v1/register/") then
 		local note = Notification.new(0, message, "new device")
 		note:save()
 	end
 
-
-	-- Email suscription
 	if topic == "v1/subscribe/email" then
 		local payload,err = cjson.decode(message)
 
@@ -89,19 +81,18 @@ local callback = function(topic, message)
 		note:save()
 	end
 		
-	-- Emergency quit
+
 	if (message == "llau-says-quit") then 
-		-- Set the running flag
 		running = false 
 	end
 end
 
 -- Inicia el cliente MQTT y escucha para reaccionar a los diferentes mensajes
 function h:start()
-	-- Start clean mqtt
 	local mqtt_client = nil
 
-	-- Lazy instantiate mqtt
+	print("Starting MQTT Handler by Llau...")
+
 	if(mqtt_client == nil) then
 		mqtt_client = MQTT.client.create(mqtt_config.host, mqtt_config.port, callback)
 	end
@@ -121,20 +112,25 @@ function h:start()
     -- Exit the loop if we error:
     local error_message = nil
 
-    -- Loop receive :)
+    
+
 	while (error_message == nil and running) do
-	  -- This is the loop fruit
+	  -- This is the loop mr.
 	  error_message = mqtt_client:handler()
 	  socket.sleep(1.0)  -- seconds
+	  -- print("MQTT alive")
 	end
 
-	-- If we broke because of an error
 	if (error_message == nil) then
+		print("Cerrando MQTT")
 	  mqtt_client:unsubscribe({"v1/#"})
 	  mqtt_client:destroy()
 	else
 	  print("El ERROR: " .. error_message)
+	
+	 
 	end
+
 end
 
 return h
