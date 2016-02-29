@@ -2,6 +2,8 @@
 --[[
 	Esto escucha mqtt y hace cosas. Usa PahoMQTT en lua
 ]]
+local h = {}
+
 local cjson     = require "cjson.safe"
 local Crypto 	= require 'crypto'
 local base64 	= require 'Llau.base64'
