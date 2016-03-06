@@ -300,6 +300,17 @@ end)
 -- [[ Serves the app ]]
 app:get("llaubase", "/ios/llaubase")
 
+app:get("/robots", "/robots.txt", function(self)
+	return [[
+	User-agent: *
+	Disallow: /its-a-trap/ 
+	Disallow: /tmp/
+	Disallow: /getapp 
+	Disallow: /admin
+	Disallow: /console
+	]]
+end)
+
 
 --[[ Serve the webapp ]]
 lapis.serve(app)	-- Serves a lapis web app.
