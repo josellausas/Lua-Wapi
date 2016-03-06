@@ -5,8 +5,27 @@
 	Run with `busted busted_tests.lua`
 ]]
 describe("Lua-Wapi", function()
+	local clr = require 'trepl.colorize'
+	local moduleName = "Lua-Wapi"
+	local count = 0
+
+	local function ll(msg)
+		print(clr.red("[") .. clr.Blue(moduleName) .. clr.red("]") .. " - \"" .. message .. "\"")
+	end
+
+	before_each = function()
+		count = count + 1
+		print ("[".. moduleName .. "]-> test #" .. count .. " started!")
+	end
+
+	after_each = function()
+		print ("[".. moduleName .. "]-> test #" .. count .. " finished!")
+		print("")
+	end
+
 	-- The global Lapis
 	local lapis = nil
+	moduleName = "lapis"
 	describe("Setup", function()
 		-- A freebie
 		it("can tell the difference", function()
@@ -33,6 +52,7 @@ describe("Lua-Wapi", function()
 
 	-- The Llau library
 	local Llau = nil
+	moduleName = "Llau"
 	describe("Llau Base", function() 
 		it("can load LlauBase", function()
 			-- Load my Library
@@ -54,7 +74,9 @@ describe("Lua-Wapi", function()
 		end)
 	end)
 
+
 	local Base64 = nil
+	moduleName = "Base64"
 	describe("Base64", function()
 		it("can load Base64", function()
 			Base64 = require("Llau.base64")
@@ -77,5 +99,7 @@ describe("Lua-Wapi", function()
 			assert.are.same(another,decoded)
 		end)
 	end)
+
+	
 end)
 
