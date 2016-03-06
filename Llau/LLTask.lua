@@ -1,3 +1,4 @@
+
 local Model = require("lapis.db.model").Model
 
 -- Armar los modelos segun las relaciones de la base de datos.

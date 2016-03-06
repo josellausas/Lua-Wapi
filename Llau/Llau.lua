@@ -9,7 +9,18 @@ local ll = {}
 	All rights reserved.
 	
 ]]
+
+-- THIS HAS TO BE THE FIRST THING. DO NOT MOVE! ----
 local config   	= require("lapis.config").get()
+config.postgres = {
+    host = "ec2-54-83-59-203.compute-1.amazonaws.com",
+    user = "wddcthddvouvtr",
+    password = "_EsJ9XVoYVSYXDWbUDOTQPdrph",
+    database = "d2k28tn5s3orl5"
+}
+local Model  = require("lapis.db.model").Model
+-- ADD MORE THINGS BELOW: -------
+
 
 local LLTask = require("Llau.LLTask")
 local LLUser = require("Llau.LLUser")
@@ -18,22 +29,11 @@ local cjson     = require "cjson.safe"
 local mqtt     	= require("mqtt")
 local base64    = require "Llau.base64"
 local pgmoon 	= require("pgmoon")
-
-config.postgres = {
-    host = "ec2-54-83-59-203.compute-1.amazonaws.com",
-    user = "wddcthddvouvtr",
-    password = "_EsJ9XVoYVSYXDWbUDOTQPdrph",
-    database = "d2k28tn5s3orl5"
-}
-
-local Model  = require("lapis.db.model").Model
-
 ll.config = {
 	cipher = 'aes128',
 	key = 'HhfewR*n#FFH)Dffatr3FD_DF-AD',
 	iv = 157663
 }
-
 local mqtt_client = nil
 local mqttconf 	= {
 	host = "m10.cloudmqtt.com",
