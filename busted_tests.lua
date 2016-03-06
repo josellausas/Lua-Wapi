@@ -4,6 +4,7 @@
 	
 	Run with `busted busted_tests.lua`
 ]]
+
 describe("Lua-Wapi", function()
 	local clr = require 'trepl.colorize'
 	local moduleName = "Lua-Wapi"
