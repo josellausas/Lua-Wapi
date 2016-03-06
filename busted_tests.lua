@@ -8,28 +8,30 @@ describe("Lua-Wapi", function()
 	local clr = require 'trepl.colorize'
 	local moduleName = "Lua-Wapi"
 	local count = 0
+	print("hey")
 
 	local function ll(msg)
-		print(clr.red("[") .. clr.Blue(moduleName) .. clr.red("]") .. " - \"" .. message .. "\"")
+		print("\t" .. clr.red("[") .. clr.Blue(moduleName) .. clr.red("]") .. " - \"" .. msg .. "\"")
 	end
 
-	before_each = function()
+	before_each(function()
 		count = count + 1
 		print ("[".. moduleName .. "]-> test #" .. count .. " started!")
-	end
+	end)
 
-	after_each = function()
+	after_each(function()
 		print ("[".. moduleName .. "]-> test #" .. count .. " finished!")
 		print("")
-	end
+	end)
 
 	-- The global Lapis
 	local lapis = nil
-	moduleName = "lapis"
+	
 	describe("Setup", function()
+		moduleName = "lapis"
 		-- A freebie
 		it("can tell the difference", function()
-			assert.are.same(1, 1)
+			ll("Hola lormal")
 		end)
 
 		-- Lapis
@@ -52,8 +54,8 @@ describe("Lua-Wapi", function()
 
 	-- The Llau library
 	local Llau = nil
-	moduleName = "Llau"
 	describe("Llau Base", function() 
+		moduleName = "Llau"
 		it("can load LlauBase", function()
 			-- Load my Library
 			Llau = require("Llau.Llau")
@@ -76,8 +78,9 @@ describe("Lua-Wapi", function()
 
 
 	local Base64 = nil
-	moduleName = "Base64"
+	
 	describe("Base64", function()
+		moduleName = "Base64"
 		it("can load Base64", function()
 			Base64 = require("Llau.base64")
 			assert.truthy(Base64)
@@ -100,6 +103,6 @@ describe("Lua-Wapi", function()
 		end)
 	end)
 
-	
+
 end)
 
