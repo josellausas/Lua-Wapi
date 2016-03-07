@@ -30,5 +30,4 @@ function it.decode(data)
   return table.concat(t)
 end
 
-
 return it
