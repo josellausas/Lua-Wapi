@@ -46,8 +46,8 @@
     <header class="navbar navbar-sticky navbar-light">
       <div class="container">
         <a href="index.html" class="site-logo">
-          <img src="img/logo-default.png" class="logo-default" alt="ZurApp">
-          <img src="img/logo-alt.png" class="logo-alt" alt="ZurApp">
+          <img src="<%= build_url() %>/img/logo-default.png" class="logo-default" alt="ZurApp">
+          <img src="<%= build_url() %>/img/logo-alt.png" class="logo-alt" alt="ZurApp">
         </a><!-- .site-logo -->
         
         <!-- Mobile Menu Toggle -->

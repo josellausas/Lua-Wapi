@@ -11,17 +11,17 @@
           data-interval="3000" autoplay interval timeout in miliseconds 
          -->
         <div class="phone-carousel" data-loop="true" data-autoplay="true" data-interval="4000">
-          <img src="img/device-slider/phone.png" class="phone-mask" alt="Phone">
+          <img src="<%= build_url() %>/img/device-slider/phone.png" class="phone-mask" alt="Phone">
           <!-- Fallback Cover Screen -->
           <div class="cover">
-            <img src="img/device-slider/screen01.png" alt="Screen 1">
+            <img src="<%= build_url() %>/img/device-slider/screen01.png" alt="Screen 1">
           </div>
           <div class="carousel">
             <div class="inner">
-              <img src="img/device-slider/screen01.png" alt="Screen 1">
-              <img src="img/device-slider/screen02.png" alt="Screen 2">
-              <img src="img/device-slider/screen03.png" alt="Screen 3">
-              <img src="img/device-slider/screen04.png" alt="Screen 4">
+              <img src="<%= build_url() %>/img/device-slider/screen01.png" alt="Screen 1">
+              <img src="<%= build_url() %>/img/device-slider/screen02.png" alt="Screen 2">
+              <img src="<%= build_url() %>/img/device-slider/screen03.png" alt="Screen 3">
+              <img src="<%= build_url() %>/img/device-slider/screen04.png" alt="Screen 4">
             </div>
           </div>
         </div><!-- .phone-carousel -->
@@ -40,8 +40,8 @@
           </div>
         </a>
         <!-- Google Play Button -->
-        <a href="static/app-debug.apk" class="btn btn-google-play">
-          <img src="img/google-play.png" alt="Google Play">
+        <a href="<%= build_url() %>/static/app-debug.apk" class="btn btn-google-play">
+          <img src="<%= build_url() %>/img/google-play.png" alt="Google Play">
           <span>Dowload for Android</span>
         </a>
       </div>
@@ -92,7 +92,7 @@
       </div>
     </div><!-- .col-md-8 -->
     <div class="col-md-4">
-      <img src="img/home/screen01.jpg" class="block-center" alt="Screen 1">
+      <img src="<%= build_url() %>/img/home/screen01.jpg" class="block-center" alt="Screen 1">
     </div><!-- .col-md-4 -->
   </div><!-- .row -->
   <div class="space-bottom-3x visible-lg"></div>
@@ -108,7 +108,7 @@
       <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
     </div><!-- .col-md-5.col-md-push-7 -->
     <div class="col-md-7 col-md-pull-5">
-      <img src="img/home/screen02.jpg" class="block-center" alt="Screen 2">
+      <img src="<%= build_url() %>/img/home/screen02.jpg" class="block-center" alt="Screen 2">
     </div><!-- .col-md-7.col-md-pull-5 -->
   </div><!-- .row -->
 </section><!-- .container -->
@@ -192,7 +192,7 @@
       <h4>iPhone</h4>
     </div>
   </a><!-- .app-store -->
-  <a href="static/app-debug.apk" class="market-btn google-play">
+  <a href="<%= build_url() %>/static/app-debug.apk" class="market-btn google-play">
     <div class="icon">
       <i class="fa fa-play"></i>
     </div>
@@ -225,10 +225,10 @@
       <div class="col-lg-4 col-md-5 space-bottom-2x">
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua quis nostrud eiusmod tempor.</p>
         <p class="space-bottom">Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-        <img src="img/home/browsers.png" alt="Browsers">
+        <img src="<%= build_url() %>/img/home/browsers.png" alt="Browsers">
       </div><!-- .col-lg-4.col-md-5 -->
       <div class="col-lg-8 col-md-7">
-        <img src="img/home/devices.png" class="block-center" alt="Devices">
+        <img src="<%= build_url() %>/img/home/devices.png" class="block-center" alt="Devices">
         <div class="padding-bottom visible-xs"></div>
       </div><!-- .col-lg-8.col-md-7 -->
     </div><!-- .row.text-light -->
@@ -284,13 +284,13 @@
         <!-- Tab Panes -->
         <div class="tab-content">
           <div role="tabpanel" class="tab-pane transition fade right in active" id="tab01">
-            <img src="img/home/featured-tabs/01.png" class="block-center" alt="Tab">
+            <img src="<%= build_url() %>/img/home/featured-tabs/01.png" class="block-center" alt="Tab">
           </div>
           <div role="tabpanel" class="tab-pane transition fade scale" id="tab02">
-            <img src="img/home/featured-tabs/02.png" class="block-center" alt="Tab">
+            <img src="<%= build_url() %>/img/home/featured-tabs/02.png" class="block-center" alt="Tab">
           </div>
           <div role="tabpanel" class="tab-pane transition fade flip" id="tab03">
-            <img src="img/home/featured-tabs/03.png" class="block-center" alt="Tab">
+            <img src="<%= build_url() %>/img/home/featured-tabs/03.png" class="block-center" alt="Tab">
           </div>
         </div><!-- .tab-content -->
       </div><!-- .col-md-7.col-md-push-5 -->
@@ -367,7 +367,7 @@
       <section class="team-member circle">
         <div class="team-header">
           <div class="avatar">
-            <img src="img/team/01.jpg" alt="Team">
+            <img src="<%= build_url() %>/img/team/01.jpg" alt="Team">
           </div>
           <div class="social-bar">
             <a href="#" class="sb-stackoverflow" data-toggle="tooltip" data-placement="top" title="Stack Overflow">
