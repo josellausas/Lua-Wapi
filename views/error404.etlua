@@ -14,15 +14,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 
   <!--Favicon-->
-  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <link rel="shortcut icon" href="favicon.ico" type="<%= build_url() %>/image/x-icon">
+  <link rel="icon" href="favicon.ico" type="<%= build_url() %>/image/x-icon">
 
   <!-- All Theme Styles including Bootstrap, FontAwesome, etc. compiled from styles.scss-->
-  <link href="css/styles.min.css" rel="stylesheet" media="screen">
+  <link href="<%= build_url() %>/css/styles.min.css" rel="stylesheet" media="screen">
 
   <!--Modernizr / Detectizr-->
-  <script src="js/vendor/modernizr.custom.js"></script>
-  <script src="js/vendor/detectizr.min.js"></script>
+  <script src="<%= build_url() %>/js/vendor/modernizr.custom.js"></script>
+  <script src="<%= build_url() %>/js/vendor/detectizr.min.js"></script>
 </head>
 
 <!-- Body -->
@@ -126,10 +126,10 @@
   </div><!-- .page-wrapper -->
 
   <!-- JavaScript (jQuery) libraries, plugins and custom scripts -->
-  <script src="js/vendor/jquery-2.1.4.min.js"></script>
-  <script src="js/vendor/preloader.min.js"></script>
-  <script src="js/vendor/smoothscroll.js"></script>
-  <script src="js/scripts.js"></script>
+  <script src="<%= build_url() %>/js/vendor/jquery-2.1.4.min.js"></script>
+  <script src="<%= build_url() %>/js/vendor/preloader.min.js"></script>
+  <script src="<%= build_url() %>/js/vendor/smoothscroll.js"></script>
+  <script src="<%= build_url() %>/js/scripts.js"></script>
 
 </body><!-- <body> -->
 
