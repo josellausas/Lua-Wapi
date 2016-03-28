@@ -5,7 +5,6 @@
 		> Work in progress. Documentation soon.
 
 ]]
-
 local lapis    	= require "lapis"
 local config   	= require("lapis.config").get()
 local mqtt     	= require("mqtt")
@@ -13,10 +12,20 @@ local markdown 	= require("markdown")
 local pgmoon 	= require("pgmoon")
 local console 	= require("lapis.console")
 local Llau 		= require("Llau.Llau")
-local Users     = require("Llau.LLUser")
+local LLUser     = require("Llau.LLUser")
 local Messages  = require("Llau.LLMessage")
 local csrf 		= require ("lapis.csrf")
 local cjson     = require "cjson.safe"
+
+-- Used for the logging ing
+local protectedLinkRequested = ""
+local cc = require("ansicolors")
+
+local function ll(msg)
+	local ccmsg = cc('%{red}[***LOG***]%{reset}\n\n%{blue}' .. msg .. '%{reset}\n\n')
+	ngx.log(ngx.NOTICE, ccmsg)
+end
+
 
 local mqtt_client = nil
 local mqttconf 	= {
@@ -62,15 +71,6 @@ local function registerEmail(theemail, clientip, sourceURL)
 end
 
 
-
--- Used for the database
-local pg 		= pgmoon.new({
-	host = "ec2-54-83-59-203.compute-1.amazonaws.com",
-	user = "wddcthddvouvtr",
-	password = "_EsJ9XVoYVSYXDWbUDOTQPdrph",
-	database = "d2k28tn5s3orl5"
-})
-
 -- Get a Lapis web app
 local app = lapis.Application()
 
@@ -82,47 +82,45 @@ app.layout = require "views.layout"		-- Sets the layout we are using.
 
 
 
---]]]]]]]]]]]]]]]]]]]]]]]]]]] WEB APP ]]]]]]]]]]]]]]]]]]]]]]
-
-
-
--- DEFAULT ROUTE
+-- [[ DEFAULT ROUTE ]]
 app.default_route = function ( self )	
 	print("Entered default function")
 	ngx.log(ngx.NOTICE, "Unknown path: " .. self.req.parsed_url.path)
 	return lapis.Application.default_route(self)
-
 end
 
 
 
---[[404]]
+--[[ 404 ]]
 app.handle_404 = function( self )
-	print("Found a 404")
 	ngx.log(ngx.NOTICE, "Uknown path: " .. self.req.parsed_url.path)
+	
 	-- Returns the code 404
 	return { status = 404, render="error404", layout=false }
 end
 
 
-
-
--- ERROR
---[[app.handle_error = function(self, err, trace)
+--[[ ERROR Handler ]]
+app.handle_error = function(self, err, trace)
 	-- Logs to the nginx console
-	ngx.log(ngx.NOTICE, "Lapis error: " .. err .. ": " .. trace)
+	ll("Lapis error: " .. err .. ": " .. trace)
 
 	-- Handle the erros with Lapis internaly.
 	lapis.Application.handle_error(self, err, trace)
 
-	-- TODO: Crashlytics?
-end]]
+	-- TODO: Notifiy the server of an error here
+end
 
-
-
-
--- MENU LIST
+-- [[MENU LIST]]
+-- Used for the database
+local pg 		= pgmoon.new({
+	host = "ec2-54-83-59-203.compute-1.amazonaws.com",
+	user = "wddcthddvouvtr",
+	password = "_EsJ9XVoYVSYXDWbUDOTQPdrph",
+	database = "d2k28tn5s3orl5"
+})
 local function getMenuList()
+	-- A dynamic menu.
 	pg:connect()
 	local res = pg:query("select * from menu")
 	pg:keepalive()
@@ -155,10 +153,7 @@ local function getMenuList()
 	   			button.icon = value
 	   		end
 
-	   		if(key == "sortorder") then
-	   			button.sortorder = value
-	   		end
-
+	   		if(key == "sortorder") then button.sortorder = value end
 		end
 
 		list[button.sortorder] = button
@@ -167,27 +162,17 @@ local function getMenuList()
 	return list
 end
 
-
-
-
 -- MARKDOWN PARSER
 app:get("readme","/readme", function(self)
-
+	-- Shows a readme file with markdown
 	readmeFile = io.open ("README.md", "r")
 	contents = readmeFile:read("*all")
 
+	-- Return the parsed HTML
 	return markdown(contents)
 end)
 
-
-
--- The LUA CONSOLE FTW!!!
-app:match("/console", console.make({env="heroku"}))
-
-
-
-
-
+-- Handle email subscriptions
 app:match("/subscribe/*", respond_to({
   GET = function(self)
     return { render = true }
@@ -195,6 +180,7 @@ app:match("/subscribe/*", respond_to({
   POST = function(self)
   	-- Grabs the ip
 	local forwardip = self.req.headers["x-forwarded-for"] or "no-forward"
+	
 	-- Grabs the email
 	local email 	= self.params.EMAIL
 
@@ -215,19 +201,13 @@ app:match("/subscribe/*", respond_to({
 }))
 
 
---[[ RESTUFLL JSONS : ]]
 
---[[ Calendar API ]]
-app:get("/calendar", function(self) 
-	local josellausas = Users.withUsername("jose")
-	-- TODO: Get username parameters from self
-	return Llau:getCalendarJSON("josellausas")
-end)
+
 
 
 --[[ Tasks API ]]
 app:get("list_tasks","/tasks", function(self)
-	local josellausas 	= Users.withUsername("jose")
+	local josellausas 	= LLUser.getWithUsername("jose")
 	local jsonData 		= Llau:getTasksJSON("josellausas")
 	if not jsonData then return "" end
 	return jsonData
@@ -248,29 +228,97 @@ responders.GET = function(self)
 end
 responders.POST = function(self)
 	print("Handling POST")
-	local josellausas = Users.withUsername("jose")
+	local josellausas = LLUser.getWithUsername("jose")
 	local newMsg      = Messages.new(josellausas,josellausas, "Hola hola")
-
 	return {redirect_to=self:url_for("index")}
 end
 app:match("/api/create-message", respond_to(responders) )
+
+
+app:get("logout", "/logout", function(self)
+	local forwardip = self.req.headers["x-forwarded-for"] or "no-forward"
+	self.session.current_user_id=nil
+	notifyMQTT(0,"Logged out", forwardip)
+end)
+
+app:match("login", "/login", respond_to({
+	GET = function(self)
+		self.muySecretToken = csrf.generate_token(self)
+		return {render = true}
+	end,
+	POST = capture_errors(function(self)
+		csrf.assert_token(self)
+
+		assert_valid(self.params, {
+			{"username", exists = true, min_length = 4, max_length = 128},
+			-- {"email", is_email = true, max_length = 128},
+			{"password", exists = true,  min_length = 4, max_length = 128}
+		})
+
+		-- Attempt to get a user from the database
+		local user = LLUser.getWithUsernameAndPassword(self.params.username, self.params.password)
+		-- User should exits for us to continue
+		if(not (user == nil) ) then
+			-- The user is found!
+			ll("Found! " .. user.username)
+			
+			-- Set this as the current session
+			self.session.current_user_id = user.username
+
+			-- Redirect to the protected page
+			if(protectedLinkRequested == "" or protectedLinkRequested == nil) then
+				-- Default login location
+				ll("Redirecting to default location")
+				return {redirect_to = self:url_for("admin")}
+			else
+				ll("Redirect to : " .. self:url_for(protectedLinkRequested))
+				return {redirect_to = self:url_for(protectedLinkRequested)}
+			end
+		else 
+			ll("Invalid User no user found!!!")
+		    -- No login
+		    yield_error(fmt("Invalid username/password"))
+		    return {redirect_to = self:url_for("login")}
+		end
+
+	end)
+}))
 
 
 --[[ Web administration ]]
 app:get("admin", "/admin", function(self)
 
 	local forwardip = self.req.headers["x-forwarded-for"] or "no-forward"
-	notifyMQTT(0,"Accessed admin!", forwardip)
+	notifyMQTT(0,"Attempt to access admin admin!", forwardip)
 
-	local josellausas 	= Users.withUsername("jose")
-	self.siteData 		= require("testData")
-	self.siteData.menuButtons = getMenuList()
+	-- Check for session
+	if self.session.current_user_id == nil then
+		-- Send to login so they do the things
+		protectedLinkRequested = "admin"
+		return {redirect_to=self:url_for("login")}
+	end
 
-	-- Fresh data from database:
-	self.msgs 	= Messages.allForUser(josellausas)
-	self.tasks 	= {}
-	self.alerts = {}
-	return {render="dashboards.default",layout="adminlayout"}
+	-- Only allows my user to get in here
+	if self.session.current_user_id == "jose" then
+		notifyMQTT(0,"Accessed admin with my acct!", forwardip)
+		-- TODO check account permission here
+		local josellausas 	= LLUser.getWithUsername("jose")
+		self.siteData 		= require("testData")
+	
+		self.siteData.menuButtons = getMenuList()
+
+		-- Fresh data from database:
+		self.msgs 	= Messages.allForUser(josellausas)
+		self.tasks 	= {}
+		self.alerts = {}
+		return {render="dashboards.default",layout="adminlayout"}
+	else
+		-- Sesion was awkward
+		notifyMQTT(9, "Very weird login", forwardip)
+	end
+
+	-- If we get here we dont have permission
+	return {redirect_to=self:url_for("index")}
 end)
 
 --[[ Download the app ]]
@@ -311,6 +359,8 @@ app:get("/robots", "/robots.txt", function(self)
 	]]
 end)
 
+-- The LUA CONSOLE FTW!!!
+app:match("/console", console.make({env="heroku"}))
 
 --[[ Serve the webapp ]]
 lapis.serve(app)	-- Serves a lapis web app.
