@@ -241,50 +241,6 @@ app:get("logout", "/logout", function(self)
 	notifyMQTT(0,"Logged out", forwardip)
 end)
 
-app:match("login", "/login", respond_to({
-	GET = function(self)
-		self.muySecretToken = csrf.generate_token(self)
-		return {render = true}
-	end,
-	POST = capture_errors(function(self)
-		csrf.assert_token(self)
-
-		assert_valid(self.params, {
-			{"username", exists = true, min_length = 4, max_length = 128},
-			-- {"email", is_email = true, max_length = 128},
-			{"password", exists = true,  min_length = 4, max_length = 128}
-		})
-
-		-- Attempt to get a user from the database
-		local user = LLUser.getWithUsernameAndPassword(self.params.username, self.params.password)
-		-- User should exits for us to continue
-		if(not (user == nil) ) then
-			-- The user is found!
-			ll("Found! " .. user.username)
-			
-			-- Set this as the current session
-			self.session.current_user_id = user.username
-
-			-- Redirect to the protected page
-			if(protectedLinkRequested == "" or protectedLinkRequested == nil) then
-				-- Default login location
-				ll("Redirecting to default location")
-				return {redirect_to = self:url_for("admin")}
-			else
-				ll("Redirect to : " .. self:url_for(protectedLinkRequested))
-				return {redirect_to = self:url_for(protectedLinkRequested)}
-			end
-		else 
-			ll("Invalid User no user found!!!")
-		    -- No login
-		    yield_error(fmt("Invalid username/password"))
-		    return {redirect_to = self:url_for("index")}
-		end
-
-	end)
-}))
-
-
 --[[ Web administration ]]
 app:match("admin", "/admin", respond_to({
 	GET = function(self)
@@ -333,6 +289,52 @@ app:match("admin", "/admin", respond_to({
 		return {redirect_to=self:url_for("index")}
 	end,
 }))
+
+app:match("login", "/login", respond_to({
+	GET = function(self)
+		self.muySecretToken = csrf.generate_token(self)
+		return {render = true}
+	end,
+	POST = capture_errors(function(self)
+		csrf.assert_token(self)
+
+		assert_valid(self.params, {
+			{"username", exists = true, min_length = 4, max_length = 128},
+			-- {"email", is_email = true, max_length = 128},
+			{"password", exists = true,  min_length = 4, max_length = 128}
+		})
+
+		-- Attempt to get a user from the database
+		local user = LLUser.getWithUsernameAndPassword(self.params.username, self.params.password)
+		-- User should exits for us to continue
+		if(not (user == nil) ) then
+			-- The user is found!
+			ll("Found! " .. user.username)
+			
+			-- Set this as the current session
+			self.session.current_user_id = user.username
+
+			-- Redirect to the protected page
+			if(protectedLinkRequested == "" or protectedLinkRequested == nil) then
+				-- Default login location
+				ll("Redirecting to default location")
+				return {redirect_to = self:url_for("admin")}
+			else
+				ll("Redirect to : " .. self:url_for(protectedLinkRequested))
+				return {redirect_to = self:url_for(protectedLinkRequested)}
+			end
+		else 
+			ll("Invalid User no user found!!!")
+		    -- No login
+		    yield_error(fmt("Invalid username/password"))
+		    return {redirect_to = self:url_for("index")}
+		end
+
+	end)
+}))
+
+
+
 
 --[[ Download the app ]]
 app:get("getapp", "/getapp", function(self)
