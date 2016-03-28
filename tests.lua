@@ -4,15 +4,15 @@
 ]]
 
 local lapis 	     = require("lapis")
-local Model 		 = require("lapis.db.model").Model
 local config 		 = require ("lapis.config").get()
+local Model 		 = require("lapis.db.model").Model
 local capture_errors = require("lapis.application").capture_errors
 local respond_to     = require("lapis.application").respond_to
 local mock_request 	 = require("lapis.spec.request").mock_request
 local use_test_env   = require("lapis.spec").use_test_env
 
 -- Instantiate the thing
-local app = require("app")
+local app = require("web")
 
 
 describe("Llau Systems: ", function()

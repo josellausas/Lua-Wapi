@@ -1,8 +1,6 @@
 local config
 config = require("lapis.config").config
 config("heroku", function()
-  session_name("wapi_auth_access_44")
-  secret("h3uYth77Kkfsd33")
   port(os.getenv("PORT"))
   postgresql_url(os.getenv("DATABASE_URL"))
   return postgres(function()

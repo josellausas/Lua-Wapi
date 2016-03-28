@@ -395,4 +395,4 @@ end)
 app:match("console", "/console", console.make({env="heroku"}))
 
 --[[ Serve the webapp ]]
-lapis.serve(app)	-- Serves a lapis web app.
+return app
