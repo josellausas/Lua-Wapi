@@ -44,6 +44,17 @@ local mqttconf 	= {
 local capture_errors = require("lapis.application").capture_errors
 local respond_to     = require("lapis.application").respond_to
 
+-- Get a Lapis web app
+local app = lapis.Application()
+
+-- Enable EtLua templates
+app:enable("etlua")
+
+-- Set the default layout
+app.layout = require "views.layout"		-- Sets the layout we are using.
+
+app.webcontent = require "webcontent"
+
 --[[ MQTT API ]]
 local function notifyMQTT(severe, msg, ipAddress)
 	Llau:notify(severe,msg,ipAddress)
@@ -74,14 +85,7 @@ local function registerEmail(theemail, clientip, sourceURL)
 end
 
 
--- Get a Lapis web app
-local app = lapis.Application()
 
--- Enable EtLua templates
-app:enable("etlua")
-
--- Set the default layout
-app.layout = require "views.layout"		-- Sets the layout we are using.
 
 
 
