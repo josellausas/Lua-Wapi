@@ -286,51 +286,53 @@ app:match("login", "/login", respond_to({
 
 
 --[[ Web administration ]]
-app:get("admin", "/admin", function(self)
+app:match("admin", "/admin", respond_to({
+	GET = function(self)
+		local forwardip = self.req.headers["x-forwarded-for"] or "no-forward"
+		notifyMQTT(0,"Attempt to access admin admin!", forwardip)
 
-	local forwardip = self.req.headers["x-forwarded-for"] or "no-forward"
-	notifyMQTT(0,"Attempt to access admin admin!", forwardip)
+		-- Check for session
+		if self.session.current_user_id == nil then
+			ll("Redirecting to login")
+			-- Send to login so they do the things
+			protectedLinkRequested = "admin"
+			return {redirect_to=self:url_for("login")}
+		end
 
-	-- Check for session
-	if self.session.current_user_id == nil then
-		ll("Redirecting to login")
-		-- Send to login so they do the things
-		protectedLinkRequested = "admin"
-		return {redirect_to=self:url_for("login")}
-	end
+		-- Only allows my user to get in here
+		if self.session.current_user_id == "jose" then
+			ll("Session is good")
+			notifyMQTT(0,"Accessed admin with my acct!", forwardip)
+			-- TODO check account permission here
+			local josellausas 	= LLUser.getWithUsername("jose")
+			
+			if(josellausas == nil) then
+				notifyMQTT(9, "Error al cargar usario", forwardip)
+			else
+			    ll("Jose exists!")
+			end
 
-	-- Only allows my user to get in here
-	if self.session.current_user_id == "jose" then
-		ll("Session is good")
-		notifyMQTT(0,"Accessed admin with my acct!", forwardip)
-		-- TODO check account permission here
-		local josellausas 	= LLUser.getWithUsername("jose")
-		
-		if(josellausas == nil) then
-			notifyMQTT(9, "Error al cargar usario", forwardip)
+
+			self.siteData 		= require("testData")
+			self.siteData.menuButtons = getMenuList()
+
+			-- Fresh data from database:
+			self.msgs 	= Messages.allForUser(josellausas)
+			self.tasks 	= {}
+			self.alerts = {}
+			ll("Sending to the admin")
+			return {render="dashboards.default",layout="adminlayout"}
 		else
-		    ll("Jose exists!")
+			ll("Very weird login")
+			-- Sesion was awkward
+			notifyMQTT(9, "Very weird login", forwardip)
 		end
 
 
-		self.siteData 		= require("testData")
-		self.siteData.menuButtons = getMenuList()
-
-		-- Fresh data from database:
-		self.msgs 	= Messages.allForUser(josellausas)
-		self.tasks 	= {}
-		self.alerts = {}
-		ll("Sending to the admin")
-		return {render="dashboards.default",layout="adminlayout"}
-	else
-		-- Sesion was awkward
-		notifyMQTT(9, "Very weird login", forwardip)
-	end
-
-	
-	-- If we get here we dont have permission
-	return {redirect_to=self:url_for("index")}
-end)
+		-- If we get here we dont have permission
+		return {redirect_to=self:url_for("index")}
+	end,
+}))
 
 --[[ Download the app ]]
 app:get("getapp", "/getapp", function(self)
