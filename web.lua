@@ -16,6 +16,9 @@ local LLUser     = require("Llau.LLUser")
 local Messages  = require("Llau.LLMessage")
 local csrf 		= require ("lapis.csrf")
 local cjson     = require "cjson.safe"
+local lapis_validate = require "lapis.validate"
+local assert_valid 	 = lapis_validate.assert_valid
+local yield_error 	 = require("lapis.application").yield_error
 
 -- Used for the logging ing
 local protectedLinkRequested = ""
