@@ -359,13 +359,13 @@ end)
 
 --[[ Web INDEX re-route]]
 app:get("/index", "/index.html", function(self)
-	self.webcontent = require "webcontent"
+	self.webcontent = require("webcontent")
 	return {render = "index" }
 end)
 
 --[[ Web INDEX ]]
 app:get("index","/", function(self)
-	self.webcontent = require "webcontent"
+	self.webcontent = require("webcontent")
 	return { render = "index" }
 end)
 
