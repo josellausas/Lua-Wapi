@@ -392,7 +392,7 @@ app:get("/robots", "/robots.txt", function(self)
 end)
 
 -- The LUA CONSOLE FTW!!!
-app:match("/console", console.make({env="heroku"}))
+app:match("console", "/console", console.make({env="heroku"}))
 
 --[[ Serve the webapp ]]
 lapis.serve(app)	-- Serves a lapis web app.
