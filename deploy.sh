@@ -1,3 +1,3 @@
 #!/bin/bash
-lapis build && git add . && git commit -m "Fast commit" && git push heroku master && heroku logs -t
+git add . && git commit --verbose; git push heroku master && heroku logs -t
 #ohhh
