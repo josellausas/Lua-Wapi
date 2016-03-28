@@ -251,6 +251,7 @@ end)
 --[[ Web administration ]]
 app:match("admin", "/admin", respond_to({
 	GET = function(self)
+		self.webcontent = require("webcontent")
 		local forwardip = self.req.headers["x-forwarded-for"] or "no-forward"
 		notifyMQTT(0,"Attempt to access admin admin!", forwardip)
 
