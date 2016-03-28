@@ -90,6 +90,8 @@ function pack.new(username, email, password)
 	userClass.email    = email
 	userClass.role     = 2
 	userClass.hash     = passHash
+	userClass.first_name = username
+	userClass.password = password
 
 
 	-- Crete the database object
@@ -97,7 +99,7 @@ function pack.new(username, email, password)
 
 	-- Check for error
 	if(instance == nil) then
-		print("Error de base de datos: " .. e)
+		ll("Error de base de datos: " .. e)
 		return nil
 	end
 

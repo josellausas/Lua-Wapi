@@ -278,7 +278,7 @@ app:match("login", "/login", respond_to({
 			ll("Invalid User no user found!!!")
 		    -- No login
 		    yield_error(fmt("Invalid username/password"))
-		    return {redirect_to = self:url_for("login")}
+		    return {redirect_to = self:url_for("index")}
 		end
 
 	end)
