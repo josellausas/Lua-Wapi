@@ -21,7 +21,7 @@
 
                 <!-- DASHBOARD BUTTON -->
                 <li>
-                    <a href="<%=menuButton.link%>"><i class="<%=menuButton.icon%>"></i><%=menuButton.label%></a>
+                    <a href="<%= url_for(menuButton.link) %>"><i class="<%=menuButton.icon%>"></i><%=menuButton.label%></a>
                 </li>
             <% end %>
                 
