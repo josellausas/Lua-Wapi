@@ -292,11 +292,18 @@ app:match("admin", "/admin", respond_to({
 
 app:match("login", "/login", respond_to({
 	GET = function(self)
-		self.muySecretToken = csrf.generate_token(self)
+		self.thetok = csrf.generate_token(self)
 		return {render = true}
 	end,
 	POST = capture_errors(function(self)
-		csrf.assert_token(self)
+
+		ll("Posted login!")
+		local success, err = csrf.assert_token(self)
+
+		if(success == nil) then
+			ll("CSRF Fail!")
+			ll(err)
+		end
 
 		assert_valid(self.params, {
 			{"username", exists = true, min_length = 4, max_length = 128},
