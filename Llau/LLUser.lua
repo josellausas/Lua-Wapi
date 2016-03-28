@@ -16,6 +16,13 @@ local UserModel = Model:extend("users", {
 	timestamp = true
 })
 
+local cc = require("ansicolors")
+
+local function ll(msg)
+	local ccmsg = cc('%{red}[***LOG***]%{reset}\n\n%{blue}' .. msg .. '%{reset}\n\n')
+	ngx.log(ngx.NOTICE, ccmsg)
+end
+
 -- Declare the module
 local pack = {}
 
