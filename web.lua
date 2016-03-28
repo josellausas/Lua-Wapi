@@ -53,7 +53,7 @@ app:enable("etlua")
 -- Set the default layout
 app.layout = require "views.layout"		-- Sets the layout we are using.
 
-app.webcontent = require "webcontent"
+
 
 --[[ MQTT API ]]
 local function notifyMQTT(severe, msg, ipAddress)
@@ -359,11 +359,13 @@ end)
 
 --[[ Web INDEX re-route]]
 app:get("/index", "/index.html", function(self)
+	self.webcontent = require "webcontent"
 	return {render = "index" }
 end)
 
 --[[ Web INDEX ]]
 app:get("index","/", function(self)
+	self.webcontent = require "webcontent"
 	return { render = "index" }
 end)
 
