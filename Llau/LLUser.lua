@@ -124,8 +124,13 @@ end
 ]]
 function pack.listAll()
 	-- Queries the database and returns a list of all the Users
-	
+	local allUsers = UserModel:select()
 
+	for i,v in pairs(allUsers) do
+		decorateClass(v)
+	end
+
+	return allUsers
 end
 
 
