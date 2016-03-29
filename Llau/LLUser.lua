@@ -122,8 +122,10 @@ end
 --[[
 	Gets all the users
 ]]
-function pack.getAll()
-	-- TODO: Query the DB and return a list of users
+function pack.listAll()
+	-- Queries the database and returns a list of all the Users
+	
+
 end
 
 
