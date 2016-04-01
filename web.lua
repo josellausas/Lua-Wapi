@@ -300,11 +300,12 @@ app:match("admin", "/admin", respond_to({
 
 app:match("login", "/login", respond_to({
 	GET = function(self)
+		self.webcontent = require("webcontent")
 		self.thetok = csrf.generate_token(self)
 		return {render = true}
 	end,
 	POST = capture_errors(function(self)
-
+		self.webcontent = require("webcontent")
 		ll("Posted login!")
 		local success, err = csrf.assert_token(self)
 
