@@ -267,11 +267,9 @@ end)
 --[[ Web administration ]]
 app:match("admin", "/admin", respond_to({
 	GET = function(self)
-		
+		setSessionVars(self)
 		local forwardip = self.req.headers["x-forwarded-for"] or "no-forward"
 		notifyMQTT(0,"Attempt to access admin admin!", forwardip)
-
-		setSessionVars(self)
 		-- Check for session
 		if self.session.current_user_id == nil then
 			ll("Redirecting to login")
@@ -322,7 +320,6 @@ app:match("login", "/login", respond_to({
 		return {render = true}
 	end,
 	POST = capture_errors(function(self)
-		
 		ll("Posted login!")
 		local success, err = csrf.assert_token(self)
 
@@ -351,6 +348,7 @@ app:match("login", "/login", respond_to({
 			if(protectedLinkRequested == "" or protectedLinkRequested == nil) then
 				-- Default login location
 				ll("Redirecting to default location")
+				setSessionVars(self)
 				return {redirect_to = self:url_for("admin")}
 			else
 				ll("Redirect to : " .. self:url_for(protectedLinkRequested))
