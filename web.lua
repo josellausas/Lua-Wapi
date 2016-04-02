@@ -410,7 +410,7 @@ app:get("/robots", "/robots.txt", function(self)
 	]]
 end)
 
-app:match("/console", console.make({env="heroku"}))
+app:match("/console", console.make())
 
 
 
