@@ -162,27 +162,24 @@ make = function(opts)
         }
       })
       if self.params.lang == "lua" then
-        print(self.params.code)
-        ngx.log(ngx.NOTICE, "Code sent" .. self.params.code)
         local fn, err = loadstring(self.params.code)
         if err then
-          local _ = {
+          return {
             json = {
               error = err
             }
           }
         else
-          print("Doing this things")
           local lines, queries = run(self, fn)
           if lines then
-            local _ = {
+            return {
               json = {
                 lines = lines,
                 queries = queries
               }
             }
           else
-            local _ = {
+            return {
               json = {
                 error = queries
               }
