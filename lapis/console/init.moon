@@ -94,7 +94,7 @@ make = (opts={}) ->
       }
 
       if @params.lang == "lua"
-        fn, err = loadstring @params.code
+        fn, err = loadstring "return " .. @params.code
         if err
           { json: { error: err } }
         else

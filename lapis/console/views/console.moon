@@ -1,4 +1,3 @@
-
 import Widget from require "lapis.html"
 
 embed_assets = true
