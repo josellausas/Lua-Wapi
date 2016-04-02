@@ -99,6 +99,7 @@ end
 
 -- [[ DEFAULT ROUTE ]]
 app.default_route = function ( self )
+	setSessionVars(self)
 	print("Entered default function")
 	ngx.log(ngx.NOTICE, "Unknown path: " .. self.req.parsed_url.path)
 	return lapis.Application.default_route(self)
@@ -118,6 +119,7 @@ end
 
 --[[ ERROR Handler ]]
 app.handle_error = function(self, err, trace)
+	setSessionVars(self)
 	-- Logs to the nginx console
 	ll("Lapis error: " .. err .. ": " .. trace)
 
