@@ -186,8 +186,7 @@ make = function(opts)
             }
           end
         end
-      end
-      if self.params.lang == "moonscript" then
+      elseif self.params.lang == "moonscript" then
         local moonscript = require("moonscript.base")
         local fn, err = moonscript.loadstring(self.params.code)
         if err then

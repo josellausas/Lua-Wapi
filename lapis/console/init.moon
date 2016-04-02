@@ -93,7 +93,17 @@ make = (opts={}) ->
         { "lang", one_of: {"lua", "moonscript"} }
       }
 
-      if @params.lang == "moonscript"
+      if @params.lang == "lua"
+        fn, err = loadstring @params.code
+        if err
+          { json: { error: err } }
+        else
+          lines, queries = run @, fn
+          if lines
+            { json: { :lines, :queries } }
+          else
+            { json: { error: queries } }
+      elseif @params.lang == "moonscript"
         moonscript = require "moonscript.base"
         fn, err = moonscript.loadstring @params.code
         if err
