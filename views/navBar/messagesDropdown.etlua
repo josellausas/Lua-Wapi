@@ -1,17 +1,11 @@
-
 <li class="dropdown">
     <!-- Dropdown button -->
     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
         <i class="fa fa-envelope fa-fw"></i>  <i class="fa fa-caret-down"></i>
-    </a>
-    
+    </a>    
     <ul class="dropdown-menu dropdown-messages">
-        
-
         <!-- MESSAGE LOOP -->
         <% for i,msg in ipairs(msgs) do %>
-
-    
             <!-- UN MENSAJE -->
             <li>
                 <a href="#">
