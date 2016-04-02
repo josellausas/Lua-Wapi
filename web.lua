@@ -267,10 +267,11 @@ end)
 --[[ Web administration ]]
 app:match("admin", "/admin", respond_to({
 	GET = function(self)
-		setSessionVars(self)
+		
 		local forwardip = self.req.headers["x-forwarded-for"] or "no-forward"
 		notifyMQTT(0,"Attempt to access admin admin!", forwardip)
 
+		setSessionVars(self)
 		-- Check for session
 		if self.session.current_user_id == nil then
 			ll("Redirecting to login")
@@ -409,7 +410,7 @@ app:get("/robots", "/robots.txt", function(self)
 	]]
 end)
 
-app:match("console","/console", console.make({env="heroku"}))
+app:match("console","/console", console.make())
 
 
 
