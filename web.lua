@@ -135,7 +135,6 @@ local pg 		= pgmoon.new({
 	database = "d2k28tn5s3orl5"
 })
 local function getMenuList()
-	setSessionVars(self)
 	-- A dynamic menu.
 	pg:connect()
 	local res = pg:query("select * from menu")
@@ -322,7 +321,7 @@ app:match("login", "/login", respond_to({
 		return {render = true}
 	end,
 	POST = capture_errors(function(self)
-		setSessionVars(self)
+		
 		ll("Posted login!")
 		local success, err = csrf.assert_token(self)
 
