@@ -268,6 +268,7 @@ end)
 app:match("admin", "/admin", respond_to({
 	GET = function(self)
 		setSessionVars(self)
+		ll("Getting admin")
 		local forwardip = self.req.headers["x-forwarded-for"] or "no-forward"
 		notifyMQTT(0,"Attempt to access admin admin!", forwardip)
 		-- Check for session
@@ -408,7 +409,7 @@ app:get("/robots", "/robots.txt", function(self)
 	]]
 end)
 
-app:match("/console", console.make({env="heroku"}))
+app:match("/console", console.make())
 
 
 
