@@ -95,7 +95,8 @@ end
 
 
 -- [[ DEFAULT ROUTE ]]
-app.default_route = function ( self )	
+app.default_route = function ( self )
+	setSessionVars(self)	
 	print("Entered default function")
 	ngx.log(ngx.NOTICE, "Unknown path: " .. self.req.parsed_url.path)
 	return lapis.Application.default_route(self)
@@ -105,6 +106,7 @@ end
 
 --[[ 404 ]]
 app.handle_404 = function( self )
+	setSessionVars(self)
 	ngx.log(ngx.NOTICE, "Uknown path: " .. self.req.parsed_url.path)
 	
 	-- Returns the code 404
@@ -114,6 +116,7 @@ end
 
 --[[ ERROR Handler ]]
 app.handle_error = function(self, err, trace)
+	setSessionVars(self)
 	-- Logs to the nginx console
 	ll("Lapis error: " .. err .. ": " .. trace)
 
@@ -132,6 +135,7 @@ local pg 		= pgmoon.new({
 	database = "d2k28tn5s3orl5"
 })
 local function getMenuList()
+	setSessionVars(self)
 	-- A dynamic menu.
 	pg:connect()
 	local res = pg:query("select * from menu")
@@ -248,7 +252,7 @@ responders.POST = function(self)
 	setSessionVars(self)
 	print("Handling POST")
 	local josellausas = LLUser.getWithUsername("jose")
-	local newMsg      = Messages.new(josellausas,josellausas, "Hola hola")
+	local newMsg      = Messages.new(josellausas, josellausas, "Hola hola")
 	return {redirect_to=self:url_for("index")}
 end
 app:match("/api/create-message", respond_to(responders) )
@@ -265,7 +269,6 @@ end)
 app:match("admin", "/admin", respond_to({
 	GET = function(self)
 		setSessionVars(self)
-		self.webcontent = require("webcontent")
 		local forwardip = self.req.headers["x-forwarded-for"] or "no-forward"
 		notifyMQTT(0,"Attempt to access admin admin!", forwardip)
 
@@ -315,13 +318,11 @@ app:match("admin", "/admin", respond_to({
 app:match("login", "/login", respond_to({
 	GET = function(self)
 		setSessionVars(self)
-		self.webcontent = require("webcontent")
 		self.thetok = csrf.generate_token(self)
 		return {render = true}
 	end,
 	POST = capture_errors(function(self)
 		setSessionVars(self)
-		self.webcontent = require("webcontent")
 		ll("Posted login!")
 		local success, err = csrf.assert_token(self)
 
@@ -391,6 +392,7 @@ end)
 
 --[[ A nice honeypot ]]
 app:get("its-a-trap", "/its-a-trap", function(self)
+	setSessionVars(self)
 	local forwardip = self.req.headers["x-forwarded-for"] or "no-forward"
 	notifyMQTT(3, "Robot hit honeypot!!!!", forwardip)
 	return {render = "index" }
