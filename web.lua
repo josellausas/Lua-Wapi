@@ -29,6 +29,11 @@ local function ll(msg)
 	ngx.log(ngx.NOTICE, ccmsg)
 end
 
+local function setSessionVars(sess)
+	sess.webcontent = require("webcontent")
+	sess.rootURL = ngx.var.scheme .. "s://" .. ngx.var.host
+end
+
 
 local mqtt_client = nil
 local mqttconf 	= {
@@ -171,6 +176,7 @@ end
 
 -- MARKDOWN PARSER
 app:get("readme","/readme", function(self)
+	setSessionVars(self)
 	-- Shows a readme file with markdown
 	readmeFile = io.open ("README.md", "r")
 	contents = readmeFile:read("*all")
@@ -182,9 +188,11 @@ end)
 -- Handle email subscriptions
 app:match("/subscribe/*", respond_to({
   GET = function(self)
+	  setSessionVars(self)
     return { render = true }
   end,
   POST = function(self)
+  	setSessionVars(self)
   	-- Grabs the ip
 	local forwardip = self.req.headers["x-forwarded-for"] or "no-forward"
 	
@@ -214,6 +222,7 @@ app:match("/subscribe/*", respond_to({
 
 --[[ Tasks API ]]
 app:get("list_tasks","/tasks", function(self)
+	setSessionVars(self)
 	local josellausas 	= LLUser.getWithUsername("jose")
 	local jsonData 		= Llau:getTasksJSON("josellausas")
 	if not jsonData then return "" end
@@ -223,6 +232,7 @@ end)
 
 --[[ Users API ]]
 app:get("/users", function(self)
+	setSessionVars(self)
 	return Llau:getUsersJSON()
 end)
 
@@ -230,10 +240,12 @@ end)
 --[[ Messages API]]
 responders = {}
 responders.GET = function(self)
+	setSessionVars(self)
 	print("Handling GET")
 	return {status=200, layout=false, "OK"}
 end
 responders.POST = function(self)
+	setSessionVars(self)
 	print("Handling POST")
 	local josellausas = LLUser.getWithUsername("jose")
 	local newMsg      = Messages.new(josellausas,josellausas, "Hola hola")
@@ -243,6 +255,7 @@ app:match("/api/create-message", respond_to(responders) )
 
 
 app:get("logout", "/logout", function(self)
+	setSessionVars(self)
 	local forwardip = self.req.headers["x-forwarded-for"] or "no-forward"
 	self.session.current_user_id=nil
 	notifyMQTT(0,"Logged out", forwardip)
@@ -251,6 +264,7 @@ end)
 --[[ Web administration ]]
 app:match("admin", "/admin", respond_to({
 	GET = function(self)
+		setSessionVars(self)
 		self.webcontent = require("webcontent")
 		local forwardip = self.req.headers["x-forwarded-for"] or "no-forward"
 		notifyMQTT(0,"Attempt to access admin admin!", forwardip)
@@ -300,11 +314,13 @@ app:match("admin", "/admin", respond_to({
 
 app:match("login", "/login", respond_to({
 	GET = function(self)
+		setSessionVars(self)
 		self.webcontent = require("webcontent")
 		self.thetok = csrf.generate_token(self)
 		return {render = true}
 	end,
 	POST = capture_errors(function(self)
+		setSessionVars(self)
 		self.webcontent = require("webcontent")
 		ll("Posted login!")
 		local success, err = csrf.assert_token(self)
@@ -354,6 +370,7 @@ app:match("login", "/login", respond_to({
 
 --[[ Download the app ]]
 app:get("getapp", "/getapp", function(self)
+	setSessionVars(self)
 	local forwardip = self.req.headers["x-forwarded-for"] or "no-forward"
 	notifyMQTT(0, "App downloaded!", forwardip)
 	return { redirect_to="static/app-debug.apk", layout=false }
@@ -361,12 +378,13 @@ end)
 
 --[[ Web INDEX re-route]]
 app:get("/index", "/index.html", function(self)
-	self.webcontent = require("webcontent")
+	setSessionVars(self)
 	return {render = "index" }
 end)
 
 --[[ Web INDEX ]]
 app:get("index","/", function(self)
+	setSessionVars(self)
 	self.webcontent = require("webcontent")
 	return { render = "index" }
 end)
@@ -379,8 +397,6 @@ app:get("its-a-trap", "/its-a-trap", function(self)
 end)
 
 -- [[ Serves the app ]]
-app:get("llaubase", "/ios/llaubase")
-
 app:get("/robots", "/robots.txt", function(self)
 	return [[
 	User-agent: *

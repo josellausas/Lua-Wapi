@@ -1,3 +1,5 @@
+
+--[[ Aqui estan las variables para presentar la app]]
 local webcontent = {
 	title = "Zunware",
 	description = "Zunware Apps| Mobile and Tech Integrations",
