@@ -162,6 +162,7 @@ make = function(opts)
         }
       })
       if self.params.lang == "lua" then
+        print(self.params.code)
         local fn, err = loadstring(self.params.code)
         if err then
           local _ = {
