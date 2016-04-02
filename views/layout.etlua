@@ -111,7 +111,7 @@
 
               <div class="space-bottom-2x visible-xs"></div>
               <a href="index.html" class="footer-logo">
-                <img src="img/logo-default.png" alt="ZurApp">
+                <img src="<%=rootURL%>/img/logo-default.png" alt="ZurApp">
               </a><!-- .footer-logo -->
 
               <div class="social-bar">
