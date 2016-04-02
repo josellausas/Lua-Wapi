@@ -55,7 +55,7 @@
     <script src="<%=rootURL%>/bower_components/morrisjs/morris.min.js"></script>
     <script src="<%=rootURL%>/js/morris-data.js"></script>
     <!-- Custom Theme JavaScript -->
-    <script src="<%= build_url() %>/dist/js/sb-admin-2.js"></script>
+    <script src="<%=rootURL%>/dist/js/sb-admin-2.js"></script>
 </body>
 
 </html>

@@ -3,26 +3,26 @@
 
 <head>
   <meta charset="utf-8">
-  <title>ZurApp | 404</title>
+  <title>Zunware | 404</title>
 
   <!--SEO Meta Tags-->
-  <meta name="description" content="ZurApp - Multiconcept App Showcase Theme" />
-  <meta name="keywords" content="multipurpose, multiconcept, app showcase, mobile, blog, portfolio, specialty pages, landing, elements, shortcodes, html5, css3, jquery, js, modernizr, gallery, slider, touch, creative" />
-  <meta name="author" content="8Guild" />
+  <meta name="description" content="Page Not found" />
+  <meta name="keywords" content="multipurpose, app, ios, android, creative" />
+  <meta name="author" content="Zunware" />
 
   <!--Mobile Specific Meta Tag-->
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 
   <!--Favicon-->
-  <link rel="shortcut icon" href="favicon.ico" type="<%= build_url() %>/image/x-icon">
-  <link rel="icon" href="favicon.ico" type="<%= build_url() %>/image/x-icon">
+  <link rel="shortcut icon" href="favicon.ico" type="<%=rootURL%>/image/x-icon">
+  <link rel="icon" href="favicon.ico" type="<%=rootURL%>/image/x-icon">
 
   <!-- All Theme Styles including Bootstrap, FontAwesome, etc. compiled from styles.scss-->
-  <link href="<%= build_url() %>/css/styles.min.css" rel="stylesheet" media="screen">
+  <link href="<%=rootURL%>/css/styles.min.css" rel="stylesheet" media="screen">
 
   <!--Modernizr / Detectizr-->
-  <script src="<%= build_url() %>/js/vendor/modernizr.custom.js"></script>
-  <script src="<%= build_url() %>/js/vendor/detectizr.min.js"></script>
+  <script src="<%=rootURL%>/js/vendor/modernizr.custom.js"></script>
+  <script src="<%=rootURL%>/js/vendor/detectizr.min.js"></script>
 </head>
 
 <!-- Body -->
@@ -46,8 +46,8 @@
     <header class="navbar navbar-sticky navbar-light">
       <div class="container">
         <a href="index.html" class="site-logo">
-          <img src="<%= build_url() %>/img/logo-default.png" class="logo-default" alt="ZurApp">
-          <img src="<%= build_url() %>/img/logo-alt.png" class="logo-alt" alt="ZurApp">
+          <img src="<%=rootURL%>/img/logo-default.png" class="logo-default" alt="ZurApp">
+          <img src="<%=rootURL%>/img/logo-alt.png" class="logo-alt" alt="ZurApp">
         </a><!-- .site-logo -->
         
         <!-- Mobile Menu Toggle -->
@@ -126,10 +126,10 @@
   </div><!-- .page-wrapper -->
 
   <!-- JavaScript (jQuery) libraries, plugins and custom scripts -->
-  <script src="<%= build_url() %>/js/vendor/jquery-2.1.4.min.js"></script>
-  <script src="<%= build_url() %>/js/vendor/preloader.min.js"></script>
-  <script src="<%= build_url() %>/js/vendor/smoothscroll.js"></script>
-  <script src="<%= build_url() %>/js/scripts.js"></script>
+  <script src="<%=rootURL%>/js/vendor/jquery-2.1.4.min.js"></script>
+  <script src="<%=rootURL%>/js/vendor/preloader.min.js"></script>
+  <script src="<%=rootURL%>/js/vendor/smoothscroll.js"></script>
+  <script src="<%=rootURL%>/js/scripts.js"></script>
 
 </body><!-- <body> -->
 
