@@ -52,9 +52,6 @@ local respond_to     = require("lapis.application").respond_to
 -- Get a Lapis web app
 local app = lapis.Application()
 
--- The LUA CONSOLE FTW!!!
-app:match("/console", console.make({env="heroku"}))
-
 -- Enable EtLua templates
 app:enable("etlua")
 
@@ -411,6 +408,8 @@ app:get("/robots", "/robots.txt", function(self)
 	Disallow: /console
 	]]
 end)
+
+app:match("/console", console.make())
 
 
 
