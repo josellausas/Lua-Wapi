@@ -163,6 +163,7 @@ make = function(opts)
       })
       if self.params.lang == "lua" then
         print(self.params.code)
+        ngx.log(ngx.NOTICE, "Code sent" .. self.params.code)
         local fn, err = loadstring(self.params.code)
         if err then
           local _ = {
@@ -171,6 +172,7 @@ make = function(opts)
             }
           }
         else
+          print("Doing this things")
           local lines, queries = run(self, fn)
           if lines then
             local _ = {
