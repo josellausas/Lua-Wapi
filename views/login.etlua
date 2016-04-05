@@ -2,8 +2,8 @@
 	<div class="row">
 		<div class="col-sm-12 col-md-12 col-lg-12">
 			
-			<div class="containinglogin" style="position:relative;width:45%;display:table-cell;text-align:center; vertical-align:middle;">
-				<div class="xyz"  style="display: inline-block;">
+			<div class="containinglogin" style="position:relative;width:100%;display:table-cell;text-align:center; vertical-align:middle;">
+				<div class="xyz"  style="display: inline-block;position:relative;width:40%;" >
 					<div class="login">
 					  <h2>Login to Web App</h2>
 					  <form method="post" action="#">
