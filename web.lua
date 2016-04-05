@@ -282,6 +282,7 @@ app:match("admin", "/admin", respond_to({
 		-- Only allows my user to get in here
 		if self.session.current_user_id == "jose" then
 			ll("Session is good")
+			
 			notifyMQTT(0,"Accessed admin with my acct!", forwardip)
 			-- TODO check account permission here
 			local josellausas 	= LLUser.getWithUsername("jose")
@@ -292,7 +293,7 @@ app:match("admin", "/admin", respond_to({
 			    ll("Jose exists!")
 			end
 
-
+			-- The site data
 			self.siteData 		= require("testData")
 			self.siteData.menuButtons = getMenuList()
 
@@ -300,7 +301,7 @@ app:match("admin", "/admin", respond_to({
 			self.msgs 	= Messages.allForUser(josellausas)
 			self.tasks 	= {}
 			self.alerts = {}
-			ll("Sending to the admin")
+
 			return {render="dashboards.default",layout="adminlayout"}
 		else
 			ll("Very weird login")

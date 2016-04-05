@@ -1,5 +1,8 @@
 local webcontent = {
-	title = "Un ejemplo",
+	title = "Llau Admin Systems",
+	description = "An administration site",
+	author = "Zunware",
+
 }
 
 return webcontent
