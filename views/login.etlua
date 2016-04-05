@@ -1,29 +1,28 @@
 <section class="container padding-top-3x padding-bottom-3x" id="intro">
-	
 	<div class="row">
 		<div class="col-sm-12 col-md-12 col-lg-12">
-			<div class="login" >
-			  <h2>Login to Web App</h2>
-			  <form method="post" action="#">
-			    <p><input type="text"     name="username"   value=""  placeholder="Username or Email"></p>
-			    <p><input type="password" name="password"   value=""  placeholder="Password"></p>
-			    <p><input type="hidden"   name="csrf_token" value="<%=thetok%>"></p>
-			    <p class="remember_me">
-			      <label>
-			        <input type="checkbox" name="remember_me" id="remember_me">Remember me on this computer
-			      </label>
-			    </p>
-			    <p class="submit"><input type="submit" name="commit" value="Login"></p>
-			  </form>
-			</div>
-
-			<div class="login-help">
-			  <p>Forgot your password? <a href="index.html">Click here to reset it</a>.</p>
+			<div class="containinglogin" style="position:relative;width:70%;">
+				<div class="login" >
+				  <h2>Login to Web App</h2>
+				  <form method="post" action="#">
+				    <p><input type="text"     name="username"   value=""  placeholder="Username or Email"></p>
+				    <p><input type="password" name="password"   value=""  placeholder="Password"></p>
+				    <p><input type="hidden"   name="csrf_token" value="<%=thetok%>"></p>
+				    <p class="remember_me">
+				      <label>
+				        <input type="checkbox" name="remember_me" id="remember_me">Remember me on this computer
+				      </label>
+				    </p>
+				    <p class="submit"><input type="submit" name="commit" value="Login"></p>
+				  </form>
+				</div>
+				<div class="login-help">
+				  <p>Forgot your password? <a href="index.html">Click here to reset it</a>.</p>
+				</div>
 			</div>
 		</div>
 	</div>
-	
-	<div class="row" style="position:relative;width:70%;">
+	<div class="row" >
 		<div class="col-lg-6 col-lg-offset-3">
 			<p class="copyright">Copyright &copy; 2016 - <a href="http://llau.systems/">Zunware</a></p>
 		</div>
