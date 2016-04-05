@@ -1,7 +1,6 @@
 <section class="container padding-top-3x padding-bottom-3x" id="intro">
 	<div class="row">
 		<div class="col-sm-12 col-md-12 col-lg-12">
-			
 			<div class="containinglogin" style="position:relative;width:45%;display:table-cell;text-align:center; vertical-align:middle;">
 				<div class="xyz"  style="display: inline-block;">
 					<div class="login">
@@ -15,7 +14,8 @@
 					        <input type="checkbox" name="remember_me" id="remember_me">Remember me on this computer
 					      </label>
 					    </p>
-					    <p class="submit"><input type="submit" name="commit" value="Login"></p>
+					    <button type="submit" name="commit" class="btn btn-primary">Submit</button>
+					    <!-- <p class="submit"><input type="submit" name="commit" value="Login"></p> -->
 					  </form>
 					</div>
 					<div class="login-help">
