@@ -128,7 +128,7 @@
         <!-- Icon Block -->
         <!-- Apply modifier classes to ".icon-block": ".text-center" and "text-right" - for alignment. -->
         <section class="icon-block">
-          <i class="<%=v.class %>"></i>
+          <i class="pe-7s-display1"></i>
           <h3 class="ib-title">Internet of Things</h3>
           <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Provident perferendis modi quidem deserunt vero.</p>
         </section><!-- .icon-block -->
