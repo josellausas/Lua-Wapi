@@ -53,18 +53,13 @@
 <section class="container padding-top-3x padding-bottom-3x" id="intro">
   <!-- Social Bar -->
   <div class="social-bar text-right space-bottom-3x">
-    <a href="#" class="sb-twitter" data-toggle="tooltip" data-placement="top" title="Twitter">
-      <i class="fa fa-twitter"></i>
-      <span>13</span>
-    </a>
-    <a href="#" class="sb-tumblr" data-toggle="tooltip" data-placement="top" title="Tumblr">
-      <i class="fa fa-tumblr"></i>
-      <span>124</span>
-    </a>
-    <a href="#" class="sb-facebook" data-toggle="tooltip" data-placement="top" title="Facebook">
-      <i class="fa fa-facebook"></i>
-      <span>0</span>
-    </a>
+    <!-- Dinamic lua things -->
+    <% for k,v in pairs(pp.social) do %>
+        <a href="<%= rootURL .. v.url %>" class="<%= v.class %>" data-toggle="tooltip" data-placement="top" title="<%= v.title %>">
+          <i class="<%= v.icon %>"></i>
+          <span><%= v.num %></span>
+        </a>
+    <% end %>
   </div><!-- .social-bar -->
   <div class="row">
     <div class="col-md-8">
