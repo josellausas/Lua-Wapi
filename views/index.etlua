@@ -78,11 +78,11 @@
           <%- pp.section01.content01 %>
           <a href="<%= pp.section01.video_url %>" class="video-popup-btn space-bottom">
             <span class="play-btn"><i class="fa fa-play"></i></span>
-            <span class="label"><%- pp.section01.button_lbl %></span>
+            <span class="label">Watch a<br>Quick Demo</span>
           </a>
         </div>
         <div class="col-sm-6">
-          <%- pp.section01.content02 %>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
         </div>
       </div>
     </div><!-- .col-md-8 -->
@@ -97,10 +97,10 @@
       <!-- Block Title -->
       <!-- Use modifier classes: ".featured-title" - to enable fancy animation on hover; ".text-center" and "text-right" - for title alignment. Apply ".light-skin" class for changing appearance. -->
       <div class="block-title featured-title">
-        <h2><%= pp.section02.title %></h2>
-        <span><%= pp.section02.subtitle %></span>
+        <h2>Take your business with you</h2>
+        <span>Anywhere</span>
       </div><!-- .block-title.featured-title -->
-      <%- pp.section02.content01 %>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
     </div><!-- .col-md-5.col-md-push-7 -->
     <div class="col-md-7 col-md-pull-5">
       <img src="<%= rootURL .. pp.section02.img %>" class="block-center" alt="Screen 2">
