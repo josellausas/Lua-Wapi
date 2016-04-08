@@ -28,9 +28,9 @@
       </div>
       <div class="col-sm-7 padding-top mobile-center">
         <div class="block-title light-skin">
-          <h1>Intelligence in your pocket...</h1>
+          <h1><%= webcontent.pages.index.header %></h1>
         </div>
-        <p class="text-light">Data moves at light speed! If you can't visualize and use IT in real time, your're too slow. Smart decisions are made in real time with real data. "The power to run your business with the touch of a finger!"</p>
+        <p class="text-light"><%= webcontent.pages.index.description %></p>
         <!-- App Store Button -->
         <a href="#" onclick="alert('Coming soon...');" class="btn btn-app-store">
           <i class="fa fa-apple"></i>
