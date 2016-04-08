@@ -1,4 +1,5 @@
 <!-- Device Slider -->
+<% pp = webcontent.pages.index %>
 <section class="device-slider">
   <span class="angle"></span>
   <div class="container">
@@ -18,21 +19,21 @@
           </div>
           <div class="carousel">
             <div class="inner">
-              <img src="<%=rootURL%>/img/device-slider/screen01.png" alt="Screen 1">
-              <img src="<%=rootURL%>/img/device-slider/screen02.png" alt="Screen 2">
-              <img src="<%=rootURL%>/img/device-slider/screen03.png" alt="Screen 3">
-              <img src="<%=rootURL%>/img/device-slider/screen04.png" alt="Screen 4">
+              <!-- Print the image sliders -->
+              <% for k,link in ipairs(pp.carousel) do %>
+                <img src="<%= rootURL .. link %>" alt="Screen 1">
+              <% end %>
             </div>
           </div>
         </div><!-- .phone-carousel -->
       </div>
       <div class="col-sm-7 padding-top mobile-center">
         <div class="block-title light-skin">
-          <h1><%= webcontent.pages.index.header %></h1>
+          <h1><%= pp.header %></h1>
         </div>
-        <p class="text-light"><%= webcontent.pages.index.description %></p>
+        <p class="text-light"><%= pp.description %></p>
         <!-- App Store Button -->
-        <a href="#" onclick="alert('Coming soon...');" class="btn btn-app-store">
+        <a href="<%= pp.ios_url %>" onclick="alert('Downloading');" class="btn btn-app-store">
           <i class="fa fa-apple"></i>
           <div>
             <span>Download for</span>
@@ -40,7 +41,7 @@
           </div>
         </a>
         <!-- Google Play Button -->
-        <a href="<%=rootURL%>/static/app-debug.apk" class="btn btn-google-play">
+        <a href="<%= rootURL .. pp.android_url %>" class="btn btn-google-play">
           <img src="<%=rootURL%>/img/google-play.png" alt="Google Play">
           <span>Dowload for Android</span>
         </a>
