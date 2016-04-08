@@ -34,7 +34,10 @@ local webcontent = {
 			section01 = {
 				title = "Leverage the Internet of Things",
 				subtitle = "control",
-				content = "",
+				content = [[
+				<p>Connecting your devices to the internet is easy and cheap in 2016. Gaining control and harvesting your own big data is an art.</p>
+          		<p>Your mobile phone is now a full blown <a href="#">Command Center</a> ready for iOT. We have connected everything to make it easy for you to start using the IoT.</p>
+				]],
 				img = "/img/home/screen01.jpg",
 				video_url = "https://vimeo.com/33984473",
 			}
