@@ -103,7 +103,7 @@
       <%- pp.section02.content01 %>
     </div><!-- .col-md-5.col-md-push-7 -->
     <div class="col-md-7 col-md-pull-5">
-      <img src="<%=rootURL%>/img/home/screen02.jpg" class="block-center" alt="Screen 2">
+      <img src="<%= rootURL .. pp.section02.img %>" class="block-center" alt="Screen 2">
     </div><!-- .col-md-7.col-md-pull-5 -->
   </div><!-- .row -->
 </section><!-- .container -->
@@ -117,8 +117,8 @@
         <!-- Block Title -->
         <!-- Use modifier classes: ".featured-title" - to enable fancy animation on hover; ".text-center" and "text-right" - for title alignment. Apply ".light-skin" class for changing appearance. -->
         <div class="block-title featured-title">
-          <h2>Everything you need to know about your business</h2>
-          <span>Realtime</span>
+          <h2><%= pp.section03.title %></h2>
+          <span><%= pp.section03.subtitle %></span>
         </div><!-- .block-title.featured-title -->
       </div><!-- .col-lg-9.col-md-10 -->
     </div><!-- .row -->
@@ -128,11 +128,13 @@
         <!-- Icon Block -->
         <!-- Apply modifier classes to ".icon-block": ".text-center" and "text-right" - for alignment. -->
         <section class="icon-block">
-          <i class="pe-7s-display1"></i>
+          <i class="<%=v.class %>"></i>
           <h3 class="ib-title">Internet of Things</h3>
           <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Provident perferendis modi quidem deserunt vero.</p>
         </section><!-- .icon-block -->
       </div><!-- .col-lg-3.col-md-4.col-sm-4 -->
+
+
       <div class="col-lg-3 col-lg-offset-1 col-md-4 col-sm-4">
         <section class="icon-block">
           <i class="pe-7s-phone"></i>
