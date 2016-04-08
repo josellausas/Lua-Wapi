@@ -75,8 +75,7 @@
       </div>
       <div class="row">
         <div class="col-sm-6">
-          <p>Aliquam erat volutpat. Donec placerat nisl magna, et faucibus arcu condimentum sed.</p>
-          <p><a href="#">Aliquam at porttitor sem</a>. Aliquam erat volutpat. Donec placerat nisl magna, et faucibus arcu condimentum sed.</p>
+          <%= pp.section01.content %>
           <a href="<%= pp.section01.video_url %>" class="video-popup-btn space-bottom">
             <span class="play-btn"><i class="fa fa-play"></i></span>
             <span class="label">Watch a<br>Quick Demo</span>
