@@ -34,22 +34,13 @@ local webcontent = {
 			section01 = {
 				title = "Leverage the Internet of Things",
 				subtitle = "control",
+				content = [[
+				<p>Connecting your devices to the internet is easy and cheap in 2016. Gaining control and harvesting your own big data is an art.</p>
+          		<p>Your mobile phone is now a full blown <a href="#">Command Center</a> ready for iOT. We have connected everything to make it easy for you to start using the IoT.</p>
+				]],
 				img = "/img/home/screen01.jpg",
 				video_url = "https://vimeo.com/33984473",
-				button_lbl = "Watch a<br>Quick Demo",
-				content01 = [[
-				<p>Connecting your devices to the internet is easy and cheap in 2016. Gaining control and harvesting your own big data is an art.</p>
-          		<p>Your mobile phone is now a full blown <a href="#">Command Center</a> ready for iOT. We have connected everything to make it easy for you to start using IoT.</p>
-				]],
-				content02 = "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>"
-			},
-			section02 = {
-				title = "The Zunware APP",
-				subtitle = "Anywhere",
-				content01 = "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>",
-				
-
-			},
+			}
 		},
 	},
 }
