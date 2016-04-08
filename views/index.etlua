@@ -68,8 +68,8 @@
           <!-- Block Title -->
           <!-- Use modifier classes: ".featured-title" - to enable fancy animation on hover; ".text-center" and "text-right" - for title alignment. Apply ".light-skin" class for changing appearance. -->
           <div class="block-title featured-title">
-            <h2>Make all your technologies talk to each other.</h2>
-            <span>Connected</span>
+            <h2><%= pp.section01.title %></h2>
+            <span><%= pp.section01.subtitle %></span>
           </div><!-- .block-title.featured-title -->
         </div>
       </div>
@@ -77,7 +77,7 @@
         <div class="col-sm-6">
           <p>Aliquam erat volutpat. Donec placerat nisl magna, et faucibus arcu condimentum sed.</p>
           <p><a href="#">Aliquam at porttitor sem</a>. Aliquam erat volutpat. Donec placerat nisl magna, et faucibus arcu condimentum sed.</p>
-          <a href="https://vimeo.com/33984473" class="video-popup-btn space-bottom">
+          <a href="<%= pp.section01.video_url %>" class="video-popup-btn space-bottom">
             <span class="play-btn"><i class="fa fa-play"></i></span>
             <span class="label">Watch a<br>Quick Demo</span>
           </a>
@@ -88,7 +88,7 @@
       </div>
     </div><!-- .col-md-8 -->
     <div class="col-md-4">
-      <img src="<%=rootURL%>/img/home/screen01.jpg" class="block-center" alt="Screen 1">
+      <img src="<%= rootURL..pp.section01.img %>" class="block-center" alt="Screen 1">
     </div><!-- .col-md-4 -->
   </div><!-- .row -->
   <div class="space-bottom-3x visible-lg"></div>

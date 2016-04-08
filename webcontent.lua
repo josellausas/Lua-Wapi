@@ -31,6 +31,13 @@ local webcontent = {
 					num = 37,
 				},
 			},
+			section01 = {
+				title = "Leverage the Internet of Things",
+				subtitle = "control",
+				content = "",
+				img = "/img/home/screen01.jpg",
+				video_url = "https://vimeo.com/33984473",
+			}
 		},
 	},
 }
