@@ -150,7 +150,7 @@ make = function(opts)
       }
     end,
     POST = capture_errors_json(function(self)
-      self.params.lang = self.params.lang or "moonscript"
+      self.params.lang = self.params.lang or "lua"
       self.params.code = self.params.code or ""
       assert_valid(self.params, {
         {
@@ -161,9 +161,8 @@ make = function(opts)
           }
         }
       })
-      if self.params.lang == "moonscript" then
-        local moonscript = require("moonscript.base")
-        local fn, err = moonscript.loadstring(self.params.code)
+      if self.params.lang == "lua" then
+        local fn, err = loadstring(self.params.code)
         if err then
           return {
             json = {
@@ -187,8 +186,9 @@ make = function(opts)
             }
           end
         end
-      elseif self.params.lang == "lua" then
-        local fn, err = loadstring(self.params.code)
+      elseif self.params.lang == "moonscript" then
+        local moonscript = require("moonscript.base")
+        local fn, err = moonscript.loadstring(self.params.code)
         if err then
           return {
             json = {

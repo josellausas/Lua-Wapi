@@ -86,16 +86,15 @@ make = (opts={}) ->
       render: view, layout: false
 
     POST: capture_errors_json =>
-      @params.lang or= "moonscript"
+      @params.lang or= "lua"
       @params.code or= ""
 
       assert_valid @params, {
         { "lang", one_of: {"lua", "moonscript"} }
       }
 
-      if @params.lang == "moonscript"
-        moonscript = require "moonscript.base"
-        fn, err = moonscript.loadstring @params.code
+      if @params.lang == "lua"
+        fn, err = loadstring @params.code
         if err
           { json: { error: err } }
         else
@@ -104,8 +103,9 @@ make = (opts={}) ->
             { json: { :lines, :queries } }
           else
             { json: { error: queries } }
-      elseif @params.lang == "lua"
-        fn, err = loadstring @params.code
+      elseif @params.lang == "moonscript"
+        moonscript = require "moonscript.base"
+        fn, err = moonscript.loadstring @params.code
         if err
           { json: { error: err } }
         else
