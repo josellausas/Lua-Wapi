@@ -95,7 +95,7 @@ function pack.new(username, email, password)
 	-- Define the fields
 	userClass.username = username
 	userClass.email    = email
-	userClass.role     = 2
+	userClass.role     = 1
 	userClass.hash     = passHash
 	userClass.first_name = username
 	userClass.password = password
@@ -182,18 +182,6 @@ end
 	@param password The password
 ]]
 function pack.authorizedEmailWithHash(email, passHash)
-	local validEmail = false
-
-	--[[
-	if (email:match("[A-Za-z0-9%.%%%+%-]+@[A-Za-z0-9%.%%%+%-]+%.%w%w%w?%w?")) then
-	    validEmail = true
-	else
-	    print("INVALID EMAIL")                
-	end
-	]]
-
-	-- if(validEmail == false) then return nil end
-
 
 	-- Check in the users database
 	local users = UserModel:select('where "email" = ? and "hash" = ?', email, passHash)
