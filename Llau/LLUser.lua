@@ -183,7 +183,7 @@ end
 	@param user The user
 	@param password The password
 ]]
-function pack.authorizedEmailWithHash(email, passHash)
+function pack:authorizedEmailWithHash(email, passHash)
 
 	ll(email)
 	ll(passHash)
