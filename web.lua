@@ -241,8 +241,9 @@ end)]]
 app:match("/api/users", respond_to({
 	GET = function(self)
 		setSessionVars(self)
-		return {status=200, layout=false, json=Llau:getUsersJSON()}
-	end,
+		-- TODO: Check user session 
+		return {status=401, layout=false, "Not authorized"}
+	end,	
 	POST = function(self)
 		setSessionVars(self)
 
@@ -251,7 +252,7 @@ app:match("/api/users", respond_to({
 		local pass = self.params.pass 
 
 		-- Attempt to get the thing good
-		local userObj = Llau:authorizedUserWithHash(user, pass)
+		local userObj = Llau:authorizedEmailWithHash(user, pass)
 		if(userObj == nil) then
 			-- Not authorized
 			return {status=401, layout=false, "{msg:bad}"}

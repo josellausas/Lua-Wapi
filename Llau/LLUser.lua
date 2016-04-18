@@ -181,9 +181,9 @@ end
 	@param user The user
 	@param password The password
 ]]
-function pack.authorizedUserWithHash(user, passHash)
+function pack.authorizedEmailWithHash(email, passHash)
 	-- Check in the users database
-	local users = UserModel:select('where "username" = ? and "hash" = ?', user, passHash)
+	local users = UserModel:select('where "email" = ? and "hash" = ?', email, passHash)
 	
 	-- Return nil if we found no one
 	if( #users < 1) then 
