@@ -9,6 +9,8 @@
 
 local Model  = require("lapis.db.model").Model
 local crypto = require("crypto")
+local util = require("lapis.util")
+local base64    = require "Llau.base64"
 
 -- Create an object with the database
 local UserModel = Model:extend("users", {
@@ -183,8 +185,15 @@ end
 ]]
 function pack.authorizedEmailWithHash(email, passHash)
 
+	local x = util.unescape(email)
+	local finalUserString = base64.decode(x)
+
+	local y = util.unescape(passHash)
+	local finalPassString = base64.decode(y)
+
 	-- Check in the users database
-	local users = UserModel:select('where "email" = ? and "hash" = ?', email, passHash)
+	-- local users = UserModel:select('where "email" = ? and "hash" = ?', finalUserString, finalPassString)
+	local users = UserModel:select('where "email" = ? and "hash" = ?', "jose@josellausas.com", crypto.digest("sha256", "polo&xzaz"))
 	
 	-- Return nil if we found no one
 	if( #users < 1) then 

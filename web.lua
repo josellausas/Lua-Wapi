@@ -247,8 +247,10 @@ app:match("/api/users", capture_errors(respond_to({
 	POST = function(self)
 		setSessionVars(self)
 
+		
+
 		assert_valid(self.params, {
-			{"user", exists = true, min_length = 4, max_length = 64},
+			{"user", exists = true, min_length = 4, max_length = 128},
 			-- {"email", is_email = true, max_length = 128},
 			{"pass", exists = true,  min_length = 4, max_length = 128}
 		})
