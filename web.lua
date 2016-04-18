@@ -250,7 +250,7 @@ app:match("/api/users", capture_errors(respond_to({
 		assert_valid(self.params, {
 			{"user", exists = true, min_length = 4, max_length = 64},
 			-- {"email", is_email = true, max_length = 128},
-			{"pass", exists = true,  min_length = 4, max_length = 64}
+			{"pass", exists = true,  min_length = 4, max_length = 128}
 		})
 
 		local user = self.params.user
@@ -258,10 +258,13 @@ app:match("/api/users", capture_errors(respond_to({
 		local pass = self.params.pass 
 
 		-- Attempt to get the thing good
-		local userObj = Llau:authorizedEmailWithHash(user, pass)
+		local userObj = LLUser:authorizedEmailWithHash(user, pass)
 		if(userObj == nil) then
 			-- Not authorized
-			return {status=401, layout=false, "{msg:bad}"}
+			local responseJSON = {
+				msg = "Unauthorized"
+			}
+			return {status=401, layout=false, json=responseJSON}
 
 		else
 		    --do authorized things
