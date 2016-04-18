@@ -238,7 +238,7 @@ end)
 	setSessionVars(self)
 	return Llau:getUsersJSON()
 end)]]
-app:match("/api/users", respond_to({
+app:match("/api/users", capture_errors(respond_to({
 	GET = function(self)
 		setSessionVars(self)
 		-- TODO: Check user session 
@@ -246,6 +246,12 @@ app:match("/api/users", respond_to({
 	end,	
 	POST = function(self)
 		setSessionVars(self)
+
+		assert_valid(self.params, {
+			{"user", exists = true, min_length = 4, max_length = 64},
+			-- {"email", is_email = true, max_length = 128},
+			{"pass", exists = true,  min_length = 4, max_length = 64}
+		})
 
 		local user = self.params.user
 		-- Should come in the form of a hash
@@ -264,7 +270,7 @@ app:match("/api/users", respond_to({
 		end
 
 	end,
-}))
+})))
 
 
 
