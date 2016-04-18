@@ -176,6 +176,35 @@ function pack.getWithEmail(email)
 end
 
 
+--[[*
+	Returns the User with user and hash. Nil if bad
+	@param user The user
+	@param password The password
+]]
+function pack.authorizedUserWithHash(user, passHash)
+	-- Check in the users database
+	local users = UserModel:select('where "username" = ? and "hash" = ?', user, passHash)
+	
+	-- Return nil if we found no one
+	if( #users < 1) then 
+		ngx.log(ngx.NOTICE, "[***] No user found")
+		return nil
+	end
+
+	if( #users > 1) then
+		ngx.log(ngx.NOTICE, "[***] More than one user found!")
+		return nil
+	end
+
+	-- Add the functionality
+	for i,v in pairs(users) do
+		ngx.log(ngx.NOTICE, "[***] Found a valid USER!!!")
+		-- Give the data from the database functionality
+		decorateClass(v)
+		return v
+	end
+end
+
 
 --[[
 	getWithUsernameAndPassword

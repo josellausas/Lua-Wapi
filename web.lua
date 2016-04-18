@@ -234,10 +234,37 @@ end)
 
 
 --[[ Users API ]]
-app:get("/users", function(self)
+--[[app:get("/users", function(self)
 	setSessionVars(self)
 	return Llau:getUsersJSON()
-end)
+end)]]
+app:match("/api/users", respond_to({
+	GET = function(self)
+		setSessionVars(self)
+		return {status=200, layout=false, json=Llau:getUsersJSON()}
+	end,
+	POST = function(self)
+		setSessionVars(self)
+
+		local user = self.params.user
+		-- Should come in the form of a hash
+		local pass = self.params.pass 
+
+		-- Attempt to get the thing good
+		local userObj = Llau:authorizedUserWithHash(user, pass)
+		if(userObj == nil) then
+			-- Not authorized
+			return {status=401, layout=false, "{msg:bad}"}
+
+		else
+		    --do authorized things
+		    local jsonToReturn = Llau:getUsersJSON()
+		    return {status=200, layout=false, json=jsonToReturn}
+		end
+
+	end,
+}))
+
 
 
 --[[ Messages API]]
