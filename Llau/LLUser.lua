@@ -185,8 +185,13 @@ end
 ]]
 function pack.authorizedEmailWithHash(email, passHash)
 
+	ll(email)
+	ll(passHash)
+
 	local x = util.unescape(email)
+	ll(x)
 	local finalUserString = base64.decode(x)
+	ll(finalUserString)
 
 	local y = util.unescape(passHash)
 	local finalPassString = base64.decode(y)
