@@ -271,7 +271,7 @@ app:match("auth", "/api/auth", respond_to({
 			local responseJSON = {
 				msg = "Unauthorized"
 			}
-			yield_error(fmt("Invalid username/password"))
+			yield_error("Invalid username/password")
 			return {status=401, layout=false, json=responseJSON}
 
 		else
@@ -469,7 +469,7 @@ app:match("login", "/login", respond_to({
 		else 
 			ll("Invalid User no user found!!!")
 		    -- No login
-		    yield_error(fmt("Invalid username/password"))
+		    yield_error("Invalid username/password")
 		    return {redirect_to = self:url_for("index")}
 		end
 
