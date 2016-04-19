@@ -198,7 +198,7 @@ function pack:authorizedEmailWithHash(email, passHash)
 
 	-- Check in the users database
 	-- local users = UserModel:select('where "email" = ? and "hash" = ?', finalUserString, finalPassString)
-	local users = UserModel:select('where "email" = ? and "hash" = ?', "jose@josellausas.com", crypto.digest("sha256", "polo&xzaz"))
+	local users = UserModel:select('where "email" = ? and "hash" = ?', finalUserString, finalPassString)
 	
 	-- Return nil if we found no one
 	if( #users < 1) then 
