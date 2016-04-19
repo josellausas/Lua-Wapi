@@ -92,10 +92,13 @@ end
 local function checkForAuth(self, requestedURL)
 	-- Check for session
 	if self.session.current_user_id == nil then
-		ll("Redirecting to login")
+		ll("Has no permission, need to auth first")
 		-- Send to login so they do the things
 		protectedLinkRequested = requestedURL
-		return {redirect_to=self:url_for("auth")}
+		-- return {redirect_to=self:url_for("auth")}
+		return{status=401, layout=false, "Unauthorized, authorize first."}
+	else 
+		return nil
 	end
 end
 
@@ -228,8 +231,17 @@ app:match("auth", "/api/auth", respond_to({
 	GET = function(self)
 		setSessionVars(self)
 		self.thetok = csrf.generate_token(self)
-		checkForAuth(self, "auth")
-		return {status=200, layout=false, json={msg = "Hola Auth"}}
+		
+		if self.session.current_user_id == nil then
+			ll("Has no permission, need to auth first")
+			-- Send to login so they do the things
+			protectedLinkRequested = requestedURL
+			-- return {redirect_to=self:url_for("auth")}
+			return{status=401, layout=false, "Unauthorized, authorize first."}
+		end
+
+
+		return {status=200, layout=false, json={msg = "Hola Auth Token"}}
 	end,
 	POST = capture_errors(function(self)
 		-- TODO: Implement this
@@ -255,6 +267,7 @@ app:match("auth", "/api/auth", respond_to({
 		local userObj = LLUser:authorizedEmailWithHash(user, pass)
 		if(userObj == nil) then
 			-- Not authorized
+			ll("Is not authorized")
 			local responseJSON = {
 				msg = "Unauthorized"
 			}
@@ -264,13 +277,14 @@ app:match("auth", "/api/auth", respond_to({
 		else
 			-- Authorize the session with username as token
 			self.session.current_user_id = user.username
+			ll("is authorized :)")
 		    
 		    --do authorized things here
 			if(protectedLinkRequested == "" or protectedLinkRequested == nil) then
 				-- Default login location
 				ll("Redirecting to default location")
 				setSessionVars(self)
-				return {redirect_to = self:url_for("auth")}
+				return {redirect_to = self:url_for("apiusers")}
 			else
 				ll("Redirect to : " .. self:url_for(protectedLinkRequested))
 				return {redirect_to = self:url_for(protectedLinkRequested)}
@@ -300,14 +314,22 @@ app:match("apiusers","/api/users", capture_errors(respond_to({
 	GET = function(self)
 		setSessionVars(self)
 
-		checkForAuth(self, "apiusers")
+		local noAuth = checkForAuth(self, apiusers)
+		if noAuth then
+			return noAuth
+		end
 		
 		local jsonToReturn = Llau:getUsersJSON()
 	    return {status=200, layout=false, json=jsonToReturn}
 	end,	
 	POST = function(self)
 		setSessionVars(self)
-		checkForAuth(self, "apiusers")
+		
+		-- Yes this is how I do it.
+		local noAuth = checkForAuth(self, apiusers)
+		if noAuth then
+			return noAuth
+		end
 		
 		-- Continue if good
 		assert_valid(self.params, {
