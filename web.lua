@@ -271,9 +271,7 @@ app:match("auth", "/api/auth", respond_to({
 			local responseJSON = {
 				msg = "Unauthorized"
 			}
-			yield_error("Invalid username/password")
-			return {status=401, layout=false, json={msg="Fail"}}
-
+			return {status=401, layout=false, json="Bad"}
 		else
 			-- Authorize the session with username as token
 			self.session.current_user_id = user.username
@@ -517,6 +515,7 @@ app:get("/robots", "/robots.txt", function(self)
 	Disallow: /getapp 
 	Disallow: /admin
 	Disallow: /console
+	Disallow: /api
 	]]
 end)
 
