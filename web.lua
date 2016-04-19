@@ -284,7 +284,7 @@ app:match("auth", "/api/auth", respond_to({
 				-- Default login location
 				ll("Redirecting to default location")
 				setSessionVars(self)
-				return {redirect_to = self:url_for("apiusers")}
+				return {status=200, layout=false, json={msg = "Hola Auth Token"}}
 			else
 				ll("Redirect to : " .. self:url_for(protectedLinkRequested))
 				return {redirect_to = self:url_for(protectedLinkRequested)}
