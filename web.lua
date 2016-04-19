@@ -270,7 +270,7 @@ app:match("auth", "/api/auth", respond_to({
 				-- Default login location
 				ll("Redirecting to default location")
 				setSessionVars(self)
-				return {redirect_to = self:url_for("admin")}
+				return {redirect_to = self:url_for("auth")}
 			else
 				ll("Redirect to : " .. self:url_for(protectedLinkRequested))
 				return {redirect_to = self:url_for(protectedLinkRequested)}
