@@ -89,10 +89,15 @@ local function registerEmail(theemail, clientip, sourceURL)
     mqtt_client:publish("v1/subscribe/email", json )
 end
 
-
-
-
-
+local function checkForAuth(self, requestedURL)
+	-- Check for session
+	if self.session.current_user_id == nil then
+		ll("Redirecting to login")
+		-- Send to login so they do the things
+		protectedLinkRequested = requestedURL
+		return {redirect_to=self:url_for("auth")}
+	end
+end
 
 -- [[ DEFAULT ROUTE ]]
 app.default_route = function ( self )
@@ -219,7 +224,59 @@ app:match("/subscribe/*", respond_to({
 }))
 
 
+app:match("auth", "/api/auth", respond_to({
+	GET = function(self)
+		setSessionVars(self)
+		self.thetok = csrf.generate_token(self)
+		return {status=200, layout=false, "Hola Auth"}
+	end,
+	POST = capture_errors(function(self)
+		-- TODO: Implement this
+		-- local success, err = csrf.assert_token(self)
+		--[[
+		if(success == nil) then
+			ll("CSRF Fail!")
+			ll(err)
+		end
+		]]
+		-- Continue if good
+		assert_valid(self.params, {
+			{"user", exists = true, min_length = 4, max_length = 128},
+			-- {"email", is_email = true, max_length = 128},
+			{"pass", exists = true,  min_length = 4, max_length = 128}
+		})
 
+		local user = self.params.user
+		-- Should come in the form of a hash
+		local pass = self.params.pass 
+
+		-- Attempt to get the thing good
+		local userObj = LLUser:authorizedEmailWithHash(user, pass)
+		if(userObj == nil) then
+			-- Not authorized
+			local responseJSON = {
+				msg = "Unauthorized"
+			}
+			yield_error(fmt("Invalid username/password"))
+			return {status=401, layout=false, json=responseJSON}
+
+		else
+			-- Authorize the session with username as token
+			self.session.current_user_id = user.username
+		    
+		    --do authorized things here
+			if(protectedLinkRequested == "" or protectedLinkRequested == nil) then
+				-- Default login location
+				ll("Redirecting to default location")
+				setSessionVars(self)
+				return {redirect_to = self:url_for("admin")}
+			else
+				ll("Redirect to : " .. self:url_for(protectedLinkRequested))
+				return {redirect_to = self:url_for(protectedLinkRequested)}
+			end
+		end
+	end)
+}))
 
 
 
@@ -238,42 +295,33 @@ end)
 	setSessionVars(self)
 	return Llau:getUsersJSON()
 end)]]
-app:match("/api/users", capture_errors(respond_to({
+app:match("apiusers","/api/users", capture_errors(respond_to({
 	GET = function(self)
 		setSessionVars(self)
-		-- TODO: Check user session 
-		return {status=401, layout=false, "Not authorized"}
+
+		checkForAuth(self, "apiusers")
+		
+		local jsonToReturn = Llau:getUsersJSON()
+	    return {status=200, layout=false, json=jsonToReturn}
 	end,	
 	POST = function(self)
 		setSessionVars(self)
-
+		checkForAuth(self, "apiusers")
 		
-
+		-- Continue if good
 		assert_valid(self.params, {
 			{"user", exists = true, min_length = 4, max_length = 128},
 			-- {"email", is_email = true, max_length = 128},
 			{"pass", exists = true,  min_length = 4, max_length = 128}
 		})
 
+		--TODO: Implement a users api interface
 		local user = self.params.user
 		-- Should come in the form of a hash
 		local pass = self.params.pass 
 
-		-- Attempt to get the thing good
-		local userObj = LLUser:authorizedEmailWithHash(user, pass)
-		if(userObj == nil) then
-			-- Not authorized
-			local responseJSON = {
-				msg = "Unauthorized"
-			}
-			return {status=401, layout=false, json=responseJSON}
-
-		else
-		    --do authorized things
-		    local jsonToReturn = Llau:getUsersJSON()
-		    return {status=200, layout=false, json=jsonToReturn}
-		end
-
+		local jsonToReturn = Llau:getUsersJSON()
+	    return {status=200, layout=false, json=jsonToReturn}
 	end,
 })))
 
