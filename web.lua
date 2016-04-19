@@ -272,7 +272,7 @@ app:match("auth", "/api/auth", respond_to({
 				msg = "Unauthorized"
 			}
 			yield_error("Invalid username/password")
-			return {status=401, layout=false, json=responseJSON}
+			return {status=401, layout=false, json={msg="Fail"}}
 
 		else
 			-- Authorize the session with username as token
