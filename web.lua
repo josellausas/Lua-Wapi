@@ -228,7 +228,8 @@ app:match("auth", "/api/auth", respond_to({
 	GET = function(self)
 		setSessionVars(self)
 		self.thetok = csrf.generate_token(self)
-		return {status=200, layout=false, "Hola Auth"}
+		checkForAuth(self, "auth")
+		return {status=200, layout=false, json={msg = "Hola Auth"}}
 	end,
 	POST = capture_errors(function(self)
 		-- TODO: Implement this
