@@ -412,7 +412,7 @@ app:match("adminsection", "/admin/:section", respond_to({
 			self.tasks 	= {}
 			self.alerts = {}
 
-			return {render="dashboards." .. self.params.section ,layout="adminlayout"}
+			return {render=self.params.section ,layout="adminlayout"}
 		else
 			ll("Very weird login")
 			-- Sesion was awkward
