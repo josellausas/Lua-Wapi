@@ -376,6 +376,7 @@ end)
 app:match("adminsection", "/admin/:section", respond_to({
 	GET = function(self)
 		setSessionVars(self)
+		
 		ll("Getting admin")
 		local forwardip = self.req.headers["x-forwarded-for"] or "no-forward"
 

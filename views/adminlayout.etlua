@@ -9,8 +9,8 @@
     <meta name="author" content="<%= webcontent.author %>">
 	<title><%= webcontent.title %></title>
 
-    <link rel="shortcut icon" href="favicon.ico" type="<%=rootURL%>/image/x-icon">
-    <link rel="icon" href="favicon.ico" type="<%=rootURL%>/image/x-icon">
+    <link rel="shortcut icon" href="<%=rootURL%>/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="<%=rootURL%>/favicon.ico" type="image/x-icon">
 
 	<!-- Bootstrap Core CSS -->
     <link href="<%=rootURL%>/static/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">

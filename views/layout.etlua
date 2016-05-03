@@ -11,8 +11,8 @@
     <!--Mobile Specific Meta Tag-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <!--Favicon-->
-    <link rel="shortcut icon" href="favicon.ico" type="<%=rootURL%>/image/x-icon">
-    <link rel="icon" href="favicon.ico" type="<%=rootURL%>/image/x-icon">
+    <link rel="shortcut icon" href="<%=rootURL%>/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="<%=rootURL%>/favicon.ico" type="image/x-icon">
     <!-- Pixeden Stroke Icons -->
     <link href="<%=rootURL%>/css/vendor/pixeden.css" rel="stylesheet" media="screen">
     <!-- All Theme Styles including Bootstrap, FontAwesome, etc. compiled from styles.scss-->
