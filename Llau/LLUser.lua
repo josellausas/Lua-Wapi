@@ -7,9 +7,9 @@
 ]]
 
 
-local Model  = require("lapis.db.model").Model
-local crypto = require("crypto")
-local util = require("lapis.util")
+local Model  	= require("lapis.db.model").Model
+local crypto 	= require("crypto")
+local util 		= require("lapis.util")
 local base64    = require "Llau.base64"
 
 -- Create an object with the database
@@ -20,6 +20,8 @@ local UserModel = Model:extend("users", {
 
 local cc = require("ansicolors")
 
+
+--[[ Log the message ]]
 local function ll(msg)
 	local ccmsg = cc('%{red}[***LOG***]%{reset}\n\n%{blue}' .. msg .. '%{reset}\n\n')
 	ngx.log(ngx.NOTICE, ccmsg)
@@ -30,12 +32,9 @@ local pack = {}
 
 
 --[[
-
 	decorateClass
 	=============
-
 	@brief		Gives an object the behaviors needed
-
 ]]
 
 local function decorateClass(obj)
