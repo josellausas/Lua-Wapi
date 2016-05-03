@@ -560,6 +560,7 @@ app:get("its-a-trap", "/its-a-trap", function(self)
 	return {render = "index" }
 end)
 
+
 -- [[ Serves the app ]]
 app:get("/robots", "/robots.txt", function(self)
 	return [[
