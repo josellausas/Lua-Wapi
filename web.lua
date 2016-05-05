@@ -65,6 +65,21 @@ local function notifyMQTT(severe, msg, ipAddress)
 	Llau:notify(severe,msg,ipAddress)
 end
 
+-- Runs before all
+app:before_filter(function(self)
+	ll("Before filter running")
+	setSessionVars(self)
+	
+	local forwardip = self.req.headers["x-forwarded-for"] or "no-forward"
+	
+	-- Check for session
+	if self.session.current_user_id == nil then
+		ll("Redirecting to login")
+		-- Send to login so they do the things
+		protectedLinkRequested = "admin"
+		self:write({redirect_to=self:url_for("login")})
+	end
+end)
 
 --[[ Email API ]]
 local function registerEmail(theemail, clientip, sourceURL)
@@ -312,7 +327,7 @@ app:match("apiusers","/api/users", capture_errors(respond_to({
 	GET = function(self)
 		setSessionVars(self)
 
-		local noAuth = checkForAuth(self, apiusers)
+		local noAuth = checkForAuth(self, "apiusers")
 		if noAuth then
 			return noAuth
 		end
@@ -324,7 +339,7 @@ app:match("apiusers","/api/users", capture_errors(respond_to({
 		setSessionVars(self)
 		
 		-- Yes this is how I do it.
-		local noAuth = checkForAuth(self, apiusers)
+		local noAuth = checkForAuth(self, "apiusers")
 		if noAuth then
 			return noAuth
 		end
