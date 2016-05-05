@@ -7,6 +7,7 @@ local cjson     = require "cjson.safe"
 local lapis_validate = require "lapis.validate"
 local assert_valid 	 = lapis_validate.assert_valid
 local yield_error 	 = require("lapis.application").yield_error
+local cc = require("ansicolors")
 
 local function ll(msg)
 	local ccmsg = cc('%{red}[***LOG***]%{reset}\n\n%{blue}' .. msg .. '%{reset}\n\n')
