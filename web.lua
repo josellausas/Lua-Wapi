@@ -112,8 +112,8 @@ local function checkForAuth(self, requestedURL)
 		ll("Has no permission, need to auth first")
 		-- Send to login so they do the things
 		protectedLinkRequested = requestedURL
-		-- return {redirect_to=self:url_for("auth")}
-		return{status=401, layout=false, "Unauthorized, authorize first."}
+		return {redirect_to=self:url_for("auth")}
+		-- return {status=401, layout=false, "Unauthorized, authorize first."}
 	else 
 		return nil
 	end
