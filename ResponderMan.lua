@@ -14,6 +14,8 @@ local function ll(msg)
 end
 
 
+
+
 local res = {}
 
 local protectedLinkRequested = ""

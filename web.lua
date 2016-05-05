@@ -66,6 +66,9 @@ local function notifyMQTT(severe, msg, ipAddress)
 	Llau:notify(severe,msg,ipAddress)
 end
 
+
+
+
 -- Runs before all
 app:before_filter(function(self)
 	-- This is importante. Do not remove!
@@ -74,21 +77,15 @@ app:before_filter(function(self)
 	local forwardip = self.req.headers["x-forwarded-for"] or "no-forward"
 
 	ll("Request from: " .. forwardip)
-	
-	-- Check for session
-	if self.session.current_user_id == nil then
-		ll("No session... redirecting to login")
-		-- Send to login so they do the things
-		protectedLinkRequested = "admin"
-		self:write({redirect_to=self:url_for("login")})
-	else
-		ll("User: " .. self.session.current_user_id .. " | " .. forwardip)
-	end
-
 end)
 
 --[[ Email API ]]
 local function registerEmail(theemail, clientip, sourceURL)
+	local authorized = checkForAuth(self, "admin")
+	if( not authorized ) then
+		return authorized
+	end
+
 	if mqtt_client == nil then
 		mqtt_client = mqtt.client.create(mqttconf.host, mqttconf.port, nil)
 		mqtt_client:auth(mqttconf.user, mqttconf.password)
@@ -104,7 +101,6 @@ local function registerEmail(theemail, clientip, sourceURL)
     print("Publishing to mqtt")
 
     local sendWrap = { email=theemail, ip=clientip, source=sourceURL }
-
 
     local json,err = cjson.encode(sendWrap)
     mqtt_client:publish("v1/subscribe/email", json )
@@ -163,6 +159,7 @@ local pg 		= pgmoon.new({
 	password = "_EsJ9XVoYVSYXDWbUDOTQPdrph",
 	database = "d2k28tn5s3orl5"
 })
+
 local function getMenuList()
 	-- A dynamic menu.
 	pg:connect()
@@ -315,7 +312,11 @@ app:match("auth", "/api/auth", respond_to({
 
 --[[ Tasks API ]]
 app:get("list_tasks","/tasks", function(self)
-	-- setSessionVars(self)
+	local authorized = checkForAuth(self, "admin")
+	if( not authorized ) then
+		return authorized
+	end
+
 	local josellausas 	= LLUser.getWithUsername("jose")
 	local jsonData 		= Llau:getTasksJSON("josellausas")
 	if not jsonData then return "" end
@@ -323,15 +324,9 @@ app:get("list_tasks","/tasks", function(self)
 end)
 
 
---[[ Users API ]]
---[[app:get("/users", function(self)
-	setSessionVars(self)
-	return Llau:getUsersJSON()
-end)]]
 app:match("apiusers","/api/users", capture_errors(respond_to({
 	GET = function(self)
-		-- setSessionVars(self)
-
+		-- Check for auth
 		local noAuth = checkForAuth(self, "apiusers")
 		if noAuth then
 			return noAuth
@@ -341,9 +336,6 @@ app:match("apiusers","/api/users", capture_errors(respond_to({
 	    return {status=200, layout=false, json=jsonToReturn}
 	end,	
 	POST = function(self)
-		-- setSessionVars(self)
-		
-		-- Yes this is how I do it.
 		local noAuth = checkForAuth(self, "apiusers")
 		if noAuth then
 			return noAuth
@@ -402,12 +394,10 @@ app:match("adminsection", "/admin/:section", respond_to({
 
 		notifyMQTT(0,"Attempt to access admin admin!", forwardip)
 		
-		-- Check for session
-		if self.session.current_user_id == nil then
-			ll("Redirecting to login")
-			-- Send to login so they do the things
-			protectedLinkRequested = "admin"
-			return {redirect_to=self:url_for("login")}
+		-- Check for auth
+		local authorized = checkForAuth(self, "admin")
+		if( not authorized ) then
+			return authorized
 		end
 
 		-- Only allows my user to get in here
@@ -454,12 +444,10 @@ app:match("admin", "/admin", respond_to({
 		ll("Getting admin")
 		local forwardip = self.req.headers["x-forwarded-for"] or "no-forward"
 		notifyMQTT(0,"Attempt to access admin admin!", forwardip)
-		-- Check for session
-		if self.session.current_user_id == nil then
-			ll("Redirecting to login")
-			-- Send to login so they do the things
-			protectedLinkRequested = "admin"
-			return {redirect_to=self:url_for("login")}
+		
+		local authorized = checkForAuth(self, "admin")
+		if( not authorized ) then
+			return authorized
 		end
 
 		-- Only allows my user to get in here
