@@ -1,5 +1,6 @@
 --[[ In charge of building the responses ]]
 local Llau 			 = require("Llau.Llau")
+local LLUser     = require("Llau.LLUser")
 local capture_errors = require("lapis.application").capture_errors
 local respond_to     = require("lapis.application").respond_to
 local csrf 		= require ("lapis.csrf")
