@@ -22,6 +22,7 @@ local yield_error 	 = require("lapis.application").yield_error
 
 -- Used for the logging ing
 local protectedLinkRequested = ""
+
 local cc = require("ansicolors")
 
 local function ll(msg)
@@ -31,6 +32,7 @@ end
 
 local function setSessionVars(sess)
 	sess.webcontent = require("webcontent")
+	-- This is necessary for internal linking
 	sess.rootURL = ngx.var.scheme .. "s://" .. ngx.var.host
 end
 
@@ -68,6 +70,7 @@ end
 -- Runs before all
 app:before_filter(function(self)
 	ll("Before filter running")
+	-- This is importante. Do not remove!
 	setSessionVars(self)
 	
 	local forwardip = self.req.headers["x-forwarded-for"] or "no-forward"
@@ -202,7 +205,6 @@ end
 
 -- MARKDOWN PARSER
 app:get("readme","/readme", function(self)
-	setSessionVars(self)
 	-- Shows a readme file with markdown
 	readmeFile = io.open ("README.md", "r")
 	contents = readmeFile:read("*all")
@@ -214,11 +216,11 @@ end)
 -- Handle email subscriptions
 app:match("/subscribe/*", respond_to({
   GET = function(self)
-	  setSessionVars(self)
+	  
     return { render = true }
   end,
   POST = function(self)
-  	setSessionVars(self)
+  	-- setSessionVars(self)
   	-- Grabs the ip
 	local forwardip = self.req.headers["x-forwarded-for"] or "no-forward"
 	
@@ -244,7 +246,7 @@ app:match("/subscribe/*", respond_to({
 
 app:match("auth", "/api/auth", respond_to({
 	GET = function(self)
-		setSessionVars(self)
+		-- setSessionVars(self)
 		self.thetok = csrf.generate_token(self)
 		
 		if self.session.current_user_id == nil then
@@ -296,7 +298,7 @@ app:match("auth", "/api/auth", respond_to({
 			if(protectedLinkRequested == "" or protectedLinkRequested == nil) then
 				-- Default login location
 				ll("Redirecting to default location")
-				setSessionVars(self)
+				-- setSessionVars(self)
 				return {status=200, layout=false, json={msg = "Hola Auth Token"}}
 			else
 				ll("Redirect to : " .. self:url_for(protectedLinkRequested))
@@ -310,7 +312,7 @@ app:match("auth", "/api/auth", respond_to({
 
 --[[ Tasks API ]]
 app:get("list_tasks","/tasks", function(self)
-	setSessionVars(self)
+	-- setSessionVars(self)
 	local josellausas 	= LLUser.getWithUsername("jose")
 	local jsonData 		= Llau:getTasksJSON("josellausas")
 	if not jsonData then return "" end
@@ -325,7 +327,7 @@ end)
 end)]]
 app:match("apiusers","/api/users", capture_errors(respond_to({
 	GET = function(self)
-		setSessionVars(self)
+		-- setSessionVars(self)
 
 		local noAuth = checkForAuth(self, "apiusers")
 		if noAuth then
@@ -336,7 +338,7 @@ app:match("apiusers","/api/users", capture_errors(respond_to({
 	    return {status=200, layout=false, json=jsonToReturn}
 	end,	
 	POST = function(self)
-		setSessionVars(self)
+		-- setSessionVars(self)
 		
 		-- Yes this is how I do it.
 		local noAuth = checkForAuth(self, "apiusers")
@@ -366,12 +368,12 @@ app:match("apiusers","/api/users", capture_errors(respond_to({
 --[[ Messages API]]
 responders = {}
 responders.GET = function(self)
-	setSessionVars(self)
+	-- setSessionVars(self)
 	print("Handling GET")
 	return {status=200, layout=false, "OK"}
 end
 responders.POST = function(self)
-	setSessionVars(self)
+	-- setSessionVars(self)
 	print("Handling POST")
 	local josellausas = LLUser.getWithUsername("jose")
 	local newMsg      = Messages.new(josellausas, josellausas, "Hola hola")
@@ -381,7 +383,7 @@ app:match("/api/create-message", respond_to(responders) )
 
 
 app:get("logout", "/logout", function(self)
-	setSessionVars(self)
+	-- setSessionVars(self)
 	local forwardip = self.req.headers["x-forwarded-for"] or "no-forward"
 	self.session.current_user_id=nil
 	notifyMQTT(0,"Logged out", forwardip)
@@ -390,7 +392,7 @@ end)
 
 app:match("adminsection", "/admin/:section", respond_to({
 	GET = function(self)
-		setSessionVars(self)
+		-- setSessionVars(self)
 		
 		ll("Getting admin")
 		local forwardip = self.req.headers["x-forwarded-for"] or "no-forward"
@@ -445,7 +447,7 @@ app:match("adminsection", "/admin/:section", respond_to({
 --[[ Web administration ]]
 app:match("admin", "/admin", respond_to({
 	GET = function(self)
-		setSessionVars(self)
+		-- setSessionVars(self)
 		ll("Getting admin")
 		local forwardip = self.req.headers["x-forwarded-for"] or "no-forward"
 		notifyMQTT(0,"Attempt to access admin admin!", forwardip)
@@ -495,7 +497,7 @@ app:match("admin", "/admin", respond_to({
 
 app:match("login", "/login", respond_to({
 	GET = function(self)
-		setSessionVars(self)
+		-- setSessionVars(self)
 		self.thetok = csrf.generate_token(self)
 		return {render = true}
 	end,
@@ -528,7 +530,7 @@ app:match("login", "/login", respond_to({
 			if(protectedLinkRequested == "" or protectedLinkRequested == nil) then
 				-- Default login location
 				ll("Redirecting to default location")
-				setSessionVars(self)
+				-- setSessionVars(self)
 				return {redirect_to = self:url_for("admin")}
 			else
 				ll("Redirect to : " .. self:url_for(protectedLinkRequested))
@@ -549,7 +551,7 @@ app:match("login", "/login", respond_to({
 
 --[[ Download the app ]]
 app:get("getapp", "/getapp", function(self)
-	setSessionVars(self)
+	-- setSessionVars(self)
 	local forwardip = self.req.headers["x-forwarded-for"] or "no-forward"
 	notifyMQTT(0, "App downloaded!", forwardip)
 	return { redirect_to="static/app-debug.apk", layout=false }
@@ -557,20 +559,20 @@ end)
 
 --[[ Web INDEX re-route]]
 app:get("/index", "/index.html", function(self)
-	setSessionVars(self)
+	-- setSessionVars(self)
 	return {render = "index" }
 end)
 
 --[[ Web INDEX ]]
 app:get("index","/", function(self)
-	setSessionVars(self)
+	-- setSessionVars(self)
 	self.webcontent = require("webcontent")
 	return { render = "index" }
 end)
 
 --[[ A nice honeypot ]]
 app:get("its-a-trap", "/its-a-trap", function(self)
-	setSessionVars(self)
+	-- setSessionVars(self)
 	local forwardip = self.req.headers["x-forwarded-for"] or "no-forward"
 	notifyMQTT(3, "Robot hit honeypot!!!!", forwardip)
 	return {render = "index" }
