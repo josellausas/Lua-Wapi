@@ -8,6 +8,11 @@ local lapis_validate = require "lapis.validate"
 local assert_valid 	 = lapis_validate.assert_valid
 local yield_error 	 = require("lapis.application").yield_error
 
+local function ll(msg)
+	local ccmsg = cc('%{red}[***LOG***]%{reset}\n\n%{blue}' .. msg .. '%{reset}\n\n')
+	ngx.log(ngx.NOTICE, ccmsg)
+end
+
 
 local res = {}
 
