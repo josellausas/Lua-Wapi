@@ -82,7 +82,7 @@ end)
 --[[ Email API ]]
 local function registerEmail(theemail, clientip, sourceURL)
 	local authorized = checkForAuth(self, "admin")
-	if( not authorized ) then
+	if( authorized ~= nil) then
 		return authorized
 	end
 
@@ -313,7 +313,7 @@ app:match("auth", "/api/auth", respond_to({
 --[[ Tasks API ]]
 app:get("list_tasks","/tasks", function(self)
 	local authorized = checkForAuth(self, "admin")
-	if( not authorized ) then
+	if( authorized ~= nil ) then
 		return authorized
 	end
 
@@ -396,7 +396,7 @@ app:match("adminsection", "/admin/:section", respond_to({
 		
 		-- Check for auth
 		local authorized = checkForAuth(self, "admin")
-		if( not authorized ) then
+		if( authorized ~= nil) then
 			return authorized
 		end
 
@@ -442,11 +442,13 @@ app:match("admin", "/admin", respond_to({
 	GET = function(self)
 		-- setSessionVars(self)
 		ll("Getting admin")
+
 		local forwardip = self.req.headers["x-forwarded-for"] or "no-forward"
+		
 		notifyMQTT(0,"Attempt to access admin admin!", forwardip)
 		
-		local authorized = checkForAuth(self, "admin")
-		if( not authorized ) then
+		local authorizedError = checkForAuth(self, "admin")
+		if( authorizedError ~= nil) then
 			return authorized
 		end
 
