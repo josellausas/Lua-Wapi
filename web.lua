@@ -112,7 +112,7 @@ local function checkForAuth(self, requestedURL)
 		ll("Has no permission, need to auth first")
 		-- Send to login so they do the things
 		protectedLinkRequested = requestedURL
-		return {redirect_to=self:url_for("auth")}
+		return {redirect_to=self:url_for("login")}
 		-- return {status=401, layout=false, "Unauthorized, authorize first."}
 	else 
 		return nil
@@ -246,6 +246,7 @@ app:match("/subscribe/*", respond_to({
 
 app:match("auth", "/api/auth", respond_to({
 	GET = function(self)
+		ll("Attempting authorization")
 		-- setSessionVars(self)
 		self.thetok = csrf.generate_token(self)
 		
@@ -449,6 +450,7 @@ app:match("admin", "/admin", respond_to({
 		
 		local authorizedError = checkForAuth(self, "admin")
 		if( authorizedError ~= nil) then
+			ll("Unauthorized")
 			return authorized
 		end
 
