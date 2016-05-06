@@ -451,7 +451,7 @@ app:match("admin", "/admin", respond_to({
 		local authorizedError = checkForAuth(self, "admin")
 		if( authorizedError ~= nil) then
 			ll("Unauthorized")
-			return authorized
+			return authorizedError
 		end
 
 		-- Only allows my user to get in here
