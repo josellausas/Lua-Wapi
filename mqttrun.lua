@@ -13,5 +13,5 @@ while (error_message == nil) do
 end
 
 if(error_message) then
-	io.write(error_message)
+	print(error_message)
 end
