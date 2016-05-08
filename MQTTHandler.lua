@@ -152,8 +152,10 @@ function h:start()
 		print("Cerrando MQTT")
 	  	mqtt_client:unsubscribe({"v1/#"})
 	  	mqtt_client:destroy()
+	  	return "Closed MQTT"
 	else
 	  print("El ERROR: " .. error_message)
+	  return error_message
 	end
 
 end
