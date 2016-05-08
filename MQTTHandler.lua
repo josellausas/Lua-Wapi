@@ -8,6 +8,7 @@ local cjson     = require "cjson.safe"
 local Crypto 	= require 'crypto'
 local base64 	= require 'Llau.base64'
 local config   	= require("lapis.config").get()
+
 -- La configuración de nuestro cliente MQTT.
 local mqtt_config = {
 	host = "m10.cloudmqtt.com",
@@ -45,17 +46,30 @@ end
 
 -- Función que reacciona a los mensajes
 local callback = function(topic, message)
+	print("Invoking MQTT message handler")
 	print("Topic: " .. topic .. ", message: " .. message)
+
 	if string.find(topic, "v1/notify") then
+		print("v1/notify")
 		local json,err = cjson.decode(message)
 		if err then
+			print("There was an error")
 			print(err)
+
+			print("Creating an error notification")
 			local n = Notification.new(9, "Error: " .. message, "local")
 			n:save()
 		else
 			--[[ Handle them here ]]
+			print("Decoding message")
 			local decoded = Llau:decrypt(base64.decode(json.msg))
 
+			if(decoded == nil) then
+				print("Failed to decode message")
+			else
+				print("Decoded: " .. decoded)    
+			end
+			
 			local ident = ""
 			if topic == 'v1/notify/android' then
 				ident = "android: "
@@ -67,6 +81,7 @@ local callback = function(topic, message)
 				ident = "unknown: "
 			end
 
+			print("Creating a database notification")
 			local n = Notification.new(json.severe, decoded, ident .. json.ip)
 			n:save()
 		end
@@ -103,18 +118,23 @@ function h:start()
 	print("Starting MQTT Handler by Llau...")
 
 	if(mqtt_client == nil) then
+		print("Creating a MQTT client")
 		mqtt_client = MQTT.client.create(mqtt_config.host, mqtt_config.port, callback)
 	end
 
 	if(mqtt_client.connected == false) then
 		-- Set the auth 
 		mqtt_client:auth(mqtt_config.user, mqtt_config.password)
+		print("Connecting MQTT")
 		-- Connect with last will, stick, qos = 2 and offline payload.
 	    mqtt_client:connect("handler", "v1/status/handler", 2, 1, mqtt_config.offlinePayload)	
+	    print("Done connecting!")
 	    -- Post a connection message
+	    print("Publishing an online message!")
 	    mqtt_client:publish("v1/status/handler", "Handler: " .. mqtt_config.user .. " online")
 	end
 
+	print("Subscribing to v1/# channel")
     -- Listen to all channels.
     mqtt_client:subscribe({"v1/#"})
 
@@ -130,12 +150,10 @@ function h:start()
 
 	if (error_message == nil) then
 		print("Cerrando MQTT")
-	  mqtt_client:unsubscribe({"v1/#"})
-	  mqtt_client:destroy()
+	  	mqtt_client:unsubscribe({"v1/#"})
+	  	mqtt_client:destroy()
 	else
 	  print("El ERROR: " .. error_message)
-	
-	 
 	end
 
 end
