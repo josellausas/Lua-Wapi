@@ -47,7 +47,7 @@ end
 
 -- Función que reacciona a los mensajes
 local callback = function(topic, message)
-	local n = Notification.new(0, "MQTT: " .. message, "topic")
+	local n = Notification.new(0, "MQTT: " .. message, topic)
 	n:save()
 
 	print("Invoking MQTT message handler")
@@ -138,6 +138,8 @@ function h:start()
 	    print("Done connecting!")
 	    -- Post a connection message
 	    print("Publishing an online message!")
+	    local n = Notification.new(9, "MQTT Connected!", "local")
+		n:save()
 	    mqtt_client:publish("v1/status/handler", "Handler: " .. mqtt_config.user .. " online")
 	end
 
