@@ -47,6 +47,9 @@ end
 
 -- Función que reacciona a los mensajes
 local callback = function(topic, message)
+	local n = Notification.new(0, "MQTT: " .. message, "topic")
+	n:save()
+
 	print("Invoking MQTT message handler")
 	print("Topic: " .. topic .. ", message: " .. message)
 
