@@ -8,6 +8,7 @@ local cjson     = require "cjson.safe"
 local Crypto 	= require 'crypto'
 local base64 	= require 'Llau.base64'
 local config   	= require("lapis.config").get()
+local socket = require("socket")
 
 -- La configuración de nuestro cliente MQTT.
 local mqtt_config = {
