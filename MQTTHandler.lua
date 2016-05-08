@@ -51,9 +51,12 @@ local callback = function(topic, message)
 
 	if string.find(topic, "v1/notify") then
 		print("v1/notify")
+
+
+		print("Tryng to JSONify this: "..message)
 		local json,err = cjson.decode(message)
 		if err then
-			print("There was an error")
+			print("There was an error, not valid JSON")
 			print(err)
 
 			print("Creating an error notification")
