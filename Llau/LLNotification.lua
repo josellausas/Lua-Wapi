@@ -36,6 +36,11 @@ end
 --[[ Creates and returns a new message instance ]]
 m.new = function(severe, payload, address)
 
+	if(payload == nil) then
+		print("Sent nil payload!")
+		return nil
+	end
+
 	-- The message data structure reflects the DB Model.
 	local model = {
 		payload = "",

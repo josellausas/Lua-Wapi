@@ -244,7 +244,7 @@ app:match("/subscribe/*", respond_to({
 }))
 
 
-app:match("auth", "/api/auth", respond_to({
+app:match("auth", "/api/v1/auth", respond_to({
 	GET = function(self)
 		ll("Attempting authorization")
 		-- setSessionVars(self)
