@@ -55,7 +55,10 @@ ll.notify = function(self, severe, msg, ipAddress)
 		print("Connecting mqtt")
 	-- Connect with last will, stick, qos = 2 and offline payload.
 	    mqtt_client:connect("webserver", "v1/status/webserver", 2, 1, mqttconf.offlinePayload)
-	    mqtt_client:publish("v1/status", "Webserver: " .. mqttconf.user .. " online")
+
+	    if(mqtt_client.connected == true) then
+		    mqtt_client:publish("v1/status", "Webserver: " .. mqttconf.user .. " online")
+		end
     end
    
     -- Build a JSON-style structure with an encrypted message
@@ -64,7 +67,10 @@ ll.notify = function(self, severe, msg, ipAddress)
 
    	-- Encode json
 	local json,err = cjson.encode(x)
-    mqtt_client:publish("v1/notify/web", json )
+
+	if(mqtt_client.connected == true) then 
+	    mqtt_client:publish("v1/notify/web", json )
+	end
 end
 
 
