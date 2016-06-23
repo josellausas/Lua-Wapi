@@ -237,7 +237,8 @@ local function getMenuList()
 	return list
 end
 
--- MARKDOWN PARSER
+-------------------------------------
+-- The readme
 app:get("readme","/readme", function(self)
 	-- Shows a readme file with markdown
 	readmeFile = io.open ("README.md", "r")
@@ -247,7 +248,8 @@ app:get("readme","/readme", function(self)
 	return markdown(contents)
 end)
 
--- Handle email subscriptions
+-----------------------------------
+-- Subscribe here
 app:match("/subscribe/*", respond_to({
   GET = function(self)
 	  
@@ -277,7 +279,8 @@ app:match("/subscribe/*", respond_to({
   end
 }))
 
-
+--------------------------------------------
+-- Authorization method
 app:match("auth", "/api/v1/auth", respond_to({
 	GET = function(self)
 		ll("Attempting authorization")
@@ -345,7 +348,8 @@ app:match("auth", "/api/v1/auth", respond_to({
 
 
 
---[[ Tasks API ]]
+--------------------------------------
+-- Get a list of tasks
 app:get("list_tasks","/tasks", function(self)
 	local authorized = checkForAuth(self, "admin")
 	if( authorized ~= nil ) then
@@ -358,7 +362,8 @@ app:get("list_tasks","/tasks", function(self)
 	return jsonData
 end)
 
-
+------------------------------------
+-- Users API
 app:match("apiusers","/api/users", capture_errors(respond_to({
 	GET = function(self)
 		-- Check for auth
@@ -395,7 +400,8 @@ app:match("apiusers","/api/users", capture_errors(respond_to({
 
 
 
---[[ Messages API]]
+-----------------------------
+-- Messages API
 responders = {}
 responders.GET = function(self)
 	-- setSessionVars(self)
@@ -410,6 +416,7 @@ responders.POST = function(self)
 	return {redirect_to=self:url_for("index")}
 end
 app:match("/api/create-message", respond_to(responders) )
+
 
 
 app:get("logout", "/logout", function(self)
