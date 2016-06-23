@@ -1,43 +1,33 @@
---[[
-		Lua Wapi Framework
-		==================
-		> Work in progress. Documentation soon.
-]]
-local lapis    	= require "lapis"
-local config   	= require("lapis.config").get()
-local mqtt     	= require("mqtt")
-local markdown 	= require("markdown")
-local pgmoon 	= require("pgmoon")
-local console 	= require("lapis.console")
-local Llau 		= require("Llau.Llau")
-local LLUser     = require("Llau.LLUser")
-local Messages  = require("Llau.LLMessage")
-local csrf 		= require ("lapis.csrf")
-local cjson     = require "cjson.safe"
-local lapis_validate = require "lapis.validate"
-local assert_valid 	 = lapis_validate.assert_valid
-local yield_error 	 = require("lapis.application").yield_error
-local RespoMan = require("ResponderMan")
+----------------------------------------
+--	Llau Systems App
+--
+--	A Lua website with Lapis Framework
+--	
+--	@module app
+--	@author jose@josellausas.com
+--	@copyright Zunware 2016
+local lapis    			= require "lapis"
+local config   			= require("lapis.config").get()
+local mqtt     			= require("mqtt")
+local markdown 			= require("markdown")
+local pgmoon 			= require("pgmoon")
+local console 			= require("lapis.console")
+local Llau 				= require("Llau.Llau")
+local LLUser     		= require("Llau.LLUser")
+local Messages  		= require("Llau.LLMessage")
+local csrf 				= require ("lapis.csrf")
+local cjson     		= require "cjson.safe"
+local lapis_validate 	= require "lapis.validate"
+local assert_valid 	 	= lapis_validate.assert_valid
+local yield_error 	 	= require("lapis.application").yield_error
+local RespoMan 			= require("ResponderMan")
+local cc 				= require("ansicolors")
+local capture_errors = require("lapis.application").capture_errors
+local respond_to     = require("lapis.application").respond_to
 
--- Used for the logging ing
 local protectedLinkRequested = ""
-
-local cc = require("ansicolors")
-
-local function ll(msg)
-	local ccmsg = cc('%{red}[***LOG***]%{reset}\n\n%{blue}' .. msg .. '%{reset}\n\n')
-	ngx.log(ngx.NOTICE, ccmsg)
-end
-
-local function setSessionVars(sess)
-	sess.webcontent = require("webcontent")
-	-- This is necessary for internal linking
-	sess.rootURL = ngx.var.scheme .. "s://" .. ngx.var.host
-end
-
-
-local mqtt_client = nil
-local mqttconf 	= {
+local mqtt_client 	= nil
+local mqttconf 		= {
 	host = "m10.cloudmqtt.com",
 	port = "11915",
 	user = "webserver",
@@ -45,10 +35,6 @@ local mqttconf 	= {
 	offlinePayload = "Webserver: offline",
 	keepalive = 40,
 }
-
-
-local capture_errors = require("lapis.application").capture_errors
-local respond_to     = require("lapis.application").respond_to
 
 -- Get a Lapis web app
 local app = lapis.Application()
@@ -59,53 +45,92 @@ app:enable("etlua")
 -- Set the default layout
 app.layout = require "views.layout"		-- Sets the layout we are using.
 
+----------------------------------------
+-- Logs a message to the Nginx console
+-- 
+-- @function ll()
+local function ll(msg)
+	local ccmsg = cc('%{red}[***LOG***]%{reset}\n\n%{blue}' .. msg .. '%{reset}\n\n')
+	ngx.log(ngx.NOTICE, ccmsg)
+end
 
+-----------------------------------------------
+-- 	Sets the session variables and forces https
+-- 	must be called each time
+--
+--	@function setSessionVars()
+--	@tab sess session variable
+local function setSessionVars(sess)
+	sess.webcontent = require("webcontent")
+	-- This is necessary for internal linking. Enforces HTTPS by rewriting the thing
+	sess.rootURL = ngx.var.scheme .. "s://" .. ngx.var.host
+end
 
---[[ MQTT API ]]
+-----------------------------------------------
+--	Sends an MQTT message to the server
+--
+--	@number severe The severenes of the message
+--	@string msg The message
+--	@string ipAddress theIpAddreess this came from
 local function notifyMQTT(severe, msg, ipAddress)
 	Llau:notify(severe,msg,ipAddress)
 end
 
-
-
-
--- Runs before all
+-------------------------------------------------------
+--	Runs before a request is resolved. Enforces HTTPS
+-- 	Here we set some custom variables up for the app. 
+--	Also we get the requester's ip and forward it.
+--	This function is automatically called by lapis
 app:before_filter(function(self)
-	-- This is importante. Do not remove!
+	-- This is importante. Do not remove! Enforces HTTPS
 	setSessionVars(self)
-	
+	-- Get the incoming IP. If no up then we use "no-forward string"
 	local forwardip = self.req.headers["x-forwarded-for"] or "no-forward"
-
-	ll("Request from: " .. forwardip)
 end)
 
---[[ Email API ]]
+-------------------------------------------------------
+-- Registers an email with the machine
+--
+-- @string theemail The email
+-- @string clientip the client's ip
+-- @string sourceURL The URL this is requested from
 local function registerEmail(theemail, clientip, sourceURL)
+	-- We check for authorization
 	local authorized = checkForAuth(self, "admin")
 	if( authorized ~= nil) then
 		return authorized
 	end
 
+	-- Check for MQTT
 	if mqtt_client == nil then
 		mqtt_client = mqtt.client.create(mqttconf.host, mqttconf.port, nil)
 		mqtt_client:auth(mqttconf.user, mqttconf.password)
 	end
 
+	-- Check for connection
 	if(mqtt_client.connected == false) then
 		print("Connecting mqtt")
-	-- Connect with last will, stick, qos = 2 and offline payload.
+		-- Connect with last will, stick, qos = 2 and offline payload.
 	    mqtt_client:connect("webserver", "v1/status/webserver", 2, 1, mqttconf.offlinePayload)
 	    mqtt_client:publish("v1/status", "Webserver: " .. mqttconf.user .. " online")
    end
     
     print("Publishing to mqtt")
 
+    -- The send wrapper
     local sendWrap = { email=theemail, ip=clientip, source=sourceURL }
 
+    -- Encode in json and send to server
     local json,err = cjson.encode(sendWrap)
     mqtt_client:publish("v1/subscribe/email", json )
 end
 
+------------------------------------------------------------------------
+-- Checks if we are authorized by the machine
+--
+-- @tab self self
+-- @string requestedURL The URL that was requested
+-- @return redirectsTo
 local function checkForAuth(self, requestedURL)
 	-- Check for session
 	if self.session.current_user_id == nil then
@@ -119,7 +144,8 @@ local function checkForAuth(self, requestedURL)
 	end
 end
 
--- [[ DEFAULT ROUTE ]]
+---------------------------------------------------------------
+-- Default route.
 app.default_route = function ( self )
 	setSessionVars(self)
 	print("Entered default function")
@@ -129,7 +155,8 @@ end
 
 
 
---[[ 404 ]]
+------------------------------------------------------
+-- 404 Error Callback
 app.handle_404 = function( self )
 	setSessionVars(self)
 	ngx.log(ngx.NOTICE, "Uknown path: " .. self.req.parsed_url.path)
@@ -139,19 +166,26 @@ app.handle_404 = function( self )
 end
 
 
---[[ ERROR Handler ]]
+------------------------------------------------------
+-- Lapis Error Callback
+--
+-- @param err The error table
+-- @param trace The error debug information
+-- @TODO: Add custom error logging here
 app.handle_error = function(self, err, trace)
+	-- Do this always man!
 	setSessionVars(self)
+	
 	-- Logs to the nginx console
 	ll("Lapis error: " .. err .. ": " .. trace)
 
 	-- Handle the erros with Lapis internaly.
 	lapis.Application.handle_error(self, err, trace)
 
-	-- TODO: Notifiy the server of an error here
+	-- TODO: Add custom error logging here
 end
 
--- [[MENU LIST]]
+----------------------------------------
 -- Used for the database
 local pg 		= pgmoon.new({
 	host = "ec2-54-83-59-203.compute-1.amazonaws.com",
