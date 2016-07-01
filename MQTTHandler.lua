@@ -8,7 +8,7 @@ local cjson     = require "cjson.safe"
 local Crypto 	= require 'crypto'
 local base64 	= require 'Llau.base64'
 local config   	= require("lapis.config").get()
-local socket = require("socket")
+local socket 	= require("socket")
 
 -- La configuración de nuestro cliente MQTT.
 local mqtt_config = {
@@ -31,6 +31,7 @@ local Llau 			= require("Llau.Llau")
 local MQTT 			= require("mqtt")
 local Notification 	= require("Llau.LLNotification")
 local Subscriber    = require("Llau.LLSubscriber")
+local mqtt_client = nil
 
 
 local running = true
@@ -120,7 +121,7 @@ end
 
 -- Inicia el cliente MQTT y escucha para reaccionar a los diferentes mensajes
 function h:start()
-	local mqtt_client = nil
+	
 
 	print("Starting MQTT Handler by Llau...")
 
@@ -138,8 +139,6 @@ function h:start()
 	    print("Done connecting!")
 	    -- Post a connection message
 	    print("Publishing an online message!")
-	    local n = Notification.new(9, "MQTT Connected!", "local")
-		n:save()
 	    mqtt_client:publish("v1/status/handler", "Handler: " .. mqtt_config.user .. " online")
 	end
 
