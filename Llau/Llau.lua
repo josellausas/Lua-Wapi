@@ -1,16 +1,18 @@
+--------------------------------------------
+-- Llau Task Manager
+-- -----------------
+-- This is the main interface for all the task functionality.
+-- Any questions/comments: jose@josellausas.com
+--
+-- @author jose@josellausas.com
+-- @copyright Zunware 2016. All rights reserved.
+-- @module Llau
+-- @alias ll
+--------------------------------------------
 local ll = {}
 
---[[
-	Llau Task Manager
-	-----------------
-	This is the main interface for all the task functionality.
-	Any questions/comments: jose@josellausas.com
-
-	All rights reserved.
-	
-]]
-
--- THIS HAS TO BE THE FIRST THING. DO NOT MOVE! ----
+-- THIS HAS TO BE THE FIRST THING. DO NOT MOVE!
+--- Lapis's config table
 local config   	= require("lapis.config").get()
 config.postgres = {
     host = "ec2-54-83-59-203.compute-1.amazonaws.com",
@@ -18,22 +20,24 @@ config.postgres = {
     password = "_EsJ9XVoYVSYXDWbUDOTQPdrph",
     database = "d2k28tn5s3orl5"
 }
+
 local Model  = require("lapis.db.model").Model
--- ADD MORE THINGS BELOW: -------
-
-
 local LLTask = require("Llau.LLTask")
 local LLUser = require("Llau.LLUser")
 local Crypto = require 'crypto'
-local cjson     = require "cjson.safe"
-local mqtt     	= require("mqtt")
-local base64    = require "Llau.base64"
-local pgmoon 	= require("pgmoon")
+local cjson  = require "cjson.safe"
+local mqtt   = require("mqtt")
+local base64 = require "Llau.base64"
+
+-- TODO: Check if this is still being used.
+local pgmoon = require("pgmoon")
 ll.config = {
 	cipher = 'aes128',
 	key = 'HhfewR*n#FFH)Dffatr3FD_DF-AD',
 	iv = 157663
 }
+
+-- The Mqtt things
 local mqtt_client = nil
 local mqttconf 	= {
 	host = "m10.cloudmqtt.com",
@@ -44,7 +48,14 @@ local mqttconf 	= {
 	keepalive = 40,
 }
 
---[[ MQTT API ]]
+-------------------------------------------------------------
+-- Notifies something to the MQTT
+--
+-- @param self Reference to self
+-- @param severe The severenes of the notification
+-- @param msg The message to send
+-- @strinng ipAddress Identifier for the message being sent
+-----------------------------------------------------------
 ll.notify = function(self, severe, msg, ipAddress)
 	if mqtt_client == nil then
 		mqtt_client = mqtt.client.create(mqttconf.host, mqttconf.port, nil)
@@ -73,8 +84,13 @@ ll.notify = function(self, severe, msg, ipAddress)
 	end
 end
 
-
---[[ Returns a JSON object with all the tasks for the given user]]
+-----------------------------------------------------------
+-- Returns a JSON object with all the tasks for the given user
+-- 
+-- @param self Self reference
+-- @param usr The user to get the tasks for
+--
+-- @return **(Table)** A table of tasks
 ll.getTasksJSON = function(self, usr)
 	if usr == nil then return nil end
 	
@@ -95,10 +111,11 @@ ll.getTasksJSON = function(self, usr)
 end
 
 
-
-
-
---[[ Returns a list of Users ]]
+-------------------------------------------------------
+-- Returns a list of Users
+--
+-- @return **(Table)** A table of Users
+-------------------------------------------------------
 ll.getUsersJSON = function(self)
 	local allUsers = LLUser.listAll()
 
@@ -112,10 +129,13 @@ ll.getUsersJSON = function(self)
 end
 
 
-
---[[ Returns the Calendar object for the given user ]]
+-------------------------------------------------------
+-- Returns the Calendar object for the given user
+-- @param usr The user to get the calendar for
+-- @return The calendar for the users
+-------------------------------------------------------
 ll.getCalendarForUser = function (self, usr)
-
+	-- TODO: Implement this thing
 	return usr.name
 	-- local assignent = calendarAssignments:find({user=theUser.id})
 	-- local calendar = assignent:get_calendar()
